@@ -11,5 +11,5 @@ public class FundItemVo {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long fund_itemId;
+    private Long fundItemId;
 }

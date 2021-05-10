@@ -11,5 +11,5 @@ public class ResumeVo {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long resume_Id;
+    private Long resumeId;
 }

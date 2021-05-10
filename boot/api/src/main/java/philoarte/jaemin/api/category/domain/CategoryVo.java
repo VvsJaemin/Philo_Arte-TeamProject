@@ -11,5 +11,5 @@ public class CategoryVo {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long category_Id;
+    private Long categoryId;
 }
