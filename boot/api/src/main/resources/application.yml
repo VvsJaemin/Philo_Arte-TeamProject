@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://parkjaemin.czqpiiaxuzcd.ap-northeast-2.rds.amazonaws.com:3306/ParkJaemin
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: ParkJaemin
+    password: woals1212!
+  jpa:
+    open-in-view: false
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+
+UserController:
+  signup: Creates user and returns its JWT token
+  signin: Authenticates user and returns its JWT token
+
+#  @ApiOperation value값 호출 할수 있게 스웨거 매칭

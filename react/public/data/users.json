@@ -1,0 +1,52 @@
+[
+    {
+        "userId": 1,
+        "username": "a10",
+        "password": "$2a$10$wo.VL8USwGyZvlgTAfRifu/Ce0DuKkaUHcs4mSqGcnKL1M8vPexkK",
+        "email": "a10@nate.com",
+        "name": "김투투",
+        "roles": [
+            "USER"
+        ]
+    },
+    {
+        "userId": 2,
+        "username": "a1",
+        "password": "$2a$10$FsMx/Fw9jmocVmga2cZoL.EP2OB0oSY14EiKgNsGAywMQbzIaN5py",
+        "email": "a1@nate.com",
+        "name": "박재민",
+        "roles": [
+            "USER"
+        ]
+    },
+    {
+        "userId": 3,
+        "username": "a2",
+        "password": "$2a$10$A.8BEQBm3ajuy.D6r6InVu4Cs106cEm0rMuIonjrF/J4CsTN10seG",
+        "email": "a2@nate.com",
+        "name": "김재민",
+        "roles": [
+            "USER"
+        ]
+    },
+    {
+        "userId": 4,
+        "username": "a3",
+        "password": "$2a$10$5hp3F8jyIEiRsv8N.oBhJ.P7MUfSas.xf7nLFkR3.UQtXbbNuqvry",
+        "email": "a3@nate.com",
+        "name": "홍길동",
+        "roles": [
+            "USER"
+        ]
+    },
+    {
+        "userId": 5,
+        "username": "a4",
+        "password": "$2a$10$ctHsEp1acDyTmrF7LhOj8ObROfvEdXyfm1wK5rCnfoSWBNZdKLTiO",
+        "email": "a4@nate.com",
+        "name": "개타원",
+        "roles": [
+            "USER"
+        ]
+    }
+]

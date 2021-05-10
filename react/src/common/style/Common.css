@@ -1,0 +1,10 @@
+
+.width_100pro {
+    width: 100%;
+}
+
+.img-responsive_img-circle_margin_display_inline{
+
+    display: inline;
+    border-radius: 70%;
+}
