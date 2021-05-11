@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "icon": "icon-happy",
+    "title": "Happy Clients",
+    "value": 3521,
+    "color": "default-color"
+  },
+  {
+    "id": 2,
+    "icon": "icon-heart",
+    "title": "Cups of Coffee",
+    "value": 974,
+    "color": "default-color"
+  },
+  {
+    "id": 3,
+    "icon": "icon-document",
+    "title": "Projects Delivered",
+    "value": 634,
+    "color": "default-color"
+  },
+  {
+    "id": 4,
+    "icon": "icon-presentation",
+    "title": "Awards Won",
+    "value": 449,
+    "color": "default-color"
+  },
+  {
+    "id": 5,
+    "icon": "icon-paintbrush",
+    "title": "Happy Clients",
+    "value": 3521,
+    "color": "white-color"
+  },
+  {
+    "id": 6,
+    "icon": "icon-speedometer",
+    "title": "Cups of Coffee",
+    "value": 974,
+    "color": "white-color"
+  },
+  {
+    "id": 7,
+    "icon": "icon-genius",
+    "title": "Projects Delivered",
+    "value": 634,
+    "color": "white-color"
+  },
+  {
+    "id": 8,
+    "icon": "icon-strategy",
+    "title": "Awards Won",
+    "value": 449,
+    "color": "white-color"
+  }
+]

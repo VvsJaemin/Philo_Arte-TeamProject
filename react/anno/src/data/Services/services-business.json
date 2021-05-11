@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "icon": "headphone-alt",
+    "title": "Digital",
+    "textFront": "Digital marketing is the marketing of products or services using digital technologies.",
+    "textBack": "Digital marketing is the marketing of products or services using digital technologies."
+  },
+  {
+    "id": 2,
+    "icon": "globe-alt",
+    "title": "Development",
+    "textFront": "Web development refers to building, creating, and an maintaining websites.",
+    "textBack": "Web development refers to building, creating, and an maintaining websites."
+  },
+  {
+    "id": 3,
+    "icon": "magic",
+    "title": "Design",
+    "textFront": "Web design is the process of creating websites. It encompasses several different aspects.",
+    "textBack": "Web design is the process of creating websites. It encompasses several different aspects."
+  }
+]

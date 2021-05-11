@@ -1,1 +1,0 @@
-package philoarte.jaemin.api.fundsupporter;
