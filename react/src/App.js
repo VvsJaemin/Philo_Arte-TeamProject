@@ -37,8 +37,15 @@ function App() {
       <ScrollIntoView>
         <ScrollToTop>
           <Switch>
-            <Route exact path={`${process.env.PUBLIC_URL}/`} component={Demo} />
+            {/* <Route exact path={`${process.env.PUBLIC_URL}/`} component={Demo} /> */}
             <Route
+              exact
+              path={`${process.env.PUBLIC_URL}`}
+              component={HomeVideoBg}
+            />
+    
+            
+            {/* <Route
               exact
               path={`${process.env.PUBLIC_URL}/home-main`}
               component={HomeMain}
@@ -62,88 +69,78 @@ function App() {
               exact
               path={`${process.env.PUBLIC_URL}/home-business`}
               component={HomeBusiness}
-            />
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/home-studio`}
-              component={HomeStudio}
-            />
-            <Route
+            /> */}
+            {/* <Route
               exact
               path={`${process.env.PUBLIC_URL}/home-startup`}
               component={HomeStartup}
-            />
-            <Route
+            /> */}
+            {/* <Route
               exact
               path={`${process.env.PUBLIC_URL}/home-marketing`}
               component={HomeMarketing}
-            />
-            <Route
+            /> */}
+            {/* <Route
               exact
               path={`${process.env.PUBLIC_URL}/home-parallax`}
               component={HomeParallax}
-            />
-            <Route
+            /> */}
+            {/* <Route
               exact
               path={`${process.env.PUBLIC_URL}/home-image-bg`}
               component={HomeImageBg}
-            />
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/home-video-bg`}
-              component={HomeVideoBg}
-            />
-            <Route
+            /> */}
+            {/* <Route
               exact
               path={`${process.env.PUBLIC_URL}/home-kenburn`}
               component={HomeKenburn}
-            />
-            <Route
+            /> */}
+            {/* <Route
               exact
               path={`${process.env.PUBLIC_URL}/blog`}
               component={BlogPage}
-            />
-            <Route
+            /> */}
+            {/* <Route
               exact
               path={`${process.env.PUBLIC_URL}/blog-details`}
               component={BlogDetailsPage}
-            />
-            <Route
+            /> */}
+            {/* <Route
               exact
               path={`${process.env.PUBLIC_URL}/counters`}
               component={CountersPage}
-            />
-            <Route
+            /> */}
+            {/* <Route
               exact
               path={`${process.env.PUBLIC_URL}/countdown`}
               component={CountdownPage}
-            />
-            <Route
+            /> */}
+            {/* <Route
               exact
               path={`${process.env.PUBLIC_URL}/testimonials`}
               component={TestimonialsPage}
-            />
-            <Route
+            /> */}
+            {/* <Route
               exact
               path={`${process.env.PUBLIC_URL}/pricings`}
               component={PricingsPage}
-            />
-            <Route
+            /> */}
+            {/* <Route
               exact
               path={`${process.env.PUBLIC_URL}/404-page`}
               component={Page404}
-            />
-            <Route
+            /> */}
+            {/* <Route
               exact
               path={`${process.env.PUBLIC_URL}/coming-soon`}
               component={ComingSoonPage}
-            />
-            <Route
+            /> */}
+            {/* <Route
               exact
               path={`${process.env.PUBLIC_URL}/portfolio`}
               component={PortfolioPage}
-            />
-            <Route component={Page404} />
+            />  */}
+            {/* <Route component={Page404} /> */}
           </Switch>
         </ScrollToTop>
       </ScrollIntoView>

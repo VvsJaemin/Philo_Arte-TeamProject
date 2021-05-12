@@ -2,7 +2,7 @@ import React from "react";
 import HandleFixedNavbar from "../../helpers/HandleFixedNavbar";
 import SideNav from "./SideNav";
 import SearchOverlay from "./SearchOverlay";
-import Navbar from "./Navbar";
+import Navbar from "../../webapp/common/component/Navbar";
 import NavbarHeader from "./NavbarHeader/NavbarHeader";
 import AttrNavSocial from "./Elements/AttrNavSocial";
 

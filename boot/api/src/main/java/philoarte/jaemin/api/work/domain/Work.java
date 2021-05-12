@@ -1,35 +1,38 @@
 package philoarte.jaemin.api.work.domain;
 
 import lombok.Data;
+import philoarte.jaemin.api.artist.domain.Artist;
+import philoarte.jaemin.api.category.domain.Category;
+import philoarte.jaemin.api.resume.domain.Resume;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Data
 @Table(name = "works")
 public class Work {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long worksId;
-
-    @Column(name = "category_id")
-    private Long categoryId;
-
-    @Column(name ="title")
+    @GeneratedValue
+    @Column(name = "work_id")
+    private long workId;
+    @Column
     private String title;
-
-    @Column(name = "description")
+    @Column
     private String description;
-
-    @Column(name="reg_date")
-    private Date regDate = new Date();
-
-    @Column(name = "edit_date")
-    private Date editDate = new Date();
-
     @Column(name = "main_img")
     private String mainImg;
+    @Column(name = "reg_date")
+    private Date regDate;
+    @Column(name = "edit_date")
+    private Date editDate;
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    Artist artist;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+    @ManyToOne
+    @JoinColumn(name = "resume_id")
+    private Resume resume;
 
 }

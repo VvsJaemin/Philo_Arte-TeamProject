@@ -1,4 +1,4 @@
-package philoarte.jaemin.api.artist.domain;
+package philoarte.jaemin.api.supporter.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,28 +8,22 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-@Table(name = "artists")
-@Data
+@Table(name = "supporters")
 @NoArgsConstructor
-public class Artist {
-
+@Data
+public class Supporter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "artist_id")
-    private long artistId;
+    @Column(name = "supporter_id")
+    private long supporterId;
     @Column(unique = true, nullable = false)
     private String username;
     @Size(min = 8, message = "Minimum Passsword Length: 8 characters")
     private String password;
     @Column(unique = true, nullable = false)
     private String name;
-    @Column(name = "email")
-    private String email;
-    @Column(name = "phone_number")
-    private String phoneNumber;
-    @Column(name = "address")
-    private String address;
-    @Column(name = "affiliation")
-    private String affiliation;
-
+    @Column(name = "supporter_email")
+    private String supporterEmail;
+    @Column(name = "supporter_number")
+    private String supporterPhoneNumber;
 }

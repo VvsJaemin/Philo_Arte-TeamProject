@@ -5,7 +5,7 @@ import HandleFixedNavbar from "../../helpers/HandleFixedNavbar";
 import AttrNav from "./AttrNav";
 import SideNav from "./SideNav";
 import SearchOverlay from "./SearchOverlay";
-import Navbar from "./Navbar";
+import Navbar from "../../webapp/common/component/Navbar";
 import NavbarHeader from "./NavbarHeader/NavbarHeader";
 
 const HeaderOne = ({ type, data, border }) => {

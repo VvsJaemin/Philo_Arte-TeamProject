@@ -1,10 +1,10 @@
 package philoarte.jaemin.api.funding.domain;
 
 import lombok.Data;
+import philoarte.jaemin.api.supporter.domain.Supporter;
 
 import javax.persistence.*;
 
-@Data
 @Entity
 @Table(name = "fundings")
 public class Funding {
@@ -20,7 +20,7 @@ public class Funding {
     @Column(name = "funding_content")
     private String fundingContent;
 
-    @Column(name = "funding_money") // 사진 링크
+    @Column(name = "funding_money")
     private String fundingMoney;
 
     @Column(name = "delievery_fee") //배송비
@@ -29,9 +29,16 @@ public class Funding {
     @Column(name = "funding_send") // 펀딩 상품 발송일
     private String fundingSend;
 
-    @Column(name = "select_people")
+    @Column(name = "select_people") // 펀딩 상품 선택 인원
     private String selectPeople;
 
-    @Column(name = "supporter_id")
-    private long supporterId;
+    @Column(name = "total_amount") // 펀딩 상품 총 수량
+    private String totalAmount;
+
+    @Column(name = "remain_amount") // 펀딩 상품 남은 수량
+    private String remainAmount;
+
+    @ManyToOne
+    @JoinColumn(name = "supporter_id")// 서포터가 펀딩 (fk)
+    private Supporter supporter;
 }

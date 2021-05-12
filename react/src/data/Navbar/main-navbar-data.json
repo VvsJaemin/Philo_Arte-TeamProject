@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "Concepts",
+    "title": "Philo-Arte",
     "path": "#home",
     "subMenu": [
       {
@@ -68,12 +68,12 @@
   },
   {
     "id": 2,
-    "title": "Features",
+    "title": "펀딩하기",
     "path": "#feature"
   },
   {
     "id": 3,
-    "title": "About",
+    "title": "Resume",
     "path": "#about"
   },
   {
@@ -83,7 +83,7 @@
   },
   {
     "id": 5,
-    "title": "Team",
+    "title": "저작권 감시",
     "path": "#team"
   },
   {
@@ -93,7 +93,12 @@
   },
   {
     "id": 7,
-    "title": "Contact",
+    "title": "로그인",
+    "path": "#contact"
+  },
+  {
+    "id": 8,
+    "title": "회원가입",
     "path": "#contact"
   }
 ]

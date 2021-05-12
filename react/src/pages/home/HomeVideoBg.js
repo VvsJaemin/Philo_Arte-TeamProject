@@ -29,6 +29,8 @@ import CountersOne from "../../components/Counters/CountersOne";
 import Loader from "../../components/Loader/Loader";
 
 const HomeVideoBg = () => (
+
+  
   <Loader>
     <HeaderOne data={dataNavbar} />
     <HeroHomeVideo
