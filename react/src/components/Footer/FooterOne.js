@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LoadScript from "../../helpers/LoadScript";
-import dataGallery from "../../data/Gallery/footer-gallery.json";
+import {dataGallery} from "data/index";
 import logo from "../../assets/images/logo-footer.png";
 import FooterGallery from "../Gallery/FooterGallery";
 import Icofont from "react-icofont";

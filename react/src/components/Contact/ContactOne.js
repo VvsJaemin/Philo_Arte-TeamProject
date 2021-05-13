@@ -1,6 +1,6 @@
 import React from "react";
 import parse from "html-react-parser";
-import dataStyle from "../../data/Maps/style-3-map.json";
+import {dataStyle} from "data/index";
 import Map from "../Map/Map";
 
 const ContactOne = ({ tagline, title, backfont, dash, textBtn, classes }) => (

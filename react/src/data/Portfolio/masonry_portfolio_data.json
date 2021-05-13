@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "image": "grid/1.jpg",
+    "title": "Creative design",
+    "categories": ["Branding", "Creative Design"]
+  },
+  {
+    "id": 2,
+    "image": "grid/2.jpg",
+    "title": "Cup design",
+    "categories": ["Print", "Branding"]
+  },
+  {
+    "id": 3,
+    "image": "grid/3.jpg",
+    "title": "Shoptify",
+    "categories": ["Branding", "Stationery", "Web Design"]
+  },
+  {
+    "id": 4,
+    "image": "grid/4.jpg",
+    "title": "Game of Neurones",
+    "categories": ["Branding", "Creative Design"]
+  },
+  {
+    "id": 5,
+    "image": "grid/5.jpg",
+    "title": "Krausz",
+    "categories": ["Print", "Photography"]
+  },
+  {
+    "id": 6,
+    "image": "grid/6.jpg",
+    "title": "Blend Station",
+    "categories": ["Branding", "Creative Design"]
+  }
+]

@@ -1,6 +1,6 @@
 import React from "react";
 import Icofont from "react-icofont";
-import dataSocial from "../../../data/Social/social-data.json";
+import {dataSocial} from "data/index";
 
 const AttrNavSocial = () => (
   <div className="attr-nav no-border hidden-xs">

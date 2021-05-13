@@ -2,7 +2,7 @@ import React from 'react';
 // CSS
 import "../../assets/css/revolution/revolution.addon.particles.css";
 // DATA Files
-import dataNavbar from "../../data/Navbar/main-navbar-data.json";
+import {dataNavbar} from "data/index";
 // Components
 import HeaderOne from "../../components/Header/HeaderOne";
 import FooterOne from "../../components/Footer/FooterOne";

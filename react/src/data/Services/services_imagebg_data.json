@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "icon": "icons/icon-planets.png",
+    "title": "We Design",
+    "text": "A designer's sequence of activities is called a design process, possibly using design methods."
+  },
+  {
+    "id": 2,
+    "icon": "icons/icon-rocket.png",
+    "title": "We Create",
+    "text": "Web design and web development are often used interchangeably, web design is technically a subset."
+  },
+  {
+    "id": 3,
+    "icon": "icons/icon-laptop.png",
+    "title": "We Develop",
+    "text": "Website look great, work fast and perform well with a seamless user experience."
+  },
+  {
+    "id": 4,
+    "icon": "icons/icon-flask.png",
+    "title": "We Digital",
+    "text": "Digital technology is primarily used with new physical communications media."
+  }
+]

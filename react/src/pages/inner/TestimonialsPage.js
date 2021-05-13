@@ -1,7 +1,6 @@
 import React from "react";
 // DATA Files
-import dataNavbar from "../../data/Navbar/home-business-navbar.json";
-import dataTestimonials from "../../data/Testimonials/testimonials-data.json";
+import {dataNavbar, dataTestimonials}  from "data/index";
 // Images
 import imgTitle from "../../assets/images/title-bg/title-bg-1.jpg";
 // Components

@@ -1,8 +1,7 @@
 import React from "react";
 // DATA Files
-import dataNavbar from "../../data/Navbar/home-business-navbar.json";
-import dataCounters from "../../data/Counters/counters-data.json";
-import dataCountersTwo from "../../data/Counters/counters-two-data.json";
+import {dataNavbar, dataCounters, dataCountersTwo}  from "data/index";
+
 // Images
 import imgTitle from "../../assets/images/title-bg/title-bg-1.jpg";
 // Components

@@ -1,7 +1,6 @@
 import React from "react";
 // DATA Files
-import dataNavbar from "../../data/Navbar/home-business-navbar.json";
-import dataPricings from "../../data/Pricings/pricings-data.json";
+import {dataNavbar, dataPricings} from "data/index";
 // Images
 import imgTitle from "../../assets/images/title-bg/title-bg-4.jpg";
 // Components

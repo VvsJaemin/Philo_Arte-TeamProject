@@ -31,7 +31,9 @@ import PortfolioPage from "./pages/inner/PortfolioPage";
 import PricingsPage from "./pages/inner/PricingsPage";
 import TestimonialsPage from "./pages/inner/TestimonialsPage";
 
-function App() {
+import {ResumeList, ResumeModify, ResumeRead, ResumeRegister} from 'webapp/resume/index'
+
+const App=()=> {
   return (
     <Router basename="/">
       <ScrollIntoView>
@@ -40,9 +42,18 @@ function App() {
             {/* <Route exact path={`${process.env.PUBLIC_URL}/`} component={Demo} /> */}
             <Route
               exact
-              path={`${process.env.PUBLIC_URL}`}
+              path='/'
               component={HomeVideoBg}
             />
+
+            <Route exact path='/resume/resume-list' component={ResumeList}/>
+
+            <Route exact path='/resume/resume-modify' component={ResumeModify}/>
+
+            <Route exact path='/resume/resume-read' component={ResumeRead}/>
+
+            <Route exact path='/resume/resume-register' component={ResumeRegister}/>
+    
     
             
             {/* <Route
