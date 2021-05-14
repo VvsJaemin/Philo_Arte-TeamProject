@@ -1,18 +1,22 @@
 package philoarte.jaemin.api.funding.domain;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 import philoarte.jaemin.api.supporter.domain.Supporter;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 @Table(name = "fundings")
 public class Funding {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "funding_id")
-    private long fundingId;
+    private Long fundingId;
 
     @Column(name = "funding_title")
     private String fundingTitle;

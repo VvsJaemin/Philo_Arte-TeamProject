@@ -5,11 +5,13 @@ import lombok.Data;
 import javax.persistence.*;
 @Data
 @Entity
+@Table(name = "fundings")
 public class Funding {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tumblebuckId;
+    @Column(name = "fuding_id")
+    private Long fundingId;
 
 
     private String category;
@@ -42,7 +44,7 @@ public class Funding {
     private String remainAmount;
 
     public String toString(){
-        return " \n 펀딩번호 : "+ tumblebuckId+ " , 펀딩 내용 : "+fundingContent+", 펀딩 상품 금액 : "+fundingMoney+", 배송료 : "+delieveryFee+
-                ", 펀딩 상품 발송일 : "+fundingSend+", 펀딩 상품 총 수량 : "+totalAmount+", 펀딩 상품 남은 수량 : "+remainAmount+" \n";
+        return " , " + fundingContent + " , " + fundingMoney + " , " + delieveryFee +
+                " , " + fundingSend + " , " + totalAmount + " , " + remainAmount + " \n";
     }
 }

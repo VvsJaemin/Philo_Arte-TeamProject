@@ -23,7 +23,7 @@ import java.util.List;
 
 public class CrawlMain {
     public static final String WEB_DRIVER_ID = "webdriver.chrome.driver"; //드라이버 ID
-    public static final String WEB_DRIVER_PATH = "C:\\Users\\w\\Desktop\\Crawling\\chromedriver.exe"; //드라이버 경로
+    public static final String WEB_DRIVER_PATH = "C:\\Users\\w\\Desktop\\philoarte\\workspace\\crawling\\chromedriver.exe"; //드라이버 경로
 
     public static void main(String[] args) throws IOException {
 
@@ -42,7 +42,7 @@ public class CrawlMain {
         } catch (InterruptedException e) {
         }
 
-        String filePath = "C:\\Users\\w\\Desktop\\Crawling\\result.csv";
+        String filePath = "C:\\Users\\w\\Desktop\\philoarte\\workspace\\crawling\\result.csv";
         List<Funding> list = new ArrayList<>();
         List<WebElement> el1 = driver.findElements(By.cssSelector("dd"));
         List<WebElement> el2 = driver.findElements(By.cssSelector("dt"));
@@ -65,7 +65,6 @@ public class CrawlMain {
                 funding.setTotalAmount(el5.get(i).getText());
                 funding.setRemainAmount(el6.get(i).getText());
 
-                System.out.println(funding.getTumblebuckId());
                 System.out.println(funding.getFundingContent());
                 System.out.println(funding.getFundingMoney());
                 System.out.println(funding.getDelieveryFee());

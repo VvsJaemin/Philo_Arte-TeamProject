@@ -46,9 +46,9 @@ dependencies {
 	implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.4.2'
 	implementation group: 'net.coobird', name: 'thumbnailator', version: '0.4.8'
 	compile 'org.jsoup:jsoup:1.13.1'
-	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.security:spring-security-test'
+//	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation 'org.springframework.security:spring-security-test'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '2.4.5'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

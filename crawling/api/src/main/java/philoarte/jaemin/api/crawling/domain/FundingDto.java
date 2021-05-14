@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @Data
 public class FundingDto {
 
-    private Long tumblebuckId;
+    private Long fundingId;
 
     private String category;
 

@@ -1,5 +1,6 @@
 package philoarte.jaemin.api.funding.domain;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -8,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Getter
+@Data
 @RequiredArgsConstructor
 public class FundingDto {
 
@@ -30,5 +31,5 @@ public class FundingDto {
 
     private String remainundAmount;
 
-    private long supporterId;
+    private Long supporterId;
 }
