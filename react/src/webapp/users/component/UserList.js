@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getUserList} from '../reducer/user.reducer'
 
 const UserList = () => {
+    
 
     const users = useSelector(state=>{
         console.log("state: " + JSON.stringify(state.users))

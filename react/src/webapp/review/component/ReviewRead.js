@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import {Link} from 'react-router-dom';
 
 const ReviewRead = () => {
+
+    const [read, setRead] = useState({
+        review : {}
+    })
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getReviewList())
+    },[])
 
     return (
         <> < h1 > ReviewRead</h1>

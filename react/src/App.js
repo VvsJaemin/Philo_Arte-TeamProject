@@ -23,34 +23,34 @@ const App=()=> {
               component={HomeVideoBg}
             />
               {/*Resume*/}
-              <Route exact path='/resume/resume-list' component={ResumeList}/>
-            <Route exact path='/resume/resume-modify' component={ResumeModify}/>
-            <Route exact path='/resume/resume-read' component={ResumeRead}/>
-            <Route exact path='/resume/resume-register' component={ResumeRegister}/>
+              <Route exact path='/resumes/resume_list' component={ResumeList}/>
+            <Route exact path='/resumes/resume_modify' component={ResumeModify}/>
+            <Route exact path='/resumes/resume_read' component={ResumeRead}/>
+            <Route exact path='/resumes/resume_register' component={ResumeRegister}/>
 
             {/*Funding*/}
-            <Route exact path='/funding/funding-list' component={FundingList}/>
-            <Route exact path='/funding/funding-modify' component={FundingModify}/>
-            <Route exact path='/funding/funding-read' component={FundingRead}/>
-            <Route exact path='/funding/funding-register' component={FundingRegister}/>
+            <Route exact path='/fundings/funding_list' component={FundingList}/>
+            <Route exact path='/fundings/funding_modify' component={FundingModify}/>
+            <Route exact path='/fundings/funding_read' component={FundingRead}/>
+            <Route exact path='/fundings/funding_register' component={FundingRegister}/>
 
             {/*Item*/}
-            <Route exact path='/item/item-list' component={ItemList}/>
-            <Route exact path='/item/item-modify' component={ItemModify}/>
-            <Route exact path='/item/item-read' component={ItemRead}/>
-            <Route exact path='/item/item-register' component={ItemRegister}/>
+            <Route exact path='/items/item_list' component={ItemList}/>
+            <Route exact path='/items/item_modify' component={ItemModify}/>
+            <Route exact path='/items/item_read' component={ItemRead}/>
+            <Route exact path='/items/item_register' component={ItemRegister}/>
          
             {/*Review*/}
-            <Route exact path='/review/review-list' component={ReviewList}/>
-            <Route exact path='/review/review-modify' component={ReviewModify}/>
-            <Route exact path='/review/review-read' component={ReviewRead}/>
-            <Route exact path='/review/review-register' component={ReviewRegister}/>
+            <Route exact path='/reviews/review_list' component={ReviewList}/>
+            <Route exact path='/reviews/review_modify' component={ReviewModify}/>
+            <Route exact path='/reviews/review_read' component={ReviewRead}/>
+            <Route exact path='/reviews/review_register' component={ReviewRegister}/>
 
                {/*Work*/}
-               <Route exact path='/work/work-list' component={WorkList}/>
-               <Route exact path='/work/work-modify' component={WorkModify}/>
-               <Route exact path='/work/work-read' component={WorkRead}/>
-               <Route exact path='/work/work-register' component={WorkRegister}/>
+               <Route exact path='/works/work_list' component={WorkList}/>
+               <Route exact path='/works/work_modify' component={WorkModify}/>
+               <Route exact path='/works/work_read' component={WorkRead}/>
+               <Route exact path='/works/work_register' component={WorkRegister}/>
           </Switch>
         </ScrollToTop>
       </ScrollIntoView>
