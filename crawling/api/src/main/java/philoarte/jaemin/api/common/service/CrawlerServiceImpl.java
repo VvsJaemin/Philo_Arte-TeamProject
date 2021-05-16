@@ -1,7 +1,7 @@
 package philoarte.jaemin.api.common.service;
 
 import philoarte.jaemin.api.common.domain.Crawler;
-import philoarte.jaemin.api.crawling.domain.Funding;
+import philoarte.jaemin.api.crawling.domain.Review;
 import lombok.extern.java.Log;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -37,10 +37,10 @@ public class CrawlerServiceImpl implements CrawlerService {
         Elements fundingelements = fundingdocument.select(crawler.getCssQuery());
         //"div.sect-movie-chart>ol>li>div.box-image>strong"
         for (int i = 0; i < fundingelements.size(); i++) {
-            Funding funding = new Funding();
-            funding.setTitle(fundingelements.get(i).text());
-            funding.setAddress(fundingelements.get(i).attr("href"));
-            funding.setCategory(crawler.getCategory());
+            Review review = new Review();
+            review.setTitle(fundingelements.get(i).text());
+            review.setAddress(fundingelements.get(i).attr("href"));
+            review.setCategory(crawler.getCategory());
         }
 //        return repository.count() > 0L ? 1L: 0L;
         return null;

@@ -2,7 +2,7 @@ package philoarte.jaemin.api.crawling.service;
 
 
 import philoarte.jaemin.api.common.domain.Crawler;
-import philoarte.jaemin.api.crawling.domain.Funding;
+import philoarte.jaemin.api.crawling.domain.Review;
 import org.springframework.data.domain.Page;
 
 import java.awt.print.Pageable;
@@ -12,15 +12,15 @@ import java.util.Optional;
 
 public interface FundingCrawlingService {
 
-    public List<Funding> fundFindAll();
+    public List<Review> fundFindAll();
 
     public void crawlingHome();
 
-    List<Funding> saveAll(Crawler crawler) throws IOException;
+    List<Review> saveAll(Crawler crawler) throws IOException;
 
-    Page<Funding> findAll(final Pageable pageable);
+    Page<Review> findAll(final Pageable pageable);
 
-    public Optional<Funding> findById(String tumblebuckId);
+    public Optional<Review> findById(String tumblebuckId);
 
     public void OptionalInit(String tumblebuckId);
 }

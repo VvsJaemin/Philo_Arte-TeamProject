@@ -3,7 +3,7 @@ package philoarte.jaemin.api;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import philoarte.jaemin.api.crawling.domain.Funding;
+import philoarte.jaemin.api.crawling.domain.Review;
 import philoarte.jaemin.api.crawling.repository.FundingCrawlingRepository;
 
 import java.util.stream.IntStream;
@@ -27,12 +27,12 @@ class ApiApplicationTests {
 
 		IntStream.rangeClosed(1,100).forEach(i -> {
 
-			Funding funding = new Funding();
-			funding.setCategory("IT" + (i %10));
-			funding.setAddress("Sample Address  " + i);
-			funding.setTitle("Sample Title" + i);
+			Review review = new Review();
+			review.setCategory("IT" + (i %10));
+			review.setAddress("Sample Address  " + i);
+			review.setTitle("Sample Title" + i);
 
-			repo.save(funding);
+			repo.save(review);
 
 		});
 

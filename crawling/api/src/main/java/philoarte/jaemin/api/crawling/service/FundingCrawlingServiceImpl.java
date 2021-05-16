@@ -3,7 +3,7 @@ package philoarte.jaemin.api.crawling.service;
 import philoarte.jaemin.api.common.domain.Crawler;
 import philoarte.jaemin.api.common.service.AbstractService;
 import philoarte.jaemin.api.common.service.CrawlerServiceImpl;
-import philoarte.jaemin.api.crawling.domain.Funding;
+import philoarte.jaemin.api.crawling.domain.Review;
 import philoarte.jaemin.api.crawling.repository.FundingCrawlingRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
@@ -23,12 +23,12 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Lazy
 @Log
-public class FundingCrawlingServiceImpl extends AbstractService<Funding> implements FundingCrawlingService {
+public class FundingCrawlingServiceImpl extends AbstractService<Review> implements FundingCrawlingService {
 
     private final FundingCrawlingRepository fundingRepository;
 
     @Override
-    public List<Funding> fundFindAll() {
+    public List<Review> fundFindAll() {
         return null;
     }
 
@@ -38,34 +38,34 @@ public class FundingCrawlingServiceImpl extends AbstractService<Funding> impleme
     }
 
     @Override
-    public List<Funding> saveAll(Crawler crawler) throws IOException {
+    public List<Review> saveAll(Crawler crawler) throws IOException {
 
         Document document = CrawlerServiceImpl.connectUrl(crawler.getUrl());
         fundingRepository.deleteAll();
 
         Elements elements = document.select(crawler.getCssQuery());
 
-        List<Funding> list = new ArrayList<>();
+        List<Review> list = new ArrayList<>();
 
         for (int i = 0; i < elements.size(); i++) {
-            Funding funding = new Funding();
-            funding.setTitle(elements.get(i).text());
-            funding.setAddress(elements.get(i).attr("href"));
-            funding.setCategory(crawler.getCategory());
-            list.add(funding);
-            fundingRepository.save(funding);
+            Review review = new Review();
+            review.setTitle(elements.get(i).text());
+            review.setAddress(elements.get(i).attr("href"));
+            review.setCategory(crawler.getCategory());
+            list.add(review);
+            fundingRepository.save(review);
         }
 
         return list;
     }
 
     @Override
-    public Page<Funding> findAll(Pageable pageable) {
+    public Page<Review> findAll(Pageable pageable) {
         return null;
     }
 
     @Override
-    public Optional<Funding> findById(String tumblebuckId) {
+    public Optional<Review> findById(String tumblebuckId) {
         return Optional.empty();
     }
 
@@ -75,17 +75,17 @@ public class FundingCrawlingServiceImpl extends AbstractService<Funding> impleme
     }
 
     @Override
-    public Long save(Funding funding) {
-        return (fundingRepository.save(funding)!=null) ? 1L:0L;
+    public Long save(Review review) {
+        return (fundingRepository.save(review)!=null) ? 1L:0L;
     }
 
     @Override
-    public Optional<Funding> findById(long id) {
+    public Optional<Review> findById(long id) {
         return Optional.empty();
     }
 
     @Override
-    public Page<Funding> findAll(org.springframework.data.domain.Pageable pageable) {
+    public Page<Review> findAll(org.springframework.data.domain.Pageable pageable) {
         return null;
     }
 
@@ -95,12 +95,12 @@ public class FundingCrawlingServiceImpl extends AbstractService<Funding> impleme
     }
 
     @Override
-    public Optional<Funding> getOne(long id) {
+    public Optional<Review> getOne(long id) {
         return Optional.empty();
     }
 
     @Override
-    public Long delete(Funding funding) {
+    public Long delete(Review review) {
         return null;
     }
 

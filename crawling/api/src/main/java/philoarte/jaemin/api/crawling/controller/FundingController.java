@@ -1,7 +1,7 @@
 package philoarte.jaemin.api.crawling.controller;
 
 import philoarte.jaemin.api.common.domain.Crawler;
-import philoarte.jaemin.api.crawling.domain.Funding;
+import philoarte.jaemin.api.crawling.domain.Review;
 import philoarte.jaemin.api.crawling.service.FundingCrawlingServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
@@ -22,7 +22,7 @@ public class FundingController {
     private final FundingCrawlingServiceImpl service;
 
     @PostMapping("/scrap")
-    public ResponseEntity<List<Funding>> crawling(@RequestBody Crawler crawler) throws Exception {
+    public ResponseEntity<List<Review>> crawling(@RequestBody Crawler crawler) throws Exception {
         System.out.println("************카테고리 : " + crawler.toString());
         return ResponseEntity.ok(service.saveAll(crawler));
     }

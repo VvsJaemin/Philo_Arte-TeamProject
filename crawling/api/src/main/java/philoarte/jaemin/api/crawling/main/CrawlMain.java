@@ -5,19 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import philoarte.jaemin.api.common.domain.Crawler;
-import philoarte.jaemin.api.common.service.CrawlerServiceImpl;
-import philoarte.jaemin.api.crawling.domain.Funding;
-import philoarte.jaemin.api.crawling.service.FundingCrawlingServiceImpl;
+import philoarte.jaemin.api.crawling.domain.Review;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,21 +25,20 @@ public class CrawlMain {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
         WebDriver driver = new ChromeDriver(options);
-        String url = "https://www.wadiz.kr/web/campaign/detail/111574";
+        String url = "https://news.naver.com/main/read.nhn?mode=LSD&mid=shm&sid1=100&oid=011&aid=0003910515&m_view=1&includeAllCount=true&m_url=%2Fcomment%2Fall.nhn%3FserviceId%3Dnews%26gno%3Dnews011%2C0003910515%26sort%3Dlikability";
         driver.get(url);
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
         }
 
-        String filePath = "C:\\Users\\w\\Desktop\\philoarte\\workspace\\crawling\\result.csv";
-        List<Funding> list = new ArrayList<>();
-        List<WebElement> el1 = driver.findElements(By.cssSelector("dd"));
-        List<WebElement> el2 = driver.findElements(By.cssSelector("dt"));
-        List<WebElement> el3 = driver.findElements(By.cssSelector("li em"));
-        List<WebElement> el4 = driver.findElements(By.cssSelector("li.date"));
-        List<WebElement> el5 = driver.findElements(By.cssSelector("p.reward-qty strong"));
-        List<WebElement> el6 = driver.findElements(By.cssSelector("p.reward-qty em"));
+        String filePath = "C:\\Users\\w\\Desktop\\philoarte\\workspace\\crawling\\review.csv";
+        List<Review> list = new ArrayList<>();
+        List<WebElement> el1 = driver.findElements(By.cssSelector(".u_cbox_nick"));
+        List<WebElement> el2 = driver.findElements(By.cssSelector(".u_cbox_contents"));
+        List<WebElement> el3 = driver.findElements(By.cssSelector(".u_cbox_cnt_recomm"));
+        List<WebElement> el4 = driver.findElements(By.cssSelector(".u_cbox_cnt_unrecomm"));
+
 
 
 
@@ -57,27 +46,25 @@ public class CrawlMain {
             DataOutputStream fw = new DataOutputStream(new FileOutputStream(filePath, true));
 
             for (int i = 0; i < el1.size(); i++) {
-                Funding funding = new Funding();
-                funding.setFundingContent(el1.get(i).getText());
-                funding.setFundingMoney(el2.get(i).getText());
-                funding.setDelieveryFee(el3.get(i).getText());
-                funding.setFundingSend(el4.get(i).getText());
-                funding.setTotalAmount(el5.get(i).getText());
-                funding.setRemainAmount(el6.get(i).getText());
+                Review review = new Review();
+                review.setWriter(el1.get(i).getText());
+                review.setContent(el2.get(i).getText());
+                review.setLikeCnt(el3.get(i).getText());
+                review.setDislikeCnt(el4.get(i).getText());
 
-                System.out.println(funding.getFundingContent());
-                System.out.println(funding.getFundingMoney());
-                System.out.println(funding.getDelieveryFee());
-                System.out.println(funding.getFundingSend());
-                System.out.println(funding.getTotalAmount());
-                System.out.println(funding.getRemainAmount());
 
-                list.add(funding);
+                System.out.println(review.getWriter());
+                System.out.println(review.getContent());
+                System.out.println(review.getLikeCnt());
+                System.out.println(review.getDislikeCnt());
+
+
+                list.add(review);
             }
             if (list.isEmpty()) {
                 System.out.println("크롤링 된 값이 없습니다. !");
             } else {
-                for (Funding f : list) {
+                for (Review f : list) {
                     byte[] arr = f.toString().getBytes("UTF-8");
                     fw.write(arr);
                 }

@@ -41,6 +41,7 @@ public class ReviewController {
     @GetMapping("/read/{id}")
     public ResponseEntity<Optional<Review>> read(@PathVariable("id") Long id) {
 
+        log.info("리뷰 읽기 : " + service.findById(id));
         return ResponseEntity.ok(service.findById(id));
     }
 

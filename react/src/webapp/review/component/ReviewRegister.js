@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import { ReviewList } from '..';
 import { getReviewRegister } from '../reducer/review.reducer';
 import { useDispatch } from 'react-redux';
@@ -14,6 +14,8 @@ const ReviewRegister = () => {
 
     const dispatch = useDispatch()
 
+    const history = useHistory()
+    
     const handleSubmit = useCallback(e => {
         const {name, value} = e.target
         setInput({
@@ -50,7 +52,7 @@ const ReviewRegister = () => {
                                     <input placeholder="memberNo" name="memberNo" className="form-control" 
                                     value={this.state.memberNo} onChange={this.changeMemberNoHandler}/>
                                 </div> */}
-                                <button className="btn btn-success" onClick={()=>dispatch(getReviewRegister(input))}>등록</button>
+                                <button className="btn btn-success" onClick={()=>dispatch(getReviewRegister(input), history.push("/reviews/review_list"))}>등록</button>
                             <Link to ="/reviews/review_list">
                                 <button className="btn btn-danger" 
                                 style={{marginLeft:"10px"}}>취소</button>
