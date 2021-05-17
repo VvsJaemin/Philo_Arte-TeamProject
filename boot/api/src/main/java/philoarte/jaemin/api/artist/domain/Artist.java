@@ -16,7 +16,7 @@ public class Artist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "artist_id")
-    private long artistId;
+    private Long artistId;
     @Column(unique = true, nullable = false)
     private String username;
     @Size(min = 8, message = "Minimum Passsword Length: 8 characters")
@@ -29,7 +29,9 @@ public class Artist {
     private String phoneNumber;
     @Column(name = "address")
     private String address;
-    @Column(name = "affiliation")
-    private String affiliation;
+    @Column(name = "school")
+    private String school;
+    @Column(name = "department")
+    private String department;
 
 }

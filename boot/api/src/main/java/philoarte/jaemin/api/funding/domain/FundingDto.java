@@ -3,33 +3,24 @@ package philoarte.jaemin.api.funding.domain;
 import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import philoarte.jaemin.api.artist.domain.Artist;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @RequiredArgsConstructor
 public class FundingDto {
 
-    private long fundingId;
 
-    private String fundingTitle;
+    private Long fundingId;
 
-    private String fundingContent;
+    private String title;
 
-    private String fundingMoney;
+    private String content;
 
-    private String delieveryFee;
+    private String goalPrice;
 
-    private String fundingSend;
+    private int viewCnt;
 
-    private String selectPeople;
-
-    private String totalAmount;
-
-    private String remainundAmount;
-
-    private Long supporterId;
+    private Artist artist;
 }

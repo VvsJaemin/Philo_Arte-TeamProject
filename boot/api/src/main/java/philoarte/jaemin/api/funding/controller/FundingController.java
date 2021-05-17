@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import philoarte.jaemin.api.common.controller.AbstractController;
@@ -19,6 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @Api(tags="fundings")
+@Configuration
 public class FundingController {
 
     private final FundingServiceImpl fundingService;
