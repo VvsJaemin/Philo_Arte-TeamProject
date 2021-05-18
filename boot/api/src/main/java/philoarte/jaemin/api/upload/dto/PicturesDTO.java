@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PicturesDTO {
 
+
     private Long pnum;
 
     private String uuid;

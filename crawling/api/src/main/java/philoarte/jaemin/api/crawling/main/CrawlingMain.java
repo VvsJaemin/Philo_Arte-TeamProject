@@ -16,7 +16,7 @@ import java.util.List;
 
 public class CrawlingMain {
     public static void main(String[] args) throws IOException {
-        String url = "http://www.yck.kr/html/contents/magazine02_view?idx=6747&cate_idx=";
+        String url = "http://www.yck.kr/html/contents/magazine02";
         String cssQuery = ".txt > p.tit ";
         String filePath = "C:\\Users\\w\\Desktop\\philoarte\\workspace\\crawling\\artists.csv";
         Crawler crawler = new Crawler();
@@ -39,7 +39,8 @@ public class CrawlingMain {
                 artist.setPhoneNumber(dum.makePhone());
                 artist.setAddress("서울시 정왕동");
                 artist.setSchool(dum.makeSchool());
-                artist.setDepartment(dum.makeSubject());
+                artist.setDepartment(dum.makeDepartment());
+//                artist.setRoles(dum.makeRoles("ROLE_ARTIST"));
 
                 System.out.println(artist.toString());
                 list.add(artist);
@@ -105,6 +106,8 @@ class Service {
             artist.setPhoneNumber(dum.makePhone());
             artist.setAddress("서울시정왕동");
             artist.setSchool(dum.makeSchool());
+            artist.setDepartment(dum.makeDepartment());
+//            artist.setRoles(dum.makeRoles("ROLE_ARTIST"));
 
             list.add(artist);
         }
@@ -132,6 +135,8 @@ class Service {
             artist.setPhoneNumber(dum.makePhone());
             artist.setAddress("서울시정왕동");
             artist.setSchool(dum.makeSchool());
+            artist.setDepartment(dum.makeDepartment());
+//            artist.setRoles(dum.makeRoles("ROLE_ARTIST"));
 
         }
 

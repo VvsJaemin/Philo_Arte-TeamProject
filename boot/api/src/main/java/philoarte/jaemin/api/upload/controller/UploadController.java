@@ -1,6 +1,7 @@
 package philoarte.jaemin.api.upload.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -29,11 +30,9 @@ import java.util.UUID;
 @RestController
 @Log4j2
 @CrossOrigin(origins = "*")
-
 public class UploadController {
 
-
-    @Value("${philoarte.jaemin.api.uploads.path}")
+    @Value("${philo.arte.upload.path}")
     private String uploadPath;
 
     @PostMapping("/uploadAjax")
@@ -43,7 +42,7 @@ public class UploadController {
 
         for (MultipartFile uploadFile : uploadFiles) {
 
-            if (uploadFile.getContentType().startsWith("image") == false) {
+            if (!uploadFile.getContentType().startsWith("image")) {
                 log.warn("this file is not image type");
                 return new ResponseEntity<>(HttpStatus.FORBIDDEN);
             }

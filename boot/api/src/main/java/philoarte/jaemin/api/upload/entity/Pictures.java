@@ -9,9 +9,10 @@ import javax.persistence.*;
 @Getter
 @ToString(exclude = "performance")
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Pictures {
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

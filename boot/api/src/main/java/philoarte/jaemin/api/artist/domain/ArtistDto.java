@@ -30,9 +30,9 @@ public class ArtistDto {
     private LocalDateTime regData;
     @ApiModelProperty(position = 10)
     private LocalDateTime modDate;
-//    @ApiModelProperty(position = 11)
-////    private List<Role> roles;
-//    @ApiModelProperty(position = 12)
-//    private String token;
+    @ApiModelProperty(position = 11)
+    private List<Role> roles;
+    @ApiModelProperty(position = 12)
+    private String token;
 
 }

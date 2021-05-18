@@ -1,16 +1,18 @@
 package philoarte.jaemin.api.review.domain;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+import org.modelmapper.ModelMapper;
 import philoarte.jaemin.api.art.domain.Art;
 import philoarte.jaemin.api.artist.domain.Artist;
+import philoarte.jaemin.api.common.util.ModelMapperUtils;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Getter
-@RequiredArgsConstructor
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ReviewDto {
 
 
@@ -21,5 +23,9 @@ public class ReviewDto {
     private Art art;
 
     private Artist artist;
+
+    public static ReviewDto of(ReviewDto reviewDto){
+        return ModelMapperUtils.getModelMapper().map(reviewDto, ReviewDto.class);
+    }
 
 }

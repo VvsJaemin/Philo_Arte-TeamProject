@@ -1,5 +1,7 @@
-package philoarte.jaemin.api.common;
+package philoarte.jaemin.api.common.service;
 
+
+import philoarte.jaemin.api.artist.domain.Role;
 
 import java.util.Arrays;
 import java.util.List;
@@ -58,7 +60,7 @@ public class DummyGenerator {
         return sb.toString();
     }
 
-    public String makeSubject() {
+    public String makeDepartment() {
         List<String> school = Arrays.asList("사진학과", "광고사진영상학과", "공연사진학과", "인물사진학과", "사진영상드론학과", "사진예술과", "풍경사진학과",
                 "스냅사진학과");
         shuffle(school);
@@ -129,4 +131,6 @@ public class DummyGenerator {
 
         return "010" + "-" + sb.toString() + "-" + sb.toString();
     }
+
+
 }

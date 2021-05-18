@@ -1,20 +1,23 @@
 package philoarte.jaemin.api.review.domain;
 
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 import philoarte.jaemin.api.art.domain.Art;
 import philoarte.jaemin.api.artist.domain.Artist;
+import philoarte.jaemin.api.common.domain.BaseEntity;
+import philoarte.jaemin.api.common.util.ModelMapperUtils;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Data
+@Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "reviews")
-public class Review {
+public class Review extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
@@ -33,4 +36,9 @@ public class Review {
     @JoinColumn(name = "art_id")
     private Art art;
 
+
+    @Override
+    public String toString() {
+        return "," + content + "," + comment + getRegDate() + getModDate() + "\n";
+    }
 }

@@ -1,5 +1,6 @@
 package philoarte.jaemin.api.art.domain;
 
+import lombok.Data;
 import philoarte.jaemin.api.artist.domain.Artist;
 import philoarte.jaemin.api.category.domain.Category;
 
@@ -7,6 +8,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "arts")
+@Data
+
 public class Art {
     @Id
     @GeneratedValue

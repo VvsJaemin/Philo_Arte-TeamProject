@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "artists")
@@ -35,9 +36,9 @@ public class Artist {
 
     public String toString() {
         return "," + username + "," + password + "," + name + "," + email + ","
-                + phoneNumber + "," + address + "," + school + "," + department;
+                + phoneNumber + "," + address + "," + school + "," + department + "," + roles + "\n";
     }
 
-    // @ElementCollection(fetch = FetchType.EAGER)
-    // List<Role> roles;
+     @ElementCollection(fetch = FetchType.EAGER)
+     List<Role> roles;
 }

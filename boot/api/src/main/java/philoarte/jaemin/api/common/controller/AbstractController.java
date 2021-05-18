@@ -3,7 +3,6 @@ package philoarte.jaemin.api.common.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import philoarte.jaemin.api.funding.domain.FundingDto;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,7 +14,7 @@ public abstract class AbstractController<T> {
 
     public abstract ResponseEntity<String> save(T t);
 
-    public abstract ResponseEntity<String> register(FundingDto fundingDto);
+    public abstract ResponseEntity<String> register();
 
     public abstract ResponseEntity<Optional<T>> findById(long id);
 

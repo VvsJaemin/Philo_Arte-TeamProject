@@ -5,14 +5,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-@Configuration
 public class ModelMapperUtils {
 
-    @Bean
-    public ModelMapper modelMapper(){
+    private static ModelMapper modelMapper = new ModelMapper();
 
-
-        return new ModelMapper();
+    public static ModelMapper getModelMapper(){
+        return modelMapper;
     }
 
 }
