@@ -1,9 +1,7 @@
 package philoarte.jaemin.api.review.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Repository;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import philoarte.jaemin.api.common.service.AbstractService;
 import philoarte.jaemin.api.common.util.ModelMapperUtils;
@@ -16,39 +14,52 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ReviewServiceImpl extends AbstractService<ReviewDto> implements ReviewService{
+public class ReviewServiceImpl extends AbstractService<Review> implements ReviewService{
 
     private final ReviewRepository repository;
+    
 
     @Override
-    public String save(ReviewDto reviewDto) {
-        ReviewDto review = ReviewDto.of(reviewDto);
-        repository.save(review);
-        return "success";
+    public String save(Review review) {
+        Review review =
+        return (repository.save(review)!=null) ? "success" : "fail";
     }
 
+
     @Override
-    public List<ReviewDto> findAll() {
+    public List<Review> findAll() {
         return repository.findAll();
     }
 
     @Override
-    public Optional<ReviewDto> findById(Long id) {
-        return Optional.empty();
+    public void deleteById(Long id) {
+        repository.deleteById(id);
+    }
+
+
+
+    @Override
+    public Optional<Review> findById(Long id) {
+        return repository.findById(id);
     }
 
     @Override
     public Long count() {
-        return null;
+        return ;
     }
 
     @Override
-    public Optional<ReviewDto> getOne(Long id) {
+    public Optional<Review> getOne(Long id) {
         return Optional.empty();
     }
 
     @Override
     public String delete(ReviewDto reviewDto) {
+        return null;
+    }
+
+    @Override
+    public String delete(Review review) {
         return null;
     }
 
@@ -61,20 +72,6 @@ public class ReviewServiceImpl extends AbstractService<ReviewDto> implements Rev
     public Boolean existsById(Long id) {
         return null;
     }
-
-    @Override
-    public void deleteById(Long id) {
-        repository.deleteById(id);
-    }
-
-//
-//    @Override
-//    public String save(ReviewDto reviewDto) {
-//        ReviewDto reviewDto = ReviewDto.of(review)
-//        Review review = Review.of(reviewDto);
-//        review.saveasd(reviewDto);
-//        return  repository.save(review) ;
-//    }
 
 
 }

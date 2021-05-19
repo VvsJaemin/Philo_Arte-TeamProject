@@ -24,8 +24,7 @@ public class ReviewDto {
 
     private Artist artist;
 
-    public static ReviewDto of(ReviewDto reviewDto){
-        return ModelMapperUtils.getModelMapper().map(reviewDto, ReviewDto.class);
+    public static ReviewDto of(Review review) {
+        return ModelMapperUtils.getModelMapper().map(review, ReviewDto.class);
     }
-
 }

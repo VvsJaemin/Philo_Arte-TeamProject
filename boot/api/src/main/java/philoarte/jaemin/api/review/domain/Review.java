@@ -35,8 +35,7 @@ public class Review extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "art_id")
     private Art art;
-
-
+    
     @Override
     public String toString() {
         return "," + content + "," + comment + getRegDate() + getModDate() + "\n";
