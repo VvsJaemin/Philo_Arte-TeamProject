@@ -72,7 +72,6 @@ public class ReviewApplicationTests {
 
     @Test
     public void reviewDelete(){
-
         reviewRepository.deleteById(8L);
     }
 }

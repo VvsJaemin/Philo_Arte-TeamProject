@@ -9,6 +9,7 @@ import philoarte.jaemin.api.common.domain.BaseEntity;
 import philoarte.jaemin.api.common.util.ModelMapperUtils;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -18,6 +19,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Table(name = "reviews")
 public class Review extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
@@ -39,5 +41,12 @@ public class Review extends BaseEntity {
     @Override
     public String toString() {
         return "," + content + "," + comment + getRegDate() + getModDate() + "\n";
+    }
+
+    public void setRegDate(LocalDateTime now) {
+    }
+
+    public void setModDate(LocalDateTime now) {
+
     }
 }

@@ -21,10 +21,9 @@ public class ReviewServiceImpl extends AbstractService<Review> implements Review
 
     @Override
     public String save(Review review) {
-        Review review =
         return (repository.save(review)!=null) ? "success" : "fail";
     }
-
+    
 
     @Override
     public List<Review> findAll() {
@@ -37,7 +36,6 @@ public class ReviewServiceImpl extends AbstractService<Review> implements Review
     }
 
 
-
     @Override
     public Optional<Review> findById(Long id) {
         return repository.findById(id);
@@ -45,17 +43,12 @@ public class ReviewServiceImpl extends AbstractService<Review> implements Review
 
     @Override
     public Long count() {
-        return ;
+        return null;
     }
 
     @Override
     public Optional<Review> getOne(Long id) {
         return Optional.empty();
-    }
-
-    @Override
-    public String delete(ReviewDto reviewDto) {
-        return null;
     }
 
     @Override

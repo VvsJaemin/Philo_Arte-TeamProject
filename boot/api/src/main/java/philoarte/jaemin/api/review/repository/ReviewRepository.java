@@ -13,7 +13,6 @@ import philoarte.jaemin.api.review.domain.ReviewDto;
 
 import java.util.List;
 
-@Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     @Query("select a from Review a order by a.reviewId desc")
