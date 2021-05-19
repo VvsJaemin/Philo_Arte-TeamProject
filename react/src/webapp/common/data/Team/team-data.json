@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "title": "Tom Bills",
+    "role": "Web Designer",
+    "image": "team/team-1.jpg",
+    "social": [
+      {
+        "id": 1,
+        "title": "facebook",
+        "classes": "fb"
+      },
+      {
+        "id": 2,
+        "title": "twitter",
+        "classes": "tw"
+      },
+      {
+        "id": 3,
+        "title": "behance",
+        "classes": "be"
+      },
+      {
+        "id": 4,
+        "title": "linkedin",
+        "classes": "in"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Sara Adams",
+    "role": "CEO / Founder",
+    "image": "team/team-2.jpg",
+    "social": [
+      {
+        "id": 1,
+        "title": "facebook",
+        "classes": "fb"
+      },
+      {
+        "id": 2,
+        "title": "twitter",
+        "classes": "tw"
+      },
+      {
+        "id": 3,
+        "title": "behance",
+        "classes": "be"
+      },
+      {
+        "id": 4,
+        "title": "linkedin",
+        "classes": "in"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Enzo William",
+    "role": "Photographer",
+    "image": "team/team-3.jpg",
+    "social": [
+      {
+        "id": 1,
+        "title": "facebook",
+        "classes": "fb"
+      },
+      {
+        "id": 2,
+        "title": "twitter",
+        "classes": "tw"
+      },
+      {
+        "id": 3,
+        "title": "behance",
+        "classes": "be"
+      },
+      {
+        "id": 4,
+        "title": "linkedin",
+        "classes": "in"
+      }
+    ]
+  }
+]
