@@ -7,9 +7,8 @@ import { useDispatch } from 'react-redux';
 const ReviewRegister = () => {
 
     const [input, setInput] = useState({
-        title : '',
-        writer : '',
-        content: ''
+        content : '',
+        comment : '',
     })
 
     const dispatch = useDispatch()
@@ -33,20 +32,20 @@ const ReviewRegister = () => {
                         <div className = "card-body">
                             <form>
                                 <div className = "form-group">
-                                    <label> Title </label>
-                                    <input type="text" placeholder="제목을 입력해주세요" name="title" className="form-control" 
-                                    value={input.title} onChange={handleSubmit}/>
-                                </div>
-                                <div className = "form-group">
-                                    <label> Contents  </label>
-                                    <input type='text' placeholder="내용을 입력해주세요" name="content" className="form-control" 
+                                    <label> Content </label>
+                                    <input type="text" placeholder="리뷰를 입력해주세요" name="content" className="form-control" 
                                     value={input.content} onChange={handleSubmit}/>
                                 </div>
                                 <div className = "form-group">
+                                    <label> Comment  </label>
+                                    <input type='text' placeholder="댓글을 입력해주세요" name="content" className="form-control" 
+                                    value={input.comment} onChange={handleSubmit}/>
+                                </div>
+                                {/* <div className = "form-group">
                                     <label> Writer  </label>
                                     <input type='text' placeholder="작성자를 입력해주세요" name="writer" className="form-control" 
                                     value={input.writer} onChange={handleSubmit}/>
-                                </div>
+                                </div> */}
                                 {/* <div className = "form-group">
                                     <label> MemberNo  </label>
                                     <input placeholder="memberNo" name="memberNo" className="form-control" 

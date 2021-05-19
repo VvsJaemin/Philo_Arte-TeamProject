@@ -44,8 +44,8 @@ const App=()=> {
          
             {/*Review*/}
             <Route exact path='/reviews/review_list' component={ReviewList}/>
-            <Route exact path='/reviews/review_modify/:id' component={ReviewModify}/>
-            <Route exact path='/reviews/review_read/:id' component={ReviewRead}/>
+            <Route exact path='/reviews/review_modify/:reviewId' component={ReviewModify}/>
+            <Route exact path='/reviews/review_read/:reviewId' component={ReviewRead}/>
             <Route exact path='/reviews/review_register' component={ReviewRegister}/>
 
                {/*Work*/}

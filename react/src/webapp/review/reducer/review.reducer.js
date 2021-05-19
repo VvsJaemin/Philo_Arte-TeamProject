@@ -15,22 +15,22 @@ async(input)=>{
  })
 
  export const getReviewRead = createAsyncThunk(`reviews/read`,
-async(id)=>{
-    const response = await ReviewService.read(id)
+async(reviewId)=>{
+    const response = await ReviewService.read(reviewId)
     return response.data
  })
 
- export const getReviewModify = createAsyncThunk('reviews/modify/tite',
-    async({writer, content})=>{
+ export const getReviewModify = createAsyncThunk('reviews/modify/reviewId',
+    async(reviewId,{writer, content})=>{
         const response = await ReviewService.modify({writer, content})
         return response.data
     }
  )
 
- export const getReviewDelete = createAsyncThunk('reviews/delete/id',
-    async(id)=>{
-        const response = await ReviewService.reviewDelete(id)
-        return id
+ export const getReviewDelete = createAsyncThunk('reviews/delete/reviewId',
+    async(reviewId)=>{
+        const response = await ReviewService.reviewDelete(reviewId)
+        return reviewId
     }
  )
 
@@ -47,15 +47,15 @@ async(id)=>{
          .addCase(getReviewRegister.fulfilled, (state, {payload})=>{
              return [...payload]
          })
-         .addCase(getReviewRead.fulfilled, (state, {payload:id})=>{
-             const review = state.find(review=> review.id===id)
+         .addCase(getReviewRead.fulfilled, (state, {payload:reviewId})=>{
+             const review = state.find(review=> review.reviewId===reviewId)
             return {...state, review}
          })
          .addCase(getReviewModify.fulfilled,(state, {payload})=>{
              return[...payload]
          })
          .addCase(getReviewDelete.fulfilled,(state, {payload})=>{
-             state.filter((review)=>review.id!==payload)
+             state.filter((review)=>review.reviewId!==payload)
          })
 
          .addMatcher(isRejectAction,()=>{})

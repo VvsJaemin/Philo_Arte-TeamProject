@@ -31,23 +31,23 @@ const ReviewRead = (props) => {
                 <h3 className ="text-center"> Read Detail</h3>
                         <div className = "row">      
                         
-                            <label> Title </label>
-                            <textarea name="content" value={read.title} onChange={onChange} readOnly/> 
+                            <label> Content </label>
+                            <textarea name="content" value={read.content} onChange={onChange} readOnly/> 
                         </div>
 
                         <div className = "row">
-                            <label> Contents </label> : <br></br>
-                            <textarea name="content" value={read.content} onChange={onChange} readOnly/> 
+                            <label> Comment </label> : <br></br>
+                            <textarea name="content" value={read.comment} onChange={onChange} readOnly/> 
                         </div >
 
                         <div className = "row">
                             <label> 게시글 번호  </label> : 
-                            {params.id}
+                            {params.reviewId}
                         </div>
 
                         <Link to="/">
                         <button className="btn btn-primary" style={{marginLeft:"10px"}}>나가기</button></Link>
-                        <Link to="/reviews/review_modify/:id">
+                        <Link to="/reviews/review_modify/:reviewId">
                         <button className="btn btn-primary" style={{marginLeft:"10px"}}>수정하기</button></Link>
                         
                 </div>

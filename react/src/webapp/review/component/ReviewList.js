@@ -35,11 +35,11 @@ const ReviewList = () => {
             </thead>
             <tbody style={{textAlign :'center'}}>
              {
-                reviews.map((review, id) => {
+                reviews.map((review, reviewId) => {
                     return (
-                        <tr key={id}>
-                            <td>{id+1}</td>
-                            <td onClick={()=>selectContent(id+1)}><Link to={`/reviews/review_read/${id+1}`}>{review.title}</Link></td>
+                        <tr key={reviewId}>
+                            <td>{reviewId+1}</td>
+                            <td onClick={()=>selectContent(reviewId+1)}><Link to={`/reviews/review_read/${reviewId+1}`}>{review.title}</Link></td>
                             <td>{review.writer}</td>
                             <td>{new Date(review.regDate).toLocaleDateString()}</td>
                             <td>{review.likeCnt}</td>
