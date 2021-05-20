@@ -1,11 +1,9 @@
 package philoarte.jaemin.api.review.service;
 
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import philoarte.jaemin.api.common.service.AbstractService;
 import philoarte.jaemin.api.common.util.ModelMapperUtils;
@@ -18,30 +16,33 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ReviewServiceImpl extends AbstractService<Review> implements ReviewService{
-
+public class ReviewServiceImpl implements ReviewService{
     private final ReviewRepository repository;
 
     @Override
-    public String save(Review review) {
-
-        return (repository.save(review)!=null) ? "success" : "fail";
-    }
-    @Override
-    public Review reviewUpdate(Review review) {
-
-       return repository.reviewUpdate(review.getReviewId(),review.getContent(), review.getComment());
+    public int reviewUpdate(ReviewDto reviewDto) {
+        Review reviewUpdate = dtoToEntity(reviewDto);
+       return repository.reviewUpdate(reviewUpdate.getReviewId(), reviewUpdate.getContent());
     }
 
     @Override
-    public void deleteById(Long id) {
-        repository.deleteById(id);
+    public String save(ReviewDto reviewDto) {
+        Review review = dtoToEntity(reviewDto);
+        repository.save(review);
+        return "success";
     }
 
     @Override
     public Optional<Review> findById(Long id) {
         return repository.findById(id);
     }
+
+
+    @Override
+    public void reviewDelete(Long reviewId) {
+        repository.reviewDelete(reviewId);
+    }
+
 
     @Override
     public List<Review> reviewFindAll() {
@@ -52,37 +53,5 @@ public class ReviewServiceImpl extends AbstractService<Review> implements Review
     public Page<Review> reviewPaging(Pageable pageable) {
         return repository.reviewPaging(PageRequest.of(1,10));
     }
-
-    @Override
-    public List<Review> findAll() {
-        return null;
-    }
-
-    @Override
-    public Long count() {
-        return null;
-    }
-
-
-    @Override
-    public Optional<Review> getOne(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public String delete(Review review) {
-        return null;
-    }
-
-    @Override
-    public void deleteAll() {
-
-    }
-
-    @Override
-    public Boolean existsById(Long id) {
-        return null;
-    }
-
 
 }

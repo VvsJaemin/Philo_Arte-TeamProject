@@ -57,13 +57,11 @@ public class CrawlingMain {
             for (int i = 0; i < el1.size(); i++) {
 
                 Review review = Review.builder()
-                        .content(el1.get(i).getText())
-                        .comment(el2.get(i).getText())
+                        .title(el1.get(i).getText())
+                        .content(el2.get(i).getText())
                         .build();
-                review.setRegDate(LocalDateTime.now());
-                review.setModDate(LocalDateTime.now());
+                System.out.println(review.getTitle());
                 System.out.println(review.getContent());
-                System.out.println(review.getComment());
                 System.out.println(review.getRegDate());
                 System.out.println(review.getModDate());
 

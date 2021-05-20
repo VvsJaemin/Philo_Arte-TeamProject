@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import philoarte.jaemin.api.review.domain.Review;
 import philoarte.jaemin.api.review.domain.ReviewDto;
 
@@ -22,7 +23,12 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     Page<Review> reviewPaging(Pageable pageable);
 
     @Modifying
-    @Query("Update Review a set a.content = :content, a.comment =:comment where a.reviewId = :reviewId ")
-    Review reviewUpdate(@Param("reviewId") Long reviewId, @Param("content") String content, @Param("comment") String comment);
+    @Query("Update Review a set a.content = :content where a.reviewId = :reviewId ")
+    int reviewUpdate(@Param("reviewId") Long reviewId, @Param("content") String content);
+
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM Review a where a.reviewId = :reviewId")
+    void reviewDelete(@Param("reviewId") Long reviewId);
 
 }

@@ -2,6 +2,7 @@ package philoarte.jaemin.api.review.domain;
 
 
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.UpdateTimestamp;
 import philoarte.jaemin.api.art.domain.Art;
 import philoarte.jaemin.api.artist.domain.Artist;
@@ -24,11 +25,10 @@ public class Review extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
     private Long reviewId;
-    @Column(name = "content")
-    private String content;
-    @Column(name = "comment")
-    private String comment;
 
+    private String title;
+
+    private String content;
 
     @ManyToOne
     @JoinColumn(name = "artist_id")
@@ -37,16 +37,6 @@ public class Review extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "art_id")
     private Art art;
-    
-    @Override
-    public String toString() {
-        return "," + content + "," + comment + getRegDate() + getModDate() + "\n";
-    }
 
-    public void setRegDate(LocalDateTime now) {
-    }
 
-    public void setModDate(LocalDateTime now) {
-
-    }
 }

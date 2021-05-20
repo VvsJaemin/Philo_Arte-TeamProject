@@ -11,7 +11,6 @@ import philoarte.jaemin.api.artist.domain.Artist;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-
 @RequiredArgsConstructor
 @Getter
 public class UserDetailsImpl implements UserDetails { // UserDetails 은 security 내장형
@@ -20,13 +19,13 @@ public class UserDetailsImpl implements UserDetails { // UserDetails 은 securit
     private final String username;
     @JsonIgnore
     private final String password;
-    private final String name;
+    private final String artistName;
     private final String email;
     private final String phoneNumber;
     private final String address;
     private final String school;
     private final String department;
-    private final Collection<? extends  GrantedAuthority> authorities;
+    private final Collection<? extends GrantedAuthority> authorities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -53,11 +52,11 @@ public class UserDetailsImpl implements UserDetails { // UserDetails 은 securit
         return true;
     }
 
-    public static UserDetailsImpl build(Artist artist){
+    public static UserDetailsImpl build(Artist artist) {
         List<GrantedAuthority> authories = artist.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getAuthority()))
                 .collect(Collectors.toList());
-        return new UserDetailsImpl(artist.getArtistId(), artist.getUsername(), artist.getPassword(), artist.getEmail(), artist.getEmail(),
+        return new UserDetailsImpl(artist.getArtistId(), artist.getUsername(), artist.getPassword(), artist.getArtistName(), artist.getEmail(),
                 artist.getPhoneNumber(), artist.getAddress(), artist.getSchool(), artist.getDepartment(), authories);
     }
 }

@@ -1,33 +1,37 @@
 package philoarte.jaemin.api.art.domain;
 
-import lombok.Data;
+import lombok.*;
 import philoarte.jaemin.api.artist.domain.Artist;
 import philoarte.jaemin.api.category.domain.Category;
+import philoarte.jaemin.api.common.domain.BaseEntity;
+import philoarte.jaemin.api.resume.domain.Resume;
 
 import javax.persistence.*;
-
+@Getter
+@ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "arts")
-@Data
-
-public class Art {
+public class Art extends BaseEntity {
     @Id
-    @GeneratedValue
-    @Column(name = "art_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long artId;
     @Column
     private String title;
     @Column
     private String description;
-    @Column(name = "main_img")
+    @Column
     private String mainImg;
-
-//    @ManyToOne
-//    @JoinColumn(name = "artist_id")
-//    private Artist artist;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "category_id")
-//    private Category category;
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "artist_id")
+    Artist artist;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    private Category category;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "resume_id")
+    private Resume resume;
 }

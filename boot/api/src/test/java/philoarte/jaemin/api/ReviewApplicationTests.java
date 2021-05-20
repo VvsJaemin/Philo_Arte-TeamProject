@@ -16,16 +16,17 @@ import philoarte.jaemin.api.review.domain.Review;
 import philoarte.jaemin.api.review.domain.ReviewDto;
 import philoarte.jaemin.api.review.repository.ReviewRepository;
 
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 @SpringBootTest
 @Log4j2
-@RequiredArgsConstructor
 public class ReviewApplicationTests {
 
-
-    private final ReviewRepository reviewRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     @Test
     public void test() {
@@ -34,17 +35,23 @@ public class ReviewApplicationTests {
 
     @Test
     public void reviewSave() {
+        IntStream.rangeClosed(1, 300).forEach(i->{
+            long artId = (long)(Math.random()*10)+1;
+            Art art = Art.builder().artId(artId).build();
 
-        Art art = new Art();
-        art.setArtId(1L);
-        Artist artist = new Artist();
-        artist.setArtistId(8L);
+            long artistId = (long)(Math.random()*100)+1;
+            Artist artist = Artist.builder()
+                    .artistId(artistId)
+                    .build();
 
-        Review review = Review.builder()
-                .art(art)
-                .artist(artist)
-                .comment("Comment").content("Content").build();
-        reviewRepository.save(review);
+            Review review = Review.builder()
+                    .art(art)
+                    .artist(artist)
+                    .title("Review Title"+i)
+                    .content("Review Content"+i).build();
+            reviewRepository.save(review);
+        });
+
     }
 
     @Test
@@ -67,7 +74,7 @@ public class ReviewApplicationTests {
 
     @Test
     public void reviewPage(){
-        Pageable pageable = PageRequest.of(1, 5);
+        Pageable pageable = PageRequest.of(1, 10);
 
         reviewRepository.reviewPaging(pageable).get().forEach(review ->{
             log.info(review);
@@ -81,12 +88,13 @@ public class ReviewApplicationTests {
     @Commit
     public void reviewUpdate(){
 
-        reviewRepository.reviewUpdate(8L, "그냥해", "정말?");
+        reviewRepository.reviewUpdate(60L, "그냥해");
     }
 
 
     @Test
     public void reviewDelete(){
-        reviewRepository.deleteById(8L);
+
+        reviewRepository.reviewDelete(33L);
     }
 }

@@ -7,10 +7,13 @@ import philoarte.jaemin.api.review.domain.Review;
 import philoarte.jaemin.api.review.domain.ReviewDto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ReviewService {
-
-    Review reviewUpdate(Review review);
+    String save(ReviewDto reviewDto);
+    Optional<Review> findById(Long reviewId);
+    void reviewDelete(Long reviewId);
+    int reviewUpdate(ReviewDto ReviewDto);
     List<Review> reviewFindAll();
     Page<Review> reviewPaging(Pageable pageable);
 
