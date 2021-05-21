@@ -8,7 +8,7 @@ import philoarte.jaemin.api.resume.domain.Resume;
 
 import javax.persistence.*;
 @Getter
-@ToString
+@ToString(exclude = {"artist","category","resume"})
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,13 +25,13 @@ public class Art extends BaseEntity {
     private String description;
     @Column
     private String mainImg;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "artist_id")
     Artist artist;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "resume_id")
     private Resume resume;
 }

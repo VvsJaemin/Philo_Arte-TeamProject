@@ -12,22 +12,39 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
+@ToString(exclude = "review")
 public class Reply extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "reply_id")
-    private Long replyId;
-
+    @Column(name = "rno")
+    private Long rno;
+    @Column(name = "text")
     private String text;
+    @Column(name = "replyer")
     private String replyer;
 
-    @ManyToOne
+    @Column(name = "uuid")
+    private String uuid;
+    @Column(name = "file_title")
+    private String fileTitle;
+    @Column(name = "file_detail")
+    private String fileDetail;
+    @Column(name = "fname")
+    private String fname;
+    @Column(name = "rep_img")
+    private Boolean repImg;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="review_id")
     private Review review;
 
-    @ManyToOne
-    @JoinColumn(name="review_file_id")
-    private ReviewFile reviewFile;
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "review_file_id")
+//    private Long reviewFileId;
+
+
+
 }

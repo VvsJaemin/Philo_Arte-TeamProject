@@ -17,7 +17,7 @@ import java.util.List;
 @Builder
 public class ArtistDto {
     @ApiModelProperty(position = 0)
-    private long artistId;
+    private Long artistId;
     @ApiModelProperty(position = 1)
     private String username;
     @ApiModelProperty(position = 2)

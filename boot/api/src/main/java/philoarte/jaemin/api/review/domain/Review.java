@@ -19,6 +19,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "reviews")
+@ToString(exclude = {"artist","art"})
 public class Review extends BaseEntity {
 
     @Id
@@ -30,13 +31,19 @@ public class Review extends BaseEntity {
 
     private String content;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "artist_id")
     private Artist artist;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "art_id")
     private Art art;
 
+    public void changeTitle(String title){
+        this.title =title;
+    }
 
+    public void changeContent(String content){
+        this.content=content;
+    }
 }

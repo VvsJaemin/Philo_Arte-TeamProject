@@ -1,6 +1,5 @@
 package philoarte.jaemin.api;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,15 +7,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 import philoarte.jaemin.api.art.domain.Art;
 import philoarte.jaemin.api.artist.domain.Artist;
 import philoarte.jaemin.api.review.domain.Review;
-import philoarte.jaemin.api.review.domain.ReviewDto;
 import philoarte.jaemin.api.review.repository.ReviewRepository;
 
-import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -54,41 +53,31 @@ public class ReviewApplicationTests {
 
     }
 
-    @Test
-    public void reviewList(){
-        List<Review> result = reviewRepository.reviewFindAll();
 
-        for(Review review : result){
-            System.out.println(review + " : " + review.getArt());
-        }
-    }
-
+    @Transactional
     @Test
     public void reviewRead(){
         Optional<Review> review = reviewRepository.findById(1L);
 
         review.ifPresent(selectReview->{
-            System.out.println("review : " + selectReview);
+            System.out.println("review : " + selectReview.getArtist());
         });
     }
 
     @Test
-    public void reviewPage(){
-        Pageable pageable = PageRequest.of(1, 10);
-
-        reviewRepository.reviewPaging(pageable).get().forEach(review ->{
-            log.info(review);
-            System.out.println(review.getReviewId());
-        });
+    public void testReadWithWriter(){
+        Object result = reviewRepository.getBoardWithWriter(10L);
+        Object [] arr = (Object[]) result;
+        System.out.println("===========================");
+        System.out.println(Arrays.toString(arr));
     }
-
 
     @Transactional
     @Test
     @Commit
     public void reviewUpdate(){
 
-        reviewRepository.reviewUpdate(60L, "그냥해");
+        reviewRepository.reviewUpdate(60L, "sfasasaf", "그냥해");
     }
 
 
@@ -97,4 +86,33 @@ public class ReviewApplicationTests {
 
         reviewRepository.reviewDelete(33L);
     }
+
+    @Test
+    public void reviewWithReply(){
+        List<Object[]> result = reviewRepository.getRevieWithReply(100L);
+        for(Object[] arr : result){
+            System.out.println(Arrays.toString(arr));
+        }
+    }
+
+    @Test
+    public void testWithReplyCount(){
+        Pageable pageable = PageRequest.of(0,10, Sort.by("reviewId").descending());
+        Page<Object[]> result = reviewRepository.getReviewWithReplyCount(pageable);
+        result.get().forEach(row->{
+            Object[] arr = (Object[]) row;
+            System.out.println(Arrays.toString(arr));
+        });
+    }
+
+    @Test
+    public void testReviewByRead(){
+        Object result = reviewRepository.getReviewByReviewId(30L);
+
+        Object [] arr = (Object[]) result;
+
+        System.out.println(Arrays.toString(arr));
+    }
+
+
 }

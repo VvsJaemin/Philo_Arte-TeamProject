@@ -2,9 +2,8 @@ package philoarte.jaemin.api.review.service;
 
 import org.springframework.web.multipart.MultipartFile;
 import philoarte.jaemin.api.common.util.ModelMapperUtils;
-import philoarte.jaemin.api.review.domain.Review;
 import philoarte.jaemin.api.review.domain.ReviewFile;
-import philoarte.jaemin.api.review.domain.ReviewFileDto;
+import philoarte.jaemin.api.review.domain.dto.ReviewFileDto;
 
 import java.util.ArrayList;
 import java.util.List;

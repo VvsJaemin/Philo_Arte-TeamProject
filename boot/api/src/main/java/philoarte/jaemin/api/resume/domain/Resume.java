@@ -18,10 +18,6 @@ public class Resume {
     private String title;
     @Column(name = "detail")
     private String detail;
-    @Column(name = "main_pic")
-    private String mainPic;
-    @Column(name = "main_pic_title")
-    private String mainPicTitle;
 
     @ManyToOne
     @JoinColumn(name = "artist_id")

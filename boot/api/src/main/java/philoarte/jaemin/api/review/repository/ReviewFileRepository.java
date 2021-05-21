@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import philoarte.jaemin.api.review.domain.ReviewFile;
-import philoarte.jaemin.api.review.domain.ReviewFileDto;
 
 public interface ReviewFileRepository extends JpaRepository<ReviewFile, Long> {
 

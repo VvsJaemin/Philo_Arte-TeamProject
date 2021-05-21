@@ -13,16 +13,17 @@ import philoarte.jaemin.api.review.domain.Review;
 import java.util.List;
 
 public interface ReplyRepository extends JpaRepository<Reply, Long> {
-    @Query("select a from Reply a order by a.replyId desc")
+    @Query("select a from Reply a order by a.rno desc")
     List<Reply> replyFindAll();
 
     @Modifying
-    @Query("Update Reply a set a.text = :text where a.replyId = :replyId")
-    int replyUpdate(@Param("replyId") Long replyId, @Param("text") String text);
+    @Query("Update Reply a set a.text = :text where a.rno = :rno")
+    int replyUpdate(@Param("rno") Long rno, @Param("text") String text);
 
-    @Transactional
+    // 리뷰 삭제 시 댓글 삭제
     @Modifying
-    @Query("DELETE FROM Reply a where a.replyId = :replyId")
-    void replyDelete(@Param("replyId") Long replyId);
+    @Query("DELETE FROM Reply a where a.review.reviewId = :reviewId")
+    void replyDelete(@Param("reviewId")Long reviewId);
 
+    List<Reply> getRepliesByReviewOrderByReview(Review review);
 }

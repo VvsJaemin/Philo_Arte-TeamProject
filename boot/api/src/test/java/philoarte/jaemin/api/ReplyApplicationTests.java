@@ -25,9 +25,9 @@ public class ReplyApplicationTests {
     private ReplyRepository repository;
 
     @Test
-    public void replySave(){
-        IntStream.rangeClosed(1,300).forEach(i->{
-            long reviewId = (long)(Math.random()*100)+1;
+    public void replySave() {
+        IntStream.rangeClosed(1, 300).forEach(i -> {
+            long reviewId = (long) (Math.random() * 100) + 1;
             Review review = Review.builder().reviewId(reviewId).build();
 
             Reply reply = Reply.builder()
@@ -40,36 +40,25 @@ public class ReplyApplicationTests {
         });
     }
 
-    @Test
-    public void replyList(){
-        List<Reply> result = repository.replyFindAll();
-
-        for(Reply reply : result){
-            System.out.println(reply + " : " + reply.getReplyer());
-        }
-    }
-
-    @Test
-    public void replyRead(){
-        Optional<Reply> reply = repository.findById(1L);
-
-        reply.ifPresent(selectReview->{
-            System.out.println("reply : " + selectReview);
-        });
-    }
-
     @Transactional
     @Test
     @Commit
-    public void replyUpdate(){
+    public void replyUpdate() {
 
         repository.replyUpdate(1L, "그냥해");
     }
 
     @Test
-    public void replyDelete(){
+    public void replyDelete() {
 
         repository.replyDelete(30L);
     }
+
+    @Test
+    public void testListByBoard() {
+        List<Reply> replyList = repository.getRepliesByReviewOrderByReview(Review.builder().reviewId(42L).build());
+        replyList.forEach(reply -> System.out.println(reply));
+    }
+
 
 }

@@ -1,13 +1,12 @@
 package philoarte.jaemin.api.review.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.stereotype.Component;
 import philoarte.jaemin.api.common.domain.BaseEntity;
 
 import javax.persistence.*;
-
+@Component
+@ToString(exclude="review")
 @Entity
 @Getter
 @AllArgsConstructor
@@ -30,7 +29,11 @@ public class ReviewFile extends BaseEntity {
     @Column(name = "rep_img")
     private Boolean repImg;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="review_id")
     private Review review;
+
+    public void confirmReview(Review review){
+        this.review = review;
+    }
 }

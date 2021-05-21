@@ -1,44 +1,62 @@
 package philoarte.jaemin.api.review.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import philoarte.jaemin.api.common.util.ModelMapperUtils;
+import philoarte.jaemin.api.art.domain.Art;
+import philoarte.jaemin.api.artist.domain.Artist;
+import philoarte.jaemin.api.review.domain.ReviewFile;
+import philoarte.jaemin.api.review.domain.dto.PageRequestDto;
+import philoarte.jaemin.api.review.domain.dto.PageResultDto;
 import philoarte.jaemin.api.review.domain.Review;
-import philoarte.jaemin.api.review.domain.ReviewDto;
+import philoarte.jaemin.api.review.domain.dto.ReviewDto;
+import philoarte.jaemin.api.review.domain.dto.ReviewFileDto;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 public interface ReviewService {
-    String save(ReviewDto reviewDto);
-    Optional<Review> findById(Long reviewId);
-    void reviewDelete(Long reviewId);
-    int reviewUpdate(ReviewDto ReviewDto);
-    List<Review> reviewFindAll();
-    Page<Review> reviewPaging(Pageable pageable);
+    Long save(ReviewDto reviewDto);
+    ReviewDto get(Long reviewId);
+    void modify(ReviewDto reviewDto);
+    void removeWithReplies(Long reviewId);
+    PageResultDto<ReviewDto, Object[]> getList(PageRequestDto PageRequestDto);
 
-    default Review dtoToEntity(ReviewDto reviewDto){
-        Review review = ModelMapperUtils.getModelMapper().map(reviewDto, Review.class);
-//        Review review = Review.builder()
-//                .reviewId(reviewDto.getReviewId())
-//                .content(reviewDto.getContent())
-//                .comment(reviewDto.getComment())
-//                .artist(reviewDto.getArtist())
-//                .art(reviewDto.getArt())
-//                .build();
 
-        return review;
+
+    default Map<String, Object> dtoToEntity(ReviewDto reviewDto){
+        Map<String, Object> entityMap = new HashMap<>();
+        Artist artists = Artist.builder().artistId(reviewDto.getWriterId()).build();
+        Art arts = Art.builder().artId(reviewDto.getArtId()).build();
+        Review reviews = Review.builder()
+                .reviewId(reviewDto.getReviewId())
+                .title(reviewDto.getTitle())
+                .content(reviewDto.getContent())
+                .artist(artists)
+                .art(arts)
+                .build();
+        entityMap.put("review", reviews);
+        
+        List<ReviewFileDto> imageDtoList = reviewDto.getReviewFileDtoList();
+        
+        if(imageDtoList!=null && imageDtoList.size() >0){
+            List<ReviewFile> reviewImageList = imageDtoList.stream().map(reviewFileDto -> {
+                ReviewFile reviewFile = ReviewFile.builder()
+                        .path()
+            })
+        }
+        return reviews;
     }
 
-    default ReviewDto entityToDto(Review review){
-        ReviewDto reviewDto = ModelMapperUtils.getModelMapper().map(review, ReviewDto.class);
-//        ReviewDto reviewDto = ReviewDto.builder()
-//                .reviewId(review.getReviewId())
-//                .content(review.getContent())
-//                .comment(review.getComment())
-//                .artist(review.getArtist())
-//                .art(review.getArt())
-//                .build();
+    default ReviewDto entityToDto(Review review, Artist artist, Long replyCount){
+        ReviewDto reviewDto = ReviewDto.builder()
+                .reviewId(review.getReviewId())
+                .title(review.getTitle())
+                .content(review.getContent())
+                .regDate(review.getRegDate())
+                .modDate(review.getModDate())
+                .writerId(artist == null? 1L : artist.getArtistId())
+                .writerName(artist == null ? "" :artist.getArtistName())
+                .replyCount(replyCount.intValue())
+                .build();
 
         return reviewDto;
     }

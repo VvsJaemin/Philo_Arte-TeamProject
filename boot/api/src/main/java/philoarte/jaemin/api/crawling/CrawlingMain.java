@@ -1,23 +1,15 @@
 package philoarte.jaemin.api.crawling;
 
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import philoarte.jaemin.api.artist.domain.Artist;
-import philoarte.jaemin.api.common.service.DummyGenerator;
 import philoarte.jaemin.api.review.domain.Review;
-import philoarte.jaemin.api.review.domain.ReviewDto;
 
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

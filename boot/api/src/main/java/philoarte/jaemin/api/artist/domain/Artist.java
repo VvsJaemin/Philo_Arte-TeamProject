@@ -21,7 +21,7 @@ public class Artist extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JoinColumn(name = "artist_id")
-    private long artistId;
+    private Long artistId;
 
     //, unique = true, nullable = false
     @Column(name = "username")
@@ -51,7 +51,7 @@ public class Artist extends BaseEntity {
     @Column(name = "department")
     private String department;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.LAZY)
     List<Role> roles;
 
     public void changeRoles(List<Role> roles){

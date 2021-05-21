@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import philoarte.jaemin.api.review.domain.ReviewDto;
-import philoarte.jaemin.api.review.domain.ReviewFile;
-import philoarte.jaemin.api.review.domain.ReviewFileDto;
+import philoarte.jaemin.api.review.domain.dto.ReviewFileDto;
 import philoarte.jaemin.api.review.repository.ReviewFileRepository;
 
 import javax.imageio.ImageIO;
