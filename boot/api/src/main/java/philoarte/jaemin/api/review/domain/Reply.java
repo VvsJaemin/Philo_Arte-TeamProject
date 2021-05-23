@@ -24,20 +24,21 @@ public class Reply extends BaseEntity {
     @Column(name = "replyer")
     private String replyer;
 
-    @Column(name = "uuid")
-    private String uuid;
-    @Column(name = "file_title")
-    private String fileTitle;
-    @Column(name = "file_detail")
-    private String fileDetail;
-    @Column(name = "fname")
-    private String fname;
-    @Column(name = "rep_img")
-    private Boolean repImg;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="review_id")
     private Review review;
+
+//    @Column(name = "uuid")
+//    private String uuid;
+//    @Column(name = "file_title")
+//    private String fileTitle;
+//    @Column(name = "file_detail")
+//    private String fileDetail;
+//    @Column(name = "fname")
+//    private String fname;
+//    @Column(name = "rep_img")
+//    private Boolean repImg;
 
 
 //    @Id

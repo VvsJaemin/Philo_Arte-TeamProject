@@ -2,6 +2,7 @@ package philoarte.jaemin.api.review.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -22,7 +23,7 @@ public interface ReplyRepository extends JpaRepository<Reply, Long> {
 
     // 리뷰 삭제 시 댓글 삭제
     @Modifying
-    @Query("DELETE FROM Reply a where a.review.reviewId = :reviewId")
+    @Query("DELETE FROM Reply rp where rp.review.reviewId = :reviewId")
     void replyDelete(@Param("reviewId")Long reviewId);
 
     List<Reply> getRepliesByReviewOrderByReview(Review review);

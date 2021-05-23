@@ -11,6 +11,7 @@ import philoarte.jaemin.api.artist.domain.Artist;
 import philoarte.jaemin.api.review.domain.Review;
 import philoarte.jaemin.api.review.domain.ReviewFile;
 import philoarte.jaemin.api.review.repository.ReviewFileRepository;
+import philoarte.jaemin.api.review.repository.ReviewRepository;
 
 import java.util.UUID;
 import java.util.stream.IntStream;
@@ -20,24 +21,32 @@ import java.util.stream.IntStream;
 public class ReviewFileApplicationTests {
 
     @Autowired
-    private ReviewFileRepository repository;
+    private ReviewRepository reviewRepository;
 
+    @Autowired
+    private ReviewFileRepository reviewFileRepository;
+
+    @Commit
+    @Transactional
     @Test
-    public void reviewFileSave(){
-        IntStream.rangeClosed(1, 100).forEach(i->{
-            long reviewId = (long) (Math.random()*100)+1;
-            Review review = Review.builder()
-                    .reviewId(reviewId)
-                    .build();
-            ReviewFile reviewFile = ReviewFile.builder()
-                    .uuid(UUID.randomUUID().toString())
-                    .fileTitle("Review File title" +i)
-                    .fileDetail("fileDetail" + i)
-                    .fname("으아아아아").repImg(true)
-                    .review(review)
-                    .build();
-            repository.save(reviewFile);
+    public void insertMovies(){
+        IntStream.rangeClosed(1,100).forEach(i->{
+            Review review = Review.builder().title("Review... " + i).build();
 
+            System.out.println("------------------------------------------");
+
+            reviewRepository.save(review);
+
+            int count = (int) (Math.random()*5)+1;
+
+            for(int j = 0; j<count; j++){
+                ReviewFile reviewFile = ReviewFile.builder()
+                        .uuid(UUID.randomUUID().toString())
+                        .review(review)
+                        .imgName("test"+j+".jpg").build();
+
+                reviewFileRepository.save(reviewFile);
+            }
         });
     }
 

@@ -66,7 +66,7 @@ public class ReviewApplicationTests {
 
     @Test
     public void testReadWithWriter(){
-        Object result = reviewRepository.getBoardWithWriter(10L);
+        Object result = reviewRepository.getRevieWithWriter(10L);
         Object [] arr = (Object[]) result;
         System.out.println("===========================");
         System.out.println(Arrays.toString(arr));
@@ -97,12 +97,23 @@ public class ReviewApplicationTests {
 
     @Test
     public void testWithReplyCount(){
-        Pageable pageable = PageRequest.of(0,10, Sort.by("reviewId").descending());
+        Pageable pageable = PageRequest.of(5,10, Sort.by("reviewId").descending());
         Page<Object[]> result = reviewRepository.getReviewWithReplyCount(pageable);
         result.get().forEach(row->{
             Object[] arr = (Object[]) row;
             System.out.println(Arrays.toString(arr));
         });
+    }
+
+    @Test
+    public void testListPage(){
+        PageRequest pageRequest = PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "reviewId"));
+
+        Page<Object[]> result = reviewRepository.getReviewWithReplyCount(pageRequest);
+
+        for(Object[] objects : result.getContent()){
+            System.out.println(Arrays.toString(objects));
+        }
     }
 
     @Test
@@ -114,5 +125,27 @@ public class ReviewApplicationTests {
         System.out.println(Arrays.toString(arr));
     }
 
+    @Test
+    public void testGetReviewWithAll(){
+        List<Object[]> result = reviewRepository.getRevieWithReply(420L);
 
+        System.out.println(result);
+        for(Object[] arr : result){
+            System.out.println(Arrays.toString(arr));
+        }
+    }
+
+    @Test
+    public void testSearch1(){
+        reviewRepository.search();
+    }
+
+    @Test
+    public void searchPage(){
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("reviewId")
+                .descending()
+                .and(Sort.by("title").ascending()));
+
+        Page<Object[]> result = reviewRepository.searchPage("t", "1", pageable);
+    }
 }

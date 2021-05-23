@@ -3,6 +3,7 @@ package philoarte.jaemin.api.review.domain.dto;
 import lombok.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 import philoarte.jaemin.api.art.domain.Art;
 import philoarte.jaemin.api.artist.domain.Artist;
 import philoarte.jaemin.api.common.util.ModelMapperUtils;
@@ -14,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-@Getter
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,17 +28,19 @@ public class ReviewDto {
     private String title;
     private String content;
 
-    private Long writerId;
-    private String writerName;
+    private String writerId; // 작성자 아이디
+    private String writerName; // 작성자 이름
     private Long artId;
-    private int replyCount;
+    private Integer replyCount;
 
     private LocalDateTime regDate;
     private LocalDateTime modDate;
 
-    private Art art;
+//    private Art art;
+//
+//    private Artist artist;
 
-    private Artist artist;
+
     @Builder.Default
     private List<ReviewFileDto> reviewFileDtoList = new ArrayList<>();
 

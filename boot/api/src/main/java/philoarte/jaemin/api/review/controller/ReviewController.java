@@ -11,6 +11,8 @@ import philoarte.jaemin.api.review.domain.dto.PageResultDto;
 import philoarte.jaemin.api.review.domain.dto.ReviewDto;
 import philoarte.jaemin.api.review.service.ReviewServiceImpl;
 
+import javax.annotation.Nullable;
+
 @Log4j2
 @RestController
 @RequestMapping(value = "/reviews", method = {RequestMethod.GET, RequestMethod.POST})
@@ -21,22 +23,22 @@ public class ReviewController {
 
     private final ReviewServiceImpl service;
 
-    // 완료
+
     @PostMapping("/register")
     @ApiOperation(value = "리뷰 게시글 등록", notes = "리뷰 게시글을 등록 합니다.")
-    public ResponseEntity<Long> save(@RequestBody ReviewDto reviewDto) {
+    public ResponseEntity<Long> save(ReviewDto reviewDto) {
         log.info("리뷰가 등록 되었습니다." +reviewDto);
         return ResponseEntity.ok(service.save(reviewDto));
     }
 
-    @GetMapping("/list") // 완료
+    @GetMapping("/list")
     @ApiOperation(value = "리뷰 게시글 목록", notes = "리뷰 게시글을 목록을 보여줍니다.")
     public ResponseEntity<PageResultDto<ReviewDto, Object[]>> reviewList(PageRequestDto pageRequestDto) {
-
+            log.info("pageRequestDto : " + pageRequestDto);
         return ResponseEntity.ok(service.getList(pageRequestDto));
     }
 
-    @GetMapping("/read/{reviewId}") // 완료
+    @GetMapping("/read/{reviewId}")
     @ApiOperation(value = "하나의 리뷰 읽기", notes = "하나의 리뷰를 읽어 줍니다.")
     public ResponseEntity<ReviewDto> read(@PathVariable("reviewId") Long reviewId) {
 
@@ -53,7 +55,7 @@ public class ReviewController {
         return ResponseEntity.ok("Success Modify");
     }
 
-    @DeleteMapping("remove/{reviewId}") // 완료
+    @DeleteMapping("remove/{reviewId}")
     @ApiOperation(value = "하나의 리뷰 삭제", notes = "하나의 리뷰를 삭제 합니다.")
     public ResponseEntity<String> delete(@PathVariable("reviewId") Long reviewId) {
         service.removeWithReplies(reviewId);

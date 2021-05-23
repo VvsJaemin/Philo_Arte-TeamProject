@@ -18,14 +18,14 @@ public class ReviewServiceTests {
 
     @Test
     public void testGetList(){
-        PageRequestDto pageRequestDto = new PageRequestDto(1,10);
+        PageRequestDto pageRequestDto = new PageRequestDto(1,10,"t", "1");
 
         PageResultDto<ReviewDto, Object[]> result = service.getList(pageRequestDto);
 
 //        //System.out.println(result);
 //
 //        System.out.println("===========================");
-//        System.out.println(result.getDtoList());
+        System.out.println(result.getDtoList());
 
         for(ReviewDto reviewDto : result.getDtoList()){
             System.out.println(reviewDto);
@@ -53,7 +53,7 @@ public class ReviewServiceTests {
                 .title("test")
                 .content("w")
                 .artId(1L)
-                .writerId(1L)
+                .writerId("userId")
                 .build();
 
         service.save(dto);

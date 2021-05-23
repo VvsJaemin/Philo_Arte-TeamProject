@@ -60,5 +60,22 @@ public class ReplyApplicationTests {
         replyList.forEach(reply -> System.out.println(reply));
     }
 
+    @Test
+    @Transactional
+    @Commit
+    public void testGetReviewReplies(){
+        Review review = Review.builder().reviewId(90L).build();
+
+        List<Reply> result = repository.getRepliesByReviewOrderByReview(review);
+
+        result.forEach(reviewReply->{
+            System.out.println(reviewReply.getRno());
+            System.out.println("\t,khj.klkj"+reviewReply.getText());
+            System.out.println("\tkjkj"+reviewReply.getReview());
+        });
+    }
+
+
+
 
 }

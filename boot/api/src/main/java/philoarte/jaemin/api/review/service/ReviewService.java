@@ -12,52 +12,73 @@ import philoarte.jaemin.api.review.domain.dto.ReviewFileDto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public interface ReviewService {
     Long save(ReviewDto reviewDto);
+
     ReviewDto get(Long reviewId);
+
     void modify(ReviewDto reviewDto);
+
     void removeWithReplies(Long reviewId);
+
     PageResultDto<ReviewDto, Object[]> getList(PageRequestDto PageRequestDto);
 
 
-
-    default Map<String, Object> dtoToEntity(ReviewDto reviewDto){
+    default Map<String, Object> dtoToEntity(ReviewDto reviewDto) {
         Map<String, Object> entityMap = new HashMap<>();
-        Artist artists = Artist.builder().artistId(reviewDto.getWriterId()).build();
+        Artist artists = Artist.builder().username(reviewDto.getWriterId()).build();
         Art arts = Art.builder().artId(reviewDto.getArtId()).build();
-        Review reviews = Review.builder()
+        Review review = Review.builder()
                 .reviewId(reviewDto.getReviewId())
                 .title(reviewDto.getTitle())
                 .content(reviewDto.getContent())
                 .artist(artists)
                 .art(arts)
                 .build();
-        entityMap.put("review", reviews);
-        
-        List<ReviewFileDto> imageDtoList = reviewDto.getReviewFileDtoList();
-        
-        if(imageDtoList!=null && imageDtoList.size() >0){
-            List<ReviewFile> reviewImageList = imageDtoList.stream().map(reviewFileDto -> {
+        entityMap.put("review", review);
+
+        List<ReviewFileDto> fileDtoList = reviewDto.getReviewFileDtoList();
+
+        if (fileDtoList != null && fileDtoList.size() > 0) {
+            List<ReviewFile> reviewFileList = fileDtoList.stream().map(reviewFileDto -> {
                 ReviewFile reviewFile = ReviewFile.builder()
-                        .path()
-            })
+                        .reviewFileId(reviewFileDto.getReviewFileId())
+                        .path(reviewFileDto.getPath())
+                        .imgName(reviewFileDto.getImgName())
+                        .uuid(reviewFileDto.getUuid())
+                        .review(review)
+                        .build();
+                return reviewFile;
+            }).collect(Collectors.toList());
+            entityMap.put("fileList", reviewFileList);
         }
-        return reviews;
+        return entityMap;
     }
 
-    default ReviewDto entityToDto(Review review, Artist artist, Long replyCount){
+    default ReviewDto entityToDto(Review review, Artist artist, Long replyCount, List<ReviewFile> reviewFiles) {
         ReviewDto reviewDto = ReviewDto.builder()
                 .reviewId(review.getReviewId())
                 .title(review.getTitle())
                 .content(review.getContent())
                 .regDate(review.getRegDate())
                 .modDate(review.getModDate())
-                .writerId(artist == null? 1L : artist.getArtistId())
-                .writerName(artist == null ? "" :artist.getArtistName())
+                .writerId(artist == null ? "" : artist.getUsername())
+                .writerName(artist == null ? "" : artist.getArtistName())
                 .replyCount(replyCount.intValue())
                 .build();
+        List<ReviewFileDto> reviewFileDtoList = reviewFiles.stream().map(reviewFile -> {
+            return ReviewFileDto.builder()
+                    .reviewFileId(reviewFile.getReviewFileId())
+                    .imgName(reviewFile.getImgName())
+                    .path(reviewFile.getPath())
+                    .uuid(reviewFile.getUuid())
+                    .build();
+        }).collect(Collectors.toList());
 
+        reviewDto.setReviewFileDtoList(reviewFileDtoList);
+        reviewDto.setReplyCount(replyCount.intValue());
         return reviewDto;
     }
 

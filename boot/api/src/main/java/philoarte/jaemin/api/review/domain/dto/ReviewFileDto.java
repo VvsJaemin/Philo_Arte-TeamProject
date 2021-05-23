@@ -1,9 +1,6 @@
 package philoarte.jaemin.api.review.domain.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.stereotype.Component;
 import philoarte.jaemin.api.review.domain.Review;
 
@@ -12,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 @Component
+@ToString
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,30 +18,27 @@ public class ReviewFileDto {
 
     private Long reviewFileId;
     private String uuid;
-    private String fileTitle;
-    private String fileDetail;
-    private String fname;
-    private Boolean repImg;
+    private String imgName;
     private String path;
-    private Review review;
-
-    public String getImageURL(){
-        try{
-            return URLEncoder.encode(path+"/"+uuid+"_"+fname,"UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        return "";
-    }
-
-    public String getThumbnailURL(){
-        try{
-            return URLEncoder.encode(path+"/s_"+uuid+"_"+fname,"UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        return "";
-    }
+//    private Review review;
+//
+//    public String getImageURL(){
+//        try{
+//            return URLEncoder.encode(path+"/"+uuid+"_"+imgName,"UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return "";
+//    }
+//
+//    public String getThumbnailURL(){
+//        try{
+//            return URLEncoder.encode(path+"/s_"+uuid+"_"+imgName,"UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return "";
+//    }
 }

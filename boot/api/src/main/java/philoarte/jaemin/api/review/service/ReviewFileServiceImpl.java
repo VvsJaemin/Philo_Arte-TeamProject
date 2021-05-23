@@ -51,7 +51,7 @@ public class ReviewFileServiceImpl implements ReviewFileService{
                 Thumbnails.of(new File(saveName)).scale(1)
                         .watermark(Positions.BOTTOM_CENTER, ImageIO.read(new File(uploadPath + File.separator + "84560_320.jpg")), 0.5f)
                         .toFile(new File(uploadPath + File.separator + "w_" +uuid +ofname));
-                ReviewFileDto reviewFileDto = ReviewFileDto.builder().uuid(uuid).fname(saveName).build();
+                ReviewFileDto reviewFileDto = ReviewFileDto.builder().uuid(uuid).imgName(saveName).build();
                 resultDtoList.add(reviewFileDto);
             } catch (Exception e) {
                 e.printStackTrace();

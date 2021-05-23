@@ -13,4 +13,6 @@ public interface ReviewFileRepository extends JpaRepository<ReviewFile, Long> {
     @Modifying
     @Query("DELETE FROM ReviewFile a where a.reviewFileId = :reviewFileId")
     void reviewFileDelete(@Param("reviewFileId") Long reviewFileId);
+
+
 }

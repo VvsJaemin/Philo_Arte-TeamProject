@@ -29,7 +29,7 @@ public class ReplyController {
         return ResponseEntity.ok("success");
     }
 
-    @GetMapping(value="/review/{reviewId}", produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value="/list/{reviewId}", produces= MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "댓글 목록", notes = "댓글 목록을 보여줍니다.")
     public ResponseEntity<List<ReplyDto>> replyList(@PathVariable("reviewId")Long reviewId) {
 
@@ -46,7 +46,7 @@ public class ReplyController {
         return ResponseEntity.ok("Success Modify");
     }
 
-    @DeleteMapping("delete/{rno}")
+    @DeleteMapping("/remove/{rno}")
     @ApiOperation(value = "하나의 리뷰 댓글 삭제", notes = "하나의 리뷰 댓글을 삭제 합니다.")
     public ResponseEntity<String> delete(@PathVariable("rno") Long rno) {
         service.remove(rno);

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import philoarte.jaemin.api.common.domain.BaseEntity;
 
 import javax.persistence.*;
-@Component
+
 @ToString(exclude="review")
 @Entity
 @Getter
@@ -20,14 +20,11 @@ public class ReviewFile extends BaseEntity {
     private Long reviewFileId;
     @Column(name = "uuid")
     private String uuid;
-    @Column(name = "file_title")
-    private String fileTitle;
-    @Column(name = "file_detail")
-    private String fileDetail;
-    @Column(name = "fname")
-    private String fname;
-    @Column(name = "rep_img")
-    private Boolean repImg;
+
+    @Column(name = "img_name")
+    private String imgName;
+
+    private String path;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="review_id")
