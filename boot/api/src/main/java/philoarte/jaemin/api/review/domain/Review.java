@@ -4,6 +4,7 @@ package philoarte.jaemin.api.review.domain;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.web.multipart.MultipartFile;
 import philoarte.jaemin.api.art.domain.Art;
 import philoarte.jaemin.api.artist.domain.Artist;
 import philoarte.jaemin.api.common.domain.BaseEntity;
@@ -19,7 +20,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "reviews")
-@ToString(exclude = {"artist","art"})
+@ToString(exclude = {"artist, art"})
 public class Review extends BaseEntity {
 
     @Id
@@ -31,13 +32,11 @@ public class Review extends BaseEntity {
 
     private String content;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "artist_id")
     private Artist artist;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "art_id")
-    private Art art;
 
     public void changeTitle(String title){
         this.title =title;

@@ -16,6 +16,7 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import philoarte.jaemin.api.artist.domain.QArtist;
 import philoarte.jaemin.api.review.domain.QReply;
 import philoarte.jaemin.api.review.domain.QReview;
+import philoarte.jaemin.api.review.domain.QReviewFile;
 import philoarte.jaemin.api.review.domain.Review;
 
 import java.util.List;
@@ -34,14 +35,16 @@ public class SearchReviewRepositoryImpl extends QuerydslRepositorySupport implem
         log.info("searchPage...........");
 
         QReview review = QReview.review;
-        QReply reply = QReply.reply;
         QArtist artist = QArtist.artist;
+        QReply reply = QReply.reply;
+        QReviewFile reviewFile = QReviewFile.reviewFile;
 
         JPQLQuery<Review> jpqlQuery = from(review);
         jpqlQuery.leftJoin(artist).on(review.artist.eq(artist));
         jpqlQuery.leftJoin(reply).on(reply.review.eq(review));
+        jpqlQuery.leftJoin(reviewFile).on(reviewFile.review.eq(review));
 
-        JPQLQuery<Tuple> tuple = jpqlQuery.select(review, artist, reply.count());
+        JPQLQuery<Tuple> tuple = jpqlQuery.select(review, artist, reply.count(), reviewFile);
 
         BooleanBuilder booleanBuilder = new BooleanBuilder();
         BooleanExpression expression = review.reviewId.gt(0L);

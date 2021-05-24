@@ -3,11 +3,14 @@ package philoarte.jaemin.api.review.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+import philoarte.jaemin.api.art.domain.Art;
+import philoarte.jaemin.api.artist.domain.Artist;
 import philoarte.jaemin.api.review.domain.Review;
 import philoarte.jaemin.api.review.repository.search.SearchReviewRepository;
 
@@ -36,9 +39,10 @@ public interface ReviewRepository extends JpaRepository<Review, Long>, SearchRev
 
     /* // 특정 리뷰와 해당 리뷰에 속한 댓글 조회 */
 
-    @Query("SELECT re, rf, count(rp) " +
-            " FROM Review re " + " LEFT OUTER JOIN ReviewFile rf on rf.review =re "
-            + " LEFT OUTER JOIN Reply rp ON rp.review = re "
+    @Query("SELECT re, w, count(rp), rf " +
+            " FROM Review re LEFT JOIN re.artist w" +
+            " LEFT OUTER JOIN Reply rp ON rp.review = re " +
+            " LEFT OUTER JOIN ReviewFile rf on rf.review =re "
             + " where re.reviewId = :reviewId group by rf ")
     List<Object[]> getRevieWithReply(@Param("reviewId") Long reviewId);
 
@@ -53,13 +57,19 @@ public interface ReviewRepository extends JpaRepository<Review, Long>, SearchRev
 
     /*    //w.artistId(화면 목록)*/
 
-    @Query(value = " SELECT re, w, rf, count(distinct rp) " +
+    @Query(value = " SELECT re, w, count(distinct rp), rf " +
             " FROM Review re " +
-            " LEFT JOIN re.artist w " + " LEFT OUTER JOIN ReviewFile rf on rf.review = re "
-            + " LEFT OUTER JOIN Reply rp ON rp.review= re " +
+            " LEFT JOIN re.artist w "
+            + " LEFT OUTER JOIN Reply rp ON rp.review= re"
+            + " LEFT OUTER JOIN ReviewFile rf on rf.review = re " +
             " GROUP BY re ",
             countQuery = "SELECT count(re) FROM Review re")
     Page<Object[]> getReviewWithReplyCount(Pageable pageable);
 
-
+//    @EntityGraph(attributePaths = {"artist"}, type = EntityGraph.EntityGraphType.FETCH)
+//    List<Review> findByArt(Art art);
+//
+//    @Modifying
+//    @Query("delete from Review r where r.artist =:artist")
+//    void deleteByArtist(Artist artist);
 }

@@ -8,19 +8,20 @@ import org.springframework.transaction.annotation.Transactional;
 import philoarte.jaemin.api.review.domain.dto.PageRequestDto;
 import philoarte.jaemin.api.review.domain.dto.PageResultDto;
 import philoarte.jaemin.api.review.domain.dto.ReviewDto;
+import philoarte.jaemin.api.review.service.ReviewService;
 import philoarte.jaemin.api.review.service.ReviewServiceImpl;
 
 @SpringBootTest
 public class ReviewServiceTests {
 
     @Autowired
-    ReviewServiceImpl service;
+    private ReviewService reviewService;
 
     @Test
     public void testGetList(){
         PageRequestDto pageRequestDto = new PageRequestDto(1,10,"t", "1");
 
-        PageResultDto<ReviewDto, Object[]> result = service.getList(pageRequestDto);
+        PageResultDto<ReviewDto, Object[]> result = reviewService.getList(pageRequestDto);
 
 //        //System.out.println(result);
 //
@@ -35,16 +36,16 @@ public class ReviewServiceTests {
     @Test
     public void testGet(){
         Long reviewId = 30L;
-        ReviewDto reviewDto = service.get(reviewId);
+        ReviewDto reviewDto = reviewService.get(reviewId);
 
         System.out.println(reviewDto);
     }
 
     @Test
     public void testRemove(){
-        Long reviewId = 20L;
+        Long reviewId = 328L;
 
-        service.removeWithReplies(reviewId);
+        reviewService.removeWithReplies(reviewId);
     }
 
     @Test
@@ -52,11 +53,11 @@ public class ReviewServiceTests {
         ReviewDto dto = ReviewDto.builder()
                 .title("test")
                 .content("w")
-                .artId(1L)
-                .writerId("userId")
+//                .artId(1L)
+                .writerId(10L)
                 .build();
 
-        service.save(dto);
+        reviewService.save(dto);
     }
 
     @Transactional
@@ -69,6 +70,7 @@ public class ReviewServiceTests {
                 .content("내용 변경")
                 .build();
 
-        service.modify(reviewDto);
+        reviewService.modify(reviewDto);
     }
+
 }

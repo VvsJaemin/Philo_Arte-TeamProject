@@ -28,14 +28,14 @@ public interface ReviewService {
 
     default Map<String, Object> dtoToEntity(ReviewDto reviewDto) {
         Map<String, Object> entityMap = new HashMap<>();
-        Artist artists = Artist.builder().username(reviewDto.getWriterId()).build();
-        Art arts = Art.builder().artId(reviewDto.getArtId()).build();
+        Artist artists = Artist.builder().artistId(reviewDto.getWriterId()).build();
+//        Art arts = Art.builder().artId(reviewDto.getArtId()).build();
         Review review = Review.builder()
                 .reviewId(reviewDto.getReviewId())
                 .title(reviewDto.getTitle())
                 .content(reviewDto.getContent())
                 .artist(artists)
-                .art(arts)
+
                 .build();
         entityMap.put("review", review);
 
@@ -64,20 +64,27 @@ public interface ReviewService {
                 .content(review.getContent())
                 .regDate(review.getRegDate())
                 .modDate(review.getModDate())
-                .writerId(artist == null ? "" : artist.getUsername())
+                .writerId(artist == null ? 1L : artist.getArtistId())
                 .writerName(artist == null ? "" : artist.getArtistName())
                 .replyCount(replyCount.intValue())
                 .build();
-        List<ReviewFileDto> reviewFileDtoList = reviewFiles.stream().map(reviewFile -> {
-            return ReviewFileDto.builder()
-                    .reviewFileId(reviewFile.getReviewFileId())
-                    .imgName(reviewFile.getImgName())
-                    .path(reviewFile.getPath())
-                    .uuid(reviewFile.getUuid())
-                    .build();
-        }).collect(Collectors.toList());
+        if(reviewFiles != null && reviewFiles.size() > 0) {
+            System.out.println("size : " +reviewFiles.size());
+            List<ReviewFileDto> reviewFileDtoList = reviewFiles.stream().map(reviewFile -> {
 
-        reviewDto.setReviewFileDtoList(reviewFileDtoList);
+                if(reviewFile == null) {
+                    return null;
+                }
+                return ReviewFileDto.builder()
+                        .reviewFileId(reviewFile.getReviewFileId())
+                        .imgName(reviewFile.getImgName())
+                        .path(reviewFile.getPath())
+                        .uuid(reviewFile.getUuid())
+                        .build();
+            }).collect(Collectors.toList());
+            reviewDto.setReviewFileDtoList(reviewFileDtoList);
+        }
+
         reviewDto.setReplyCount(replyCount.intValue());
         return reviewDto;
     }

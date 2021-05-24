@@ -32,7 +32,7 @@ public class ReplyDto {
 //    private String fname;
 //    private Boolean repImg;
 
-    private Review review;
+//    private Review review;
 
 
 

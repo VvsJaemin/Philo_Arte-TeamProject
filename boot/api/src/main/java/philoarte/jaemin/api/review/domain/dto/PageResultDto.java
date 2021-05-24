@@ -18,9 +18,9 @@ import java.util.stream.IntStream;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PageResultDto<ReviewDto, Review> {
+public class PageResultDto<DTO, EN> {
     //DTO리스트
-    private List<ReviewDto> dtoList;
+    private List<DTO> dtoList;
 
     //총 페이지 번호
     private int totalPage;
@@ -39,7 +39,7 @@ public class PageResultDto<ReviewDto, Review> {
     //페이지 번호  목록
     private List<Integer> pageList;
 
-    public PageResultDto(Page<Review> result, Function<Review,ReviewDto> fn ){
+    public PageResultDto(Page<EN> result, Function<EN,DTO> fn ){
 
         dtoList = result.stream().map(fn).collect(Collectors.toList());
 

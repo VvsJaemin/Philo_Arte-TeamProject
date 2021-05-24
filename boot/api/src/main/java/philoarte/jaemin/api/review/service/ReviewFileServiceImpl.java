@@ -40,18 +40,20 @@ public class ReviewFileServiceImpl implements ReviewFileService{
             String ext = ofname.substring(idx);
             String uuid = UUID.randomUUID().toString();
             StringBuilder sb = new StringBuilder();
-            sb.append(uploadPath).append(File.separator).append(ofheader).append("_").append(uuid).append(ext);
+            sb.append(uploadPath).append(File.separator).append(uuid).append("_").append(ofheader).append(ext);
             String saveName = sb.toString();
             log.info("Review File Upload Name : " + saveName);
             Path savePath = Paths.get(saveName);
             try{
                 uploadFile.transferTo(savePath);
-                String thumbnailSaveName = uploadPath + File.separator+ "s_" + uuid + ofname;
+                String thumbnailSaveName = uploadPath + File.separator+ "s_" + uuid+"_" + ofname;
                 Thumbnails.of(new File(saveName)).size(100, 100).outputFormat("jpg").toFile(thumbnailSaveName);
+
                 Thumbnails.of(new File(saveName)).scale(1)
-                        .watermark(Positions.BOTTOM_CENTER, ImageIO.read(new File(uploadPath + File.separator + "84560_320.jpg")), 0.5f)
-                        .toFile(new File(uploadPath + File.separator + "w_" +uuid +ofname));
-                ReviewFileDto reviewFileDto = ReviewFileDto.builder().uuid(uuid).imgName(saveName).build();
+                        .watermark(Positions.BOTTOM_CENTER, ImageIO.read(new File(uploadPath + File.separator + "84432_320.jpg")), 0.5f)
+                        .toFile(new File(uploadPath + File.separator + "w_" +uuid +"_" +ofname));
+
+                ReviewFileDto reviewFileDto = ReviewFileDto.builder().uuid(uuid).imgName(ofname).build();
                 resultDtoList.add(reviewFileDto);
             } catch (Exception e) {
                 e.printStackTrace();

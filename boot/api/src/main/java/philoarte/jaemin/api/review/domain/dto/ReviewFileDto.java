@@ -20,7 +20,7 @@ public class ReviewFileDto {
     private String uuid;
     private String imgName;
     private String path;
-//    private Review review;
+    private Review review;
 //
 //    public String getImageURL(){
 //        try{

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+import philoarte.jaemin.api.artist.domain.Artist;
 import philoarte.jaemin.api.review.domain.Reply;
 import philoarte.jaemin.api.review.domain.Review;
 
@@ -23,8 +24,9 @@ public interface ReplyRepository extends JpaRepository<Reply, Long> {
 
     // 리뷰 삭제 시 댓글 삭제
     @Modifying
-    @Query("DELETE FROM Reply rp where rp.review.reviewId = :reviewId")
-    void replyDelete(@Param("reviewId")Long reviewId);
+    @Query("DELETE FROM Reply rp where rp.review.reviewId = :reviewId ")
+    void replyDelete(@Param("reviewId") Long reviewId);
 
+    @EntityGraph(attributePaths = {"artist"}, type= EntityGraph.EntityGraphType.FETCH)
     List<Reply> getRepliesByReviewOrderByReview(Review review);
 }

@@ -12,7 +12,7 @@ import philoarte.jaemin.api.artist.domain.Artist;
 
 import java.util.List;
 import java.util.Optional;
-@Repository
+
 public interface ArtistRepository extends JpaRepository<Artist, Long> {
 
     //    @Query("SELECT COUNT(o.id) > 0 " +

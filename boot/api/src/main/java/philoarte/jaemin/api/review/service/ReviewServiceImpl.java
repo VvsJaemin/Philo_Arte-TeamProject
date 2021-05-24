@@ -29,8 +29,8 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository repository;
-    private final ReplyRepository replyRepository;
     private final ReviewFileRepository reviewFileRepository;
+    private final ReplyRepository replyRepository;
 
     @Transactional
     @Override
@@ -42,9 +42,12 @@ public class ReviewServiceImpl implements ReviewService {
 
         repository.save(review);
 
-        reviewFileList.forEach(reviewFile -> {
-            reviewFileRepository.save(reviewFile);
-        });
+        if(reviewFileList != null && reviewFileList.size() > 0){
+            reviewFileList.forEach(reviewFile -> {
+                reviewFileRepository.save(reviewFile);
+            });
+        }
+
         return review.getReviewId();
     }
 
@@ -53,14 +56,16 @@ public class ReviewServiceImpl implements ReviewService {
         List<Object[]> result = repository.getRevieWithReply(reviewId);
         Review review = (Review) result.get(0)[0];
         Artist artist = (Artist) result.get(0)[1];
-        Long replyCount = (Long) result.get(0)[2];
 
         List<ReviewFile> reviewFileList = new ArrayList<>();
+
+        Long replyCount = (Long) result.get(0)[2];
 
         result.forEach(arr -> {
             ReviewFile reviewFile = (ReviewFile) arr[3];
             reviewFileList.add(reviewFile);
         });
+
 
 
         return entityToDto(review, artist, replyCount, reviewFileList);
@@ -69,17 +74,24 @@ public class ReviewServiceImpl implements ReviewService {
     @Transactional
     @Override
     public void modify(ReviewDto reviewDto) {
+        Map<String, Object> entityMap = dtoToEntity(reviewDto);
         Review review = repository.getOne(reviewDto.getReviewId());
         review.changeTitle(reviewDto.getTitle());
         review.changeContent(reviewDto.getContent());
 
         repository.save(review);
 
+        List<ReviewFile> reviewFileList = (List<ReviewFile>) entityMap.get("fileList");
+        reviewFileList.forEach(reviewFile -> {
+            reviewFileRepository.save(reviewFile);
+        });
+
     }
 
     @Transactional
     @Override
     public void removeWithReplies(Long reviewId) {
+        reviewFileRepository.reviewFileDelete(reviewId);
         replyRepository.replyDelete(reviewId);
         repository.reviewDelete(reviewId);
     }
@@ -90,7 +102,6 @@ public class ReviewServiceImpl implements ReviewService {
 
 //        Pageable pageable = pageRequestDto.getPage(Sort.by("reviewId").descending());
 
-
         Function<Object[], ReviewDto> fn = (arr -> entityToDto(
                 (Review) arr[0],
                 (Artist) arr[1],
@@ -100,9 +111,10 @@ public class ReviewServiceImpl implements ReviewService {
         Page<Object[]> result = repository.searchPage(
                 pageRequestDto.getType(),
                 pageRequestDto.getKeyword(),
-                pageRequestDto.getPage(Sort.by("reviewId").descending())
+                pageRequestDto.getPageable(Sort.by("reviewId").descending())
 
         );
+
 
         return new PageResultDto<>(result, fn);
     }

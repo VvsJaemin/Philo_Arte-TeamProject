@@ -6,12 +6,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import philoarte.jaemin.api.review.domain.ReviewFile;
 import philoarte.jaemin.api.review.domain.dto.PageRequestDto;
 import philoarte.jaemin.api.review.domain.dto.PageResultDto;
 import philoarte.jaemin.api.review.domain.dto.ReviewDto;
+import philoarte.jaemin.api.review.domain.dto.ReviewFileDto;
+import philoarte.jaemin.api.review.service.ReviewFileServiceImpl;
 import philoarte.jaemin.api.review.service.ReviewServiceImpl;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 @Log4j2
 @RestController
@@ -22,11 +27,15 @@ import javax.annotation.Nullable;
 public class ReviewController {
 
     private final ReviewServiceImpl service;
+    private final ReviewFileServiceImpl reviewFileService;
 
 
     @PostMapping("/register")
     @ApiOperation(value = "리뷰 게시글 등록", notes = "리뷰 게시글을 등록 합니다.")
-    public ResponseEntity<Long> save(ReviewDto reviewDto) {
+    public ResponseEntity<Long> save(@RequestBody ReviewDto reviewDto) {
+
+//        List<ReviewFileDto> uploadfile = reviewDto.getReviewFileDtoList();
+
         log.info("리뷰가 등록 되었습니다." +reviewDto);
         return ResponseEntity.ok(service.save(reviewDto));
     }
@@ -58,6 +67,7 @@ public class ReviewController {
     @DeleteMapping("remove/{reviewId}")
     @ApiOperation(value = "하나의 리뷰 삭제", notes = "하나의 리뷰를 삭제 합니다.")
     public ResponseEntity<String> delete(@PathVariable("reviewId") Long reviewId) {
+
         service.removeWithReplies(reviewId);
 
         return ResponseEntity.ok("delete success!!");

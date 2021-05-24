@@ -28,18 +28,19 @@ public class ReviewDto {
     private String title;
     private String content;
 
-    private String writerId; // 작성자 아이디
+    private Long writerId; // 작성자 아이디
     private String writerName; // 작성자 이름
-    private Long artId;
-    private Integer replyCount;
+//    private Long artId;
+    private int replyCount;
 
     private LocalDateTime regDate;
     private LocalDateTime modDate;
 
+
+
 //    private Art art;
 //
 //    private Artist artist;
-
 
     @Builder.Default
     private List<ReviewFileDto> reviewFileDtoList = new ArrayList<>();
