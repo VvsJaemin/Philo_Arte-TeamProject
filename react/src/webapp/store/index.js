@@ -6,5 +6,5 @@ const rootReducer = combineReducers({reviews});
 
 export default configureStore({
     reducer: rootReducer,
-    middleware: [...getDefaultMiddleware(), logger],
+    middleware: [...getDefaultMiddleware(), logger]
 });

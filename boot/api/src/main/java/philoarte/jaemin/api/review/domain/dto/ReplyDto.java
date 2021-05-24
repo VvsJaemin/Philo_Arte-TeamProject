@@ -2,11 +2,13 @@ package philoarte.jaemin.api.review.domain.dto;
 
 import lombok.*;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 import philoarte.jaemin.api.artist.domain.Artist;
 import philoarte.jaemin.api.review.domain.Review;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Component
 @ToString
@@ -14,6 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
 public class ReplyDto {
 
     private Long rno;
@@ -25,15 +28,15 @@ public class ReplyDto {
 
     private LocalDateTime regDate, modDate;
 
-//    //댓글 파일 업로드
-//    private String uuid;
-//    private String fileTitle;
-//    private String fileDetail;
-//    private String fname;
-//    private Boolean repImg;
+    //댓글 파일 업로드
+    private String uuid;
+    private String imgName;
+    private String path;
 
-//    private Review review;
+    private Review review;
 
+    @Builder.Default
+    private ArrayList<MultipartFile> files = new ArrayList<>();
 
 
 }

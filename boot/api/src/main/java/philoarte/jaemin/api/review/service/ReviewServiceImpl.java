@@ -108,6 +108,10 @@ public class ReviewServiceImpl implements ReviewService {
                 (Long) arr[2],
                 (List<ReviewFile>) (Arrays.asList((ReviewFile) arr[3]))));
 
+
+        System.out.println("구분===================================");
+        System.out.println(pageRequestDto.toString());
+
         Page<Object[]> result = repository.searchPage(
                 pageRequestDto.getType(),
                 pageRequestDto.getKeyword(),
@@ -121,12 +125,3 @@ public class ReviewServiceImpl implements ReviewService {
 
 
 }
-//
-//        Function<Object[], ReviewDto> fn = (en -> entityToDto(
-//                (Review) en[0],
-//                (Artist) en[1],
-//                (Long) en[2],
-//                (List<ReviewFile>) (Arrays.asList((ReviewFile) en[3]))));
-//
-//        Page<Object[]> result = repository.getReviewWithReplyCount(
-//                pageRequestDto.getPage(Sort.by("reviewId").descending()));

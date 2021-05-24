@@ -5,10 +5,11 @@ import philoarte.jaemin.api.review.domain.dto.ReplyDto;
 import philoarte.jaemin.api.review.domain.Review;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface ReplyService {
 
-    String save(ReplyDto replyDto);
+    Long save(ReplyDto replyDto);
 
     void remove(Long rno);
 
@@ -23,6 +24,9 @@ public interface ReplyService {
                 .rno(replyDto.getRno())
                 .text(replyDto.getText())
                 .replyer(replyDto.getReplyer())
+                .uuid(replyDto.getUuid())
+                .imageName(replyDto.getImgName())
+                .path(replyDto.getPath())
                 .review(review)
                 .build();
 

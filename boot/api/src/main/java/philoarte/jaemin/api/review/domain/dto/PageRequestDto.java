@@ -1,16 +1,15 @@
 package philoarte.jaemin.api.review.domain.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
+@ToString
 @Component
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 public class PageRequestDto {

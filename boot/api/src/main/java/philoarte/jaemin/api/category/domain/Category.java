@@ -1,12 +1,16 @@
 package philoarte.jaemin.api.category.domain;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
+@ToString
 @Table(name = "categories")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Category {
 
     @Id

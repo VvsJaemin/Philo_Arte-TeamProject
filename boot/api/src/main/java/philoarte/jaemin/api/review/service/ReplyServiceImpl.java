@@ -3,11 +3,15 @@ package philoarte.jaemin.api.review.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import philoarte.jaemin.api.review.domain.Reply;
+import philoarte.jaemin.api.review.domain.ReviewFile;
 import philoarte.jaemin.api.review.domain.dto.ReplyDto;
 import philoarte.jaemin.api.review.domain.Review;
 import philoarte.jaemin.api.review.repository.ReplyRepository;
+import philoarte.jaemin.api.review.repository.ReviewFileRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,12 +20,20 @@ import java.util.stream.Collectors;
 public class ReplyServiceImpl implements ReplyService {
 
     private final ReplyRepository repository;
+//    private final  reviewFileRepository;
+
     @Transactional
     @Override
-    public String save(ReplyDto replyDto) {
+    public Long save(ReplyDto replyDto) {
         Reply replySave = dtoToEntity(replyDto);
+//        ArrayList<MultipartFile> files = new ArrayList<>();
         repository.save(replySave);
-        return "Success Save";
+//        if(files != null && files.size() > 0){
+//            files.forEach(reviewFile -> {
+//                repository.save(replySave);
+//            });
+//        }
+        return replyDto.getRno();
     }
 
     @Override

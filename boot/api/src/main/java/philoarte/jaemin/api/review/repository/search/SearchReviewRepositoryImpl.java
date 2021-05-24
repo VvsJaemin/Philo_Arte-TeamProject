@@ -87,6 +87,9 @@ public class SearchReviewRepositoryImpl extends QuerydslRepositorySupport implem
         tuple.groupBy(review);
 
         //page 처리
+        log.info(pageable.getOffset());
+        log.info(pageable.getPageSize());
+        System.out.println("========================");
         tuple.offset(pageable.getOffset());
         tuple.limit(pageable.getPageSize());
 

@@ -5,32 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2275b321-5727-41f6-9319-eb845a62b13b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../boot/api/src/test/java/philoarte/jaemin/api/ArtistRepositoryTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../boot/api/src/test/java/philoarte/jaemin/api/ReplyRepositoryTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../boot/api/src/test/java/philoarte/jaemin/api/ReviewRepositoryTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/art/repository/ArtRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/art/repository/ArtRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/artist/repository/ArtistRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/artist/repository/ArtistRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/controller/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/controller/ReviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/Review.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/category.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hashtags.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/category/domain/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/category/domain/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/common/domain/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/common/domain/BaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/crawling/CrawlingMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/crawling/CrawlingMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/controller/ReplyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/controller/ReplyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/Reply.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/Reply.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/dto/PageRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/dto/PageRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/dto/PageResultDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/dto/PageResultDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/dto/ReplyDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/dto/ReplyDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/dto/ReviewDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/dto/ReviewDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/dto/ReviewFileDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/dto/ReviewFileDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/repository/ReplyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/repository/ReplyRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/repository/ReviewFileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/repository/ReviewFileRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/repository/ReviewRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/repository/ReviewRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/repository/search/SearchReviewRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/repository/search/SearchReviewRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReviewFileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReviewFileServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReplyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReplyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReplyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReplyServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReviewService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReviewServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReviewServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/test/java/philoarte/jaemin/api/ApiApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/test/java/philoarte/jaemin/api/ApiApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/test/java/philoarte/jaemin/api/ReplyApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/test/java/philoarte/jaemin/api/ReviewApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/test/java/philoarte/jaemin/api/ReviewFileApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/test/java/philoarte/jaemin/api/service/ReviewServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/test/java/philoarte/jaemin/api/service/ReviewServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/../react/debug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/src/webapp/review/component/ReviewList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/webapp/review/component/ReviewList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/src/webapp/review/component/ReviewRegister.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/webapp/review/component/ReviewRegister.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/src/webapp/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/webapp/store/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +63,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="MTHome" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -80,7 +78,8 @@
       <option name="presentableId" value="Default" />
       <updated>1621299896879</updated>
       <workItem from="1621299898376" duration="47000" />
-      <workItem from="1621836168111" duration="602000" />
+      <workItem from="1621836168111" duration="1200000" />
+      <workItem from="1621861796621" duration="1324000" />
     </task>
     <servers />
   </component>

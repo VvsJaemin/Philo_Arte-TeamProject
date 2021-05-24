@@ -7,8 +7,8 @@ import { useDispatch } from 'react-redux';
 const ReviewRegister = () => {
 
     const [input, setInput] = useState({
+        title : '',
         content : '',
-        comment : '',
     })
 
     const dispatch = useDispatch()
@@ -32,14 +32,14 @@ const ReviewRegister = () => {
                         <div className = "card-body">
                             <form>
                                 <div className = "form-group">
-                                    <label> Content </label>
-                                    <input type="text" placeholder="리뷰를 입력해주세요" name="content" className="form-control" 
-                                    value={input.content} onChange={handleSubmit}/>
+                                    <label> Title </label>
+                                    <input type="text" placeholder="제목을 입력해주세요" name="content" className="form-control" 
+                                    value={input.title} onChange={handleSubmit}/>
                                 </div>
                                 <div className = "form-group">
-                                    <label> Comment  </label>
-                                    <input type='text' placeholder="댓글을 입력해주세요" name="content" className="form-control" 
-                                    value={input.comment} onChange={handleSubmit}/>
+                                    <label> Content  </label>
+                                    <input type='text' placeholder="내용을 입력해주세요" name="content" className="form-control" 
+                                    value={input.content} onChange={handleSubmit}/>
                                 </div>
                                 {/* <div className = "form-group">
                                     <label> Writer  </label>

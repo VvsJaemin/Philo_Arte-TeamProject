@@ -6,6 +6,7 @@ import { getReviewList, getReviewRead } from '../reducer/review.reducer';
 const ReviewList = () => {
 
     const reviews = useSelector(state =>{
+        console.log("state: " + JSON.stringify(state.reviews))
         return state.reviews
     })
 
@@ -28,9 +29,9 @@ const ReviewList = () => {
             <tr>
                 <td>No</td>
                 <td>제목</td>
-                <td>글쓴이</td>
+                <td>내용</td>
                 <td>등록일</td>
-                <td>좋아요</td>
+                <td>댓글 개수 </td>
             </tr>
             </thead>
             <tbody style={{textAlign :'center'}}>
@@ -40,9 +41,9 @@ const ReviewList = () => {
                         <tr key={reviewId}>
                             <td>{reviewId+1}</td>
                             <td onClick={()=>selectContent(reviewId+1)}><Link to={`/reviews/review_read/${reviewId+1}`}>{review.title}</Link></td>
-                            <td>{review.writer}</td>
+                            <td>{review.content}</td>
                             <td>{new Date(review.regDate).toLocaleDateString()}</td>
-                            <td>{review.likeCnt}</td>
+                            <td>{review.replyCount}</td>
                         </tr>
                     )
                 })

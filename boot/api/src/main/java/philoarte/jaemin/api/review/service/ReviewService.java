@@ -35,7 +35,6 @@ public interface ReviewService {
                 .title(reviewDto.getTitle())
                 .content(reviewDto.getContent())
                 .artist(artists)
-
                 .build();
         entityMap.put("review", review);
 
