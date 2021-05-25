@@ -29,7 +29,6 @@ public interface ReviewService {
     default Map<String, Object> dtoToEntity(ReviewDto reviewDto) {
         Map<String, Object> entityMap = new HashMap<>();
         Artist artists = Artist.builder().artistId(reviewDto.getWriterId()).build();
-//        Art arts = Art.builder().artId(reviewDto.getArtId()).build();
         Review review = Review.builder()
                 .reviewId(reviewDto.getReviewId())
                 .title(reviewDto.getTitle())
@@ -64,7 +63,7 @@ public interface ReviewService {
                 .regDate(review.getRegDate())
                 .modDate(review.getModDate())
                 .writerId(artist == null ? 1L : artist.getArtistId())
-                .writerName(artist == null ? "" : artist.getArtistName())
+                .writerName(artist == null ? "" : artist.getName())
                 .replyCount(replyCount.intValue())
                 .build();
         if(reviewFiles != null && reviewFiles.size() > 0) {

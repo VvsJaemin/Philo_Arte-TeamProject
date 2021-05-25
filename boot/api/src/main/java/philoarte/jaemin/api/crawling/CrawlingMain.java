@@ -29,7 +29,7 @@ public class CrawlingMain {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
         WebDriver driver = new ChromeDriver(options);
-        String url = "http://www.yes24.com/24/category/bestseller?CategoryNumber=017&sumgb=06";
+        String url = "http://gift.kyobobook.co.kr/ht/gift/giftCategoryMain?ctgrId=000020";
         driver.get(url);
         try {
             Thread.sleep(500);
@@ -40,7 +40,7 @@ public class CrawlingMain {
 
         String filePath = "C:\\Users\\w\\Desktop\\philoarte\\workspace\\crawling\\category.csv";
         List<Category> list = new ArrayList<>();
-        List<WebElement> el1 = driver.findElements(By.cssSelector("li#category017001046"));
+        List<WebElement> el1 = driver.findElements(By.cssSelector("ul.category-sub li a"));
 //        List<WebElement> el2 = driver.findElements(By.cssSelector(".u_cbox_text_wrap"));
 
 

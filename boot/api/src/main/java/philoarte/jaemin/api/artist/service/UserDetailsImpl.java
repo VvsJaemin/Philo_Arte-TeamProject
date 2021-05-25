@@ -56,7 +56,7 @@ public class UserDetailsImpl implements UserDetails { // UserDetails 은 securit
         List<GrantedAuthority> authories = artist.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getAuthority()))
                 .collect(Collectors.toList());
-        return new UserDetailsImpl(artist.getArtistId(), artist.getUsername(), artist.getPassword(), artist.getArtistName(), artist.getEmail(),
+        return new UserDetailsImpl(artist.getArtistId(), artist.getUsername(), artist.getPassword(), artist.getName(), artist.getEmail(),
                 artist.getPhoneNumber(), artist.getAddress(), artist.getSchool(), artist.getDepartment(), authories);
     }
 }

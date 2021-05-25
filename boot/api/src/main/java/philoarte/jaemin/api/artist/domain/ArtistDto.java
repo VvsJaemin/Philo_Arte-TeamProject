@@ -23,7 +23,7 @@ public class ArtistDto {
     @ApiModelProperty(position = 2)
     private String password;
     @ApiModelProperty(position = 3)
-    private String artistName;
+    private String name;
     @ApiModelProperty(position = 4)
     private String email;
     @ApiModelProperty(position = 5)

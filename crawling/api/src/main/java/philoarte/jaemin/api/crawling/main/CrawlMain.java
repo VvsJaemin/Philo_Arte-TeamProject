@@ -43,7 +43,7 @@ public class CrawlMain {
 
             for (int i = 0; i < el1.size(); i++) {
                 Review review = new Review();
-                review.setHashtag(el1.get(i).getText());
+                review.setHashtag(el1.get(i).g());
 //                review.setContent(el2.get(i).getText());
 
 

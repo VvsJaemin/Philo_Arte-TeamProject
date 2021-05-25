@@ -9,4 +9,5 @@ public interface SearchReviewRepository {
     Review search();
 
     Page<Object[]> searchPage(String type, String keyword, Pageable pageable);
+
 }

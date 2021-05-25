@@ -62,7 +62,7 @@ public class SearchReviewRepositoryImpl extends QuerydslRepositorySupport implem
                         conditionBuilder.or(review.title.contains(keyword));
                         break;
                     case "w":
-                        conditionBuilder.or(artist.username.contains(keyword));
+                        conditionBuilder.or(artist.artistName.contains(keyword));
                         break;
                     case "c":
                         conditionBuilder.or(review.content.contains(keyword));
@@ -105,6 +105,7 @@ public class SearchReviewRepositoryImpl extends QuerydslRepositorySupport implem
         return new PageImpl<Object[]>(result.stream().map(t -> t.toArray()).collect(Collectors.toList()), pageable, count);
     }
 
+
     @Override
     public Review search() {
         log.info("search1...........");
@@ -119,7 +120,7 @@ public class SearchReviewRepositoryImpl extends QuerydslRepositorySupport implem
 
 //        jpqlQuery.select(review, artist.artistName, reply.count()).groupBy(review);
 
-        JPQLQuery<Tuple> tuple = jpqlQuery.select(review, artist.username, reply.count());
+        JPQLQuery<Tuple> tuple = jpqlQuery.select(review, artist.artistName, reply.count());
         tuple.groupBy(review);
 
         log.info("-------------------------");

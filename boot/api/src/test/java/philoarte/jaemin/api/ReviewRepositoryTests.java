@@ -1,5 +1,7 @@
 package philoarte.jaemin.api;
 
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,27 +36,27 @@ public class ReviewRepositoryTests {
     private ReviewFileRepository reviewFileRepository;
 
     @Test
-    public void insertReview(){
-        IntStream.rangeClosed(1,30).forEach(i->{
+    public void insertReview() {
+        IntStream.rangeClosed(1, 30).forEach(i -> {
             Artist artist = Artist.builder()
-                    .artistId(1L+i)
+                    .artistId(1L + i)
                     .build();
 
             Review review = Review.builder()
-                    .title("title"+i)
-                    .content("content"+i)
+                    .title("title" + i)
+                    .content("content" + i)
                     .artist(artist)
                     .build();
 
             reviewRepository.save(review);
 
-            int count = (int)(Math.random()*5)+1;
+            int count = (int) (Math.random() * 5) + 1;
 
-            for(int j = 0; j<count; j++){
+            for (int j = 0; j < count; j++) {
                 ReviewFile reviewFile = ReviewFile.builder()
                         .uuid(UUID.randomUUID().toString())
                         .review(review)
-                        .imgName("img"+j+"jpg").build();
+                        .imgName("img" + j + "jpg").build();
 
                 reviewFileRepository.save(reviewFile);
             }
@@ -63,7 +65,7 @@ public class ReviewRepositoryTests {
 
     @Transactional
     @Test
-    public void testRead1(){
+    public void testRead1() {
         Optional<Review> result = reviewRepository.findById(100L);
 
         Review review = result.get();
@@ -73,7 +75,7 @@ public class ReviewRepositoryTests {
     }
 
     @Test
-    public void testReadWithWriter(){
+    public void testReadWithWriter() {
         Object result = reviewRepository.getRevieWithWriter(100L);
 
         Object[] arr = (Object[]) result;
@@ -83,12 +85,12 @@ public class ReviewRepositoryTests {
     }
 
     @Test
-    public void testWithReplyCount(){
-        Pageable pageable = PageRequest.of(0,10, Sort.by("reviewId").descending());
+    public void testWithReplyCount() {
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("reviewId").descending());
 
         Page<Object[]> result = reviewRepository.getReviewWithReplyCount(pageable);
 
-        result.get().forEach(row->{
+        result.get().forEach(row -> {
             Object[] arr = (Object[]) row;
             //System.out.println(arr.length);
             System.out.println(Arrays.toString(arr));
@@ -96,17 +98,17 @@ public class ReviewRepositoryTests {
     }
 
     @Test
-    public void testRead3(){
+    public void testRead3() {
         Object result = reviewRepository.getReviewByReviewId(100L);
 
-        Object [] arr = (Object[]) result;
+        Object[] arr = (Object[]) result;
 
         System.out.println(Arrays.toString(arr));
     }
 
     @Test
-    public void testSearchPage(){
-        Pageable pageable = PageRequest.of(10,10,Sort.by("reviewId").descending());
+    public void testSearchPage() {
+        Pageable pageable = PageRequest.of(10, 10, Sort.by("reviewId").descending());
 
         Page<Object[]> result = reviewRepository.searchPage("t", "1", pageable);
     }
@@ -115,21 +117,21 @@ public class ReviewRepositoryTests {
     @Commit
     @Transactional
     @Test
-    public void insertReviewFiles(){
-        IntStream.rangeClosed(1, 30).forEach(i->{
-            Review review = Review.builder().title("Review title..."+i).build();
+    public void insertReviewFiles() {
+        IntStream.rangeClosed(1, 30).forEach(i -> {
+            Review review = Review.builder().title("Review title..." + i).build();
 
             System.out.println("----------------------------------------------------");
 
             reviewRepository.save(review);
 
-            int count = (int)(Math.random()*5)+1;
+            int count = (int) (Math.random() * 5) + 1;
 
-            for(int j =0; j<count; j++){
+            for (int j = 0; j < count; j++) {
                 ReviewFile reviewFile = ReviewFile.builder()
                         .uuid(UUID.randomUUID().toString())
                         .review(review)
-                        .imgName("test img"+j+".jpg").build();
+                        .imgName("test img" + j + ".jpg").build();
 
                 reviewFileRepository.save(reviewFile);
             }
@@ -137,13 +139,16 @@ public class ReviewRepositoryTests {
     }
 
     @Test
-    public void testGetReviewWithReply(){
+    public void testGetReviewWithReply() {
         List<Object[]> result = reviewRepository.getRevieWithReply(417L);
 
         System.out.println(result);
 
-        for(Object[] arr : result){
+        for (Object[] arr : result) {
             System.out.println(Arrays.toString(arr));
         }
     }
+
+
+
 }

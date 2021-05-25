@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(exclude = "roles")
-public class Artist extends BaseEntity {
+public class Artist extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,8 +33,8 @@ public class Artist extends BaseEntity {
     private String password;
 
     //    @Embedded
-    @Column(name = "artist_name")
-    private String artistName;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "email")
     private String email;

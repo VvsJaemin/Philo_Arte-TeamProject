@@ -58,10 +58,10 @@ public class ArtistController {
     }
 
     @GetMapping("/fetchOne/{artistId}")
-    public Optional<Artist> findById
+    public ResponseEntity<Artist> findById
             (@PathVariable("artistId") Long artistId) {
         System.out.println("회원정보 1개를 불러옵니다 ::::::::::");
-        return service.findById(artistId);
+        return ResponseEntity.ok(service.findById(artistId));
     }
 
     @PutMapping("/update/{artistId}")

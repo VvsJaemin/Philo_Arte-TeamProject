@@ -30,15 +30,14 @@ const ReviewRead = (props) => {
             <div className = "card col-md-6 offset-md-3">
                 <h3 className ="text-center"> Read Detail</h3>
                         <div className = "row">      
-                        
                             <label> Content </label>
                             <textarea name="content" value={read.content} onChange={onChange} readOnly/> 
                         </div>
 
-                        <div className = "row">
+                        {/* <div className = "row">
                             <label> Comment </label> : <br></br>
                             <textarea name="content" value={read.comment} onChange={onChange} readOnly/> 
-                        </div >
+                        </div > */}
 
                         <div className = "row">
                             <label> 게시글 번호  </label> : 

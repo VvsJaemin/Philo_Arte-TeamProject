@@ -38,17 +38,21 @@ async(reviewId)=>{
 
  const reviewSlice = createSlice({
      name : 'reviews',
-     initialState : [],
+     initialState : {
+        dtoList: [],
+        msg:''
+     },
      reducers : {},
      extraReducers : (builder)=>{
          builder.addCase(getReviewList.fulfilled,(state, {payload})=>{
-             return [...payload]
+            state.dtoList = payload.dtoList;
          })
          .addCase(getReviewRegister.fulfilled, (state, {payload})=>{
-             return [...payload]
+             const msg = '' +payload +"번 등록"
+             return {...state, msg }
          })
          .addCase(getReviewRead.fulfilled, (state, {payload:reviewId})=>{
-             const review = state.find(review=> review.reviewId===reviewId)
+             const review = state.find(review=> review.reviewId==reviewId)
             return {...state, review}
          })
          .addCase(getReviewModify.fulfilled,(state, {payload})=>{

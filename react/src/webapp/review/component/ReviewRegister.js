@@ -3,12 +3,16 @@ import React, { useState, useCallback } from 'react'
 import {Link, useHistory} from 'react-router-dom';
 import { ReviewList } from '..';
 import { getReviewRegister } from '../reducer/review.reducer';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 const ReviewRegister = () => {
-
+    const reviews = useSelector(state =>{
+        return state.reviews.dtoList;
+    })
     const [input, setInput] = useState({
         title : '',
         content : '',
+        writerId : localStorage.getItem(reviews.writerId),
+        writerName : ""
     })
 
     const dispatch = useDispatch()
@@ -33,7 +37,7 @@ const ReviewRegister = () => {
                             <form>
                                 <div className = "form-group">
                                     <label> Title </label>
-                                    <input type="text" placeholder="제목을 입력해주세요" name="content" className="form-control" 
+                                    <input type="text" placeholder="제목을 입력해주세요" name="title" className="form-control" 
                                     value={input.title} onChange={handleSubmit}/>
                                 </div>
                                 <div className = "form-group">
@@ -41,16 +45,16 @@ const ReviewRegister = () => {
                                     <input type='text' placeholder="내용을 입력해주세요" name="content" className="form-control" 
                                     value={input.content} onChange={handleSubmit}/>
                                 </div>
-                                {/* <div className = "form-group">
-                                    <label> Writer  </label>
-                                    <input type='text' placeholder="작성자를 입력해주세요" name="writer" className="form-control" 
-                                    value={input.writer} onChange={handleSubmit}/>
-                                </div> */}
-                                {/* <div className = "form-group">
-                                    <label> MemberNo  </label>
-                                    <input placeholder="memberNo" name="memberNo" className="form-control" 
-                                    value={this.state.memberNo} onChange={this.changeMemberNoHandler}/>
-                                </div> */}
+                                <div className = "form-group">
+                                    <label> 작성자  </label>
+                                    <input placeholder="작성자를 입력해주세요" name="writerName" className="form-control" 
+                                    value={input.writerName} onChange={handleSubmit}/>
+                                </div>
+                                <div className = "form-group">
+                                    <label> 작성자 번호  </label>
+                                    <input placeholder="작성자를 입력해주세요" name="writerId" className="form-control" 
+                                    value={input.writerId} onChange={handleSubmit}/>
+                                </div>
                                 <button className="btn btn-success" onClick={()=>dispatch(getReviewRegister(input), history.push("/reviews/review_list"))}>등록</button>
                             <Link to ="/reviews/review_list">
                                 <button className="btn btn-danger" 

@@ -9,17 +9,19 @@ public abstract class AbstractService<T> {
 
     public abstract List<T> findAll();
 
-    public abstract Optional<T> findById(Long id);
+    public abstract T findById(Long id);
 
     public abstract Long count();
 
     public abstract Optional<T> getOne(Long id);
 
-    public abstract long delete(T t);
+    public abstract String delete(T t);
 
     public abstract void deleteAll();
 
     public abstract Boolean existsById(Long id);
 
     public abstract void deleteById(Long id);
+
+
 }

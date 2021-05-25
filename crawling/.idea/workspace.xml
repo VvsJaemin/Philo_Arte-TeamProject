@@ -5,26 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2275b321-5727-41f6-9319-eb845a62b13b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/category.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hashtags.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/category/domain/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/category/domain/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/common/domain/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/common/domain/BaseEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/crawling/CrawlingMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/crawling/CrawlingMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/controller/ReplyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/controller/ReplyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/Reply.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/Reply.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/dto/PageRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/dto/PageRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/dto/ReplyDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/domain/dto/ReplyDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/repository/ReplyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/repository/ReplyRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/repository/search/SearchReviewRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/repository/search/SearchReviewRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReplyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReplyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReplyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReplyServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReviewService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReviewServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../boot/api/src/main/java/philoarte/jaemin/api/review/service/ReviewServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../react/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/../react/debug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../react/src/webapp/review/component/ReviewList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/webapp/review/component/ReviewList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../react/src/webapp/review/component/ReviewRegister.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/webapp/review/component/ReviewRegister.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../react/src/webapp/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/webapp/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/philoarte/jaemin/api/crawling/main/CrawlMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/philoarte/jaemin/api/crawling/main/CrawlMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/category.csv" beforeDir="false" afterPath="$PROJECT_DIR$/category.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +63,7 @@
       <workItem from="1621299898376" duration="47000" />
       <workItem from="1621836168111" duration="1200000" />
       <workItem from="1621861796621" duration="1324000" />
+      <workItem from="1621867721816" duration="31000" />
     </task>
     <servers />
   </component>

@@ -109,9 +109,9 @@ public class ArtistServiceImpl extends AbstractService<Artist> implements Artist
     }
 
     @Override
-    public long delete(Artist artist) {
+    public String delete(Artist artist) {
         repository.delete(artist);
-        return repository.findById(artist.getArtistId()).orElse(null) == null ? 1L : 0L;
+        return repository.findById(artist.getArtistId()).orElse(null) == null ? "success" : "fail";
     }
 
     @Override
@@ -133,8 +133,11 @@ public class ArtistServiceImpl extends AbstractService<Artist> implements Artist
     }
 
     @Override
-    public Optional<Artist> findById(Long artistId) {
-        return repository.findById(artistId);
+    public Artist findById(Long artistId) {
+
+        Artist artist = repository.findById(artistId).orElseThrow();
+
+        return artist;
     }
 
 
