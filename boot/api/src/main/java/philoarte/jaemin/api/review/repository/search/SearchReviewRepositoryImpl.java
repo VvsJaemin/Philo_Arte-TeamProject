@@ -62,7 +62,7 @@ public class SearchReviewRepositoryImpl extends QuerydslRepositorySupport implem
                         conditionBuilder.or(review.title.contains(keyword));
                         break;
                     case "w":
-                        conditionBuilder.or(artist.artistName.contains(keyword));
+                        conditionBuilder.or(artist.name.contains(keyword));
                         break;
                     case "c":
                         conditionBuilder.or(review.content.contains(keyword));
@@ -120,7 +120,7 @@ public class SearchReviewRepositoryImpl extends QuerydslRepositorySupport implem
 
 //        jpqlQuery.select(review, artist.artistName, reply.count()).groupBy(review);
 
-        JPQLQuery<Tuple> tuple = jpqlQuery.select(review, artist.artistName, reply.count());
+        JPQLQuery<Tuple> tuple = jpqlQuery.select(review, artist.name, reply.count());
         tuple.groupBy(review);
 
         log.info("-------------------------");

@@ -20,7 +20,7 @@ public class ArtistRepositoryTests {
             Artist artist = Artist.builder()
                     .username("user"+i+"id")
                     .password("1234")
-                    .artistName("내 이름" + 1)
+                    .name("내 이름" + 1)
                     .build();
 
             artistRepository.save(artist);

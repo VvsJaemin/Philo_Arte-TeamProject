@@ -40,7 +40,7 @@ public class ReviewController {
         return ResponseEntity.ok(service.save(reviewDto));
     }
 
-    @GetMapping("/list")
+    @GetMapping("/list/pages")
     @ApiOperation(value = "리뷰 게시글 목록", notes = "리뷰 게시글을 목록을 보여줍니다.")
     public ResponseEntity<PageResultDto<ReviewDto, Object[]>> reviewList(PageRequestDto pageRequestDto) {
             log.info("pageRequestDto : " + pageRequestDto);
@@ -69,7 +69,7 @@ public class ReviewController {
     public ResponseEntity<String> delete(@PathVariable("reviewId") Long reviewId) {
 
         service.removeWithReplies(reviewId);
-
+    
         return ResponseEntity.ok("delete success!!");
     }
 }

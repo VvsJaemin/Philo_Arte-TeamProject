@@ -5,14 +5,15 @@ import { ReviewList } from '..';
 import { getReviewRegister } from '../reducer/review.reducer';
 import { useDispatch, useSelector } from 'react-redux';
 const ReviewRegister = () => {
+   
     const reviews = useSelector(state =>{
-        return state.reviews.dtoList;
+        return state.reviews.pageResult.dtoList;
     })
     const [input, setInput] = useState({
         title : '',
         content : '',
-        writerId : localStorage.getItem(reviews.writerId),
-        writerName : ""
+        writerId : reviews.writerId,
+        writerName : reviews.writerName
     })
 
     const dispatch = useDispatch()
@@ -52,7 +53,7 @@ const ReviewRegister = () => {
                                 </div>
                                 <div className = "form-group">
                                     <label> 작성자 번호  </label>
-                                    <input placeholder="작성자를 입력해주세요" name="writerId" className="form-control" 
+                                    <input placeholder="작성자 번호를 입력해주세요" name="writerId" className="form-control" 
                                     value={input.writerId} onChange={handleSubmit}/>
                                 </div>
                                 <button className="btn btn-success" onClick={()=>dispatch(getReviewRegister(input), history.push("/reviews/review_list"))}>등록</button>

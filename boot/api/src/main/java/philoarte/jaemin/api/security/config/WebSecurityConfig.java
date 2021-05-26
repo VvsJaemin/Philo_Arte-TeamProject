@@ -43,6 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/reviews/**/**").permitAll()
                 .antMatchers("/replies/**/**").permitAll()
                 .antMatchers("/review_files/**/**").permitAll()
+                .antMatchers("/funding/**/**").permitAll()
                 .anyRequest().authenticated();
         http.exceptionHandling().accessDeniedPage("/login");
         http.apply(new SecurityConfig(provider));

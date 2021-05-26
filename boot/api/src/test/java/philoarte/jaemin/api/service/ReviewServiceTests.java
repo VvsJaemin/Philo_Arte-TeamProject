@@ -80,7 +80,7 @@ public class ReviewServiceTests {
                 .page(1)
                 .size(10)
                 .type("t")
-                .keyword("변경")
+                .keyword("유아연")
                 .build();
 
         PageResultDto<ReviewDto, Object[]> reviewDtoReviewPageResultDto = reviewService.getList(pageRequestDto);

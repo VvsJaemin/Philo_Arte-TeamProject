@@ -4,8 +4,8 @@ const register=(input)=>{
     return axios.post("http://localhost:8080/reviews/register", input)
 }
 
-const list=()=>{
-    return axios.get("http://localhost:8080/reviews/list")
+const list=(page)=>{
+    return axios.get("http://localhost:8080/reviews/list/pages?page="+page)
 }
 
 const read=(reviewId)=>{
@@ -14,12 +14,12 @@ const read=(reviewId)=>{
 
 const modify=(reviewId)=>{
 
-    return axios.put(`http://localhost:8080/reviews/${reviewId}`)
+    return axios.put(`http://localhost:8080/reviews/modify/${reviewId}`)
 }
 
 const deletes=(reviewId)=>{
-
-    return axios.delete(`http://localhost:8080/reviews/delete/${reviewId}`)
+    console.log("Delete Review")
+    return axios.delete(`http://localhost:8080/reviews/remove/${reviewId}`, {data:{...reviewId}})
 }
 
 export default{register, list, read, modify, deletes}

@@ -6,7 +6,7 @@ import ScrollToTop from "./webapp/common/helpers/ScrollToTop";
 import {ResumeList, ResumeModify, ResumeRead, ResumeRegister} from 'webapp/resume/index'
 import {FundingList, FundingModify, FundingRead, FundingRegister} from 'webapp/funding/index'
 import {ItemList, ItemModify, ItemRead, ItemRegister} from 'webapp/item/index'
-import {ReviewList, ReviewModify, ReviewRead, ReviewRegister} from 'webapp/review/index'
+import {Review, ReviewList, ReviewModify, ReviewRead, ReviewRegister} from 'webapp/review/index'
 import {WorkList, WorkModify, WorkRead, WorkRegister} from 'webapp/work/index'
 import { HomeVideoBg } from "webapp/common/index";
 import { BoardList, BoardPage, BoardRegister, MainPage, PerformanceInput } from "webapp/testupload";
@@ -43,7 +43,7 @@ const App=()=> {
             <Route exact path='/items/item_register' component={ItemRegister}/>
          
             {/*Review*/}
-            <Route exact path='/reviews/review_list' component={ReviewList}/>
+            <Route exact path='/reviews/review_list' component={Review}/>
             <Route exact path='/reviews/review_modify/:reviewId' component={ReviewModify}/>
             <Route exact path='/reviews/review_read/:reviewId' component={ReviewRead}/>
             <Route exact path='/reviews/review_register' component={ReviewRegister}/>

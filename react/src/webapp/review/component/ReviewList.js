@@ -4,26 +4,27 @@ import {Link} from 'react-router-dom';
 import { getReviewList, getReviewRead } from 'webapp/review/reducer/review.reducer';
 
 const ReviewList = () => {
+    const pageResult= useSelector(state=>state.reviews.pageResult)
 
-
+    const page = pageResult.page
+    
     const dispatch = useDispatch()
 
     const reviews = useSelector(state =>{
-        return state.reviews.dtoList;
+
+        return state.reviews.pageResult.dtoList;
     })
 
     const msg = useSelector(state => {
         return state.reviews.msg
     })
 
-
-
-     const selectContent = (id) => {
-        dispatch(getReviewRead(id))
+     const selectContent = (reviewId) => {
+        dispatch(getReviewRead(reviewId))
     }
 
-    useEffect(() => {
-        dispatch(getReviewList())
+    useEffect((e) => {
+        dispatch(getReviewList(page))
     },[])
 
     return (
@@ -36,21 +37,19 @@ const ReviewList = () => {
             <tr>
                 <td>No</td>
                 <td>제목</td>
-                <td>내용</td>
-                <td>등록일</td>
-                <td>작성자 </td>
+                <td>작성자</td>
+                <td>등록일 </td>
             </tr>
             </thead>
             <tbody style={{textAlign :'center'}}>
              {
                 reviews.map((review, reviewId) => {
                     return (
-                        <tr key={reviewId}>
-                            <td>{reviewId+1}</td>
-                            <td onClick={()=>selectContent(reviewId+1)}><Link to={`/reviews/review_read/${reviewId+1}`}>{review.title}{review.replyCount}</Link></td>
-                            <td>{review.content}</td>
-                            <td>{review.regDate}</td>
+                        <tr key={review.reviewId}>
+                            <td>{review.reviewId}</td>
+                            <td onClick={()=>selectContent(review.reviewId)}><Link to={`/reviews/review_read/${review.reviewId}`}>{review.title}<bold></bold><bold>[{review.replyCount}]</bold></Link></td>
                             <td>{review.writerName}</td>
+                            <td>{review.regDate}</td>
                         </tr>
                     )
                 })
@@ -60,7 +59,7 @@ const ReviewList = () => {
     </div><br/>
     < Link to = "/" > <button>홈으로</button>
     </Link>
-          < Link to = "/reviews/review_register" > <button>리뷰 등록하기</button>
+          < Link to = "/reviews/review_register"> <button>리뷰 등록하기</button>
     </Link>
 </>
     )

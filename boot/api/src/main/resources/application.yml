@@ -23,6 +23,12 @@ philo:
     upload:
       path: C:\update
 
+shop:
+  legossol:
+      upload:
+        path: C:\update\funding
+
+
 security:
   jwt:
     secret: secret-value

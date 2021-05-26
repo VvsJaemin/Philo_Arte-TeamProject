@@ -3,8 +3,8 @@ import { useHistory } from 'react-router'
 import {ReviewService} from 'webapp/review/index'
 
 export const getReviewList = createAsyncThunk("reviews/list",
-async()=>{
-    const response = await ReviewService.list()
+async(page)=>{
+    const response = await ReviewService.list(page)
     return response.data
 })
 
@@ -29,8 +29,8 @@ async(reviewId)=>{
 
  export const getReviewDelete = createAsyncThunk('reviews/delete/reviewId',
     async(reviewId)=>{
-        const response = await ReviewService.reviewDelete(reviewId)
-        return reviewId
+        const response = await ReviewService.deletes(reviewId)
+        return response.data
     }
  )
 
@@ -39,27 +39,36 @@ async(reviewId)=>{
  const reviewSlice = createSlice({
      name : 'reviews',
      initialState : {
-        dtoList: [],
-        msg:''
+        msg:'',
+        pageResult :{
+            dtoList:[],
+            page: 1,
+            pageList:[],
+            start : 1,
+            end : 1,
+            prev:false,
+            next:false
+        
+        },
+        params:{}
      },
      reducers : {},
      extraReducers : (builder)=>{
-         builder.addCase(getReviewList.fulfilled,(state, {payload})=>{
-            state.dtoList = payload.dtoList;
+         builder.addCase(getReviewList.fulfilled,(state, {meta,payload})=>{
+            state.pageResult = payload;
          })
          .addCase(getReviewRegister.fulfilled, (state, {payload})=>{
              const msg = '' +payload +"번 등록"
              return {...state, msg }
          })
-         .addCase(getReviewRead.fulfilled, (state, {payload:reviewId})=>{
-             const review = state.find(review=> review.reviewId==reviewId)
-            return {...state, review}
+         .addCase(getReviewRead.fulfilled, (state, {payload})=>{
+           state.params = payload
          })
          .addCase(getReviewModify.fulfilled,(state, {payload})=>{
-             return[...payload]
+            state.params = payload
          })
          .addCase(getReviewDelete.fulfilled,(state, {payload})=>{
-             state.filter((review)=>review.reviewId!==payload)
+            state.params = payload
          })
 
          .addMatcher(isRejectAction,()=>{})
@@ -67,7 +76,6 @@ async(reviewId)=>{
      }
  })
 
-
- export const {reducer} = reviewSlice
-
- export default reducer
+const{actions, reducer} =reviewSlice
+export const {}=actions
+export default reducer
