@@ -1,54 +1,67 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import {Link, useParams} from 'react-router-dom';
-import { getReviewList, getReviewModify } from '../reducer/review.reducer';
+import { getReviewList, getReviewModify, currentReview } from '../reducer/review.reducer';
 
 const ReviewModify = () => {
-    const params = useParams()
-    const [update, setUpdate] = useState({})
-    const {title, content} = update;
 
-    const review = useSelector(state =>{
+    const [title,setTitle] = useState('')
+    const [content,setContent] = useState('')
 
-        console.log(state.reviews.params)
-        return state.reviews.params;
-    })
+    const reviewObj = useSelector(currentReview)
     const page = useSelector(state=>state.reviews.pageResult.page)
 
     const dispatch = useDispatch()
 
-    const modify = async(reviewId)=>{
-        await dispatch(getReviewModify({title:title, content:content, reviewId : params.reviewId}))
-        await dispatch(getReviewList(page))
+    useEffect(() => {
+        console.log("effect..............")
+        setTitle(reviewObj.title)
+        setContent(reviewObj.content)
+    },[reviewObj])
+
+
+    const handleChangeTitle = (e) => {
+        setTitle(e.target.value)
     }
 
-    const handleChange = useCallback(e => {
-        const{name, value} = e.target
-        setUpdate({...update,
-        [name] : value})
-    },[update])
+    
+    const handleChangeContent = (e) => {
+        setContent(e.target.value)
+    }
+
+    const handleModify = async (reviewId) => {
+        
+        const obj = { reviewId: reviewObj.reviewId, title: title,  content: content, writerId: reviewObj.writerId}
+        await dispatch(getReviewModify(obj))
+        await dispatch(getReviewList(page))
+
+    }
 
     return (
-        <> < h1 > ReviewModify</h1>
+        <> < h1 >리뷰를 수정하세요</h1>
         
             <div>      
-                            <label> * NO </label>
-                            <textarea style={{color:"black"}} value={params.reviewId} name="reviewId" readOnly></textarea> 
-                        </div>   
+            <label> * NO </label>
+            <textarea style={{color:"black"}} value={reviewObj.reviewId} name="reviewId" readOnly></textarea> 
+        </div>   
           <div>
             <th>제목</th>
-            <input style={{color:"black"}} placeholder="제목을 수정하세요" type='text' name='title' value={update.title} onChange={handleChange}></input>
+            <input style={{color:"black"}} placeholder="제목을 수정하세요" type='text' name='title' value={title} onChange={(e) => handleChangeTitle(e)}></input>
         </div>
         <div>
             <th>내용</th>
-            <input style={{color:"black"}} placeholder="내용을 수정하세요" type='text' name='content' value={update.content} onChange={handleChange}></input>
+            <input style={{color:"black"}} placeholder="내용을 수정하세요" type='text' name='content' value={content} onChange={(e) => handleChangeContent(e)}></input>
         </div>
+        <div className = "row">      
+                            <label> * writerName </label>
+                            <textarea style={{color:"black"}} value={reviewObj.writerName} name="writerName" readOnly></textarea> 
+                        </div>
         <div>
          < Link to = "/" > <button>홈으로</button>
     </Link>
-    <button onClick={()=>modify(params.reviewId)}>수정하기</button>
-    < Link to = {`/reviews/review_read/${params.reviewId}`} > <button>뒤로가기</button>
+    <button onClick={(e)=>handleModify(e)}>수정하기</button>
+    < Link to = {`/reviews/review_read/${reviewObj.reviewId}`} > <button>뒤로가기</button>
     </Link>
     </div>
 

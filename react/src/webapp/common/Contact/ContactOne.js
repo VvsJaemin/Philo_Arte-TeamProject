@@ -5,7 +5,7 @@ import Map from "../Map/Map";
 
 const ContactOne = ({ tagline, title, backfont, dash, textBtn, classes }) => (
   <section
-    className={"dark-bg pt-0 pb-0 transition-none " + classes}
+    className={"bg-primary pt-0 pb-0 transition-none " + classes}
     id="contact"
   >
     <div className="col-md-6 col-sm-4 bg-flex bg-flex-right">

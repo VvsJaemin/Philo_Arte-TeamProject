@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { ReplyList } from 'webapp/reply'
 
 import getReviewList from 'webapp/review/reducer/review.reducer'
 import ReviewList from '../component/ReviewList'

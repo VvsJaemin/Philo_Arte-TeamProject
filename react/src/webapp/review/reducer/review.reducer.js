@@ -21,8 +21,11 @@ async(reviewId)=>{
  })
 
  export const getReviewModify = createAsyncThunk('reviews/modify/reviewId',
-    async(reviewId,{writer, content})=>{
-        const response = await ReviewService.modify({writer, content})
+    async(review)=>{
+
+        console.log("===========================")
+        console.log(review)
+        const response = await ReviewService.modify(review)
         return response.data
     }
  )
@@ -65,7 +68,7 @@ async(reviewId)=>{
            state.params = payload
          })
          .addCase(getReviewModify.fulfilled,(state, {payload})=>{
-            state.params = payload
+            state.reviewId = payload
          })
          .addCase(getReviewDelete.fulfilled,(state, {payload})=>{
             state.params = payload
@@ -77,5 +80,7 @@ async(reviewId)=>{
  })
 
 const{actions, reducer} =reviewSlice
+
+export const currentReview = state => state.reviews.params  // 현재 review state
 export const {}=actions
 export default reducer

@@ -68,8 +68,8 @@
   },
   {
     "id": 2,
-    "title": "펀딩하기",
-    "path": "/fundings/funding_list"
+    "title": "reply",
+    "path": "/replies/reply_list"
   },
   {
     "id": 3,

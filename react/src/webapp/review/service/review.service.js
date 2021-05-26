@@ -12,9 +12,9 @@ const read=(reviewId)=>{
     return axios.get(`http://localhost:8080/reviews/read/${reviewId}`)
 }
 
-const modify=(reviewId)=>{
+const modify=(review)=>{
 
-    return axios.put(`http://localhost:8080/reviews/modify/${reviewId}`)
+    return axios.put("http://localhost:8080/reviews/modify/"+review.reviewId, review)
 }
 
 const deletes=(reviewId)=>{

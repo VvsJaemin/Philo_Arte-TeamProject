@@ -2,16 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import {Link, useParams} from 'react-router-dom';
-import { getReviewRead, getReviewDelete, getReviewList  } from '../reducer/review.reducer';
+import { getReviewRead, getReviewDelete, getReviewList, currentReview  } from '../reducer/review.reducer';
 
 const ReviewRead = () => {
     const params = useParams()
     const dispatch = useDispatch()
 
-    const review = useSelector(state =>{
-        return state.reviews.params;
-    })
-
+    const reviewObj = useSelector(currentReview)
 
     const fetchRead =()=>{
         dispatch(getReviewRead(params.reviewId))
@@ -37,11 +34,15 @@ const ReviewRead = () => {
                         </div>
                        <div className = "row">      
                             <label> * Title </label>
-                            <textarea style={{color:"black"}} value={review.title} name="title" readOnly></textarea> 
+                            <textarea style={{color:"black"}} value={reviewObj.title} name="title" readOnly></textarea> 
                         </div>
                         <div className = "row">      
                             <label> * Content </label>
-                            <textarea style={{color:"black"}} value={review.content} name="content" readOnly></textarea> 
+                            <textarea style={{color:"black"}} value={reviewObj.content} name="content" readOnly></textarea> 
+                        </div>
+                        <div className = "row">      
+                            <label> * writerName </label>
+                            <textarea style={{color:"black"}} value={reviewObj.writerName} name="writerName" readOnly></textarea> 
                         </div>
 
                         {/* <div className = "row">
@@ -57,6 +58,7 @@ const ReviewRead = () => {
                         <button className="btn btn-primary" style={{marginLeft:"10px"}} onClick={()=> deletes(params.reviewId)}>삭제하기</button></Link>
                 </div>
             </div>
+            
 
     );
 }

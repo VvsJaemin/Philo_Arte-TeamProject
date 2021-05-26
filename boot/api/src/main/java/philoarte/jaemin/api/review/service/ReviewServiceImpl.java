@@ -81,10 +81,16 @@ public class ReviewServiceImpl implements ReviewService {
 
         repository.save(review);
 
-        List<ReviewFile> reviewFileList = (List<ReviewFile>) entityMap.get("fileList");
-        reviewFileList.forEach(reviewFile -> {
-            reviewFileRepository.save(reviewFile);
-        });
+        if(entityMap.get("fileList") != null && ((List<ReviewFile>)entityMap.get("fileList")).size() > 0){
+
+            List<ReviewFile> reviewFileList = (List<ReviewFile>) entityMap.get("fileList");
+            reviewFileList.forEach(reviewFile -> {
+                reviewFileRepository.save(reviewFile);
+            });
+
+        }
+
+
 
     }
 
