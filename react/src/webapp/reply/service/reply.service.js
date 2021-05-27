@@ -1,7 +1,19 @@
 import axios from 'axios'
 
 const register=(input)=>{
-    return axios.post("http://localhost:8080/replies/register", input)
+
+    let formData = new FormData();
+//     var imagefile = document.querySelector('#file');
+// formData.append("image", imagefile.files[0]);
+    formData.append("text",input.text);
+    formData.append("replyer",input.replyer);
+    formData.append("reviewId",input.reviewId)
+   return axios.post('http://localhost:8080/replies/register', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+    })
+
 }
 
 const list=(reviewId)=>{
@@ -18,7 +30,7 @@ const modify=(reply)=>{
 }
 
 const deletes=(rno)=>{
-    console.log("Delete Review")
+    console.log("Delete reply")
     return axios.delete(`http://localhost:8080/replies/remove/${rno}`, {data:{...rno}})
 }
 

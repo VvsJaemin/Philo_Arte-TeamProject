@@ -1,18 +1,21 @@
 import React, { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
-import { getReviewRegister } from 'webapp/review/reducer/review.reducer'
+import { currentReview, getReviewRegister } from 'webapp/review/reducer/review.reducer'
+import { getReplyRegister } from '../reducer/reply.reducer'
 
 const ReplyRegister=()=>{
-    const replies = useSelector(state=>{
-        console.log("state: " + JSON.stringify(state.replies))
-        return state.replies
+    const reviewObj = useSelector(currentReview)
+  
+    const replies = useSelector(state =>{
+        return state.replies.replies;
     })
+
     const [input, setInput] = useState({
         text : '',
         replyer : '',
-        reviewId : replies.reviewId
+        reviewId:reviewObj.reviewId
     })
 
     const dispatch = useDispatch()
@@ -47,16 +50,15 @@ const ReplyRegister=()=>{
                                 </div>
                                 <div className = "form-group">
                                     <label> 리뷰 게시판 번호  </label>
-                                    <input placeholder="게시판 번호를 입력해주세요" name="writerName" className="form-control" 
+                                    <input placeholder="게시판 번호를 입력해주세요" name="reviewId" className="form-control" 
                                     value={input.reviewId} onChange={handleSubmit}/>
                                 </div>
-                                <button className="btn btn-success" onClick={()=>dispatch(getReviewRegister(input), history.push("/replies/reply_list"))}>등록</button>
-                            <Link to ="/reviews/review_list">
+                                <button className="btn btn-success" onClick={()=>dispatch(getReplyRegister(input), history.replace(`/reviews/review_read/${input.reviewId}`))}>등록</button>
+
+                            <Link to ={`/reviews/review_read/${reviewObj.reviewId}`}>
                                 <button className="btn btn-danger" 
                                 style={{marginLeft:"10px"}}>취소</button>
                             </Link>
-
-
                                 {/* <button className="btn btn-danger" onClick="/" style={{marginLeft:"10px"}}>취소</button> */}
                             </form>
                         </div>

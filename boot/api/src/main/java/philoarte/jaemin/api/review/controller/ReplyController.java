@@ -29,7 +29,7 @@ public class ReplyController {
 
     @PostMapping("/register")
     @ApiOperation(value = "리뷰 댓글 등록", notes = "리뷰 댓글을 등록 합니다.")
-    public ResponseEntity<String> save(ReplyDto replyDto) {
+    public ResponseEntity<String> replySave(ReplyDto replyDto) {
         log.info(replyDto);
 //
         for (MultipartFile file : replyDto.getFiles()) {
@@ -54,7 +54,7 @@ public class ReplyController {
 
     @PutMapping("/modify/{rno}")
     @ApiOperation(value = "하나의 리뷰 댓글 수정", notes = "하나의 리뷰 댓글을 수정 합니다.")
-    public ResponseEntity<String> modify(ReplyDto replyDto) {
+    public ResponseEntity<String> replyModify(ReplyDto replyDto) {
         log.info(replyDto);
         for (MultipartFile file : replyDto.getFiles()) {
             System.out.println("file" + file);
@@ -68,9 +68,8 @@ public class ReplyController {
 
     @DeleteMapping("/remove/{rno}")
     @ApiOperation(value = "하나의 리뷰 댓글 삭제", notes = "하나의 리뷰 댓글을 삭제 합니다.")
-    public ResponseEntity<String> delete(@PathVariable("rno") Long rno) {
+    public ResponseEntity<String> replyRemove(@PathVariable("rno") Long rno) {
         service.remove(rno);
-
         return ResponseEntity.ok("delete success!!");
     }
 }

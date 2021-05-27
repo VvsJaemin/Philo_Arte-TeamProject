@@ -33,8 +33,9 @@ const ReviewModify = () => {
     const handleModify = async (reviewId) => {
         
         const obj = { reviewId: reviewObj.reviewId, title: title,  content: content, writerId: reviewObj.writerId}
+        if(window.confirm("리뷰를 수정하시겠습니까?"))
         await dispatch(getReviewModify(obj))
-        await dispatch(getReviewList(page))
+        await dispatch(getReviewList(1))
 
     }
 

@@ -32,7 +32,7 @@ public class ReviewController {
 
     @PostMapping("/register")
     @ApiOperation(value = "리뷰 게시글 등록", notes = "리뷰 게시글을 등록 합니다.")
-    public ResponseEntity<Long> save(@RequestBody ReviewDto reviewDto) {
+    public ResponseEntity<Long> reviewSave(@RequestBody ReviewDto reviewDto) {
 
 //        List<ReviewFileDto> uploadfile = reviewDto.getReviewFileDtoList();
 
@@ -49,7 +49,7 @@ public class ReviewController {
 
     @GetMapping("/read/{reviewId}")
     @ApiOperation(value = "하나의 리뷰 읽기", notes = "하나의 리뷰를 읽어 줍니다.")
-    public ResponseEntity<ReviewDto> read(@PathVariable("reviewId") Long reviewId) {
+    public ResponseEntity<ReviewDto> reviewRead(@PathVariable("reviewId") Long reviewId) {
 
         log.info("리뷰 읽기 : " + reviewId);
         return ResponseEntity.ok(service.get(reviewId));
@@ -57,7 +57,7 @@ public class ReviewController {
 
     @PutMapping("/modify/{reviewId}")
     @ApiOperation(value = "하나의 리뷰 수정", notes = "하나의 리뷰를 수정 합니다.")
-    public ResponseEntity<String> modify(@RequestBody ReviewDto reviewDto) {
+    public ResponseEntity<String> reviewModify(@RequestBody ReviewDto reviewDto) {
         log.info(reviewDto);
         service.modify(reviewDto);
 
@@ -66,7 +66,7 @@ public class ReviewController {
 
     @DeleteMapping("remove/{reviewId}")
     @ApiOperation(value = "하나의 리뷰 삭제", notes = "하나의 리뷰를 삭제 합니다.")
-    public ResponseEntity<String> delete(@PathVariable("reviewId") Long reviewId) {
+    public ResponseEntity<String> reviewRemove(@PathVariable("reviewId") Long reviewId) {
 
         service.removeWithReplies(reviewId);
     

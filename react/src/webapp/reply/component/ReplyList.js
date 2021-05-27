@@ -1,25 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { currentReply, getReplyList, getReplyRead } from '../reducer/reply.reducer'
-import {Link} from 'react-router-dom';
+import { currentReply, getReplyDelete, getReplyList, getReplyRead } from '../reducer/reply.reducer'
+import {Link, useParams} from 'react-router-dom';
+import { getReviewRead } from 'webapp/review/reducer/review.reducer';
 
-const ReplyList=()=>{
-   
-
-    const replies = useSelector(state=>{
-        console.log("state: " + JSON.stringify(state.replies))
-        return state.replies
-    })
-
+const ReplyList=({reviewId, changeFlag, flag})=>{
+    const params = useParams()
     const dispatch = useDispatch()
 
-    const selectContent =(rno)=>{
-        dispatch(getReplyRead(rno))
+    const replies = useSelector(state =>{
+
+        return state.replies.replies;
+    })
+    const deletes =async(rno)=>{
+        if(window.confirm("정말 삭제하시겠습니까?"))
+       await dispatch(getReplyDelete(rno))
+       changeFlag()
     }
 
-    useEffect(()=>{
-        dispatch(getReplyList())
-    },[])
+    useEffect((e)=>{
+        dispatch(getReplyList(reviewId))
+    },[flag])
 
     return (
         <>  
@@ -28,21 +29,25 @@ const ReplyList=()=>{
              <table className="table table-striped table-bordered">
                  <thead style={{textAlign :'center'}}>
             <tr>
-                <td>No</td>
-                <td>댓글</td>
+                <td>댓글 번호</td>
+                <td>댓글 내용</td>
                 <td>작성자</td>
                 <td>등록일 </td>
+                <td>리뷰번호</td>
+                <td>댓글 삭제</td>
             </tr>
             </thead>
             <tbody style={{textAlign :'center'}}>
              {
                 replies.map((reply, rno) => {
                     return (
-                        <tr key={rno}>
-                            <td>{rno}</td>
-                            <td onClick={()=>selectContent(reply.reviewId)}>{reply.text}<Link to={`/reviews/review_list`}></Link></td>
+                        <tr key={reply.rno}>
+                            <td>{reply.rno}</td>
+                            <td>{reply.text}</td>
                             <td>{reply.replyer}</td>
                             <td>{reply.regDate}</td>
+                            <td>{reviewId}</td>
+                            <td><button className="btn btn-primary" style={{marginLeft:"10px"}} onClick={()=>deletes(reply.rno)}>댓글삭제</button></td>
                         </tr>
                     )
                 })

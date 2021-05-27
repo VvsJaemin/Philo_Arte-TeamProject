@@ -29,10 +29,10 @@ const ReviewRegister = () => {
     },[input])
 
     return (
-        <div>
-            <div className = "container">
-                <div className = "row">
-                    <div className = "card col-md-6 offset-md-3 offset-md-3">
+        <div className="container-fluid">
+            <div>
+                <div>
+                    <div className = "card col-md-5 offset-md-3">
                         <h3 className="text-center">리뷰를 작성해주세요</h3>
                         <div className = "card-body">
                             <form>
@@ -56,12 +56,14 @@ const ReviewRegister = () => {
                                     <input placeholder="작성자 번호를 입력해주세요" name="writerId" className="form-control" 
                                     value={input.writerId} onChange={handleSubmit}/>
                                 </div>
-                                <button className="btn btn-success" onClick={()=>dispatch(getReviewRegister(input), history.push("/reviews/review_list"))}>등록</button>
+                                <button className="btn btn-success pull-right" onClick={()=>dispatch(getReviewRegister(input), history.push("/reviews/review_list"))}>등록</button>
+                            
+                            
                             <Link to ="/reviews/review_list">
                                 <button className="btn btn-danger" 
                                 style={{marginLeft:"10px"}}>취소</button>
                             </Link>
-
+                            <hr/>
 
                                 {/* <button className="btn btn-danger" onClick="/" style={{marginLeft:"10px"}}>취소</button> */}
                             </form>

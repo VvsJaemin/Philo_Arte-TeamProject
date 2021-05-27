@@ -10,7 +10,8 @@ import {Review, ReviewList, ReviewModify, ReviewRead, ReviewRegister} from 'weba
 import {WorkList, WorkModify, WorkRead, WorkRegister} from 'webapp/work/index'
 import { HomeVideoBg } from "webapp/common/index";
 import { BoardList, BoardPage, BoardRegister, MainPage, PerformanceInput } from "webapp/testupload";
-import { ReplyList, ReplyModify, ReplyRead, ReplyRegister } from "webapp/reply";
+import { Reply, ReplyList, ReplyModify, ReplyRead, ReplyRegister } from "webapp/reply";
+
 
 
 
@@ -51,7 +52,7 @@ const App=()=> {
             <Route exact path='/reviews/review_register' component={ReviewRegister}/>
 
              {/*Reply*/}
-            <Route exact path='/replies/reply_list' component={ReplyList}/>
+            <Route exact path='/replies/reply_list' component={Reply}/>
             <Route exact path='/replies/reply_modify/:replyId' component={ReplyModify}/>
             <Route exact path='/replies/reply_read/:replyId' component={ReplyRead}/>
             <Route exact path='/replies/reply_register' component={ReplyRegister}/>

@@ -3,8 +3,8 @@ import { useHistory } from 'react-router'
 import {ReplyService} from 'webapp/reply/index'
 
 export const getReplyList = createAsyncThunk("replies/list/reviewId",
-async(rno)=>{
-    const response = await ReplyService.list(rno)
+async(reviewId)=>{
+    const response = await ReplyService.list(reviewId)
     return response.data
 })
 
@@ -31,8 +31,8 @@ async(rno)=>{
  )
 
  export const getReplyDelete = createAsyncThunk('replies/remove/rno',
-    async(reviewId)=>{
-        const response = await ReplyService.deletes(reviewId)
+    async(rno)=>{
+        const response = await ReplyService.deletes(rno)
         return response.data
     }
  )
@@ -41,10 +41,24 @@ async(rno)=>{
 
  const replySlice = createSlice({
      name : 'replies',
-     initialState : [],
+     initialState : {
+        msg:'',
+        replies:[],
+        pageResult :{
+            dtoList:[],
+            page: 1,
+            pageList:[],
+            start : 1,
+            end : 1,
+            prev:false,
+            next:false
+        
+        },
+        params:{}
+     },
      reducers : {},
      extraReducers : (builder)=>{
-         builder.addCase(getReplyList.fulfilled,(state, {payload})=>{
+         builder.addCase(getReplyList.fulfilled,(state, {meta, payload})=>{
           
             state.replies = payload;
          })
@@ -59,7 +73,7 @@ async(rno)=>{
             state.reviewId = payload
          })
          .addCase(getReplyDelete.fulfilled,(state, {payload})=>{
-            state.params = payload
+            state.rno = payload
          })
 
          .addMatcher(isRejectAction,()=>{})

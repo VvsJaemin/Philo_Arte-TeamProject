@@ -29,10 +29,12 @@ const ReviewList = () => {
 
     return (
         <>
-        <h1>{msg}</h1>    
+        <h1>{msg}</h1>
         <h3 className="text-center">Review 목록</h3>
-         <div className="row">
-             <table className="table table-striped table-bordered">
+        <div className="table">
+        </div>
+         <div className="container">
+             <table className="table table-striped table-bordered table-hover">
                  <thead style={{textAlign :'center'}}>
             <tr>
                 <td>No</td>
@@ -47,7 +49,7 @@ const ReviewList = () => {
                     return (
                         <tr key={review.reviewId}>
                             <td>{review.reviewId}</td>
-                            <td onClick={()=>selectContent(review.reviewId)}><Link to={`/reviews/review_read/${review.reviewId}`}>{review.title}<bold></bold><bold>[{review.replyCount}]</bold></Link></td>
+                            <td onClick={()=>selectContent(review.reviewId)}><Link to={`/reviews/review_read/${review.reviewId}`}>{review.title}<bold></bold><bold>--------------------[{review.replyCount}]</bold></Link></td>
                             <td>{review.writerName}</td>
                             <td>{review.regDate}</td>
                         </tr>
@@ -56,12 +58,19 @@ const ReviewList = () => {
             }
             </tbody>
             </table>
+            < Link to = "/" >
+    <button className="btn btn-success">홈으로
+    </button></Link>
+    < Link to = "/reviews/review_register"> 
+     <button className="btn btn-success pull-right" >리뷰 등록</button></Link>
+            <hr/>
     </div><br/>
-    < Link to = "/" > <button>홈으로</button>
-    </Link>
-          < Link to = "/reviews/review_register"> <button>리뷰 등록하기</button>
-    </Link>
+
+
+  
+
 </>
+
     )
         }
 

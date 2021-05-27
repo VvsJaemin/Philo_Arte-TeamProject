@@ -33,7 +33,7 @@ public class ReplyDto {
     private String imgName;
     private String path;
 
-    private Review review;
+//    private Review review;
 
     @Builder.Default
     private ArrayList<MultipartFile> files = new ArrayList<>();

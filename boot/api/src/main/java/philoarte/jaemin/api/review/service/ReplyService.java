@@ -37,6 +37,7 @@ public interface ReplyService {
         ReplyDto replyDto = ReplyDto.builder()
                 .rno(reply.getRno())
                 .text(reply.getText())
+                .reviewId(reply.getReview().getReviewId())
                 .replyer(reply.getReplyer())
                 .regDate(reply.getRegDate())
                 .modDate(reply.getModDate())

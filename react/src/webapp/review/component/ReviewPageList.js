@@ -17,11 +17,18 @@ const ReviewPageList=()=>{
     const listNum = pageList.map(i=><button key={i} onClick={()=>movePage(i)}>{i}</button>)
 
     return(
-        <div>
-        {prev ? <button onClick={()=>movePage(start-1)}>prev</button> : <></>}
+  
+     <div className="text-center">
+         <ul className="pagination">
+             <li>
+             {prev ? <button onClick={()=>movePage(start-1)}>prev</button> : <></>}
         {listNum}
         {next ? <button onClick={()=>movePage(end+1)}>next</button> : <></>}
+             </li>
+         </ul>
     </div>
+     
+
     )
 
 
