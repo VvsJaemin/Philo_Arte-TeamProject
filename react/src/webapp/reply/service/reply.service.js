@@ -25,8 +25,8 @@ const read=(rno)=>{
 }
 
 const modify=(reply)=>{
-    let formData = new FormData();
-    formData.append("reviewId", reply.reviewId)
+    let formData = new FormData(); // 파일 데이터를 보낼땐 Form Data 선언 
+    formData.append("reviewId", reply.reviewId) // 해당 보낼 데이터를 append 추가
     formData.append("rno", reply.rno)
     formData.append("replyer", reply.replyer)
     formData.append("text", reply.text)

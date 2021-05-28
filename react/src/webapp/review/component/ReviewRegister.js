@@ -9,6 +9,7 @@ const ReviewRegister = () => {
     const reviews = useSelector(state =>{
         return state.reviews.pageResult.dtoList;
     })
+
     const [input, setInput] = useState({
         title : '',
         content : '',
@@ -17,6 +18,12 @@ const ReviewRegister = () => {
     })
 
     const dispatch = useDispatch()
+
+    const register = ()=>{
+        alert("등록이 완료 되었습니다.")
+        dispatch(getReviewRegister(input))
+        history.push('/reviews/review_list')
+    }
 
     const history = useHistory()
     
@@ -56,22 +63,18 @@ const ReviewRegister = () => {
                                     <input placeholder="작성자 번호를 입력해주세요" name="writerId" className="form-control" 
                                     value={input.writerId} onChange={handleSubmit}/>
                                 </div>
-                                <button className="btn btn-success pull-right" onClick={()=>dispatch(getReviewRegister(input), history.push("/reviews/review_list"))}>등록</button>
-                            
+                                <button className="btn btn-success pull-right" onClick={register}>등록</button>
                             
                             <Link to ="/reviews/review_list">
                                 <button className="btn btn-danger" 
                                 style={{marginLeft:"10px"}}>취소</button>
                             </Link>
                             <hr/>
-
-                                {/* <button className="btn btn-danger" onClick="/" style={{marginLeft:"10px"}}>취소</button> */}
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }

@@ -38,7 +38,9 @@ const rand=()=> {
 const ReplyList=({reviewId, changeFlag, flag})=>{
 
   const classes = useStyles();
+
   const [modalStyle] = React.useState(getModalStyle);
+
   const [open, setOpen] = React.useState(false);
 
 
@@ -50,15 +52,19 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
         return state.replies.reply;
     })
 
+    console.log("REPLIES: " + replies)
+
     const deletes =async(rno)=>{
-        if(window.confirm("정말 삭제하시겠습니까?"))
-       await dispatch(getReplyDelete(rno))
-       changeFlag()
+      let deleteResult = window.confirm("정말 삭제하시겠습니까?")
+      if(deleteResult){
+        await dispatch(getReplyDelete(rno))
+        changeFlag()
+      }
     }
 
     useEffect((e)=>{
         dispatch(getReplyList(reviewId))
-    },[flag, renew])
+    },[flag])
 
     const [show, setShow] = useState(false)
 
@@ -86,12 +92,16 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
     }
 
     const handleModify =async (e)=>{
+      alert("수정이 완료되었습니다")
         e.preventDefault()
         e.stopPropagation()
 
         console.log("handleModify", modalTitle)
 
        await dispatch(getReplyModify(modalTitle))
+
+       changeFlag() // 수정한 후 바꾸게 하는 것
+       handleClose() //  모달을 종료 호출
     }
 
       const body = (
@@ -155,13 +165,13 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                 <td>작성자</td>
                 <td>등록일 </td>
                 <td>리뷰번호</td>
-                <td>댓글 삭제</td>
-                <td>댓글 수정</td>
+                <td> 삭제</td>
+                <td> 수정</td>
             </tr>
             </thead>
             <tbody style={{textAlign :'center'}}>
              {
-                replies.map((reply, rno) => {
+                 replies.map((reply, rno) =>  {
                     return (
                         <tr key={reply.rno}>
                             <td>{reply.rno}</td>
@@ -169,14 +179,15 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                             <td>{reply.replyer}</td>
                             <td>{reply.regDate}</td>
                             <td>{reviewId}</td>
-                            <td><button className="btn btn-primary" style={{marginLeft:"10px"}} onClick={()=>deletes(reply.rno)}>댓글삭제</button></td>
+                            <td><button className="btn btn-primary" style={{marginLeft:"10px"}} onClick={()=>deletes(reply.rno)}>삭제</button></td>
 
-                            <td><button className="btn btn-primary" style={{marginLeft:"10px"}} onClick={() =>handleOpen(reply)}>댓글수정</button>
+                            <td><button className="btn btn-primary" style={{marginLeft:"10px"}} onClick={() =>handleOpen(reply)}>수정</button>
                             </td>
                             <ReplyModify open={show} handleClose={()=>handleClose()}></ReplyModify>
                         </tr>
-                    )
-                })
+                    ) 
+                })  
+                
             }
             </tbody>
             </table>

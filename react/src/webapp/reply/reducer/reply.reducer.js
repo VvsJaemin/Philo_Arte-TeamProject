@@ -1,3 +1,4 @@
+  
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import { useHistory } from 'react-router'
 import {ReplyService} from 'webapp/reply/index'
@@ -70,7 +71,7 @@ async(rno)=>{
            state.params = payload
          })
          .addCase(getReplyModify.fulfilled,(state, {payload})=>{
-            state.reply = payload
+            state.reply = [] // 페이로드로 받으면 서버에서 success modify(string)로 호출되니 일단은 빈배열로 받고 replylist로 간다. 
             console.log(payload)
          })
          .addCase(getReplyDelete.fulfilled,(state, {payload})=>{

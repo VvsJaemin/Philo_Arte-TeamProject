@@ -65,9 +65,11 @@ async(reviewId)=>{
          })
          .addCase(getReviewRead.fulfilled, (state, {payload})=>{
            state.params = payload
+           console.log(payload)
          })
          .addCase(getReviewModify.fulfilled,(state, {payload})=>{
             state.reviewId = payload
+            console.log(payload)
          })
          .addCase(getReviewDelete.fulfilled,(state, {payload})=>{
             state.params = payload

@@ -12,19 +12,22 @@ const ReviewList = () => {
 
     const reviews = useSelector(state =>{
 
-        return state.reviews.pageResult.dtoList;
+        return state.reviews.pageResult.dtoList; // 리뷰 목록을 store에서 조회 하여 사용 가능 하게함.
     })
 
     const msg = useSelector(state => {
         return state.reviews.msg
     })
 
-     const selectContent = (reviewId) => {
+    console.log(msg)
+
+     const selectContent = (reviewId) => { // 제목에서 클릭 후 리뷰 읽기로 넘어가는 함수(parameter로 reviewId)fh 받고 
+                                                        // dispatch로 보냄
         dispatch(getReviewRead(reviewId))
     }
 
     useEffect((e) => {
-        dispatch(getReviewList(page))
+        dispatch(getReviewList(page)) // paging 처리를 위해 렌더링 될 때 리스트의 페이징을 실행하도록 함
     },[])
 
     return (
@@ -49,7 +52,7 @@ const ReviewList = () => {
                     return (
                         <tr key={review.reviewId}>
                             <td>{review.reviewId}</td>
-                            <td onClick={()=>selectContent(review.reviewId)}><Link to={`/reviews/review_read/${review.reviewId}`}>{review.title}<bold></bold><bold>--------------------[{review.replyCount}]</bold></Link></td>
+                            <td onClick={()=>selectContent(review.reviewId)}><Link to={`/reviews/review_read/${review.reviewId}`}>{review.title}<bold>--------------------[{review.replyCount}]</bold></Link></td>
                             <td>{review.writerName}</td>
                             <td>{review.regDate}</td>
                         </tr>
@@ -59,16 +62,12 @@ const ReviewList = () => {
             </tbody>
             </table>
             < Link to = "/" >
-    <button className="btn btn-success">홈으로
-    </button></Link>
-    < Link to = "/reviews/review_register"> 
-     <button className="btn btn-success pull-right" >리뷰 등록</button></Link>
+         <button className="btn btn-success">홈으로</button></Link>
+            < Link to = "/reviews/review_register"> 
+        <button className="btn btn-success pull-right">리뷰 등록</button></Link>
             <hr/>
-    </div><br/>
-
-
-  
-
+    </div>
+    <br/>
 </>
 
     )

@@ -54,7 +54,6 @@ const App=()=> {
              {/*Reply*/}
             <Route exact path='/replies/reply_list' component={Reply}/>
             <Route exact path='/replies/reply_modify/:replyId' component={ReplyModify}/>
-            <Route exact path='/replies/reply_read/:replyId' component={ReplyRead}/>
             <Route exact path='/replies/reply_register' component={ReplyRegister}/>
 
 

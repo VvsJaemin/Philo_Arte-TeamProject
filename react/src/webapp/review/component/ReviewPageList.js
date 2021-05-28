@@ -8,8 +8,6 @@ const ReviewPageList=()=>{
 
     const dispatch = useDispatch()
 
-    console.log(pageList)
-
     const movePage = (page)=>{
         dispatch(getReviewList(page))
     }

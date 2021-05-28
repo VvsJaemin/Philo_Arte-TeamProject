@@ -8,11 +8,12 @@ import { getReviewRead, getReviewDelete, getReviewList, currentReview  } from '.
 
 const ReviewRead = () => {
    
-    const params = useParams()
-    console.log(params)
+    const params = useParams() // useParams는 해당하는 상태의 pk 값을 가져온다. 
+
     const dispatch = useDispatch()
 
-    const reviewObj = useSelector(currentReview)
+    const reviewObj = useSelector(currentReview) // review의 state를 reducer에 전역으로 쓸 수 있게 사용
+
     const [flag, setFlag] = useState(false)
 
     const changeFlag = () => {
@@ -24,15 +25,19 @@ const ReviewRead = () => {
         setFlag(!flag)
     }
 
-
     useEffect(() => {
         fetchRead()
     },[])
 
     const deletes = async(reviewId)=>{
-        if(window.confirm("정말 삭제하시겠습니까?"))
-        await dispatch(getReviewDelete(reviewId))
-        await dispatch(getReviewList(1))
+        let deleteResult = window.confirm("정말 삭제하시겠습니까?")
+        if(deleteResult){
+            await dispatch(getReviewDelete(reviewId))
+            await dispatch(getReviewList(1))
+        }else{
+            window.location.reload()
+            // fetchRead()
+        }
     }
 
     return (
