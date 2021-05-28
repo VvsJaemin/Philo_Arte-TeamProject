@@ -5,6 +5,7 @@ import philoarte.jaemin.api.review.domain.dto.ReplyDto;
 import philoarte.jaemin.api.review.domain.Review;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface ReplyService {
@@ -14,6 +15,7 @@ public interface ReplyService {
     void remove(Long rno);
 
     void modify(ReplyDto replyDto);
+
 
     List<ReplyDto> getList(Long reviewId);
 

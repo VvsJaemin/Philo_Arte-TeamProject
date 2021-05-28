@@ -9,11 +9,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import philoarte.jaemin.api.review.domain.Reply;
 import philoarte.jaemin.api.review.domain.dto.ReplyDto;
 import philoarte.jaemin.api.review.service.ReplyServiceImpl;
 import philoarte.jaemin.api.review.service.ReviewFileServiceImpl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Log4j2

@@ -25,8 +25,17 @@ const read=(rno)=>{
 }
 
 const modify=(reply)=>{
-
-    return axios.put("http://localhost:8080/replies/modify/"+reply.rno, reply)
+    let formData = new FormData();
+    formData.append("reviewId", reply.reviewId)
+    formData.append("rno", reply.rno)
+    formData.append("replyer", reply.replyer)
+    formData.append("text", reply.text)
+    console.log("modify")
+    return axios.put("http://localhost:8080/replies/modify/"+reply.rno, formData,{
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
 }
 
 const deletes=(rno)=>{

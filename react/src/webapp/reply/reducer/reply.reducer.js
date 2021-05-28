@@ -43,7 +43,7 @@ async(rno)=>{
      name : 'replies',
      initialState : {
         msg:'',
-        replies:[],
+        reply:[],
         pageResult :{
             dtoList:[],
             page: 1,
@@ -60,7 +60,7 @@ async(rno)=>{
      extraReducers : (builder)=>{
          builder.addCase(getReplyList.fulfilled,(state, {meta, payload})=>{
           
-            state.replies = payload;
+            state.reply = payload;
          })
          .addCase(getReplyRegister.fulfilled, (state, {payload})=>{
              const msg = '' +payload +"번 등록"
@@ -70,7 +70,8 @@ async(rno)=>{
            state.params = payload
          })
          .addCase(getReplyModify.fulfilled,(state, {payload})=>{
-            state.reviewId = payload
+            state.reply = payload
+            console.log(payload)
          })
          .addCase(getReplyDelete.fulfilled,(state, {payload})=>{
             state.rno = payload
@@ -82,7 +83,6 @@ async(rno)=>{
  })
 
 const{actions, reducer} =replySlice
-
-  // 현재 review state
+export const currentReply = state=>state.replies.reply
 export const {}=actions
 export default reducer

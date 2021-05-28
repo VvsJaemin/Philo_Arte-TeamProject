@@ -9,6 +9,7 @@ import { getReviewRead, getReviewDelete, getReviewList, currentReview  } from '.
 const ReviewRead = () => {
    
     const params = useParams()
+    console.log(params)
     const dispatch = useDispatch()
 
     const reviewObj = useSelector(currentReview)
