@@ -32,6 +32,7 @@ public class ReviewDto {
     private String writerName; // 작성자 이름
 //    private Long artId;
     private int replyCount;
+    private int reviewCount;
 
     private LocalDateTime regDate;
     private LocalDateTime modDate;

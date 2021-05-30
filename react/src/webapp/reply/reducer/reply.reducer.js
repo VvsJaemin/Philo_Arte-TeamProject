@@ -15,12 +15,6 @@ async(input)=>{
     return response.data
  })
 
- export const getReplyRead = createAsyncThunk(`replies/read`,
-async(rno)=>{
-    const response = await ReplyService.read(rno)
-    return response.data
- })
-
  export const getReplyModify = createAsyncThunk('replies/modify/rno',
     async(reply)=>{
 
@@ -55,20 +49,15 @@ async(rno)=>{
             next:false
         
         },
-        params:{}
      },
      reducers : {},
      extraReducers : (builder)=>{
          builder.addCase(getReplyList.fulfilled,(state, {meta, payload})=>{
-          
             state.reply = payload;
          })
          .addCase(getReplyRegister.fulfilled, (state, {payload})=>{
              const msg = '' +payload +"번 등록"
              return {...state, msg }
-         })
-         .addCase(getReplyRead.fulfilled, (state, {payload})=>{
-           state.params = payload
          })
          .addCase(getReplyModify.fulfilled,(state, {payload})=>{
             state.reply = [] // 페이로드로 받으면 서버에서 success modify(string)로 호출되니 일단은 빈배열로 받고 replylist로 간다. 
@@ -76,8 +65,8 @@ async(rno)=>{
          })
          .addCase(getReplyDelete.fulfilled,(state, {payload})=>{
             state.rno = payload
+            console.log(payload) // 서버의 리턴 타입이 string일 경우 payload는 해당 string 값이 된다. 
          })
-
          .addMatcher(isRejectAction,()=>{})
          .addDefaultCase((state, payload)=>{})
      }

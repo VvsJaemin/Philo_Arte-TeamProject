@@ -3,8 +3,9 @@ import { useHistory } from 'react-router'
 import {ReviewService} from 'webapp/review/index'
 
 export const getReviewList = createAsyncThunk("reviews/list",
-async(page)=>{
-    const response = await ReviewService.list(page)
+async(pageRequest)=>{
+    console.log("pageRequest" + JSON.stringify(pageRequest))
+    const response = await ReviewService.list(pageRequest)
     return response.data
 })
 
@@ -37,12 +38,19 @@ async(reviewId)=>{
     }
  )
 
+
  const isRejectAction=action=>(action.type.endsWith('rejected'))
 
  const reviewSlice = createSlice({
      name : 'reviews',
      initialState : {
         msg:'',
+        pageRequest :{
+            page:1,
+            size : 10,
+            type: '',
+            keyword :''
+        },
         pageResult :{
             dtoList:[],
             page: 1,
@@ -50,14 +58,15 @@ async(reviewId)=>{
             start : 1,
             end : 1,
             prev:false,
-            next:false
+            next:false,
         },
         params:{}
      },
      reducers : {},
      extraReducers : (builder)=>{
          builder.addCase(getReviewList.fulfilled,(state, {meta,payload})=>{
-            state.pageResult = payload;
+             console.log(payload)
+             state.pageResult =payload
          })
          .addCase(getReviewRegister.fulfilled, (state, {payload})=>{
              const msg = '' +payload +"번 등록"

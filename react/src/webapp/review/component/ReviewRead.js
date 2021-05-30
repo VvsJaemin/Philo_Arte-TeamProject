@@ -41,8 +41,8 @@ const ReviewRead = () => {
     }
 
     return (
-        <div className ="container">
-            <div className = "card col-md-8 offset-md-3">
+        <div>
+            <div className ="container">
                 <h3 className ="text-center"> Read Detail</h3>
                     <div className = "mb-3">      
                             <label className="form-label"> * NO </label>
@@ -66,11 +66,11 @@ const ReviewRead = () => {
                             <textarea name="content" value={read.comment} onChange={onChange} readOnly/> 
                         </div > */}
                         <Link to="/reviews/review_list">
-                        <button className="btn btn-primary" style={{marginLeft:"10px"}}>리뷰 목록</button></Link>
+                        <button className="btn btn-primary pull-left">리뷰 목록</button></Link>
                         <Link to={`/reviews/review_modify/${params.reviewId}`}>
-                        <button className="btn btn-success pull-right" style={{marginLeft:"10px"}}>수정하기</button></Link>
+                        <button className="btn btn-success pull-right" style={{marginLeft:"10px"}}>리뷰수정</button></Link>
                         <Link to="/reviews/review_list">
-                        <button className="btn btn-primary" style={{marginLeft:"10px"}} onClick={()=> deletes(params.reviewId)}>삭제하기</button></Link>
+                        <button className="btn btn-primary" style={{marginLeft:"10px"}} onClick={()=> deletes(params.reviewId)}>리뷰 삭제</button></Link>
                         <ReplyList reviewId={params.reviewId} changeFlag = {changeFlag} flag={flag}></ReplyList>
                 </div> 
             </div>

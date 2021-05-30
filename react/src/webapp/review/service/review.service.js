@@ -1,10 +1,13 @@
 import axios from 'axios'
 
+const SERVER = 'http://localhost:8080';
+
 const register=(input)=>{
     return axios.post("http://localhost:8080/reviews/register", input)
 }
 
 const list=(page)=>{
+    console.log('service hireList pageRequest: ' + JSON.stringify(page));
     return axios.get("http://localhost:8080/reviews/list/pages?page="+page)
 }
 

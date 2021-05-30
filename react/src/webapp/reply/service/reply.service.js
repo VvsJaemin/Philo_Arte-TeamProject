@@ -20,10 +20,6 @@ const list=(reviewId)=>{
     return axios.get(`http://localhost:8080/replies/list/${reviewId}`)
 }
 
-const read=(rno)=>{
-    return axios.get(`http://localhost:8080/replies/read/${rno}`)
-}
-
 const modify=(reply)=>{
     let formData = new FormData(); // 파일 데이터를 보낼땐 Form Data 선언 
     formData.append("reviewId", reply.reviewId) // 해당 보낼 데이터를 append 추가
@@ -43,4 +39,4 @@ const deletes=(rno)=>{
     return axios.delete(`http://localhost:8080/replies/remove/${rno}`, {data:{...rno}})
 }
 
-export default{register, list, read, modify, deletes}
+export default{register, list, modify, deletes}

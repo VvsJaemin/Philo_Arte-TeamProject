@@ -2,11 +2,14 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { getReviewList, getReviewRead } from 'webapp/review/reducer/review.reducer';
+import { ReviewSearch } from '..';
 
 const ReviewList = () => {
     const pageResult= useSelector(state=>state.reviews.pageResult)
 
     const page = pageResult.page
+
+    const pageRequest = useSelector(state=>state.reviews.pageRequest)
     
     const dispatch = useDispatch()
 
@@ -27,7 +30,8 @@ const ReviewList = () => {
     }
 
     useEffect((e) => {
-        dispatch(getReviewList(page)) // paging 처리를 위해 렌더링 될 때 리스트의 페이징을 실행하도록 함
+        dispatch(getReviewList(page))
+          // paging 처리를 위해 렌더링 될 때 리스트의 페이징을 실행하도록 함
     },[])
 
     return (
@@ -47,12 +51,11 @@ const ReviewList = () => {
             </tr>
             </thead>
             <tbody style={{textAlign :'center'}}>
-             {
-                reviews.map((review, reviewId) => {
+             {reviews.map((review, reviewId) => {
                     return (
                         <tr key={review.reviewId}>
                             <td>{review.reviewId}</td>
-                            <td onClick={()=>selectContent(review.reviewId)}><Link to={`/reviews/review_read/${review.reviewId}`}>{review.title}<bold>--------------------[{review.replyCount}]</bold></Link></td>
+                            <td onClick={()=>selectContent(review.reviewId)}><Link to={`/reviews/review_read/${review.reviewId}`}>{review.title}</Link></td>
                             <td>{review.writerName}</td>
                             <td>{review.regDate}</td>
                         </tr>
@@ -61,7 +64,9 @@ const ReviewList = () => {
             }
             </tbody>
             </table>
-            < Link to = "/" >
+            <ReviewSearch pageRequest={pageRequest} />
+
+         < Link to = "/" >
          <button className="btn btn-success">홈으로</button></Link>
             < Link to = "/reviews/review_register"> 
         <button className="btn btn-success pull-right">리뷰 등록</button></Link>

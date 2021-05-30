@@ -31,42 +31,76 @@ const ReplyRegister=()=>{
     },[input])
 
     return (
-        <div>
-            <div className = "container">
-                <div className = "row">
-                    <div className = "card col-md-6 offset-md-3 offset-md-3">
-                        <h3 className="text-center">댓글을 작성해주세요</h3>
-                        <div className = "card-body">
-                            <form>
-                                <div className = "form-group">
-                                    <label> text </label>
-                                    <input type="text" placeholder="댓글 내용을 입력해주세요" name="text" className="form-control" 
-                                    value={input.text} onChange={handleSubmit}/>
-                                </div>
-                                <div className = "form-group">
-                                    <label> nickname  </label>
-                                    <input type='text' placeholder="닉네임을 입력해주세요" name="replyer" className="form-control" 
-                                    value={input.replyer} onChange={handleSubmit}/>
-                                </div>
-                                <div className = "form-group">
-                                    <label> 리뷰 게시판 번호  </label>
-                                    <input placeholder="게시판 번호를 입력해주세요" name="reviewId" className="form-control" 
-                                    value={input.reviewId} onChange={handleSubmit}/>
-                                </div>
-                                <button className="btn btn-success" onClick={()=>dispatch(getReplyRegister(input), history.replace(`/reviews/review_read/${input.reviewId}`))}>등록</button>
+        <div className = "container">
+              <div id="respond" className="comment-respond">
+                  <h2 id="reply-title" className="text-center">
+                    댓글을 작성해주세요
+                  </h2><br></br>
+                  <form
+                    method="post"
+                    id="form-comments"
+                    className="comment-form contact-form-style-01"
+                  >
+                    <div className="row-form row">
+                      <div className="col-form col-md-3">
+                        <div className="form-group">
+                          <input
+                            type="text"
+                            name="replyer"
+                            className="md-input"
+                            id="NickName"
+                            required=""
+                            placeholder="이름을 입력해주세요 *"
+                            value={input.replyer}
+                            onChange={handleSubmit}
+                            data-error="Your NickName is Required"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-form col-md-3">
+                        <div className="form-group">
+                          <input
+                            type="text"
+                            name="reviewId"
+                            className="md-input"
+                            id="reviewId"
+                            placeholder="reviewId *"
+                            value={input.reviewId}
+                            onChange={handleSubmit}
+                            required=""
+                            data-error="Please Enter Valid Email"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <textarea
+                        name="text"
+                        className="md-textarea"
+                        id="text"
+                        rows="7"
+                        placeholder="댓글을 입력해주세요 *"
+                        required=""
+                        value={input.text}
+                        onChange={handleSubmit}
+                        data-error="Please, Leave us a message"
+                      ></textarea>
+                    </div>
 
-                            <Link to ={`/reviews/review_read/${reviewObj.reviewId}`}>
-                                <button className="btn btn-danger" 
+                    <p className="form-submit">
+                      <button className="btn btn-color btn-md btn-default remove-margin" onClick={()=>dispatch(getReplyRegister(input), history.replace(`/reviews/review_read/${input.reviewId}`))}>
+                        댓글 등록
+                      </button> 
+
+                        <Link to ={`/reviews/review_read/${reviewObj.reviewId}`}>
+                                <button className="btn btn-color btn-md btn-default"
                                 style={{marginLeft:"10px"}}>취소</button>
                             </Link>
-                                {/* <button className="btn btn-danger" onClick="/" style={{marginLeft:"10px"}}>취소</button> */}
-                            </form>
-                        </div>
-                    </div>
+                    </p>
+                  </form>
                 </div>
-            </div>
-
-        </div>
+                </div>
+        
     );
 }
 

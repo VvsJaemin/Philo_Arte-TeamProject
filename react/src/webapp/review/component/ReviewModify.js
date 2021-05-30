@@ -42,35 +42,62 @@ const ReviewModify = () => {
         if(modifyResult){
             alert("리뷰 수정 완료!")
             await dispatch(getReviewModify(obj))
-            await dispatch(getReviewList(1))
+            
         }
     }
 
     return (
-        <> < h3 >리뷰를 수정하세요</h3>
-        
-            <div>      
-                 <label> * NO </label>
-               <textarea style={{color:"black"}} value={reviewObj.reviewId} name="reviewId" readOnly></textarea> 
+        <>
+        <div className="container">
+         < h3 className="text-center">리뷰를 수정하세요</h3>
+            <div className="row-form row">
+                <div className="col-form col-md-3">
+                    <div className="form-group">
+                    <label> * NO </label>
+                    <textarea style={{color:"black"}} value={reviewObj.reviewId} name="reviewId" readOnly></textarea> 
+                    </div>
+                </div>
+            </div>      
+            <div className="row-form row">
+                <div className="col-form col-md-3">
+                    <div className="form-group">
+                    <label> * writerName </label>
+                    <textarea style={{color:"black"}} value={reviewObj.writerName} name="writerName" readOnly></textarea> 
+                    </div>
+                </div>
+            </div>  
+            <div className="form-group">
+            <label> * title </label>
+              <textarea
+                  name="title"
+                  style={{color:"black"}}
+                  className="md-textarea"
+                  id="title"
+                  rows="2"
+                  placeholder="Your title *"
+                  required=""
+                  value={title}
+                  onChange={(e) => handleChangeTitle(e)}
+                  data-error="Please, Leave us a message"
+                ></textarea>
+                  <label> * content </label>
+                <textarea
+                  name="content"
+                  className="md-textarea"
+                  style={{color:"black"}}
+                  id="content"
+                  rows="7"
+                  placeholder="Your contents *"
+                  required=""
+                  value={content}
+                  onChange={(e) => handleChangeContent(e)}
+                  data-error="Please, Leave us a message"
+                ></textarea>
+              </div>
+              <button className="btn btn-success pull-right" onClick={(e)=>handleModify(e)}>수정하기</button>
+                  < Link to = {`/reviews/review_read/${reviewObj.reviewId}`} > <button className="btn btn-success" >뒤로가기</button>  </Link>
             </div>   
-              <div>
-                  <th>제목</th>
-                  <input style={{color:"black"}} placeholder="제목을 수정하세요" type='text' name='title' value={title}   onChange={(e) => handleChangeTitle(e)}></input>
-             </div>
-            <div>
-                   <th>내용</th>
-                       <input style={{color:"black"}} placeholder="내용을 수정하세요" type='text' name='content' value={content} onChange={(e) => handleChangeContent(e)}></input>
-             </div>
-            <div className = "row">      
-                <label> * writerName </label>
-            <textarea style={{color:"black"}} value={reviewObj.writerName} name="writerName" readOnly></textarea> 
-            </div>
-        <div>
-                < Link to = "/" > <button>홈으로</button>  </Link>
-             <button onClick={(e)=>handleModify(e)}>수정하기</button>
-                  < Link to = {`/reviews/review_read/${reviewObj.reviewId}`} > <button>뒤로가기</button>  </Link>
-       </div>
-
+       
 </>
     )
 }
