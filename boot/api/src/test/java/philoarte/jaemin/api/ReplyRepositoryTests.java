@@ -58,7 +58,7 @@ public class ReplyRepositoryTests {
     public void testGetReviewReplies(){
         Review review = Review.builder().reviewId(6L).build();
 
-        List<Reply> result = replyRepository.getRepliesByReviewOrderByReview(review);
+        List<Reply> result = replyRepository.getRepliesByReviewOrderByRegDateAsc(review);
 
         result.forEach(reviewReply->{
             System.out.println(reviewReply.getRno());

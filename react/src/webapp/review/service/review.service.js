@@ -6,9 +6,21 @@ const register=(input)=>{
     return axios.post("http://localhost:8080/reviews/register", input)
 }
 
-const list=(page)=>{
+const list=(pageResult)=>{
+    console.log('service hireList pageRequest: ' + JSON.stringify(pageResult));
+    //return axios.get("http://localhost:8080/reviews/list/pages?page="+page)
+
+    const str = "page=" + (!pageResult.page?1:pageResult.page) +"&type="+ (pageResult.type) +"&keyword=" + (pageResult.keyword)
+
+    const str2 = "page=" + pageResult
+
+    return axios.get("http://localhost:8080/reviews/list/pages?" + str)
+}
+
+const pageList=(page)=>{
     console.log('service hireList pageRequest: ' + JSON.stringify(page));
-    return axios.get("http://localhost:8080/reviews/list/pages?page="+page)
+      return axios.get("http://localhost:8080/reviews/list/pages?page="+page)
+
 }
 
 const read=(reviewId)=>{

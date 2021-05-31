@@ -46,7 +46,9 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
   const [open, setOpen] = React.useState(false);
 
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch()  
+
+    const params = useParams()
 
     const reviewObj = useSelector(currentReview)
 
@@ -55,18 +57,20 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
         return state.replies.reply;
     })
 
-    // console.log("REPLIES: " + JSON.stringify(replies))
-
+    const fetchRead =()=>{
+      dispatch(getReviewRead(params.reviewId))
+  }
     // replyDelete
     const deletes =async(rno)=>{
       let deleteResult = window.confirm("정말 삭제하시겠습니까?")
       if(deleteResult){
         await dispatch(getReplyDelete(rno))
         changeFlag()
+        fetchRead()
       }
     }
 
-    useEffect((rno)=>{
+    useEffect(()=>{
         dispatch(getReplyList(reviewId))
     },[flag])
 
@@ -109,7 +113,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
 
        changeFlag() // 수정한 후 바꾸게 하는 것
       //  handleClose() //  모달을 종료 호출
-
+      
     }
 
     // 모달 창 body 부분(replyModify)

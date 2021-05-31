@@ -48,7 +48,7 @@ const ReviewRegister = () => {
             >
               <div className="row-form row">
                 <div className="col-form col-md-3">
-                  <div className="form-group">
+                  <div className="form-group ">
                     <input
                       type="text"
                       name="writerId"

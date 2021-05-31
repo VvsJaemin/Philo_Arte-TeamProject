@@ -3,9 +3,9 @@ import { useHistory } from 'react-router'
 import {ReviewService} from 'webapp/review/index'
 
 export const getReviewList = createAsyncThunk("reviews/list",
-async(pageRequest)=>{
-    console.log("pageRequest" + JSON.stringify(pageRequest))
-    const response = await ReviewService.list(pageRequest)
+async(pageResult)=>{
+    console.log("pageRequest" + JSON.stringify(pageResult))
+    const response = await ReviewService.list(pageResult)
     return response.data
 })
 
@@ -46,10 +46,12 @@ async(reviewId)=>{
      initialState : {
         msg:'',
         pageRequest :{
-            page:1,
-            size : 10,
-            type: '',
-            keyword :''
+            page: 1,
+            pageList:[],
+            start : 1,
+            end : 1,
+            prev:false,
+            next:false,
         },
         pageResult :{
             dtoList:[],
@@ -60,9 +62,19 @@ async(reviewId)=>{
             prev:false,
             next:false,
         },
+        type: '',
+        keyword :'',
         params:{}
      },
-     reducers : {},
+     reducers : {
+
+        changeSearch: (state, action) => {
+
+            state.type = action.payload.type
+            state.keyword = action.payload.keyword
+        }
+
+     },
      extraReducers : (builder)=>{
          builder.addCase(getReviewList.fulfilled,(state, {meta,payload})=>{
              console.log(payload)
@@ -92,5 +104,5 @@ async(reviewId)=>{
 const{actions, reducer} =reviewSlice
 
 export const currentReview = state => state.reviews.params  // 현재 review state
-export const {}=actions
+export const {changeSearch}= reviewSlice.actions
 export default reducer

@@ -108,9 +108,9 @@ public class ReviewRepositoryTests {
 
     @Test
     public void testSearchPage() {
-        Pageable pageable = PageRequest.of(10, 10, Sort.by("reviewId").descending());
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("reviewId").descending());
 
-        Page<Object[]> result = reviewRepository.searchPage("t", "1", pageable);
+        Page<Object[]> result = reviewRepository.searchPage("w", "유아", pageable);
     }
 
 

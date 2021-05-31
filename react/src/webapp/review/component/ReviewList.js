@@ -2,15 +2,13 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { getReviewList, getReviewRead } from 'webapp/review/reducer/review.reducer';
-import { ReviewSearch } from '..';
+import { ReviewRegister, ReviewSearch } from '..';
 
 const ReviewList = () => {
     const pageResult= useSelector(state=>state.reviews.pageResult)
 
     const page = pageResult.page
 
-    const pageRequest = useSelector(state=>state.reviews.pageRequest)
-    
     const dispatch = useDispatch()
 
     const reviews = useSelector(state =>{
@@ -22,10 +20,8 @@ const ReviewList = () => {
         return state.reviews.msg
     })
 
-    console.log(msg)
 
-     const selectContent = (reviewId) => { // 제목에서 클릭 후 리뷰 읽기로 넘어가는 함수(parameter로 reviewId)fh 받고 
-                                                        // dispatch로 보냄
+     const selectContent = (reviewId) => {
         dispatch(getReviewRead(reviewId))
     }
 
@@ -34,43 +30,46 @@ const ReviewList = () => {
           // paging 처리를 위해 렌더링 될 때 리스트의 페이징을 실행하도록 함
     },[])
 
+
     return (
         <>
         <h1>{msg}</h1>
-        <h3 className="text-center">Review 목록</h3>
-        <div className="table">
-        </div>
+        <h3 className="text-center" style={{marginTop:"100px"}}>Review 목록</h3>
          <div className="container">
-             <table className="table table-striped table-bordered table-hover">
-                 <thead style={{textAlign :'center'}}>
-            <tr>
-                <td>No</td>
-                <td>제목</td>
-                <td>작성자</td>
-                <td>등록일 </td>
-            </tr>
-            </thead>
-            <tbody style={{textAlign :'center'}}>
-             {reviews.map((review, reviewId) => {
-                    return (
-                        <tr key={review.reviewId}>
-                            <td>{review.reviewId}</td>
-                            <td onClick={()=>selectContent(review.reviewId)}><Link to={`/reviews/review_read/${review.reviewId}`}>{review.title}</Link></td>
-                            <td>{review.writerName}</td>
-                            <td>{review.regDate}</td>
-                        </tr>
-                    )
-                })
-            }
-            </tbody>
-            </table>
-            <ReviewSearch pageRequest={pageRequest} />
-
          < Link to = "/" >
          <button className="btn btn-success">홈으로</button></Link>
-            < Link to = "/reviews/review_register"> 
-        <button className="btn btn-success pull-right">리뷰 등록</button></Link>
-            <hr/>
+         < Link to = "/reviews/review_register"> 
+        <button className="btn btn-success pull-right">리뷰 등록</button></Link><br></br><br></br>
+        <ReviewSearch pageResult={pageResult} />
+             {reviews.map((review, reviewId)=>{
+                 return(
+                    <ul className="comment-box">
+                    <li className ="post-comment" key={review.reviewId}>
+                        <div className="comment-content">
+                            <div className="post-body">
+                                <div className="comment-header">
+                                    <span className="writerName">
+                                        {review.writerName}
+                                    </span>
+                                   <span className="pull-right">
+                                       {review.regDate}
+                                   </span>
+                                </div>
+                                <div className="post-message">
+                                  {review.title}
+                                </div>
+                                <div className="comment-footer">
+                                    <span className="content" onClick={()=>selectContent(review.reviewId)}>
+                                    < Link to ={`/reviews/review_read/${review.reviewId}`}> 
+                                  <button className="btn btn-success" style={{marginLeft : "970px"}}>자세히 보기</button></Link>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                 )
+             })}
     </div>
     <br/>
 </>

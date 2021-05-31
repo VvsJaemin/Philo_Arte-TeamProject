@@ -22,7 +22,7 @@ const ReviewRead = () => {
 
     const fetchRead =()=>{
         dispatch(getReviewRead(params.reviewId))
-        setFlag(!flag)
+        changeFlag()
     }
 
     useEffect(() => {
@@ -36,7 +36,6 @@ const ReviewRead = () => {
             await dispatch(getReviewList(1))
         }else{
             window.location.reload()
-            // fetchRead()
         }
     }
 

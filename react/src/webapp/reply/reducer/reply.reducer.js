@@ -57,7 +57,7 @@ async(input)=>{
          })
          .addCase(getReplyRegister.fulfilled, (state, {payload})=>{
              const msg = '' +payload +"번 등록"
-             return {...state, msg }
+             return {...state, msg}
          })
          .addCase(getReplyModify.fulfilled,(state, {payload})=>{
             state.reply = [] // 페이로드로 받으면 서버에서 success modify(string)로 호출되니 일단은 빈배열로 받고 replylist로 간다. 

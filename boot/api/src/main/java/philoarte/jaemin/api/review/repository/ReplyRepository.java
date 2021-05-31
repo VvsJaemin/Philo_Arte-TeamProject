@@ -27,5 +27,5 @@ public interface ReplyRepository extends JpaRepository<Reply, Long> {
     @Query("DELETE FROM Reply rp where rp.review.reviewId = :reviewId ")
     void replyDelete(@Param("reviewId") Long reviewId);
 
-    List<Reply> getRepliesByReviewOrderByReview(Review review);
+    List<Reply> getRepliesByReviewOrderByRegDateAsc(Review review);
 }

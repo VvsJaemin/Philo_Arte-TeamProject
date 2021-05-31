@@ -14,7 +14,6 @@ const Review =()=>{
         <div>
         <ReviewList></ReviewList>
         <ReviewPageList ></ReviewPageList>
-        {/* <ReviewSearch></ReviewSearch> */}
     </div>
     )
 }
