@@ -13,7 +13,7 @@ const ReviewList = () => {
 
     const reviews = useSelector(state =>{
 
-        return state.reviews.pageResult.dtoList; // 리뷰 목록을 store에서 조회 하여 사용 가능 하게함.
+        return state.reviews.pageResult.dtoList; 
     })
 
     const msg = useSelector(state => {
@@ -27,7 +27,6 @@ const ReviewList = () => {
 
     useEffect((e) => {
         dispatch(getReviewList(page))
-          // paging 처리를 위해 렌더링 될 때 리스트의 페이징을 실행하도록 함
     },[])
 
 
@@ -40,7 +39,7 @@ const ReviewList = () => {
          <button className="btn btn-success">홈으로</button></Link>
          < Link to = "/reviews/review_register"> 
         <button className="btn btn-success pull-right">리뷰 등록</button></Link><br></br><br></br>
-        <ReviewSearch pageResult={pageResult} />
+        <ReviewSearch></ReviewSearch>
              {reviews.map((review, reviewId)=>{
                  return(
                     <ul className="comment-box">
@@ -59,12 +58,11 @@ const ReviewList = () => {
                                   {review.title}
                                 </div>
                                 <div className="comment-footer">
-                                    <span className="content" onClick={()=>selectContent(review.reviewId)}>
-                                    < Link to ={`/reviews/review_read/${review.reviewId}`}> 
-                                  <button className="btn btn-success" style={{marginLeft : "970px"}}>자세히 보기</button></Link>
-                                    </span>
                                 </div>
                             </div>
+                                    < Link to ={`/reviews/review_read/${review.reviewId}`}> 
+                                  <button onClick={()=>selectContent(review.reviewId)} className="btn btn-success" style={{marginLeft : "970px"}}>자세히 보기</button></Link>
+                                    
                         </div>
                     </li>
                 </ul>

@@ -4,7 +4,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import net.coobird.thumbnailator.Thumbnails;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import philoarte.jaemin.api.review.domain.ReviewFile;
@@ -16,7 +19,12 @@ import philoarte.jaemin.api.review.service.ReviewFileServiceImpl;
 import philoarte.jaemin.api.review.service.ReviewServiceImpl;
 
 import javax.annotation.Nullable;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @Log4j2
 @RestController
@@ -29,12 +37,51 @@ public class ReviewController {
     private final ReviewServiceImpl service;
     private final ReviewFileServiceImpl reviewFileService;
 
+    @Value("${philo.arte.upload.path}")
+    private String uploadPath;
 
     @PostMapping("/register")
     @ApiOperation(value = "리뷰 게시글 등록", notes = "리뷰 게시글을 등록 합니다.")
-    public ResponseEntity<Long> reviewSave(@RequestBody ReviewDto reviewDto) {
+    public ResponseEntity <Long> reviewSave(ReviewDto reviewDto) {
 
-//        List<ReviewFileDto> uploadfile = reviewDto.getReviewFileDtoList();
+        List<ReviewFileDto> uploadfile = reviewDto.getReviewFileDtoList();
+
+        ArrayList<MultipartFile> files = reviewDto.getFiles();
+
+        files.forEach(f -> {
+
+            log.info(f.getOriginalFilename());
+
+            String uuid = UUID.randomUUID().toString();
+
+            String saveName = uploadPath+ File.separator +uuid+"_" + f.getOriginalFilename();
+            String thumbnailSaveName = uploadPath+ File.separator +uuid+"s_" + f.getOriginalFilename();
+            log.info(saveName);
+            log.info(thumbnailSaveName);
+
+            try {
+                FileCopyUtils.copy(f.getInputStream(), new FileOutputStream(saveName, Boolean.parseBoolean(thumbnailSaveName)));
+//                FileCopyUtils.copy(f.getInputStream(), new FileOutputStream(thumbnailSaveName));
+                Thumbnails.of(new File(saveName)).size(100, 100).outputFormat("jpg").toFile(thumbnailSaveName);
+
+                ReviewFileDto fileDto = ReviewFileDto.builder()
+                        .uuid(uuid)
+                        .imgName(f.getOriginalFilename())
+                        .path(uploadPath)
+                        .build();
+
+                reviewDto.addReviewFileDto(fileDto);
+
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+
+
+
+
+
+        });
+
 
         log.info("리뷰가 등록 되었습니다." +reviewDto);
         return ResponseEntity.ok(service.save(reviewDto));

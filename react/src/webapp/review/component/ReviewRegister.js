@@ -1,40 +1,67 @@
-import React, { useState, useCallback } from 'react'
-
+import React, { useState, useCallback, useRef } from 'react'
 import {Link, useHistory} from 'react-router-dom';
 import { ReviewList } from '..';
-import { getReviewRegister } from '../reducer/review.reducer';
+import { getReviewRegister,getReviewList } from '../reducer/review.reducer';
 import { useDispatch, useSelector } from 'react-redux';
 const ReviewRegister = () => {
-   
+
     const reviews = useSelector(state =>{
         return state.reviews.pageResult.dtoList;
     })
-
     const [input, setInput] = useState({
         title : '',
         content : '',
         writerId : reviews.writerId,
-        writerName : reviews.writerName
+        writerName : reviews.writerName,
+        reviewFileDtoList: []
     })
+
+    const [files, setFiles] = useState([])
 
     const dispatch = useDispatch()
 
-    const register = ()=>{
-        alert("등록이 완료 되었습니다.")
-        dispatch(getReviewRegister(input))
-        history.push('/reviews/review_list')
-    }
+    const register = async(e)=>{
+      e.preventDefault()
+      e.stopPropagation()
+      console.log(files)
+      console.log(input)
 
+      const formData = new FormData();
+
+      for(let i=0; i<files.length; i++){
+        formData.append("files["+i+"]", files[i])
+      }
+
+      formData.append("title", input.title)
+      formData.append("content", input.content)
+      formData.append("writerId", input.writerId)
+      formData.append("writerName", input.writerName)
+      
+      await dispatch(getReviewRegister(formData)) 
+
+      history.push('/reviews/review_list')
+
+    }
     const history = useHistory()
-    
-    const handleSubmit = useCallback(e => {
-        const {name, value} = e.target
+ 
+    const handleSubmit= (e) => {
+  
+       
+       console.log(e.target.name, e.target.value)
+
         setInput({
             ...input,
-            [name] : value
+            [e.target.name] : e.target.value
         })
-    },[input])
+    }
+    const handleUpload = (e) => {
+      const fileObj = e.target;
+      console.dir(fileObj.files)
+  
+      setFiles(fileObj.files)
 
+
+    }
     return (
         <div className = "container">
         <div id="respond" className="comment-respond">
@@ -57,7 +84,7 @@ const ReviewRegister = () => {
                       required=""
                       placeholder="writerId *"
                       value={input.writerId}
-                      onChange={handleSubmit}
+                      onChange={(e) => handleSubmit(e)}
                       data-error="Your NickName is Required"
                     />
                   </div>
@@ -71,7 +98,7 @@ const ReviewRegister = () => {
                       id="writerName"
                       placeholder="writerName *"
                       value={input.writerName}
-                      onChange={handleSubmit}
+                      onChange={(e) => handleSubmit(e)}
                       required=""
                       data-error="Please Enter Valid Email"
                     />
@@ -87,7 +114,7 @@ const ReviewRegister = () => {
                   placeholder="Your title *"
                   required=""
                   value={input.title}
-                  onChange={handleSubmit}
+                  onChange={(e) => handleSubmit(e)}
                   data-error="Please, Leave us a message"
                 ></textarea>
                 <textarea
@@ -98,15 +125,22 @@ const ReviewRegister = () => {
                   placeholder="Your contents *"
                   required=""
                   value={input.content}
-                  onChange={handleSubmit}
+                  onChange={(e) => handleSubmit(e)}
                   data-error="Please, Leave us a message"
                 ></textarea>
+             <input
+                  type="file"
+                  name="file"
+                  id="reviewFileDtoList"
+                  className="md-textarea"
+                  rows="7"
+                  multiple={true}
+                  onChange={(e) =>handleUpload(e)}
+                ></input>
               </div>
-
               <button className="btn btn-success pull-right" onClick={register}>등록</button>
-                        
               <Link to ="/reviews/review_list">
-                                <button className="btn btn-danger" 
+                                <button className="btn btn-danger"
                                 style={{marginLeft:"10px"}}>취소</button>
                             </Link>
             </form>
@@ -114,5 +148,4 @@ const ReviewRegister = () => {
           </div>
     );
 }
-
 export default ReviewRegister

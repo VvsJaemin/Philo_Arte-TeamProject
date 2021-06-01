@@ -44,6 +44,13 @@ public class ReviewDto {
 //    private Artist artist;
 
     @Builder.Default
+    private ArrayList<MultipartFile> files = new ArrayList<>();
+
+    @Builder.Default
     private List<ReviewFileDto> reviewFileDtoList = new ArrayList<>();
+
+    public void addReviewFileDto(ReviewFileDto reviewFileDto){
+        reviewFileDtoList.add(reviewFileDto);
+    }
 
 }

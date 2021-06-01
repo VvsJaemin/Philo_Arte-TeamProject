@@ -10,7 +10,11 @@ async(pageResult)=>{
 })
 
 export const getReviewRegister = createAsyncThunk("reviews/register",
+
 async(input)=>{
+
+    console.log("=========================", input)
+
     const response = await ReviewService.register(input)
     return response.data
  })
@@ -45,14 +49,6 @@ async(reviewId)=>{
      name : 'reviews',
      initialState : {
         msg:'',
-        pageRequest :{
-            page: 1,
-            pageList:[],
-            start : 1,
-            end : 1,
-            prev:false,
-            next:false,
-        },
         pageResult :{
             dtoList:[],
             page: 1,

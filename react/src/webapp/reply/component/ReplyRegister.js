@@ -5,12 +5,8 @@ import { Link } from 'react-router-dom'
 import { currentReview, getReviewRead, getReviewRegister } from 'webapp/review/reducer/review.reducer'
 import { getReplyRegister } from '../reducer/reply.reducer'
 
-const ReplyRegister=()=>{
+const ReplyRegister=({})=>{
     const reviewObj = useSelector(currentReview)
-  
-    const replies = useSelector(state =>{
-        return state.replies.replies;
-    })
 
     const [input, setInput] = useState({
         text : '',
@@ -28,10 +24,10 @@ const ReplyRegister=()=>{
     const fetchRead =()=>{
       dispatch(getReviewRead(reviewObj.reviewId))
   }
-    const register =()=>{
-      dispatch(getReplyRegister(input))
+    const register =async(e)=>{
+      e.preventDefault()
+      await dispatch(getReplyRegister(input))
       history.replace(`/reviews/review_read/${input.reviewId}`)
-      fetchRead()
     }
 
     const handleSubmit = useCallback(e => {
@@ -98,12 +94,10 @@ const ReplyRegister=()=>{
                         data-error="Please, Leave us a message"
                       ></textarea>
                     </div>
-
                     <p className="form-submit">
-                      <button className="btn btn-color btn-md btn-default remove-margin" onClick={register}>
+                      <button className="btn btn-color btn-md btn-default remove-margin" onClick={(e)=>register(e)}>
                         댓글 등록
                       </button> 
-
                         <Link to ={`/reviews/review_read/${reviewObj.reviewId}`}>
                                 <button className="btn btn-color btn-md btn-default"
                                 style={{marginLeft:"10px"}}>취소</button>

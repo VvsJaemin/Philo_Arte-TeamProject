@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { currentReply, getReplyDelete, getReplyList, getReplyModify, getReplyRead } from '../reducer/reply.reducer'
-import {Link, useParams} from 'react-router-dom';
+import {Link, useHistory, useParams} from 'react-router-dom';
 import { currentReview, getReviewModify, getReviewRead } from 'webapp/review/reducer/review.reducer';
 
 import { ReplyModify } from '..';
@@ -79,7 +79,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
 
     const [show, setShow] = useState(false)
 
-    const [modalTitle, setModalTitle] = useState({}) // replies.map에 있는 데이터 상태를 가져
+    const [modalTitle, setModalTitle] = useState({}) 
 
 
     const handleOpen = (targetReply) => {  // 수정버튼을 클릭할 때 reply에 있는 데이터를 가져와 setModalTitle에 담아서 열어 준다. 
@@ -107,12 +107,10 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
         e.preventDefault()
         e.stopPropagation()
 
-        console.log("handleModify", modalTitle)
-
        await dispatch(getReplyModify(modalTitle))
 
        changeFlag() // 수정한 후 바꾸게 하는 것
-      //  handleClose() //  모달을 종료 호출
+       handleClose() //  모달을 종료 호출
       
     }
 

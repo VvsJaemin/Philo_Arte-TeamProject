@@ -3,6 +3,7 @@ package philoarte.jaemin.api.review.domain.dto;
 import lombok.*;
 import org.springframework.stereotype.Component;
 import philoarte.jaemin.api.review.domain.Review;
+import philoarte.jaemin.api.upload.entity.Performance;
 
 import javax.persistence.*;
 import java.io.UnsupportedEncodingException;
@@ -21,6 +22,7 @@ public class ReviewFileDto {
     private String imgName;
     private String path;
     private Review review;
+
 //
 //    public String getImageURL(){
 //        try{

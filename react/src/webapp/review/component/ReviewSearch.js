@@ -1,26 +1,29 @@
-import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 const { useDispatch, useSelector } = require("react-redux");
 const { getReviewList, changeSearch } = require("../reducer/review.reducer");
 
 
-const ReviewSearch =({pageRequest, page})=>{
-
+const ReviewSearch =()=>{
+    const history = useHistory()
     const refType = useRef()
     const refKeyword = useRef()
     const dispatch = useDispatch()
 
     const clickSearch = async () => {
-
+       
         const typeStr = refType.current.value
         const keywordStr = refKeyword.current.value;    
         const pageNum = 1
 
         const param = {type:typeStr, keyword: keywordStr, page:pageNum}
+        
+            await dispatch(getReviewList(param))
+            dispatch(changeSearch(param))
+    }
 
-        await dispatch(getReviewList(param))
-
-        dispatch(changeSearch(param))
+    const clickList=()=>{
+        dispatch(getReviewList(1))
     }
 
     return (
@@ -33,6 +36,7 @@ const ReviewSearch =({pageRequest, page})=>{
                             <option value="w">작성자</option>
                             <option value="c">내용</option>
                             <option value="tw">제목+작성자</option>
+                            <option value="twc">제목+작성자+내용</option>
                         </select>
                         <input
                             className="form-control focus-reset pl-13"
@@ -49,8 +53,7 @@ const ReviewSearch =({pageRequest, page})=>{
                         className="btn btn-primary line-height-reset h-100 btn-submit w-100 text-uppercase pull-right">
                         Search
                     </button>
-                    < Link to = "/reviews/review_list"> 
-                    <button className="btn btn-success pull-left">리뷰 등록</button></Link>
+                    <button className="btn btn-success pull-left" style={{marginLeft:"0px"}} onClick={clickList}>리스트보기</button>
                     </div>
                 </div>
             </div>
