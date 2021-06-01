@@ -3,6 +3,7 @@ import {Link, useHistory} from 'react-router-dom';
 import { ReviewList } from '..';
 import { getReviewRegister,getReviewList } from '../reducer/review.reducer';
 import { useDispatch, useSelector } from 'react-redux';
+import UploadInput from 'webapp/testupload/components/fileupload/UploadInput';
 const ReviewRegister = () => {
 
     const reviews = useSelector(state =>{
@@ -13,7 +14,6 @@ const ReviewRegister = () => {
         content : '',
         writerId : reviews.writerId,
         writerName : reviews.writerName,
-        reviewFileDtoList: []
     })
 
     const [files, setFiles] = useState([])
@@ -46,7 +46,6 @@ const ReviewRegister = () => {
  
     const handleSubmit= (e) => {
   
-       
        console.log(e.target.name, e.target.value)
 
         setInput({
@@ -57,9 +56,7 @@ const ReviewRegister = () => {
     const handleUpload = (e) => {
       const fileObj = e.target;
       console.dir(fileObj.files)
-  
       setFiles(fileObj.files)
-
 
     }
     return (

@@ -6,14 +6,20 @@ import { ReplyList } from 'webapp/reply';
 import { getReplyDelete } from 'webapp/reply/reducer/reply.reducer';
 import { getReviewRead, getReviewDelete, getReviewList, currentReview  } from '../reducer/review.reducer';
 
-const ReviewRead = () => {
-   
+const ReviewRead = ({register}) => {
+
+
     const params = useParams() // useParams는 해당하는 상태의 pk 값을 가져온다. 
 
     const dispatch = useDispatch()
 
-    const reviewObj = useSelector(currentReview) // review의 state를 reducer에 전역으로 쓸 수 있게 사용
+    const reviewObj = useSelector(state=>{
+        return state.reviews.params
+    })
 
+    const reviewFile = reviewObj.reviewFileDtoList
+
+    console.log(reviewFile)
     const [flag, setFlag] = useState(false)
 
     const changeFlag = () => {
@@ -59,11 +65,18 @@ const ReviewRead = () => {
                             <label  className="form-label"> * writerName </label>
                             <textarea className="form-control" rows="1" style={{color:"black"}} value={reviewObj.writerName} name="writerName" readOnly></textarea> 
                         </div>
+                         <div className="display-flex">
+                            <>
+                        {reviewFile?.map(file=>{
+                                return(
+                                    <div key={file.uuid}> <img src={"http://localhost:8080/review_files/display?imgName="+file.uuid+"_"+file.imgName}/>
+                                      </div>
+                                )
+                            })}
+                               </>
+                        </div> 
+                      
 
-                        {/* <div className = "row">
-                            <label> Comment </label> : <br></br>
-                            <textarea name="content" value={read.comment} onChange={onChange} readOnly/> 
-                        </div > */}
                         <Link to="/reviews/review_list">
                         <button className="btn btn-primary pull-left">리뷰 목록</button></Link>
                         <Link to={`/reviews/review_modify/${params.reviewId}`}>

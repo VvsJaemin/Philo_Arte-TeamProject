@@ -8,14 +8,21 @@ const ReviewModify = () => {
 
     const [title,setTitle] = useState('')
     const [content,setContent] = useState('')
+    const [files, setFiles] = useState([])
+
     const mounted = useRef(false)
     const reviewObj = useSelector(currentReview)
 
     const dispatch = useDispatch()
 
+    const reviewFile = reviewObj.reviewFileDtoList
+
+    console.log(reviewFile)
+
     useEffect(() => {
         setTitle(reviewObj.title)
         setContent(reviewObj.content)
+        setFiles(reviewObj.reviewFileDtoList)
         if(!mounted.current){
             mounted.current=true
         }else{
@@ -23,6 +30,28 @@ const ReviewModify = () => {
         }
     },[reviewObj])
 
+    const fileModify=async(e)=>{
+        let modifyResult = window.confirm("리뷰를 수정하시겠습니까?")
+        const obj = {
+            reviewId: reviewObj.reviewId, 
+             title: title, 
+            content: content, 
+            writerId: reviewObj.writerId}
+        const formData = new FormData()
+        for(let i=0; i<files.length; i++){
+            formData.append("files["+i+"]", files[i])
+        }
+        formData.append("title", obj.title)
+        formData.append("content", obj.content)
+        formData.append("reviewId", obj.reviewId)
+        formData.append("writerId", obj.writerId)
+
+        if(modifyResult){
+            alert("리뷰 수정 완료!")
+            await dispatch(getReviewModify(formData))
+        }
+      
+    }
 
     const handleChangeTitle = (e) => {
         setTitle(e.target.value)
@@ -32,18 +61,10 @@ const ReviewModify = () => {
         setContent(e.target.value)
     }
 
-    const handleModify = async (reviewId) => {
-        let modifyResult = window.confirm("리뷰를 수정하시겠습니까?")
-        const obj = {
-             reviewId: reviewObj.reviewId, 
-              title: title, 
-             content: content, 
-             writerId: reviewObj.writerId}
-        if(modifyResult){
-            alert("리뷰 수정 완료!")
-            await dispatch(getReviewModify(obj))
-            
-        }
+    const handleChangeFile=(e)=>{
+        const fileObj = e.target
+        console.dir(fileObj.files)
+        setFiles(fileObj.files)
     }
 
     return (
@@ -93,8 +114,28 @@ const ReviewModify = () => {
                   onChange={(e) => handleChangeContent(e)}
                   data-error="Please, Leave us a message"
                 ></textarea>
+
+                <div className="display-flex">
+                        {reviewFile?.map(file=>{
+                                return(
+                                    <div key={file.uuid}> <img src={"http://localhost:8080/review_files/display?imgName="+file.uuid+"s_"+file.imgName}/>
+                                      </div>
+                                )
+                            })} 
+                        </div> 
+
+                <input
+                style={{color:"black"}}
+                  type="file"
+                  name="file"
+                  id="reviewFileDtoList"
+                  className="md-textarea"
+                  rows="7"
+                  multiple={true}
+                  onChange={(e) =>handleChangeFile(e)}
+                ></input>
               </div>
-              <button className="btn btn-success pull-right" onClick={(e)=>handleModify(e)}>수정하기</button>
+              <button className="btn btn-success pull-right" onClick={fileModify}>수정하기</button>
                   < Link to = {`/reviews/review_read/${reviewObj.reviewId}`} > <button className="btn btn-success" >뒤로가기</button>  </Link>
             </div>   
        

@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { currentReview, getReviewRead, getReviewRegister } from 'webapp/review/reducer/review.reducer'
 import { getReplyRegister } from '../reducer/reply.reducer'
+import uuid from 'uuid/v4'
 
 const ReplyRegister=({})=>{
     const reviewObj = useSelector(currentReview)
@@ -11,8 +12,14 @@ const ReplyRegister=({})=>{
     const [input, setInput] = useState({
         text : '',
         replyer : '',
+        uuid : uuid() ,
+        imgName: '',
+        path: "",
         reviewId:reviewObj.reviewId
     })
+
+    const [files, setFiles] = useState([])
+
     const [flag, setFlag] = useState(false)
 
     const changeFlag = () => {
@@ -26,17 +33,34 @@ const ReplyRegister=({})=>{
   }
     const register =async(e)=>{
       e.preventDefault()
+      const formData = new FormData()
+      for(let i = 0; i<files.length; i++){
+        formData.append("files["+i+"]", files[i])
+      }
+      formData.append("uuid", input.uuid)
+      formData.append("imgName", input.imgName)
+      formData.append("path", input.path)
+      formData.append("text", input.text)
+      formData.append("replyer", input.replyer)
+      formData.append("reviewId", input.reviewId)
+
       await dispatch(getReplyRegister(input))
       history.replace(`/reviews/review_read/${input.reviewId}`)
     }
 
-    const handleSubmit = useCallback(e => {
-        const {name, value} = e.target
+    const handleSubmit =(e) => {
+        console.log(e.target.name, e.target.value)
         setInput({
             ...input,
-            [name] : value
+            [e.target.name] : e.target.value
         })
-    },[input])
+    }
+  
+    const handleUpload=(e)=>{
+      const fileObj = e.target
+      console.dir(fileObj.files)
+      setFiles(fileObj.files)
+    }
     
     return (
         <div className = "container">
@@ -60,7 +84,7 @@ const ReplyRegister=({})=>{
                             required=""
                             placeholder="이름을 입력해주세요 *"
                             value={input.replyer}
-                            onChange={handleSubmit}
+                            onChange={(e) => handleSubmit(e)}
                             data-error="Your NickName is Required"
                           />
                         </div>
@@ -74,7 +98,7 @@ const ReplyRegister=({})=>{
                             id="reviewId"
                             placeholder="reviewId *"
                             value={input.reviewId}
-                            onChange={handleSubmit}
+                            onChange={(e) => handleSubmit(e)}
                             required=""
                             data-error="Please Enter Valid Email"
                           />
@@ -90,12 +114,21 @@ const ReplyRegister=({})=>{
                         placeholder="댓글을 입력해주세요 *"
                         required=""
                         value={input.text}
-                        onChange={handleSubmit}
+                        onChange={(e) => handleSubmit(e)}
                         data-error="Please, Leave us a message"
                       ></textarea>
+                      <input
+                          type="file"
+                          name="file"
+                          id="reviewFileDtoList"
+                          className="md-textarea"
+                          rows="7"
+                          multiple={true}
+                          onChange={(e) =>handleUpload(e)}
+                ></input>
                     </div>
                     <p className="form-submit">
-                      <button className="btn btn-color btn-md btn-default remove-margin" onClick={(e)=>register(e)}>
+                      <button className="btn btn-color btn-md btn-default remove-margin" onClick={register}>
                         댓글 등록
                       </button> 
                         <Link to ={`/reviews/review_read/${reviewObj.reviewId}`}>

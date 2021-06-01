@@ -81,6 +81,10 @@ public class ReviewServiceImpl implements ReviewService {
 
         repository.save(review);
 
+        // 기존 파일 삭제
+
+        reviewFileRepository.reviewFileDelete(review.getReviewId());
+
         if(entityMap.get("fileList") != null && ((List<ReviewFile>)entityMap.get("fileList")).size() > 0){
 
             List<ReviewFile> reviewFileList = (List<ReviewFile>) entityMap.get("fileList");

@@ -30,7 +30,4 @@ public class ReviewFile extends BaseEntity {
     @JoinColumn(name="review_id")
     private Review review;
 
-    public void confirmReview(Review review){
-        this.review = review;
-    }
 }

@@ -11,8 +11,10 @@ async(reviewId)=>{
 
 export const getReplyRegister = createAsyncThunk("replies/register",
 async(input)=>{
+    console.log("=======",input)
     const response = await ReplyService.register(input)
-    return response.data
+    console.log("======", response)
+    return response
  })
 
  export const getReplyModify = createAsyncThunk('replies/modify/rno',

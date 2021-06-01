@@ -42,12 +42,12 @@ public class ReviewFileController {
     @Value("${philo.arte.upload.path}")
     private String uploadPath;
 
-    @GetMapping("/display/{fileName}")
-    public ResponseEntity<byte[]> getFile(@PathVariable("fileName") String fileName){
+    @GetMapping("/display")
+    public ResponseEntity<byte[]> getFile(String imgName){
         ResponseEntity<byte[]> result = null;
         try{
-            String srcFileName = URLDecoder.decode(fileName, "UTF-8");
-            log.info("fileName :" + srcFileName);
+            String srcFileName = URLDecoder.decode(imgName, "UTF-8");
+            log.info("imgName :" + srcFileName);
             File file = new File(uploadPath + File.separator+srcFileName);
             log.info("file : " + file);
             HttpHeaders headers = new HttpHeaders();

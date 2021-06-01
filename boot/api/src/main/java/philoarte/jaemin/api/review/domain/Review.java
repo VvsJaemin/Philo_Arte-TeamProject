@@ -45,4 +45,5 @@ public class Review extends BaseEntity {
     public void changeContent(String content){
         this.content=content;
     }
+
 }

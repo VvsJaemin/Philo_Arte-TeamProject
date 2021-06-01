@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,10 @@ public class ReplyController {
     private final ReplyServiceImpl service;
     private final ReviewFileServiceImpl fileService;
 
+    @Value("${philo.arte.upload.path}")
+    private String uploadPath;
+
+
     @PostMapping("/register")
     @ApiOperation(value = "리뷰 댓글 등록", notes = "리뷰 댓글을 등록 합니다.")
     public ResponseEntity<String> replySave(ReplyDto replyDto) {
@@ -37,6 +42,8 @@ public class ReplyController {
             String fileName = file.getOriginalFilename();
             replyDto.setImgName(fileName);
             replyDto.setUuid(UUID.randomUUID().toString());
+            replyDto.setPath(uploadPath);
+            replyDto.setFiles(replyDto.getFiles());
         }
         service.save(replyDto);
 //        fileService.saveFile(replyDto.getFiles());

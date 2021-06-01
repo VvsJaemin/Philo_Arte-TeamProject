@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
@@ -21,10 +22,7 @@ import philoarte.jaemin.api.review.service.ReviewServiceImpl;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Log4j2
 @RestController
@@ -42,9 +40,7 @@ public class ReviewController {
 
     @PostMapping("/register")
     @ApiOperation(value = "리뷰 게시글 등록", notes = "리뷰 게시글을 등록 합니다.")
-    public ResponseEntity <Long> reviewSave(ReviewDto reviewDto) {
-
-        List<ReviewFileDto> uploadfile = reviewDto.getReviewFileDtoList();
+    public ResponseEntity<Map<String, Long>> reviewSave(ReviewDto reviewDto) {
 
         ArrayList<MultipartFile> files = reviewDto.getFiles();
 
@@ -54,8 +50,8 @@ public class ReviewController {
 
             String uuid = UUID.randomUUID().toString();
 
-            String saveName = uploadPath+ File.separator +uuid+"_" + f.getOriginalFilename();
-            String thumbnailSaveName = uploadPath+ File.separator +uuid+"s_" + f.getOriginalFilename();
+            String saveName = uploadPath + File.separator + uuid + "_" + f.getOriginalFilename();
+            String thumbnailSaveName = uploadPath + File.separator + uuid + "s_" + f.getOriginalFilename();
             log.info(saveName);
             log.info(thumbnailSaveName);
 
@@ -72,25 +68,26 @@ public class ReviewController {
 
                 reviewDto.addReviewFileDto(fileDto);
 
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
-
 
 
         });
 
 
-        log.info("리뷰가 등록 되었습니다." +reviewDto);
-        return ResponseEntity.ok(service.save(reviewDto));
+        log.info("리뷰가 등록 되었습니다." + reviewDto);
+
+        Map<String, Long> resultMap = new HashMap<>();
+        resultMap.put("result", (service.save(reviewDto)));
+
+        return new ResponseEntity(resultMap, HttpStatus.OK);
     }
 
     @GetMapping("/list/pages")
     @ApiOperation(value = "리뷰 게시글 목록", notes = "리뷰 게시글을 목록을 보여줍니다.")
     public ResponseEntity<PageResultDto<ReviewDto, Object[]>> reviewList(PageRequestDto pageRequestDto) {
-            log.info("pageRequestDto : " + pageRequestDto);
+        log.info("pageRequestDto : " + pageRequestDto);
         return ResponseEntity.ok(service.getList(pageRequestDto));
     }
 
@@ -104,11 +101,43 @@ public class ReviewController {
 
     @PutMapping("/modify/{reviewId}")
     @ApiOperation(value = "하나의 리뷰 수정", notes = "하나의 리뷰를 수정 합니다.")
-    public ResponseEntity<String> reviewModify(@RequestBody ReviewDto reviewDto) {
+    public ResponseEntity<Map<String, String>> reviewModify(ReviewDto reviewDto) {
+        ArrayList<MultipartFile> files = reviewDto.getFiles();
+
+        files.forEach(f -> {
+            log.info(f.getOriginalFilename());
+
+            String uuid = UUID.randomUUID().toString();
+
+            String saveName = uploadPath + File.separator + uuid + "_" + f.getOriginalFilename();
+
+            String thumbnailSaveName = uploadPath + File.separator + uuid + "s_" + f.getOriginalFilename();
+
+            log.info(saveName);
+            log.info(thumbnailSaveName);
+
+            try {
+                FileCopyUtils.copy(f.getInputStream(), new FileOutputStream(saveName, Boolean.parseBoolean(thumbnailSaveName)));
+                Thumbnails.of(new File(saveName)).size(100, 100).outputFormat("jpg").toFile(thumbnailSaveName);
+
+                ReviewFileDto fileDto = ReviewFileDto.builder()
+                        .uuid(uuid)
+                        .imgName(f.getOriginalFilename())
+                        .path(uploadPath)
+                        .build();
+                reviewDto.addReviewFileDto(fileDto);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        Map<String, String> resultMap = new HashMap<>();
+        resultMap.put("result", "sucess");
+
         log.info(reviewDto);
         service.modify(reviewDto);
 
-        return ResponseEntity.ok("Success Modify");
+        return new ResponseEntity(resultMap, HttpStatus.OK);
     }
 
     @DeleteMapping("remove/{reviewId}")
@@ -116,7 +145,7 @@ public class ReviewController {
     public ResponseEntity<String> reviewRemove(@PathVariable("reviewId") Long reviewId) {
 
         service.removeWithReplies(reviewId);
-    
+
         return ResponseEntity.ok("delete success!!");
     }
 }

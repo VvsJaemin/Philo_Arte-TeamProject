@@ -21,9 +21,7 @@ const list=(pageResult)=>{
     console.log('service hireList pageRequest: ' + JSON.stringify(pageResult));
 
     const str = "page=" + (!pageResult.page?1:pageResult.page) +"&type="+ (pageResult.type) +"&keyword=" + (pageResult.keyword)
-
-    const str2 = "page=" + pageResult
-
+    
     return axios.get(`${SERVER}/reviews/list/pages?` + str)
 }
 

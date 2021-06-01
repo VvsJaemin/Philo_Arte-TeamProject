@@ -16,7 +16,10 @@ async(input)=>{
     console.log("=========================", input)
 
     const response = await ReviewService.register(input)
-    return response.data
+
+    console.log("=================", response)
+
+    return response
  })
 
  export const getReviewRead = createAsyncThunk(`reviews/read`,
@@ -77,7 +80,7 @@ async(reviewId)=>{
              state.pageResult =payload
          })
          .addCase(getReviewRegister.fulfilled, (state, {payload})=>{
-             const msg = '' +payload +"번 등록"
+             const msg = '' +payload.result+"번 등록"
              return {...state, msg }
          })
          .addCase(getReviewRead.fulfilled, (state, {payload})=>{
