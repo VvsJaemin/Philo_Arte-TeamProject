@@ -20,7 +20,6 @@ const ReviewList = () => {
         return state.reviews.msg
     })
 
-
      const selectContent = (reviewId) => {
         dispatch(getReviewRead(reviewId))
     }

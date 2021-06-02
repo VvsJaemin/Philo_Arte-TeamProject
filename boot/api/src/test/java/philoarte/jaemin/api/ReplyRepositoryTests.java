@@ -56,12 +56,15 @@ public class ReplyRepositoryTests {
 
     @Test
     public void testGetReviewReplies(){
-        Review review = Review.builder().reviewId(6L).build();
+        Review review = Review.builder().reviewId(884L).build();
 
-        List<Reply> result = replyRepository.getRepliesByReviewOrderByRegDateAsc(review);
+        List<Reply> result = replyRepository.getRepliesByReviewOrderByRegDateDesc(review);
 
         result.forEach(reviewReply->{
             System.out.println(reviewReply.getRno());
+            System.out.println("\t"+reviewReply.getImageName());
+            System.out.println("\t"+reviewReply.getPath());
+            System.out.println("\t"+reviewReply.getUuid());
             System.out.println("\t"+reviewReply.getText());
             System.out.println("\t"+reviewReply.getReview().getReviewId());
         });

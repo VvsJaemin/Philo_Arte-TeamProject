@@ -27,13 +27,9 @@ public class ReplyServiceImpl implements ReplyService {
     @Override
     public Long save(ReplyDto replyDto) {
         Reply replySave = dtoToEntity(replyDto);
-//        ArrayList<MultipartFile> files = new ArrayList<>();
+
         repository.save(replySave);
-//        if(files != null && files.size() > 0){
-//            files.forEach(reviewFile -> {
-//                repository.save(replySave);
-//            });
-//        }
+
         return replyDto.getRno();
     }
 
@@ -46,6 +42,8 @@ public class ReplyServiceImpl implements ReplyService {
     @Override
     public void modify(ReplyDto replyDto) {
         Reply reply = dtoToEntity(replyDto);
+        repository.save(reply);
+        repository.deleteById(replyDto.getRno());
         repository.save(reply);
     }
 

@@ -1,14 +1,10 @@
 import axios from 'axios'
 const SERVER = 'http://localhost:8080';
-const register=(input)=>{
+const register=(fd)=>{
 
-    let formData = new FormData();
-//     var imagefile = document.querySelector('#file');
-// formData.append("image", imagefile.files[0]);
-    formData.append("text",input.text);
-    formData.append("replyer",input.replyer);
-    formData.append("reviewId",input.reviewId)
-   return axios.post(`${SERVER}/replies/register`, formData, {
+    console.log(fd)
+
+   return axios.post(`${SERVER}/replies/register`, fd, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -24,16 +20,14 @@ const list=(reviewId)=>{
 }
 
 const modify=(reply)=>{
-    let formData = new FormData(); // 파일 데이터를 보낼땐 Form Data 선언 
-    formData.append("reviewId", reply.reviewId) // 해당 보낼 데이터를 append 추가
-    formData.append("rno", reply.rno)
-    formData.append("replyer", reply.replyer)
-    formData.append("text", reply.text)
     console.log("modify")
-    return axios.put(`${SERVER}/replies/modify/`+reply.rno, formData,{
+    return axios.put(`${SERVER}/replies/modify/`+reply.rno, reply,{
         headers: {
             'Content-Type': 'multipart/form-data'
         }
+    })
+    .then(response=>{
+        return response.data
     })
 }
 

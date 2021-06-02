@@ -31,7 +31,14 @@ const read=(reviewId)=>{
 
 const modify=(review)=>{
 
-    return axios.put(`${SERVER}/reviews/modify/`+review.reviewId, review)
+    return axios.put(`${SERVER}/reviews/modify/`+review.reviewId, review,{
+        headers:{
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+    .then(response=>{
+        return response.data
+})
 }
 
 const deletes=(reviewId)=>{

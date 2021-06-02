@@ -46,6 +46,8 @@ const ReviewModify = () => {
         formData.append("reviewId", obj.reviewId)
         formData.append("writerId", obj.writerId)
 
+
+        
         if(modifyResult){
             alert("리뷰 수정 완료!")
             await dispatch(getReviewModify(formData))

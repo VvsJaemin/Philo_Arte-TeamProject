@@ -36,7 +36,10 @@ public class ReplyDto {
 //    private Review review;
 
     @Builder.Default
-    private ArrayList<MultipartFile> files = new ArrayList<>();
+    private ArrayList<MultipartFile> replyFiles = new ArrayList<>();
 
+    public void addReplyDto(ReplyDto ReplyDto){
+        replyFiles.add((MultipartFile) ReplyDto);
+    }
 
 }

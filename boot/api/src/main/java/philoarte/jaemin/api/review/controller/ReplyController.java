@@ -4,10 +4,13 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import philoarte.jaemin.api.review.domain.Reply;
@@ -15,6 +18,10 @@ import philoarte.jaemin.api.review.domain.dto.ReplyDto;
 import philoarte.jaemin.api.review.service.ReplyServiceImpl;
 import philoarte.jaemin.api.review.service.ReviewFileServiceImpl;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.net.URLDecoder;
+import java.nio.file.Files;
 import java.util.*;
 
 @Log4j2
@@ -36,19 +43,28 @@ public class ReplyController {
     @ApiOperation(value = "리뷰 댓글 등록", notes = "리뷰 댓글을 등록 합니다.")
     public ResponseEntity<String> replySave(ReplyDto replyDto) {
         log.info(replyDto);
-//
-        for (MultipartFile file : replyDto.getFiles()) {
-            System.out.println("file" + file);
+
+        for (MultipartFile file : replyDto.getReplyFiles()) {
+            String uuid = UUID.randomUUID().toString();
             String fileName = file.getOriginalFilename();
-            replyDto.setImgName(fileName);
-            replyDto.setUuid(UUID.randomUUID().toString());
-            replyDto.setPath(uploadPath);
-            replyDto.setFiles(replyDto.getFiles());
+            String saveName = uploadPath + File.separator + uuid + "_" + file.getOriginalFilename();
+            String thumbnailSaveName = uploadPath + File.separator + uuid + "s_" + file.getOriginalFilename();
+            try {
+                FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(saveName, Boolean.parseBoolean(thumbnailSaveName)));
+                Thumbnails.of(new File(saveName)).size(100, 100).outputFormat("jpg").toFile(thumbnailSaveName);
+                replyDto.setImgName(fileName);
+                replyDto.setUuid(uuid);
+                replyDto.setPath(uploadPath);
+                replyDto.setReviewId(replyDto.getReviewId());
+                replyDto.setReplyFiles(replyDto.getReplyFiles());
+                service.save(replyDto);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        service.save(replyDto);
-//        fileService.saveFile(replyDto.getFiles());
         return ResponseEntity.ok("success");
     }
+
 
     @GetMapping(value = "/list/{reviewId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "댓글 목록", notes = "댓글 목록을 보여줍니다.")
@@ -63,13 +79,26 @@ public class ReplyController {
     @ApiOperation(value = "하나의 리뷰 댓글 수정", notes = "하나의 리뷰 댓글을 수정 합니다.")
     public ResponseEntity<String> replyModify(ReplyDto replyDto) {
         log.info(replyDto);
-        for (MultipartFile file : replyDto.getFiles()) {
-            System.out.println("file" + file);
+        for (MultipartFile file : replyDto.getReplyFiles()) {
+            String uuid = UUID.randomUUID().toString();
             String fileName = file.getOriginalFilename();
-            replyDto.setImgName(fileName);
-            replyDto.setUuid(UUID.randomUUID().toString());
+            String saveName = uploadPath + File.separator + uuid + "_" + file.getOriginalFilename();
+            String thumbnailSaveName = uploadPath + File.separator + uuid + "s_" + file.getOriginalFilename();
+            try {
+                FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(saveName, Boolean.parseBoolean(thumbnailSaveName)));
+                Thumbnails.of(new File(saveName)).size(100, 100).outputFormat("jpg").toFile(thumbnailSaveName);
+                replyDto.setImgName(fileName);
+                replyDto.setUuid(uuid);
+                replyDto.setPath(uploadPath);
+                replyDto.setReviewId(replyDto.getReviewId());
+                replyDto.setReplyFiles(replyDto.getReplyFiles());
+                replyDto.setRno(replyDto.getRno());
+                service.modify(replyDto);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        service.modify(replyDto);
+
         return ResponseEntity.ok("Success Modify");
     }
 

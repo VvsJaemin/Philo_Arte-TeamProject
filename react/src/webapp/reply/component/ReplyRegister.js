@@ -6,15 +6,15 @@ import { currentReview, getReviewRead, getReviewRegister } from 'webapp/review/r
 import { getReplyRegister } from '../reducer/reply.reducer'
 import uuid from 'uuid/v4'
 
-const ReplyRegister=({})=>{
+const ReplyRegister=()=>{
     const reviewObj = useSelector(currentReview)
 
     const [input, setInput] = useState({
         text : '',
         replyer : '',
-        uuid : uuid() ,
-        imgName: '',
+        uuid: "",
         path: "",
+        imgName : "",
         reviewId:reviewObj.reviewId
     })
 
@@ -33,18 +33,19 @@ const ReplyRegister=({})=>{
   }
     const register =async(e)=>{
       e.preventDefault()
+      e.stopPropagation()
       const formData = new FormData()
       for(let i = 0; i<files.length; i++){
-        formData.append("files["+i+"]", files[i])
+        formData.append("replyFiles["+i+"]", files[i])
       }
-      formData.append("uuid", input.uuid)
-      formData.append("imgName", input.imgName)
       formData.append("path", input.path)
+      formData.append("imgName", input.imgName)
+      formData.append("uuid", input.uuid)
       formData.append("text", input.text)
       formData.append("replyer", input.replyer)
       formData.append("reviewId", input.reviewId)
 
-      await dispatch(getReplyRegister(input))
+      await dispatch(getReplyRegister(formData))
       history.replace(`/reviews/review_read/${input.reviewId}`)
     }
 
