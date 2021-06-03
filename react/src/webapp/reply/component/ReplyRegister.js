@@ -48,7 +48,12 @@ const ReplyRegister=()=>{
       formData.append("reviewId", input.reviewId)
       await dispatch(getReplyRegister(formData))
       history.replace(`/reviews/review_read/${input.reviewId}`)
+    
     }
+
+    useEffect(() => {
+      fetchRead()
+   },[])
 
     const handleSubmit =(e) => {
         console.log(e.target.name, e.target.value)
@@ -85,7 +90,7 @@ const ReplyRegister=()=>{
                             id="NickName"
                             required=""
                             placeholder="이름을 입력해주세요 *"
-                            value={input.replyer}
+                            value={input?.replyer}
                             onChange={(e) => handleSubmit(e)}
                             data-error="Your NickName is Required"
                           />
@@ -99,7 +104,7 @@ const ReplyRegister=()=>{
                             className="md-input"
                             id="reviewId"
                             placeholder="reviewId *"
-                            value={input.reviewId}
+                            value={input?.reviewId}
                             onChange={(e) => handleSubmit(e)}
                             required=""
                             data-error="Please Enter Valid Email"
@@ -115,7 +120,7 @@ const ReplyRegister=()=>{
                         rows="7"
                         placeholder="댓글을 입력해주세요 *"
                         required=""
-                        value={input.text}
+                        value={input?.text}
                         onChange={(e) => handleSubmit(e)}
                         data-error="Please, Leave us a message"
                       ></textarea>

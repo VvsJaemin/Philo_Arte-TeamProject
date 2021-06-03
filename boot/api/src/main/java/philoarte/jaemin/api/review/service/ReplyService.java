@@ -44,8 +44,8 @@ public interface ReplyService {
                 .path(reply.getPath())
                 .reviewId(reply.getReview().getReviewId())
                 .replyer(reply.getReplyer())
-                .regDateTime(reply.getRegDate())
-                .modDateTime(reply.getModDate())
+                .regDate(reply.getRegDate())
+                .modDate(reply.getModDate())
                 .build();
 
         return replyDto;

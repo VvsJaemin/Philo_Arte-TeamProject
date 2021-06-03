@@ -52,7 +52,8 @@ public class ReviewFileController {
             log.info("file : " + file);
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Type", Files.probeContentType(file.toPath()));
-            result = ResponseEntity.ok(FileCopyUtils.copyToByteArray(file));
+            result = ResponseEntity.ok().headers(headers).body(FileCopyUtils.copyToByteArray(file));
+
 
         } catch (Exception e) {
            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

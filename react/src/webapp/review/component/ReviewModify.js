@@ -49,8 +49,8 @@ const ReviewModify = () => {
         formData.append("writerId", obj.writerId)
         
         if(modifyResult){
-            alert("리뷰 수정 완료!")
             await dispatch(getReviewModify(formData))
+            alert("리뷰 수정 완료!")
             setFiles(null)
             history.push(`/reviews/review_read/${reviewObj.reviewId}`)
         }

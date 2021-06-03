@@ -3,7 +3,7 @@ import Icofont from 'react-icofont';
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { getReviewList, getReviewRead } from 'webapp/review/reducer/review.reducer';
-import {ReviewSearch} from '..';
+import {ReviewPageList, ReviewSearch} from '..';
 
 
 const ReviewList = () => {
@@ -52,9 +52,9 @@ const ReviewList = () => {
                                     <span className="writerName">
                                         {review.writerName}
                                     </span>
-                                   <span className="pull-right">
+                                   <p className="pull-right">
                                        {review.regDate}
-                                   </span>
+                                   </p>
                                 </div>
                                 <div className="post-message">
                                   {review.title}
@@ -71,6 +71,7 @@ const ReviewList = () => {
              })}
     </div>
     <br/>
+    <ReviewPageList></ReviewPageList>
     </section>
 </>
 

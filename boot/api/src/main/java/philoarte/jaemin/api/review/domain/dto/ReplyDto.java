@@ -27,7 +27,8 @@ public class ReplyDto {
 
     private Long reviewId;
 
-    private LocalDateTime regDateTime, modDateTime;
+    private LocalDateTime regDate;
+    private LocalDateTime modDate;
 
     //댓글 파일 업로드
     private String uuid;

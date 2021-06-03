@@ -35,7 +35,7 @@ public class ReplyServiceImpl implements ReplyService {
 
     @Override
     public List<ReplyDto> getList(Long reviewId) {
-        List<Reply> result = repository.getRepliesByReviewOrderByRegDateAsc(Review.builder().reviewId(reviewId).build());
+        List<Reply> result = repository.getRepliesByReviewOrderByRegDate(Review.builder().reviewId(reviewId).build());
         return result.stream().map(reply -> entityToDto(reply)).collect(Collectors.toList());
     }
 
@@ -43,8 +43,10 @@ public class ReplyServiceImpl implements ReplyService {
     public void modify(ReplyDto replyDto) {
         Reply reply = dtoToEntity(replyDto);
         repository.save(reply);
-        repository.deleteById(replyDto.getRno());
-        repository.save(reply);
+//        repository.deleteById(replyDto.getRno());
+////        repository.findById(replyDto.getRno());
+//        repository.save(reply);
+//        repository.findById(replyDto.getRno());
     }
 
 

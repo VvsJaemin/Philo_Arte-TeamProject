@@ -4,9 +4,10 @@ import { getReplyDelete, getReplyList, getReplyModify} from '../reducer/reply.re
 import {Link, useParams} from 'react-router-dom';
 import { currentReview, getReviewRead } from 'webapp/review/reducer/review.reducer';
 
-import { ReplyModify } from '..';
+import { ReplyModify, ReplyRegister } from '..';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import { ReviewRegister } from 'webapp/review';
 
   
   const getModalStyle=()=> {
@@ -38,7 +39,8 @@ import Modal from '@material-ui/core/Modal';
       border: '2px solid #000',
       boxShadow: theme.shadows[5],
       overflow: 'hidden',
-    
+      display:"flex"
+  
     },
   }));
 
@@ -104,12 +106,29 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
         setOpen(true);
       };
 
-      
+
+    const getOriginImg = (str) => {
+
+        const idx = str.lastIndexOf("_")
+
+        const begin = str.substring(0, idx-1)
+
+        const end = str.substring(idx)
+
+        console.log(begin, end)
+
+        return begin+end
+
+    }  
+
     const handleOpen2 = (e) => { 
-      
-      setModalImage(e.target.src)
+
+      const srcTarget = getOriginImg(e.target.src)
+      setModalImage(srcTarget)
+      console.log(e.target.src)
       console.dir(imgRef.current)
       setOpen2(true)
+      
     };
 
     const handleClose =()=>{
@@ -218,17 +237,15 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
       <div className="display-flex">
         <button>
           <div key={modalImage.uuid}>
-            <img onClick={(e)=>handleOpen2(e)} src={modalImage}/>
+            <img src={modalImage}/>
             </div>
               </button>
     </div>
     </div>
     )
 
-
     return (
         <>  
-     
           <h3 className="text-center">{reviewObj.replyCount}개의 댓글</h3>
        
        <Modal
@@ -254,21 +271,15 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                           <div className="comment-content">
                             <div className="post-body">
                               <div className="comment-header">
+                              <button className="btn btn-success pull-right" onClick={()=>deletes(reply.rno)}>삭제</button><button className="btn btn-success pull-right" style={{marginRight:"10px"}} onClick={() =>handleOpen(reply)}>수정</button>
                                 <span className="author">
-                                   {reply.replyer}
-                                </span>
-                                <span className="pull-right">
-                                  {reply.regDateTime}
+                               <h6>{reply.replyer} {reply.regDate}</h6>
                                 </span>
                               </div>
                               <div className="post-message">
-                                <p>{reply.text}</p>
+                                <h5 className>{reply.text}</h5>
                               </div>
                               <div className="comment-footer">
-                                <span className="reply">
-                                  <button className="btn btn-success pull-right" onClick={()=>deletes(reply.rno)}>삭제</button>
-                                  <button className="btn btn-success pull-right" style={{marginRight:"10px"}} onClick={() =>handleOpen(reply)}>수정</button>
-                                </span>
                                 <div className="display-flex">
                             <>
                         {reply&&reply.imgName ?
@@ -278,7 +289,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                                     </button>
                             :<></>}
                                </>
-                        </div>   
+                        </div> 
                               </div>
                             </div>
                           </div>
