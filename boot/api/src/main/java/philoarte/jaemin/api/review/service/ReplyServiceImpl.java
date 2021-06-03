@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class ReplyServiceImpl implements ReplyService {
 
     private final ReplyRepository repository;
-//    private final  reviewFileRepository;
+
 
     @Transactional
     @Override
@@ -35,7 +35,7 @@ public class ReplyServiceImpl implements ReplyService {
 
     @Override
     public List<ReplyDto> getList(Long reviewId) {
-        List<Reply> result = repository.getRepliesByReviewOrderByRegDateDesc(Review.builder().reviewId(reviewId).build());
+        List<Reply> result = repository.getRepliesByReviewOrderByRegDateAsc(Review.builder().reviewId(reviewId).build());
         return result.stream().map(reply -> entityToDto(reply)).collect(Collectors.toList());
     }
 

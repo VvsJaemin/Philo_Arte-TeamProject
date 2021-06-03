@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 const ReplyModify=({open, handleClose})=>{
  
     return(<>
-    <Dialog open={open} onClose={handleClose}></Dialog>
+    {/* <Dialog open={open} onClose={handleClose}></Dialog> */}
     
     </>)
 }

@@ -1,3 +1,4 @@
+  
 import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router'
@@ -28,6 +29,7 @@ const ReplyRegister=()=>{
     const dispatch = useDispatch()
 
     const history = useHistory()
+
     const fetchRead =()=>{
       dispatch(getReviewRead(reviewObj.reviewId))
   }
@@ -36,15 +38,14 @@ const ReplyRegister=()=>{
       e.stopPropagation()
       const formData = new FormData()
       for(let i = 0; i<files.length; i++){
-        formData.append("replyFiles["+i+"]", files[i])
-      }
+        formData.append("replyFiles["+i+"]", files[i]) 
+      } 
       formData.append("path", input.path)
       formData.append("imgName", input.imgName)
       formData.append("uuid", input.uuid)
       formData.append("text", input.text)
       formData.append("replyer", input.replyer)
       formData.append("reviewId", input.reviewId)
-
       await dispatch(getReplyRegister(formData))
       history.replace(`/reviews/review_read/${input.reviewId}`)
     }

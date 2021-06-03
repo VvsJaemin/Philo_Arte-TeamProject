@@ -1,22 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { currentReply, getReplyDelete, getReplyList, getReplyModify, getReplyRead } from '../reducer/reply.reducer'
-import {Link, useHistory, useParams} from 'react-router-dom';
-import { currentReview, getReviewModify, getReviewRead } from 'webapp/review/reducer/review.reducer';
+import { getReplyDelete, getReplyList, getReplyModify} from '../reducer/reply.reducer'
+import {Link, useParams} from 'react-router-dom';
+import { currentReview, getReviewRead } from 'webapp/review/reducer/review.reducer';
 
 import { ReplyModify } from '..';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import ReplyRegister from './ReplyRegister';
 
-const rand=()=> {
-    return Math.round(Math.random() * 50) - 10;
-  }
   
   const getModalStyle=()=> {
     const top = 50
     const left =  50
-    
   
     return {
       top: `${top}%`,
@@ -28,22 +23,40 @@ const rand=()=> {
   const useStyles = makeStyles((theme) => ({
     paper: {
       position: 'absolute',
-      width: 500,
-      height: 500,
+      width: "auto",
+      height: "auto",
       backgroundColor: theme.palette.background.paper,
       border: '2px solid #000',
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
     },
+    paper2: {
+      position: 'absolute',
+      width: "auto",
+      height: "auto",
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      overflow: 'hidden',
+    
+    },
   }));
+
 
 const ReplyList=({reviewId, changeFlag, flag})=>{
 
   const classes = useStyles();
 
+  const imgRef = useRef()
+
+  console.log(imgRef)
+
   const [modalStyle] = React.useState(getModalStyle); 
 
+  const [modalImage, setModalImage] = useState('')
+
   const [open, setOpen] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
 
   const [files, setFiles] = useState([])
 
@@ -58,7 +71,8 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
         return state.replies.reply;
     })
     
-
+    console.log("=======", replies)
+    
     const fetchRead =()=>{
       dispatch(getReviewRead(params.reviewId))
   }
@@ -90,8 +104,20 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
         setOpen(true);
       };
 
-      const handleClose = () => {
-        setOpen(false);
+      
+    const handleOpen2 = (e) => { 
+      
+      setModalImage(e.target.src)
+      console.dir(imgRef.current)
+      setOpen2(true)
+    };
+
+    const handleClose =()=>{
+      setOpen(false)
+    }
+
+      const handleClose2 = () => {
+        setOpen2(false);
       };
 
       const handleChangeText =(e)=>{
@@ -99,7 +125,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
         const renew = {...modalTitle}
         // 새롭게 객체 분해 
         renew.text = e.target.value // text 부분만 
-
+        
         console.log("renew", renew)
 
         setModalTitle(renew)
@@ -158,7 +184,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                       name="text"
                       className="md-textarea"
                       id="text"
-                      rows="7"
+                      rows="5"
                       placeholder="댓글을 수정하세요 *"
                       required=""
                       value={modalTitle.text}
@@ -167,15 +193,10 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                       data-error="Please, Leave us a message"
                     ></textarea>
                     <div className="display-flex">
-                                  {replies?.map(file=>{
-                                    return(
-                                      <div key={file.uuid}>
-                                        <img src={"http://localhost:8080/review_files/display?imgName="+file.uuid+"s_"+file.imgName}/>
-                                      
-                                        </div>
-                                    )
-                                  })}
-                                </div>
+                      {modalTitle&&modalTitle.imgName ?
+                         <div key={modalTitle.uuid}>
+                         <img src={"http://localhost:8080/review_files/display?imgName="+modalTitle.uuid+"s_"+modalTitle.imgName}/></div> : <></>
+                    }</div>
                                 
               <input
                   style={{color:"black"}}
@@ -192,12 +213,24 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
         
     );
 
+    const replyFileBody=(
+      <div style={modalStyle} className={classes.paper2} >
+      <div className="display-flex">
+        <button>
+          <div key={modalImage.uuid}>
+            <img onClick={(e)=>handleOpen2(e)} src={modalImage}/>
+            </div>
+              </button>
+    </div>
+    </div>
+    )
+
 
     return (
         <>  
-        <h3 className="text-center">{reviewObj.replyCount}개의 댓글</h3>
-        < Link to = "/replies/reply_register"> <button className="btn btn-success pull-right">댓글등록</button></Link><br></br><br></br>
-        
+     
+          <h3 className="text-center">{reviewObj.replyCount}개의 댓글</h3>
+       
        <Modal
         open={open}
         onClose={handleClose}
@@ -205,11 +238,18 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
         aria-describedby="simple-modal-description">
         {replyBody}
       </Modal>
+      <Modal
+        open={open2}
+        onClose={handleClose2}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description">
+       {replyFileBody}
+      </Modal>
           <br></br>
              {  replies.length > 0 ?
                  replies.map((reply, rno) =>  {
                     return (
-                      <ul className="comment-box">
+                      <ul className=" container comment-box">
                        <li className="post-comment" key={reply.rno}>
                           <div className="comment-content">
                             <div className="post-body">
@@ -218,7 +258,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                                    {reply.replyer}
                                 </span>
                                 <span className="pull-right">
-                                  {reply.regDate}
+                                  {reply.regDateTime}
                                 </span>
                               </div>
                               <div className="post-message">
@@ -230,21 +270,20 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                                   <button className="btn btn-success pull-right" style={{marginRight:"10px"}} onClick={() =>handleOpen(reply)}>수정</button>
                                 </span>
                                 <div className="display-flex">
-                                  {replies?.map(file=>{
-                                    return(
-                                      
-                                      <div key={file.uuid}>
-                                        <img src={"http://localhost:8080/review_files/display?imgName="+file.uuid+"s_"+file.imgName}/>
-                                        </div>
-                                    )
-                                  })}
-                                </div>
+                            <>
+                        {reply&&reply.imgName ?
+                                    <button>
+                                       <div key={reply.uuid}> <img onClick={(e)=>handleOpen2(e)} src={"http://localhost:8080/review_files/display?imgName="+reply.uuid+"s_"+reply.imgName}/>
+                                      </div>
+                                    </button>
+                            :<></>}
+                               </>
+                        </div>   
                               </div>
                             </div>
                           </div>
                         </li>
                             <ReplyModify open={show} handleClose={()=>handleClose()}></ReplyModify>
-                      
                       </ul>
                     ) 
                 })  

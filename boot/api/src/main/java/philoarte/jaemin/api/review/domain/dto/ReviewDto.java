@@ -9,6 +9,7 @@ import philoarte.jaemin.api.artist.domain.Artist;
 import philoarte.jaemin.api.common.util.ModelMapperUtils;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,7 +33,8 @@ public class ReviewDto {
     private String writerName; // 작성자 이름
 //    private Long artId;
     private int replyCount;
-    private int reviewCount;
+
+    private boolean fileSelect;
 
     private LocalDateTime regDate;
     private LocalDateTime modDate;

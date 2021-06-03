@@ -51,14 +51,14 @@ public class ReviewController {
             String uuid = UUID.randomUUID().toString();
 
             String saveName = uploadPath + File.separator + uuid + "_" + f.getOriginalFilename();
-            String thumbnailSaveName = uploadPath + File.separator + uuid + "s_" + f.getOriginalFilename();
+            String thumbnailSaveName = uploadPath + File.separator + "s_"+ uuid + f.getOriginalFilename();
             log.info(saveName);
             log.info(thumbnailSaveName);
 
             try {
                 FileCopyUtils.copy(f.getInputStream(), new FileOutputStream(saveName, Boolean.parseBoolean(thumbnailSaveName)));
 //                FileCopyUtils.copy(f.getInputStream(), new FileOutputStream(thumbnailSaveName));
-                Thumbnails.of(new File(saveName)).size(100, 100).outputFormat("jpg").toFile(thumbnailSaveName);
+                Thumbnails.of(new File(saveName)).size(600, 600).outputFormat("jpg").toFile(thumbnailSaveName);
 
                 ReviewFileDto fileDto = ReviewFileDto.builder()
                         .uuid(uuid)
@@ -102,6 +102,10 @@ public class ReviewController {
     @PutMapping("/modify/{reviewId}")
     @ApiOperation(value = "하나의 리뷰 수정", notes = "하나의 리뷰를 수정 합니다.")
     public ResponseEntity<Map<String, String>> reviewModify(ReviewDto reviewDto) {
+        log.info("++++++++++++++++++");
+        log.info(reviewDto);
+        log.info("++++++++++++++++++");
+
         ArrayList<MultipartFile> files = reviewDto.getFiles();
 
         files.forEach(f -> {
@@ -111,14 +115,14 @@ public class ReviewController {
 
             String saveName = uploadPath + File.separator + uuid + "_" + f.getOriginalFilename();
 
-            String thumbnailSaveName = uploadPath + File.separator + uuid + "s_" + f.getOriginalFilename();
+            String thumbnailSaveName = uploadPath + File.separator + "s_" + uuid + f.getOriginalFilename();
 
             log.info(saveName);
             log.info(thumbnailSaveName);
 
             try {
                 FileCopyUtils.copy(f.getInputStream(), new FileOutputStream(saveName, Boolean.parseBoolean(thumbnailSaveName)));
-                Thumbnails.of(new File(saveName)).size(100, 100).outputFormat("jpg").toFile(thumbnailSaveName);
+                Thumbnails.of(new File(saveName)).size(1000, 1000).outputFormat("jpg").toFile(thumbnailSaveName);
 
                 ReviewFileDto fileDto = ReviewFileDto.builder()
                         .uuid(uuid)
@@ -148,4 +152,5 @@ public class ReviewController {
 
         return ResponseEntity.ok("delete success!!");
     }
+
 }

@@ -1,25 +1,34 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import {Link, useParams} from 'react-router-dom';
+import Slider from 'react-slick';
 import { ReplyList } from 'webapp/reply';
-import { getReplyDelete } from 'webapp/reply/reducer/reply.reducer';
 import { getReviewRead, getReviewDelete, getReviewList, currentReview  } from '../reducer/review.reducer';
 
-const ReviewRead = ({register}) => {
+const ReviewRead = () => {
+    const settings = {
+        dots: false,
+        infinite: true,
+        centerMode: true,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        centerPadding: "0",
+        className: "blog-grid-slider slick",
+      };
+    const reviewObj = useSelector(state=>{
+        return state.reviews.params
+    })
+    
 
+    const reviewFile = reviewObj.reviewFileDtoList
 
     const params = useParams() // useParams는 해당하는 상태의 pk 값을 가져온다. 
 
     const dispatch = useDispatch()
 
-    const reviewObj = useSelector(state=>{
-        return state.reviews.params
-    })
-
-    const reviewFile = reviewObj.reviewFileDtoList
-
-    console.log(reviewFile)
     const [flag, setFlag] = useState(false)
 
     const changeFlag = () => {
@@ -28,7 +37,7 @@ const ReviewRead = ({register}) => {
 
     const fetchRead =()=>{
         dispatch(getReviewRead(params.reviewId))
-        changeFlag()
+      
     }
 
     useEffect(() => {
@@ -46,46 +55,49 @@ const ReviewRead = ({register}) => {
     }
 
     return (
+    
         <div>
-            <div className ="container">
-                <h3 className ="text-center"> Read Detail</h3>
-                    <div className = "mb-3">      
-                            <label className="form-label"> * NO </label>
-                            <textarea className="form-control"  rows="1" style={{color:"black"}} value={params.reviewId} name="reviewId" readOnly></textarea> 
-                        </div>
-                       <div className = "mb-3">      
-                            <label className="form-label"> * Title </label>
-                            <textarea className="form-control"  rows="5" style={{color:"black"}} value={reviewObj.title} name="title" readOnly></textarea> 
-                        </div>
-                        <div className = "mb-3">      
-                            <label className="form-label"> * Content </label>
-                            <textarea className="form-control"  rows="5" style={{color:"black"}} value={reviewObj.content} name="content" readOnly></textarea> 
-                        </div>
-                        <div className = "mb-3">      
-                            <label  className="form-label"> * writerName </label>
-                            <textarea className="form-control" rows="1" style={{color:"black"}} value={reviewObj.writerName} name="writerName" readOnly></textarea> 
-                        </div>
-                         <div className="display-flex">
+            <div className ="container" >
+            <div className="display-flex" style={{marginTop:"100px"}}>
                             <>
-                        {reviewFile?.map(file=>{
+                        { reviewFile && reviewFile[0] ? reviewFile.map((file,i)=>{
                                 return(
-                                    <div key={file.uuid}> <img src={"http://localhost:8080/review_files/display?imgName="+file.uuid+"_"+file.imgName}/>
+                                    <div key={file.uuid}> <img style={{marginLeft:"30px"}} src={"http://localhost:8080/review_files/display?imgName="+"s_"+file.uuid+file.imgName}/>
                                       </div>
                                 )
-                            })}
+                            }) :<></>}
                                </>
-                        </div> 
-                      
-
-                        <Link to="/reviews/review_list">
-                        <button className="btn btn-primary pull-left">리뷰 목록</button></Link>
-                        <Link to={`/reviews/review_modify/${params.reviewId}`}>
-                        <button className="btn btn-success pull-right" style={{marginLeft:"10px"}}>리뷰수정</button></Link>
-                        <Link to="/reviews/review_list">
-                        <button className="btn btn-primary" style={{marginLeft:"10px"}} onClick={()=> deletes(params.reviewId)}>리뷰 삭제</button></Link>
-                        <ReplyList reviewId={params.reviewId} changeFlag = {changeFlag} flag={flag}></ReplyList>
-                </div> 
+                        </div>            
+            <div className="post-info all-padding-20">
+                <h2>{reviewObj.title}</h2><h3 className="pull-right">{reviewObj.writerName}</h3>
+                <br></br>
+                <blockquote>
+                    <p>
+                    {reviewObj.content}
+                    </p>
+                    <p>{reviewObj.regDate}</p>
+                  </blockquote>
             </div>
+            <div className="post" style={{marginBottom:"100px"}}>
+                <div className="post-tags pull-right" >
+                <Link to={`/reviews/review_modify/${params.reviewId}`}>
+                        <div>Modify</div></Link>
+                </div>
+                <div className="post-tags pull-left">
+                <Link to="/reviews/review_list">
+                        Review List</Link>
+                        <Link to="/reviews/review_list">
+                        <div onClick={()=> deletes(params.reviewId)}>Review Remove</div></Link>
+                </div>
+                <div className="post-tags text-center">
+                < Link className="pull-right" to = "/replies/reply_register">댓글등록</Link>
+                </div>
+                    </div>
+                        </div>
+                        <ReplyList reviewId={params.reviewId} changeFlag = {changeFlag} flag={flag}></ReplyList>
+                            </div> 
+                            
+            
 
     );
 }

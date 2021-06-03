@@ -7,6 +7,7 @@ import philoarte.jaemin.api.artist.domain.Artist;
 import philoarte.jaemin.api.review.domain.Review;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ public class ReplyDto {
 
     private Long reviewId;
 
-    private LocalDateTime regDate, modDate;
+    private LocalDateTime regDateTime, modDateTime;
 
     //댓글 파일 업로드
     private String uuid;

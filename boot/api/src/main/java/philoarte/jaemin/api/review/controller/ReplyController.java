@@ -51,17 +51,19 @@ public class ReplyController {
             String thumbnailSaveName = uploadPath + File.separator + uuid + "s_" + file.getOriginalFilename();
             try {
                 FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(saveName, Boolean.parseBoolean(thumbnailSaveName)));
-                Thumbnails.of(new File(saveName)).size(100, 100).outputFormat("jpg").toFile(thumbnailSaveName);
+                Thumbnails.of(new File(saveName)).size(250,250).outputFormat("jpg").toFile(thumbnailSaveName);
                 replyDto.setImgName(fileName);
                 replyDto.setUuid(uuid);
                 replyDto.setPath(uploadPath);
                 replyDto.setReviewId(replyDto.getReviewId());
+                replyDto.setRno(replyDto.getRno());
+                replyDto.setText(replyDto.getText());
                 replyDto.setReplyFiles(replyDto.getReplyFiles());
-                service.save(replyDto);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+        service.save(replyDto);
         return ResponseEntity.ok("success");
     }
 
@@ -86,19 +88,20 @@ public class ReplyController {
             String thumbnailSaveName = uploadPath + File.separator + uuid + "s_" + file.getOriginalFilename();
             try {
                 FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(saveName, Boolean.parseBoolean(thumbnailSaveName)));
-                Thumbnails.of(new File(saveName)).size(100, 100).outputFormat("jpg").toFile(thumbnailSaveName);
+                Thumbnails.of(new File(saveName)).size(250, 250).outputFormat("jpg").toFile(thumbnailSaveName);
                 replyDto.setImgName(fileName);
                 replyDto.setUuid(uuid);
                 replyDto.setPath(uploadPath);
                 replyDto.setReviewId(replyDto.getReviewId());
+                replyDto.setRno(replyDto.getRno());
+                replyDto.setText(replyDto.getText());
                 replyDto.setReplyFiles(replyDto.getReplyFiles());
                 replyDto.setRno(replyDto.getRno());
-                service.modify(replyDto);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
+        service.modify(replyDto);
         return ResponseEntity.ok("Success Modify");
     }
 

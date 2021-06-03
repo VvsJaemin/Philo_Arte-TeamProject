@@ -1,6 +1,5 @@
   
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
-import { useHistory } from 'react-router'
 import {ReplyService} from 'webapp/reply/index'
 
 export const getReplyList = createAsyncThunk("replies/list/reviewId",

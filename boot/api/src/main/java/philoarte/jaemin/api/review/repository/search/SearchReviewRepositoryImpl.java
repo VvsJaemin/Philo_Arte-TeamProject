@@ -19,6 +19,7 @@ import philoarte.jaemin.api.review.domain.QReview;
 import philoarte.jaemin.api.review.domain.QReviewFile;
 import philoarte.jaemin.api.review.domain.Review;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,6 +54,8 @@ public class SearchReviewRepositoryImpl extends QuerydslRepositorySupport implem
 
         if (type != null) {
             String[] typeArr = type.split("");
+
+            log.info(Arrays.toString(typeArr));
 
             BooleanBuilder conditionBuilder = new BooleanBuilder();
 

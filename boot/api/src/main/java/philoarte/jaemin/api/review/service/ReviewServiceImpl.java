@@ -32,6 +32,7 @@ public class ReviewServiceImpl implements ReviewService {
     private final ReviewFileRepository reviewFileRepository;
     private final ReplyRepository replyRepository;
 
+
     @Transactional
     @Override
     public Long save(ReviewDto reviewDto) {
@@ -53,6 +54,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override // p.444 질문
     public ReviewDto get(Long reviewId) {
+
         List<Object[]> result = repository.getRevieWithReply(reviewId);
         Review review = (Review) result.get(0)[0];
         Artist artist = (Artist) result.get(0)[1];
@@ -82,8 +84,9 @@ public class ReviewServiceImpl implements ReviewService {
         repository.save(review);
 
         // 기존 파일 삭제
-
-        reviewFileRepository.reviewFileDelete(review.getReviewId());
+        if(reviewDto.isFileSelect()){
+            reviewFileRepository.reviewFileDelete(review.getReviewId());
+        }
 
         if(entityMap.get("fileList") != null && ((List<ReviewFile>)entityMap.get("fileList")).size() > 0){
 
@@ -111,7 +114,6 @@ public class ReviewServiceImpl implements ReviewService {
         log.info(pageRequestDto);
 
 //        Pageable pageable = pageRequestDto.getPage(Sort.by("reviewId").descending());
-
         Function<Object[], ReviewDto> fn = (arr -> entityToDto(
                 (Review) arr[0],
                 (Artist) arr[1],

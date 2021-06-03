@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-const { useDispatch, useSelector } = require("react-redux");
+import React, { useRef } from 'react';
+import Icofont from 'react-icofont';
+import { useDispatch } from 'react-redux';
+
 const { getReviewList, changeSearch } = require("../reducer/review.reducer");
 
 
 const ReviewSearch =()=>{
-    const history = useHistory()
     const refType = useRef()
     const refKeyword = useRef()
     const dispatch = useDispatch()
@@ -48,12 +48,13 @@ const ReviewSearch =()=>{
                         <span className="h-100 w-px-50 pos-abs-tl d-flex align-items-center justify-content-center font-size-6">
                             <i className="icon icon-zoom-2 text-primary font-weight-bold"></i>
                         </span>
+
                           <button
                         onClick={() => clickSearch()}
                         className="btn btn-primary line-height-reset h-100 btn-submit w-100 text-uppercase pull-right">
-                        Search
+                        검색<Icofont icon="icofont-search-2"/>
                     </button>
-                    <button className="btn btn-success pull-left" style={{marginLeft:"0px"}} onClick={clickList}>리스트보기</button>
+                    <button className="btn btn-success pull-left" style={{marginLeft:"0px"}} onClick={clickList}>새로고침<Icofont icon="icofont-refresh"/></button>
                     </div>
                 </div>
             </div>

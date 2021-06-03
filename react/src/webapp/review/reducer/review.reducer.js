@@ -1,5 +1,4 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
-import { useHistory } from 'react-router'
 import {ReviewService} from 'webapp/review/index'
 
 export const getReviewList = createAsyncThunk("reviews/list",
@@ -68,7 +67,6 @@ async(reviewId)=>{
      reducers : {
 
         changeSearch: (state, action) => {
-
             state.type = action.payload.type
             state.keyword = action.payload.keyword
         }

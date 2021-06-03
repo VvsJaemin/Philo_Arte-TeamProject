@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
+import Icofont from 'react-icofont';
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { getReviewList, getReviewRead } from 'webapp/review/reducer/review.reducer';
-import { ReviewRegister, ReviewSearch } from '..';
+import {ReviewSearch} from '..';
+
 
 const ReviewList = () => {
     const pageResult= useSelector(state=>state.reviews.pageResult)
@@ -31,11 +33,12 @@ const ReviewList = () => {
 
     return (
         <>
+        <section className="white-bg">
         <h1>{msg}</h1>
-        <h3 className="text-center" style={{marginTop:"100px"}}>Review 목록</h3>
+        <h2 className="text-center"style={{marginBottom:"50px"}}>Community</h2>
          <div className="container">
          < Link to = "/" >
-         <button className="btn btn-success">홈으로</button></Link>
+         <button className="btn btn-success">집<Icofont icon="icofont-home" /></button></Link>
          < Link to = "/reviews/review_register"> 
         <button className="btn btn-success pull-right">리뷰 등록</button></Link><br></br><br></br>
         <ReviewSearch></ReviewSearch>
@@ -55,13 +58,12 @@ const ReviewList = () => {
                                 </div>
                                 <div className="post-message">
                                   {review.title}
-                                </div>
+                                </div>  
                                 <div className="comment-footer">
                                 </div>
                             </div>
                                     < Link to ={`/reviews/review_read/${review.reviewId}`}> 
                                   <button onClick={()=>selectContent(review.reviewId)} className="btn btn-success" style={{marginLeft : "970px"}}>자세히 보기</button></Link>
-                                    
                         </div>
                     </li>
                 </ul>
@@ -69,6 +71,7 @@ const ReviewList = () => {
              })}
     </div>
     <br/>
+    </section>
 </>
 
     )

@@ -1,14 +1,13 @@
-import React, { useState, useCallback, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Link, useHistory} from 'react-router-dom';
-import { ReviewList } from '..';
-import { getReviewRegister,getReviewList } from '../reducer/review.reducer';
+import { getReviewRead, getReviewRegister } from '../reducer/review.reducer';
 import { useDispatch, useSelector } from 'react-redux';
-import UploadInput from 'webapp/testupload/components/fileupload/UploadInput';
 const ReviewRegister = () => {
 
     const reviews = useSelector(state =>{
         return state.reviews.pageResult.dtoList;
     })
+    
     const [input, setInput] = useState({
         title : '',
         content : '',
@@ -23,24 +22,20 @@ const ReviewRegister = () => {
     const register = async(e)=>{
       e.preventDefault()
       e.stopPropagation()
-      console.log(files)
-      console.log(input)
-
+      // console.log(files)
+      // console.log(input)
       const formData = new FormData();
 
-      for(let i=0; i<files.length; i++){
-        formData.append("files["+i+"]", files[i])
-      }
-
-      formData.append("title", input.title)
-      formData.append("content", input.content)
-      formData.append("writerId", input.writerId)
-      formData.append("writerName", input.writerName)
-      
-      await dispatch(getReviewRegister(formData)) 
-
-      history.push('/reviews/review_list')
-
+        for(let i=0; i<files.length; i++){
+          formData.append("files["+i+"]", files[i])
+        }
+        formData.append("title", input.title)
+        formData.append("content", input.content)
+        formData.append("writerId", input.writerId)
+        formData.append("writerName", input.writerName)
+          await dispatch(getReviewRegister(formData)) 
+          history.push('/reviews/review_list')
+        
     }
     const history = useHistory()
  
@@ -59,8 +54,9 @@ const ReviewRegister = () => {
       setFiles(fileObj.files)
 
     }
+
     return (
-        <div className = "container">
+        <div  className = "container">
         <div id="respond" className="comment-respond">
             <h1 id="reply-title" className="comment-reply-title text-center">
               리뷰를 작성해주세요

@@ -11,6 +11,7 @@ import philoarte.jaemin.api.common.domain.BaseEntity;
 import philoarte.jaemin.api.common.util.ModelMapperUtils;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -31,7 +32,6 @@ public class Review extends BaseEntity {
     private String title;
 
     private String content;
-
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "artist_id")

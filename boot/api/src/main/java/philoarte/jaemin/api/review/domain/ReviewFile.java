@@ -1,5 +1,6 @@
 package philoarte.jaemin.api.review.domain;
 
+import com.sun.istack.Nullable;
 import lombok.*;
 import org.springframework.stereotype.Component;
 import philoarte.jaemin.api.common.domain.BaseEntity;
