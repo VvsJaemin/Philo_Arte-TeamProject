@@ -8,6 +8,7 @@ import { ReplyModify, ReplyRegister } from '..';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { ReviewRegister } from 'webapp/review';
+import Icofont from 'react-icofont';
 
   
   const getModalStyle=()=> {
@@ -115,8 +116,6 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
 
         const end = str.substring(idx)
 
-        console.log(begin, end)
-
         return begin+end
 
     }  
@@ -125,7 +124,6 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
 
       const srcTarget = getOriginImg(e.target.src)
       setModalImage(srcTarget)
-      console.log(e.target.src)
       console.dir(imgRef.current)
       setOpen2(true)
       
@@ -182,7 +180,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
       <div style={modalStyle} className={classes.paper} >
         <h3 className="text-center">댓글을 수정하세요</h3><br></br>
                   <div className="row-form row">
-                  <div className="col-form col-md-3">
+                  <div className="col-form col-md-5">
                       <div className="form-group">
                         <input
                           type="text"
@@ -201,21 +199,17 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                   <div className="form-group">
                     <textarea
                       name="text"
-                      className="md-textarea"
-                      id="text"
                       rows="5"
                       placeholder="댓글을 수정하세요 *"
-                      required=""
                       value={modalTitle.text}
                       style={{color:"black"}}
                       onChange={(e)=>handleChangeText(e)}
-                      data-error="Please, Leave us a message"
                     ></textarea>
-                    <div className="display-flex">
+                    <div style={{textAlign:"center"}}>
                       {modalTitle&&modalTitle.imgName ?
                          <div key={modalTitle.uuid}>
                          <img src={"http://localhost:8080/review_files/display?imgName="+modalTitle.uuid+"s_"+modalTitle.imgName}/></div> : <></>
-                    }</div>
+                    }</div><br></br>
                                 
               <input
                   style={{color:"black"}}
@@ -227,9 +221,11 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                   onChange={(e) =>handleChangeFile(e)}
                 ></input>
                   </div>
-                  <button onClick={fileModify} className="btn btn-success pull-right" >수정하기</button>
+                  <div className="btn btn-success btn-md btn-default remove-margin pull-right">
+                  <Link onClick={fileModify}>Modify</Link>
+                  </div>
               </div>
-        
+              
     );
 
     const replyFileBody=(
@@ -246,7 +242,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
 
     return (
         <>  
-          <h3 className="text-center">{reviewObj.replyCount}개의 댓글</h3>
+          <h3 className="comment-reply-title mt-30 text-center">{reviewObj.replyCount}개의 댓글</h3>
        
        <Modal
         open={open}
@@ -271,15 +267,24 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                           <div className="comment-content">
                             <div className="post-body">
                               <div className="comment-header">
-                              <button className="btn btn-success pull-right" onClick={()=>deletes(reply.rno)}>삭제</button><button className="btn btn-success pull-right" style={{marginRight:"10px"}} onClick={() =>handleOpen(reply)}>수정</button>
-                                <span className="author">
-                               <h6>{reply.replyer} {reply.regDate}</h6>
-                                </span>
+                              <div className="post-tags pull-left">
+                                <Link onClick={()=>deletes(reply.rno)}>Remove</Link>
+                                </div>
+                                <div className="post-tags" style={{marginLeft:"1020px"}}>
+                                <Link onClick={() =>handleOpen(reply)}>Modify</Link>
+                                </div>
                               </div>
                               <div className="post-message">
-                                <h5 className>{reply.text}</h5>
+                               <p className="line-height-26 font-15px">
+                                 <div className="font-700 mb-0">
+                               <h5><Icofont icon="icofont-user-alt-5" className="font-20px mt-20"/>&nbsp;&nbsp;{reply.replyer}</h5>
+                                </div> 
+                                 <Icofont icon="quote-left" className="font-20px default-color mt-20"/> &nbsp;
+                            <span>{reply.text}</span>
+                          </p>
                               </div>
-                              <div className="comment-footer">
+                              <b className="comment-footer">
+                              <h5>{reply.regDate}</h5>
                                 <div className="display-flex">
                             <>
                         {reply&&reply.imgName ?
@@ -290,7 +295,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                             :<></>}
                                </>
                         </div> 
-                              </div>
+                              </b>
                             </div>
                           </div>
                         </li>
@@ -299,7 +304,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                     ) 
                 })  
                 
-           : <div className="text-center">첫 번째 댓글을 입력해주세요</div> }
+           : <div className="text-center"><Icofont icon="icofont-comment" className="font-20px sky-color mt-20"/>&nbsp;첫 번째 댓글을 입력해주세요</div> }
 </>
     )}
 

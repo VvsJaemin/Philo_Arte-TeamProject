@@ -50,7 +50,8 @@ const ReviewRead = () => {
             <section className="white-bg">
             <div className ="container" >
                 <h1 className="text-center" style={{marginTop:"10px"}}>{reviewObj.writerName}님의 Review</h1>
-            <div className="display-flex" style={{marginTop:"100px" , marginBottom:"50px" , textAlign:"center"}}>
+                <hr className="center_line default-bg"/>
+            <div className="display" style={{marginTop:"100px" , marginBottom:"50px" , textAlign:"center"}}>
                             <>
                         { reviewFile && reviewFile[0] ? reviewFile.map((file,i)=>{
                                 return(

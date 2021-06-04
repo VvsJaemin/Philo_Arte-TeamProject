@@ -17,6 +17,11 @@ const ReviewList = () => {
 
         return state.reviews.pageResult.dtoList; 
     })
+    const reviewObj = useSelector(state=>{
+        return state.reviews.params
+    })
+    
+    const reviewFile = reviewObj.reviewFileDtoList
 
     const msg = useSelector(state => {
         return state.reviews.msg
@@ -34,13 +39,47 @@ const ReviewList = () => {
     return (
         <>
         <section className="white-bg">
+            <div className="col-md-12">
+        <div className="section-title text-center">
+        <h1>다양한 리뷰를 보세요 </h1>
+                       </div>    </div> <hr className="center_line default-bg"/>
+            {reviews.map((review, reviewId)=>{
+                return(
+                    <div className="row" style={{}}>
+                    <div className="col-md-12">
+                    <div className="container" >
+                   <div className="row mt-10">
+                    <div className="col-md-4 pricing-table col-sm-4">
+                        <div className="pricing-box ">
+                            <h3 className="dark-color mb-0"style={{marginBottom:"50px"}}>{review.title}</h3>
+                            <h5 className="dark-color mb-0">By&nbsp;{review.writerName}</h5>
+                            <h5 className="dark-color" style={{marginTop:"50px"}}>{review.regDate}</h5>
+                        </div><br></br>
+                        <div className="pricing-box-bottom">
+                            <Link to ={`/reviews/review_read/${review.reviewId}`} className="btn btn-lg btn-square full-width btn-color">더 보기</Link>
+                        </div>
+                    </div>
+                      </div>
+                    </div>
+                    </div>
+                        </div>
+
+                )
+            })}
+
+            
+
+
+
         <h1>{msg}</h1>
         <h2 className="text-center"style={{marginBottom:"50px"}}>Community</h2>
          <div className="container">
-         < Link to = "/" >
-         <button className="btn btn-success">집<Icofont icon="icofont-home" /></button></Link>
-         < Link to = "/reviews/review_register"> 
-        <button className="btn btn-success pull-right">리뷰 등록</button></Link><br></br><br></br>
+             <div className="post-tags pull-left">
+             < Link to = "/" ><Icofont icon="icofont-home"/>&nbsp;Home</ Link>
+             </div>
+             <div className="post-tags pull-right">
+             < Link to = "/reviews/review_register">Register</ Link>
+             </div><br></br>
         <ReviewSearch></ReviewSearch>
              {reviews.map((review, reviewId)=>{
                  return(
@@ -62,8 +101,9 @@ const ReviewList = () => {
                                 <div className="comment-footer">
                                 </div>
                             </div>
-                                    < Link to ={`/reviews/review_read/${review.reviewId}`}> 
-                                  <button onClick={()=>selectContent(review.reviewId)} className="btn btn-success" style={{marginLeft : "970px"}}>자세히 보기</button></Link>
+                            <div className="post-tags" style={{marginLeft : "990px"}}>
+                            < Link to ={`/reviews/review_read/${review.reviewId}`}><div>Read</div> </ Link>
+                            </div>
                         </div>
                     </li>
                 </ul>

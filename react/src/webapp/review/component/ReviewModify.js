@@ -71,56 +71,68 @@ const ReviewModify = () => {
         setFiles(fileObj.files)
         setFileSelect(true)
     }
+    
 
     return (
-        <div className="container" >
-         < h2 className="text-center"  style={{marginTop:"50px", marginBottom:"50px"}}>Review Modify</h2>
-         <div style={{marginBottom:"50px"}} >
-              <button className="btn btn-success pull-right" onClick={fileModify}>수정하기</button>
-        < Link to = {`/reviews/review_read/${reviewObj.reviewId}`} > 
-        <button className="btn btn-success" >뒤로가기</button> </Link>
-              </div>
-            <div className="row-form row">
-                <div className="col-form col-md-3">
-                    <div className="form-group">
-                    <label> * writerName </label>
-                    <textarea style={{color:"black"}} value={reviewObj.writerName} name="writerName" readOnly></textarea> 
-                    </div>
-                </div>
-            </div>  
-            <div className="form-group">
+        <section className="white-bg">
+        <div className="container" style={{marginTop:"-100px"}}>
+        <div id="respond" className="comment-respond">
+        <h1 className="section-title text-center" >Review Modify</h1>
+
+        <div className="row-form row" >
+            <div className="col-form col-md-2" style={{marginBottom:"-60px"}}>
+            <label> * writerName </label>
+            <textarea style={{color:"black"}} value={reviewObj.writerName} name="writerName" readOnly></textarea> 
+            </div>
+        </div>
+        </div>
+        
+        <div className="row-form row">
+            <div className="col-form col-md-5">
             <label> * Title </label>
-              <textarea name="title" style={{color:"black"}} className="md-textarea" id="title" rows="2"
-                  placeholder="Your title *"
-                  required=""
+            <textarea name="title" style={{color:"black" ,marginBottom:"30px"}} className="md-textarea" id="title" rows="2"
+                  placeholder="제목을 수정하세요"
                   value={title}
                   onChange={(e) => handleChangeTitle(e)}
-                  data-error="Please, Leave us a message"
                 ></textarea>
-                  <label> * Content </label>
-                <textarea
+            </div>
+        </div>
+
+        <div className="row-form row">
+            <div className="col-form col-md-7">
+            <label> * Content </label>
+            <textarea
                   name="content"
-                  className="md-textarea"
-                  style={{color:"black"}}
-                  id="content"
-                  rows="3"
-                  placeholder="Your contents *"
-                  required=""
+                  style={{color:"black", marginBottom:"30px"}}
+                  rows="5"
+                  placeholder="내용을 수정하세요 *"
                   value={content}
                   onChange={(e) => handleChangeContent(e)}
-                  data-error="Please, Leave us a message"
                 ></textarea>
-                   <input
+            </div>
+        </div>
+
+        <div className="row-form row">
+            <div className="col-form col-md-7">
+            <input
                    style={{color:"black"}}
                   type="file"
                   name="file"
-                  id="reviewFileDtoList"
-                  className="md-textarea"
                   rows="1"
                   multiple={true}
                   onChange={(e) =>handleChangeFile(e)}
                 ></input>
-                <div className="display-flex" style={{marginBottom:"50px"}}>
+            </div>
+        </div>
+        
+        <div style={{marginTop:"50px"}}>
+            
+        <button className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={fileModify} >Modify</button>
+        < Link to = {`/reviews/review_read/${reviewObj.reviewId}`} > 
+        <button className="btn btn-color btn-md btn-default remove-margin" >Cancel</button> </Link>
+        </div>
+
+        <div className="display-flex" style={{marginTop:"50px"}}>
                             <>
                         { reviewFile && reviewFile[0] ? reviewFile?.map((file,i)=>{
                                 return(
@@ -130,8 +142,8 @@ const ReviewModify = () => {
                             }) :<></>}
                                </>
                         </div>  
-              </div>
-            </div>   
+        </div>  
+            </section>
     )
 }
 

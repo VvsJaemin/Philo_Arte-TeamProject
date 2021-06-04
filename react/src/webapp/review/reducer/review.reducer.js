@@ -69,7 +69,19 @@ async(reviewId)=>{
         changeSearch: (state, action) => {
             state.type = action.payload.type
             state.keyword = action.payload.keyword
+        },
+
+        delFileList :(state, {payload})=>{
+            const idx = state.params.reviewFileDtoList.findIndex((file)=>{
+                console.log("................" + file.uuid, payload.uuid)
+                return file.uuid === payload.uuid 
+            })
+            console.log("payload", payload)
+            console.log("findFile: ", idx)
+
+            state.params.reviewFileDtoList.splice(idx,1)
         }
+        
 
      },
      extraReducers : (builder)=>{
@@ -101,5 +113,5 @@ async(reviewId)=>{
 const{actions, reducer} =reviewSlice
 
 export const currentReview = state => state.reviews.params  // 현재 review state
-export const {changeSearch}= reviewSlice.actions
+export const {changeSearch, delFileList}= actions
 export default reducer
