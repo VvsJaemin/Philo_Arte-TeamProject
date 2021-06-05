@@ -3,11 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getReplyDelete, getReplyList, getReplyModify} from '../reducer/reply.reducer'
 import {Link, useParams} from 'react-router-dom';
 import { currentReview, getReviewRead } from 'webapp/review/reducer/review.reducer';
-
 import { ReplyModify, ReplyRegister } from '..';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { ReviewRegister } from 'webapp/review';
 import Icofont from 'react-icofont';
 
   
@@ -25,7 +23,7 @@ import Icofont from 'react-icofont';
   const useStyles = makeStyles((theme) => ({
     paper: {
       position: 'absolute',
-      width: "auto",
+      width: "70vh",
       height: "auto",
       backgroundColor: theme.palette.background.paper,
       border: '2px solid #000',
@@ -41,7 +39,6 @@ import Icofont from 'react-icofont';
       boxShadow: theme.shadows[5],
       overflow: 'hidden',
       display:"flex"
-  
     },
   }));
 
@@ -50,22 +47,20 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
 
   const classes = useStyles();
 
-  const imgRef = useRef()
-
-  console.log(imgRef)
-
   const [modalStyle] = React.useState(getModalStyle); 
-
-  const [modalImage, setModalImage] = useState('')
 
   const [open, setOpen] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
+
+  const [modalImage, setModalImage] = useState('')
 
   const [files, setFiles] = useState([])
 
     const dispatch = useDispatch()  
 
     const params = useParams()
+
+    const imgRef = useRef()
 
     const reviewObj = useSelector(currentReview)
 
@@ -74,13 +69,13 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
         return state.replies.reply;
     })
     
-    console.log("=======", replies)
-    
+  
     const fetchRead =()=>{
       dispatch(getReviewRead(params.reviewId))
   }
+
     // replyDelete
-    const deletes =async(rno)=>{
+  const deletes =async(rno)=>{
       let deleteResult = window.confirm("정말 삭제하시겠습니까?")
       if(deleteResult){
         await dispatch(getReplyDelete(rno))
@@ -93,21 +88,20 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
         dispatch(getReplyList(reviewId))
     },[flag])
 
+
     // replyModify
 
     const [show, setShow] = useState(false)
 
     const [modalTitle, setModalTitle] = useState({}) 
 
-    console.log(modalTitle)
-
-
-    const handleOpen = (targetReply) => {  // 수정버튼을 클릭할 때 reply에 있는 데이터를 가져와 setModalTitle에 담아서 열어 준다. 
+    const handleOpen = (targetReply) => {  
+      // 수정버튼을 클릭할 때 reply에 있는 데이터를 가져와 setModalTitle에 담아서 열어 준다. 
         setModalTitle(targetReply)
         setOpen(true);
       };
 
-
+     // 썸네일 -> 원본 이미지  url 변경
     const getOriginImg = (str) => {
 
         const idx = str.lastIndexOf("_")
@@ -120,13 +114,12 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
 
     }  
 
+    // 댓글 이미지 모달창 open
     const handleOpen2 = (e) => { 
-
       const srcTarget = getOriginImg(e.target.src)
       setModalImage(srcTarget)
       console.dir(imgRef.current)
       setOpen2(true)
-      
     };
 
     const handleClose =()=>{
@@ -141,7 +134,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
 
         const renew = {...modalTitle}
         // 새롭게 객체 분해 
-        renew.text = e.target.value // text 부분만 
+        renew.text = e.target.value // text 부분만 변경 
         
         console.log("renew", renew)
 
@@ -151,11 +144,15 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
     const fileModify=async(e)=>{
       e.preventDefault()
       e.stopPropagation()
+
       alert("수정이 완료되었습니다")
+
        const formData = new FormData()
-      for(let i = 0; i<files.length; i++){
+      
+       for(let i = 0; i<files.length; i++){
         formData.append("replyFiles["+i+"]", files[i])
       }
+      
       formData.append("path", modalTitle.path)
       formData.append("replyer", modalTitle.replyer)
       formData.append("rno", modalTitle.rno)
@@ -176,6 +173,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
       setFiles(fileObj.files)
     }
     
+    //댓글 수정 모달 창 jsx
     const replyBody = (
       <div style={modalStyle} className={classes.paper} >
         <h3 className="text-center">댓글을 수정하세요</h3><br></br>
@@ -185,49 +183,44 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                         <input
                           type="text"
                           name="replyer"
-                          className="md-input"
-                          id="replyer"
                           placeholder="댓글 등록자 *"
                           value={modalTitle.replyer}
-                          style={{color:"black"}}
-                          required=""
-                          data-error="Please Enter Valid Email" readOnly
+                          style={{color:"black",  border:"1px solid #9e9e9eb5"}}
+                          readOnly
                         />
                       </div>
                     </div>
                   </div>
+
                   <div className="form-group">
                     <textarea
                       name="text"
                       rows="5"
                       placeholder="댓글을 수정하세요 *"
                       value={modalTitle.text}
-                      style={{color:"black"}}
+                      style={{color:"black",  border:"1px solid #9e9e9eb5"}}
                       onChange={(e)=>handleChangeText(e)}
                     ></textarea>
+
                     <div style={{textAlign:"center"}}>
                       {modalTitle&&modalTitle.imgName ?
                          <div key={modalTitle.uuid}>
                          <img src={"http://localhost:8080/review_files/display?imgName="+modalTitle.uuid+"s_"+modalTitle.imgName}/></div> : <></>
                     }</div><br></br>
-                                
-              <input
-                  style={{color:"black"}}
-                  type="file"
-                  name="file"
-                  id="replyFiles"
-                  className="md-textarea"
-                  rows="7"
-                  onChange={(e) =>handleChangeFile(e)}
-                ></input>
-                  </div>
-                  <div className="btn btn-success btn-md btn-default remove-margin pull-right">
-                  <Link onClick={fileModify}>Modify</Link>
-                  </div>
-              </div>
-              
-    );
 
+          </div>
+
+              <div>
+                <div>
+                <label className="input-file-button " style={{marginBottom:"35px"}} for="input-file">Upload</label>
+                    <input type="file" name="file" id="input-file" style={{display:"none"}} multiple={true} onChange={(e) =>handleChangeFile(e)}/>
+                <Link className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={fileModify}>Modify</Link>
+                </div>
+                </div>
+                  </div>
+    );
+    
+    //댓글 이미지 클릭 시 모달창 오픈
     const replyFileBody=(
       <div style={modalStyle} className={classes.paper2} >
       <div className="display-flex">
@@ -236,13 +229,13 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
             <img src={modalImage}/>
             </div>
               </button>
-    </div>
-    </div>
+                    </div>
+                        </div>
     )
 
     return (
-        <>  
-          <h3 className="comment-reply-title mt-30 text-center">{reviewObj.replyCount}개의 댓글</h3>
+        <> 
+          <h3 className="white-bg comment-reply-title mt-30 text-center">{reviewObj.replyCount}개의 댓글</h3>
        
        <Modal
         open={open}
@@ -251,6 +244,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
         aria-describedby="simple-modal-description">
         {replyBody}
       </Modal>
+      
       <Modal
         open={open2}
         onClose={handleClose2}
@@ -258,7 +252,9 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
         aria-describedby="simple-modal-description">
        {replyFileBody}
       </Modal>
+
           <br></br>
+
              {  replies.length > 0 ?
                  replies.map((reply, rno) =>  {
                     return (
@@ -304,7 +300,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                     ) 
                 })  
                 
-           : <div className="text-center"><Icofont icon="icofont-comment" className="font-20px sky-color mt-20"/>&nbsp;첫 번째 댓글을 입력해주세요</div> }
+           : <div className="text-center"><Icofont icon="icofont-comment" className="font-20px icofont-speech-comments"/>&nbsp;첫 번째 댓글을 입력해주세요</div> }
 </>
     )}
 

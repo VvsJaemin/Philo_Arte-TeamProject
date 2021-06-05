@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import {Link, useHistory} from 'react-router-dom';
@@ -74,23 +74,24 @@ const ReviewModify = () => {
     
 
     return (
-        <section className="white-bg">
-        <div className="container" style={{marginTop:"-100px"}}>
-        <div id="respond" className="comment-respond">
-        <h1 className="section-title text-center" >Review Modify</h1>
+                 <div className="white-bg">
+        <div className="container">
+    <div id="respond" className="comment-respond">
+      
+              <h1 className="section-title text-center">Review Modify</h1>
 
-        <div className="row-form row" >
-            <div className="col-form col-md-2" style={{marginBottom:"-60px"}}>
+              <div className="row-form row" >
+           <div className="col-form col-md-2">
             <label> * writerName </label>
-            <textarea style={{color:"black"}} value={reviewObj.writerName} name="writerName" readOnly></textarea> 
+            <textarea  style={{color:"black",marginBottom:"-45px", border:"1px solid #9e9e9eb5"}} value={reviewObj.writerName} name="writerName" readOnly></textarea> 
             </div>
-        </div>
-        </div>
+            </div>
+               </div>
         
         <div className="row-form row">
             <div className="col-form col-md-5">
             <label> * Title </label>
-            <textarea name="title" style={{color:"black" ,marginBottom:"30px"}} className="md-textarea" id="title" rows="2"
+            <textarea name="title" style={{color:"black" ,marginBottom:"30px", border:"1px solid #9e9e9eb5"}} className="md-textarea" id="title" rows="2"
                   placeholder="제목을 수정하세요"
                   value={title}
                   onChange={(e) => handleChangeTitle(e)}
@@ -99,12 +100,12 @@ const ReviewModify = () => {
         </div>
 
         <div className="row-form row">
-            <div className="col-form col-md-7">
+            <div className="col-form col-md-12">
             <label> * Content </label>
             <textarea
                   name="content"
-                  style={{color:"black", marginBottom:"30px"}}
-                  rows="5"
+                  style={{color:"black", marginBottom:"30px", border:"1px solid #9e9e9eb5"}}
+                  rows="10"
                   placeholder="내용을 수정하세요 *"
                   value={content}
                   onChange={(e) => handleChangeContent(e)}
@@ -114,14 +115,16 @@ const ReviewModify = () => {
 
         <div className="row-form row">
             <div className="col-form col-md-7">
-            <input
+            {/* <input
                    style={{color:"black"}}
                   type="file"
                   name="file"
                   rows="1"
                   multiple={true}
                   onChange={(e) =>handleChangeFile(e)}
-                ></input>
+                ></input> */}
+                <label className="input-file-button " for="input-file">Upload</label>
+                    <input type="file" name="file" id="input-file" style={{display:"none"}} multiple={true} onChange={(e) =>handleChangeFile(e)}/>
             </div>
         </div>
         
@@ -132,7 +135,7 @@ const ReviewModify = () => {
         <button className="btn btn-color btn-md btn-default remove-margin" >Cancel</button> </Link>
         </div>
 
-        <div className="display-flex" style={{marginTop:"50px"}}>
+        <div className="display-flex" style={{marginBottom:"50px", marginTop:"50px",  justifyContent:"center"}}>
                             <>
                         { reviewFile && reviewFile[0] ? reviewFile?.map((file,i)=>{
                                 return(
@@ -143,7 +146,7 @@ const ReviewModify = () => {
                                </>
                         </div>  
         </div>  
-            </section>
+            </div>
     )
 }
 

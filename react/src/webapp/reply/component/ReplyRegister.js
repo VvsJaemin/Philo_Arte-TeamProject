@@ -1,11 +1,10 @@
   
-import React, { useCallback, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams } from 'react-router'
+import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
-import { currentReview, getReviewRead, getReviewRegister } from 'webapp/review/reducer/review.reducer'
+import { currentReview, getReviewRead} from 'webapp/review/reducer/review.reducer'
 import { getReplyRegister } from '../reducer/reply.reducer'
-import uuid from 'uuid/v4'
 
 const ReplyRegister=()=>{
     const reviewObj = useSelector(currentReview)
@@ -69,83 +68,67 @@ const ReplyRegister=()=>{
       setFiles(fileObj.files)
     }
     
-    return (
-        <div className = "container">
-              <div id="respond" className="comment-respond">
-                  <h2 id="reply-title" className="text-center">
-                    댓글을 작성해주세요
-                  </h2><br></br>
-                  <form
-                    method="post"
-                    id="form-comments"
-                    className="comment-form contact-form-style-01"
-                  >
-                    <div className="row-form row">
-                      <div className="col-form col-md-3">
-                        <div className="form-group">
-                          <input
-                            type="text"
-                            name="replyer"
-                            className="md-input"
-                            id="NickName"
-                            required=""
-                            placeholder="이름을 입력해주세요 *"
-                            value={input?.replyer}
-                            onChange={(e) => handleSubmit(e)}
-                            data-error="Your NickName is Required"
-                          />
-                        </div>
-                      </div>
-                      <div className="col-form col-md-3">
-                        <div className="form-group">
-                          <input
-                            type="text"
-                            name="reviewId"
-                            className="md-input"
-                            id="reviewId"
-                            placeholder="reviewId *"
-                            value={input?.reviewId}
-                            onChange={(e) => handleSubmit(e)}
-                            required=""
-                            data-error="Please Enter Valid Email"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="form-group">
-                      <textarea
-                        name="text"
-                        className="md-textarea"
-                        id="text"
-                        rows="7"
-                        placeholder="댓글을 입력해주세요 *"
-                        required=""
-                        value={input?.text}
-                        onChange={(e) => handleSubmit(e)}
-                        data-error="Please, Leave us a message"
-                      ></textarea>
-                      <input
-                          type="file"
-                          name="file"
-                          id="reviewFileDtoList"
-                          className="md-textarea"
-                          rows="7"
-                          multiple={true}
-                          onChange={(e) =>handleUpload(e)}
-                ></input>
-                    </div>
-                    <p className="form-submit">
-                      <button className="btn btn-color btn-md btn-default remove-margin" onClick={register}>
-                        댓글 등록
-                      </button> 
-                        <Link to ={`/reviews/review_read/${reviewObj.reviewId}`}>
-                                <button className="btn btn-color btn-md btn-default"
-                                style={{marginLeft:"10px"}}>취소</button>
+return (
+
+<section className="white-bg" style={{marginTop:"-100px", marginBottom:"auto"}}>
+  <div  className = "container">
+    <div id="respond" className="comment-respond">
+
+        <h1 className="section-title text-center" style={{marginBottom:"100px"}} >Reply Regist</h1>
+
+        <div className="row-form row">
+          <div className="col-form col-md-2">
+                <input
+                    style={{color:"black", marginBottom:"30px", border:"1px solid #9e9e9eb5"}}
+                    type="text"
+                    name="reviewId"
+                    placeholder="reviewId *"
+                    value={input?.reviewId}
+                    onChange={(e) => handleSubmit(e)}
+                />
+          </div>
+              </div>
+
+          <div className="row-form row">
+              <div className="col-form col-md-3">
+                    <input
+                      style={{color:"black", marginBottom:"30px", border:"1px solid #9e9e9eb5"}}
+                      type="text"
+                      name="replyer"
+                      placeholder="이름을 입력해주세요 *"
+                      value={input?.replyer}
+                      onChange={(e) => handleSubmit(e)}
+                    />
+          </div>
+            </div>
+
+          <div className="row-form row">
+            <div className="col-form col-md-12">
+                <textarea
+                  style={{color:"black", marginBottom:"30px", border:"1px solid #9e9e9eb5"}}
+                  name="text"
+                  rows="10"
+                  placeholder="댓글을 입력해주세요 *"
+                  value={input?.text}
+                  onChange={(e) => handleSubmit(e)}
+                  ></textarea>
+
+                      <label className="input-file-button " style={{marginBottom:"35px"}} for="input-file">Upload</label>
+                    <input type="file" name="file" id="input-file" style={{display:"none"}} multiple={true} onChange={(e) =>handleUpload(e)}/>
+
+                </div>
+                </div>
+                    <div>
+                    <button className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={register}>Register</button>
+                    <Link to ={`/reviews/review_read/${reviewObj.reviewId}`}>
+                                 <button className="btn btn-color btn-md btn-default"
+                                 >Cancel</button>
                             </Link>
-                    </p>
-                  </form>
-                </div>
-                </div>
+                    </div>
+  
+        </div>
+        </div>
+      </section>
         
     );
 }

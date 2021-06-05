@@ -18,8 +18,9 @@ const ReviewRegister = () => {
 
     const [files, setFiles] = useState([])
 
-    const dispatch = useDispatch()
     const [flag, setFlag] = useState(false)
+
+    const dispatch = useDispatch()
 
     const changeFlag = () => {
         setFlag(!flag)
@@ -39,10 +40,12 @@ const ReviewRegister = () => {
         formData.append("writerId", input.writerId)
         formData.append("writerName", input.writerName)
           await dispatch(getReviewRegister(formData)) 
+          alert(JSON.stringify(input.writerName)+"님의 리뷰가 등록되었습니다.")
           changeFlag()
           history.push('/reviews/review_list')
         
     }
+
     const history = useHistory()
  
     const handleSubmit= (e) => {
@@ -61,23 +64,18 @@ const ReviewRegister = () => {
 
     }
 
-    const reviewObj = useSelector(state=>{
-      return state.reviews.params
-  })
-
-  const reviewFile = reviewObj.reviewFileDtoList
-
     return (
       <section className="white-bg">
             <div className = "container" style={{marginTop:"-100px", marginBottom:"auto"}}>
              <div id="respond" className="comment-respond">
+
             <h1 className="section-title text-center" >Review Regist</h1>
 
               <div className="row-form row">
                 <div className="col-form col-md-2">
                  
                     <input
-                      style={{color:"black" , marginBottom:"30px"}}
+                      style={{color:"black" , marginBottom:"30px", border:"1px solid #9e9e9eb5"}}
                       type="text"
                       name="writerId"
                       placeholder="writerId *"
@@ -88,14 +86,16 @@ const ReviewRegister = () => {
         
                 <div className="row-form row">
                 <div className="col-form col-md-2">
+
                     <input
-                       style={{color:"black" , marginBottom:"30px"}}
+                       style={{color:"black" , marginBottom:"30px",  border:"1px solid #9e9e9eb5"}}
                       type="text"
                       name="writerName"
                       placeholder="writerName *"
                       value={input.writerName}
                       onChange={(e) => handleSubmit(e)}
                     />
+
                 </div>
                 </div>
               
@@ -104,49 +104,44 @@ const ReviewRegister = () => {
                 <div className="col-form col-md-5">
 
                  <textarea
-                 style={{color:"black", marginBottom:"30px"}}
+                 style={{color:"black", marginBottom:"30px",  border:"1px solid #9e9e9eb5"}}
                   name="title"
                   placeholder="Your title *"
                   value={input.title}
                   onChange={(e) => handleSubmit(e)}>
                   </textarea>
+
                 </div>
                 </div>
 
                 <div className="row-form row">
-                <div className="col-form col-md-10">
+                <div className="col-form col-md-12">
 
                 <textarea
-                   style={{color:"black" , marginBottom:"30px"}}
+                   style={{color:"black" , marginBottom:"30px",  border:"1px solid #9e9e9eb5"}}
                   name="content"
                   id="content"
-                  rows="7"
+                  rows="10"
                   placeholder="Your contents *"
                   value={input.content}
                   onChange={(e) => handleSubmit(e)}
                 ></textarea>
+
                 </div>
                 </div>
+
                 <label className="input-file-button " for="input-file">Upload</label>
                     <input type="file" name="file" id="input-file" style={{display:"none"}} multiple={true} onChange={(e) =>handleUpload(e)}/>
-              </div>
-              <div className="display" style={{marginTop:"100px" , marginBottom:"50px" , textAlign:"center"}}>
-                            <>
-                        { reviewFile && reviewFile[0] ? reviewFile.map((file,i)=>{
-                                return(
-                                    <div key={file.uuid}> <img src={"http://localhost:8080/review_files/display?imgName="+"s_"+file.uuid+file.imgName}/>
-                                      </div>
-                                )
-                            }) :<></>}
-                               </>
-                        </div>
-              
-                   <button className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={register}>Register</button>
-                   <Link to ="/reviews/review_list">
-            <button className="btn btn-color btn-md btn-default remove-margin" style={{marginLeft:"10px"}}>Cancel</button>
-                   </Link>
+
+         </div>
+
+              <button className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={register}>Register</button>
+
+              <Link to ="/reviews/review_list">
+               <button className="btn btn-color btn-md btn-default remove-margin" style={{marginLeft:"10px"}}>Cancel</button></Link>
+
           </div>
-      </section>
+    </section>
       
     );
 }
