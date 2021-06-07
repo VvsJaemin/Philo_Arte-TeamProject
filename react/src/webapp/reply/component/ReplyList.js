@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getReplyDelete, getReplyList, getReplyModify} from '../reducer/reply.reducer'
+import { getReplyDelete, getReplyList, getReplyModify, delReplyFileList} from '../reducer/reply.reducer'
 import {Link, useParams} from 'react-router-dom';
-import { currentReview, getReviewRead } from 'webapp/review/reducer/review.reducer';
+import { currentReview, getReviewRead, } from 'webapp/review/reducer/review.reducer';
 import { ReplyModify} from '..';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
@@ -68,6 +68,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
 
         return state.replies.reply;
     })
+
     
   
     const fetchRead =()=>{
@@ -172,6 +173,12 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
       console.log(fileObj)
       setFiles(fileObj.files)
     }
+
+    const replyFileDelete=(e)=>{
+      e.stopPropagation()
+      e.preventDefault()
+      dispatch(delReplyFileList(files))
+    }
     
     //댓글 수정 모달 창 jsx
     const replyBody = (
@@ -216,6 +223,9 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                     <input type="file" name="file" id="input-file" style={{display:"none"}} multiple={true} onChange={(e) =>handleChangeFile(e)}/>
                 <Link className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={fileModify}>Modify</Link>
                 </div>
+                {/* <button className="btn btn-success btn-md btn-default remove-margin pull-right"
+         data-uuid={files.uuid} onClick={(e)=>replyFileDelete(e)}>
+        Upload Cancel</button> */}
                 </div>
                   </div>
     );

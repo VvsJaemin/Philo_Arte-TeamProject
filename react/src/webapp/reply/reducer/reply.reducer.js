@@ -50,9 +50,22 @@ async(input)=>{
             next:false
         
         },
-        replyFiles:[]
+        replyFiles:[],
+        params:{},
      },
-     reducers : {},
+     reducers : {
+         delReplyFileList : (state, {payload})=>{
+             const idx = state.reply.
+             findIndex((file)=>{
+                 console.log("..." + file.uuid, payload.uuid)
+                 return file.uuid==payload.uuid
+             })
+             console.log("payload", payload)
+             console.log("findFile: ", idx)
+
+             state.reply.splice(idx,1)
+         }
+     },
      extraReducers : (builder)=>{
          builder.addCase(getReplyList.fulfilled,(state, {meta, payload})=>{
             state.reply = payload;
@@ -75,6 +88,6 @@ async(input)=>{
  })
 
 const{actions, reducer} =replySlice
-export const currentReply = state=>state.replies.reply
-export const {}=actions
+export const currentReply = state=>state.replies.params
+export const {delReplyFileList}=actions
 export default reducer

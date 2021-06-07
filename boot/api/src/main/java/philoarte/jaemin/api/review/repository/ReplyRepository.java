@@ -18,13 +18,19 @@ public interface ReplyRepository extends JpaRepository<Reply, Long> {
     @Query("select a from Reply a order by a.rno desc")
     List<Reply> replyFindAll();
 
+    @Transactional
     @Modifying
-    @Query("Update Reply a set a.text = :text where a.rno = :rno")
-    int replyUpdate(@Param("rno") Long rno, @Param("text") String text);
+    @Query("Update Reply a set a.uuid = :uuid, a.imageName = :imgName where a.rno = :rno")
+    void replyUpdate(@Param("rno") Long rno,  @Param("uuid") String uuid,  @Param("imgName") String imgName);
 
     @Modifying
     @Query("DELETE FROM Reply rp where rp.review.reviewId = :reviewId ")
     void replyDelete(@Param("reviewId") Long reviewId);
+
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM Reply rp where rp.rno= :rno")
+    void replyFileDelete(@Param("rno") Long rno);
 
     List<Reply> getRepliesByReviewOrderByRegDate(Review review);
 }

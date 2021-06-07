@@ -42,6 +42,10 @@ public class ReplyServiceImpl implements ReplyService {
     @Override
     public void modify(ReplyDto replyDto) {
         Reply reply = dtoToEntity(replyDto);
+
+
+//        repository.replyUpdate(reply.getRno(), reply.getUuid(), reply.getImageName());
+//        repository.replyFileDelete(reply.getRno());
         repository.save(reply);
 //        repository.deleteById(replyDto.getRno());
 ////        repository.findById(replyDto.getRno());

@@ -121,7 +121,7 @@ const ReviewModify = () => {
         </div>
 
         <div className="row-form row">
-        <button className="btn btn-success btn-md btn-default remove-margin pull-right" style={{}}
+        <button className="btn btn-success btn-md btn-default remove-margin pull-right"
          data-uuid={reviewFile.uuid} onClick={(e)=>reviewFileDelete(e)}>
         Upload Cancel</button>
             <div className="col-form col-md-7">
