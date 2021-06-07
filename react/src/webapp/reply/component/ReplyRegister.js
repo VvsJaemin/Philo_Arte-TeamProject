@@ -74,7 +74,8 @@ return (
   <div  className = "container">
     <div id="respond" className="comment-respond">
 
-        <h1 className="section-title text-center" style={{marginBottom:"100px"}} >Reply Regist</h1>
+        <h1 className="section-title text-center" >Reply Regist</h1>
+        <hr className="center_line default-bg" style={{marginBottom:"70px"}}/>
 
         <div className="row-form row">
           <div className="col-form col-md-2">

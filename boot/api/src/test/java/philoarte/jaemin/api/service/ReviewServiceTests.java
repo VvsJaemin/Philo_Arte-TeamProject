@@ -55,7 +55,7 @@ public class ReviewServiceTests {
                 .title("test")
                 .content("w")
 //                .artId(1L)
-                .writerId(10L)
+                .writerId(3L)
                 .build();
 
         reviewService.save(dto);

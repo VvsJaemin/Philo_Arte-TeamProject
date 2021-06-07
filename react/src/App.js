@@ -39,12 +39,7 @@ const App=()=> {
             <Route exact path='/fundings/funding_read' component={FundingRead}/>
             <Route exact path='/fundings/funding_register' component={FundingRegister}/>
 
-            {/*Item*/}
-            <Route exact path='/items/item_list' component={ItemList}/>
-            <Route exact path='/items/item_modify' component={ItemModify}/>
-            <Route exact path='/items/item_read' component={ItemRead}/>
-            <Route exact path='/items/item_register' component={ItemRegister}/>
-         
+
             {/*Review*/}
             <Route exact path='/reviews/review_list' component={Review}/>
             <Route exact path='/reviews/review_modify/:reviewId' component={ReviewModify}/>

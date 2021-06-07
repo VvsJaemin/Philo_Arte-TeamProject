@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import {Link, useHistory} from 'react-router-dom';
-import { getReviewModify, currentReview } from '../reducer/review.reducer';
+import { getReviewModify, currentReview, delFileList } from '../reducer/review.reducer';
 
 const ReviewModify = () => {
 
@@ -57,6 +57,13 @@ const ReviewModify = () => {
       
     }
 
+
+    const reviewFileDelete=(e)=>{
+        e.stopPropagation()
+        e.preventDefault()
+        dispatch(delFileList(reviewFile))
+    }
+
     const handleChangeTitle = (e) => {
         setTitle(e.target.value)
     }
@@ -77,8 +84,8 @@ const ReviewModify = () => {
                  <div className="white-bg">
         <div className="container">
     <div id="respond" className="comment-respond">
-      
               <h1 className="section-title text-center">Review Modify</h1>
+              <hr className="center_line default-bg" style={{marginBottom:"50px"}}/>
 
               <div className="row-form row" >
            <div className="col-form col-md-2">
@@ -114,15 +121,10 @@ const ReviewModify = () => {
         </div>
 
         <div className="row-form row">
+        <button className="btn btn-success btn-md btn-default remove-margin pull-right" style={{}}
+         data-uuid={reviewFile.uuid} onClick={(e)=>reviewFileDelete(e)}>
+        Upload Cancel</button>
             <div className="col-form col-md-7">
-            {/* <input
-                   style={{color:"black"}}
-                  type="file"
-                  name="file"
-                  rows="1"
-                  multiple={true}
-                  onChange={(e) =>handleChangeFile(e)}
-                ></input> */}
                 <label className="input-file-button " for="input-file">Upload</label>
                     <input type="file" name="file" id="input-file" style={{display:"none"}} multiple={true} onChange={(e) =>handleChangeFile(e)}/>
             </div>
@@ -134,7 +136,7 @@ const ReviewModify = () => {
         < Link to = {`/reviews/review_read/${reviewObj.reviewId}`} > 
         <button className="btn btn-color btn-md btn-default remove-margin" >Cancel</button> </Link>
         </div>
-
+        
         <div className="display-flex" style={{marginBottom:"50px", marginTop:"50px",  justifyContent:"center"}}>
                             <>
                         { reviewFile && reviewFile[0] ? reviewFile?.map((file,i)=>{

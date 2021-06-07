@@ -30,18 +30,15 @@ public class ReplyDto {
     private LocalDateTime regDate;
     private LocalDateTime modDate;
 
-    //댓글 파일 업로드
+
     private String uuid;
     private String imgName;
     private String path;
 
-//    private Review review;
 
     @Builder.Default
     private ArrayList<MultipartFile> replyFiles = new ArrayList<>();
 
-    public void addReplyDto(ReplyDto ReplyDto){
-        replyFiles.add((MultipartFile) ReplyDto);
-    }
+
 
 }

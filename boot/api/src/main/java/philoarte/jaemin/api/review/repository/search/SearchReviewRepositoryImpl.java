@@ -121,8 +121,6 @@ public class SearchReviewRepositoryImpl extends QuerydslRepositorySupport implem
         jpqlQuery.leftJoin(artist).on(review.artist.eq(artist));
         jpqlQuery.leftJoin(reply).on(reply.review.eq(review));
 
-//        jpqlQuery.select(review, artist.artistName, reply.count()).groupBy(review);
-
         JPQLQuery<Tuple> tuple = jpqlQuery.select(review, artist.name, reply.count());
         tuple.groupBy(review);
 

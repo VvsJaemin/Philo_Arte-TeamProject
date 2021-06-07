@@ -19,24 +19,19 @@ import java.util.stream.IntStream;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PageResultDto<DTO, EN> {
-    //DTO리스트
+
     private List<DTO> dtoList;
 
-    //총 페이지 번호
     private int totalPage;
 
-    //현재 페이지 번호
     private int page;
-    //목록 사이즈
+
     private int size;
 
-    //시작 페이지 번호, 끝 페이지 번호
     private int start, end;
 
-    //이전, 다음
     private boolean prev, next;
 
-    //페이지 번호  목록
     private List<Integer> pageList;
 
     public PageResultDto(Page<EN> result, Function<EN,DTO> fn ){
@@ -52,10 +47,10 @@ public class PageResultDto<DTO, EN> {
 
     private void makePageList(Pageable pageable){
 
-        this.page = pageable.getPageNumber() + 1; // 0부터 시작하므로 1을 추가
+        this.page = pageable.getPageNumber() + 1;
         this.size = pageable.getPageSize();
 
-        //temp end page
+
         int tempEnd = (int)(Math.ceil(page/10.0)) * 10;
 
         start = tempEnd - 9;

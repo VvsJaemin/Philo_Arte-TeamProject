@@ -29,21 +29,15 @@ public class ReviewDto {
     private String title;
     private String content;
 
-    private Long writerId; // 작성자 아이디
-    private String writerName; // 작성자 이름
-//    private Long artId;
+    private Long writerId;
+    private String writerName;
+
     private int replyCount;
 
     private boolean fileSelect;
 
     private LocalDateTime regDate;
     private LocalDateTime modDate;
-
-
-
-//    private Art art;
-//
-//    private Artist artist;
 
     @Builder.Default
     private ArrayList<MultipartFile> files = new ArrayList<>();

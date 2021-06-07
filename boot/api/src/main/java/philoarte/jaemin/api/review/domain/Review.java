@@ -1,19 +1,9 @@
 package philoarte.jaemin.api.review.domain;
-
-
 import lombok.*;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.web.multipart.MultipartFile;
-import philoarte.jaemin.api.art.domain.Art;
 import philoarte.jaemin.api.artist.domain.Artist;
 import philoarte.jaemin.api.common.domain.BaseEntity;
-import philoarte.jaemin.api.common.util.ModelMapperUtils;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
-import java.util.Date;
+
 
 @Entity
 @Getter
@@ -36,7 +26,6 @@ public class Review extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "artist_id")
     private Artist artist;
-
 
     public void changeTitle(String title){
         this.title =title;

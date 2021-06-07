@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getReplyDelete, getReplyList, getReplyModify} from '../reducer/reply.reducer'
 import {Link, useParams} from 'react-router-dom';
 import { currentReview, getReviewRead } from 'webapp/review/reducer/review.reducer';
-import { ReplyModify, ReplyRegister } from '..';
+import { ReplyModify} from '..';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Icofont from 'react-icofont';
@@ -176,7 +176,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
     //댓글 수정 모달 창 jsx
     const replyBody = (
       <div style={modalStyle} className={classes.paper} >
-        <h3 className="text-center">댓글을 수정하세요</h3><br></br>
+        <h2 className="text-center">Reply Modify</h2><hr className="center_line default-bg" style={{marginBottom:"50px"}}/>
                   <div className="row-form row">
                   <div className="col-form col-md-5">
                       <div className="form-group">
@@ -260,7 +260,7 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                     return (
                       <ul className=" container comment-box">
                        <li className="post-comment" key={reply.rno}>
-                          <div className="comment-content">
+                          <div className="comment-content" style={{border:"1px solid #9e9e9e85"}}>
                             <div className="post-body">
                               <div className="comment-header">
                               <div className="post-tags pull-left">
@@ -280,7 +280,8 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                           </p>
                               </div>
                               <b className="comment-footer">
-                              <h5>{reply.regDate}</h5>
+                              <h5>등록 : {reply.regDate}</h5>
+                              <h5>수정 : {reply.modDate}</h5>
                                 <div className="display-flex">
                             <>
                         {reply&&reply.imgName ?

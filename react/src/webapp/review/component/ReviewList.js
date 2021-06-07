@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
-import { getReviewList, getReviewRead } from 'webapp/review/reducer/review.reducer';
+import { getReviewList} from 'webapp/review/reducer/review.reducer';
 import {ReviewPageList, ReviewSearch} from '..';
 
 
@@ -15,9 +15,6 @@ const ReviewList = () => {
     const reviews = useSelector(state =>{
 
         return state.reviews.pageResult.dtoList; 
-    })
-    const reviewObj = useSelector(state=>{
-        return state.reviews.params
     })
     
 

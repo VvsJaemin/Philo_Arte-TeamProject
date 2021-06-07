@@ -3,7 +3,6 @@ package philoarte.jaemin.api.review.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +16,6 @@ import philoarte.jaemin.api.review.repository.ReplyRepository;
 import philoarte.jaemin.api.review.repository.ReviewFileRepository;
 import philoarte.jaemin.api.review.repository.ReviewRepository;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -52,7 +50,7 @@ public class ReviewServiceImpl implements ReviewService {
         return review.getReviewId();
     }
 
-    @Override // p.444 질문
+    @Override
     public ReviewDto get(Long reviewId) {
 
         List<Object[]> result = repository.getRevieWithReply(reviewId);
@@ -68,8 +66,6 @@ public class ReviewServiceImpl implements ReviewService {
             reviewFileList.add(reviewFile);
         });
 
-
-
         return entityToDto(review, artist, replyCount, reviewFileList);
     }
 
@@ -83,10 +79,12 @@ public class ReviewServiceImpl implements ReviewService {
 
         repository.save(review);
 
+        reviewFileRepository.reviewFileDelete(review.getReviewId());
+
         // 기존 파일 삭제
-        if(reviewDto.isFileSelect()){
-            reviewFileRepository.reviewFileDelete(review.getReviewId());
-        }
+//        if(reviewDto.isFileSelect()){
+//            reviewFileRepository.reviewFileDelete(review.getReviewId());
+//        }
 
         if(entityMap.get("fileList") != null && ((List<ReviewFile>)entityMap.get("fileList")).size() > 0){
 
@@ -97,8 +95,6 @@ public class ReviewServiceImpl implements ReviewService {
 
         }
 
-
-
     }
 
     @Transactional
@@ -107,6 +103,7 @@ public class ReviewServiceImpl implements ReviewService {
         reviewFileRepository.reviewFileDelete(reviewId);
         replyRepository.replyDelete(reviewId);
         repository.reviewDelete(reviewId);
+
     }
 
     @Override
@@ -120,9 +117,6 @@ public class ReviewServiceImpl implements ReviewService {
                 (Long) arr[2],
                 (List<ReviewFile>) (Arrays.asList((ReviewFile) arr[3]))));
 
-
-        System.out.println("구분===================================");
-        System.out.println(pageRequestDto.toString());
 
         Page<Object[]> result = repository.searchPage(
                 pageRequestDto.getType(),

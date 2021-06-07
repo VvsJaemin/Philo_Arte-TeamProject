@@ -22,7 +22,6 @@ public interface ReplyRepository extends JpaRepository<Reply, Long> {
     @Query("Update Reply a set a.text = :text where a.rno = :rno")
     int replyUpdate(@Param("rno") Long rno, @Param("text") String text);
 
-    // 리뷰 삭제 시 댓글 삭제
     @Modifying
     @Query("DELETE FROM Reply rp where rp.review.reviewId = :reviewId ")
     void replyDelete(@Param("reviewId") Long reviewId);

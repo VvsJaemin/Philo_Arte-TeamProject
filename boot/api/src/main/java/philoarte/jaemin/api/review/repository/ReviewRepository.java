@@ -18,11 +18,6 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review, Long>, SearchReviewRepository {
 
-    //    @Query("select a from Review a order by a.reviewId desc")
-//    List<Review> reviewFindAll();
-//
-//    @Query("select a from Review a group by a order by a.reviewId desc")
-//    Page<Review> reviewPaging(Pageable pageable);
     @Transactional
     @Modifying
     @Query("Update Review a set a.title = :title, a.content = :content where a.reviewId = :reviewId ")
@@ -32,7 +27,6 @@ public interface ReviewRepository extends JpaRepository<Review, Long>, SearchRev
     @Modifying
     @Query("DELETE FROM Review a where a.reviewId = :reviewId")
     void reviewDelete(@Param("reviewId") Long reviewId);
-
 
     @Query("SELECT re, w FROM Review re LEFT JOIN re.artist w where re.reviewId =:reviewId")
     Object getRevieWithWriter(@Param("reviewId") Long reviewId);
@@ -66,10 +60,4 @@ public interface ReviewRepository extends JpaRepository<Review, Long>, SearchRev
             countQuery = "SELECT count(re) FROM Review re")
     Page<Object[]> getReviewWithReplyCount(Pageable pageable);
 
-//    @EntityGraph(attributePaths = {"artist"}, type = EntityGraph.EntityGraphType.FETCH)
-//    List<Review> findByArt(Art art);
-//
-//    @Modifying
-//    @Query("delete from Review r where r.artist =:artist")
-//    void deleteByArtist(Artist artist);
 }

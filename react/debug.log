@@ -19,3 +19,5 @@
 [0601/160906.501:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\w\AppData\Local\Naver\Naver Whale\User Data\Crashpad\attachments\682496a0-43af-4a68-8fda-29abf8693487: 지정된 경로를 찾을 수 없습니다. (0x3)
 [0604/221824.232:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
 [0605/002408.508:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\w\AppData\Local\Naver\Naver Whale\User Data\Crashpad\attachments\db74779d-0b34-4a28-b606-4e238dffd0a0: 지정된 경로를 찾을 수 없습니다. (0x3)
+[0607/093258.930:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+[0607/093314.963:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\w\AppData\Local\Naver\Naver Whale\User Data\Crashpad\attachments\85111bd5-c82f-4756-b703-80875d17f7c8: 지정된 경로를 찾을 수 없습니다. (0x3)
