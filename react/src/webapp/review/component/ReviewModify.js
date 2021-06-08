@@ -5,7 +5,7 @@ import {Link, useHistory} from 'react-router-dom';
 import { getReviewModify, currentReview, delFileList } from '../reducer/review.reducer';
 
 const ReviewModify = () => {
-
+    const loginValue = JSON.parse(localStorage.getItem('artist'))
     const [title,setTitle] = useState('')
     const [content,setContent] = useState('')
     const [files, setFiles] = useState([])
@@ -132,7 +132,7 @@ const ReviewModify = () => {
         
         <div style={{marginTop:"50px"}}>
             
-        <button className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={fileModify} >Modify</button>
+        <button className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={!loginValue ? alert("로그인을 해주세요", history.push(`/reviews/review_read/${reviewObj.reviewId}`)) : fileModify} >Modify</button>
         < Link to = {`/reviews/review_read/${reviewObj.reviewId}`} > 
         <button className="btn btn-color btn-md btn-default remove-margin" >Cancel</button> </Link>
         </div>

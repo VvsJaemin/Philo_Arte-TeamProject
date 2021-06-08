@@ -81,6 +81,7 @@ public class ReviewServiceImpl implements ReviewService {
 
         reviewFileRepository.reviewFileDelete(review.getReviewId());
 
+
         // 기존 파일 삭제
 //        if(reviewDto.isFileSelect()){
 //            reviewFileRepository.reviewFileDelete(review.getReviewId());

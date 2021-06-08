@@ -31,13 +31,6 @@ const ReviewPageList=()=>{
             <div className="col-md-12">
               <div className="text-center">
                 <div className="pagination dark-color">
-                  <ul>
-                    <li>
-                      {prev? <Link onClick={() => movePage(start -1)} >
-          <Icofont icon="long-arrow-left" className="mr-5 xs-display-none"/> prev
-          </Link> : <></>}
-                    </li>
-                  </ul>
                 </div>
               </div>
             </div>

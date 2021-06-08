@@ -4,7 +4,7 @@ import {getReviewRegister } from '../reducer/review.reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import '../css/Review.css'
 const ReviewRegister = () => {
-
+  const loginValue = JSON.parse(localStorage.getItem('artist'))
     const reviews = useSelector(state =>{
         return state.reviews.pageResult.dtoList;
     })
@@ -37,10 +37,10 @@ const ReviewRegister = () => {
         }
         formData.append("title", input.title)
         formData.append("content", input.content)
-        formData.append("writerId", input.writerId)
-        formData.append("writerName", input.writerName)
+        formData.append("writerId", loginValue?.artistId)
+        formData.append("writerName", loginValue?.name)
           await dispatch(getReviewRegister(formData)) 
-          alert(JSON.stringify(input.writerName)+"님의 리뷰가 등록되었습니다.")
+          alert(JSON.stringify(loginValue?.name)+"님의 리뷰가 등록되었습니다.")
           changeFlag()
           history.push('/reviews/review_list')
         
@@ -63,6 +63,7 @@ const ReviewRegister = () => {
       setFiles(fileObj.files)
 
     }
+  
 
     return (
       <section className="white-bg">
@@ -78,9 +79,9 @@ const ReviewRegister = () => {
                     <input
                       style={{color:"black" , marginBottom:"30px", border:"1px solid #9e9e9eb5"}}
                       type="text"
-                      name="writerId"
-                      placeholder="writerId *"
-                      value={input.writerId}
+                      name="artistId"
+                      placeholder="artistId *"
+                      value={loginValue?.artistId}
                       onChange={(e) => handleSubmit(e)}/>
                 </div>
                 </div>
@@ -93,7 +94,7 @@ const ReviewRegister = () => {
                       type="text"
                       name="writerName"
                       placeholder="writerName *"
-                      value={input.writerName}
+                      value={loginValue?.name}
                       onChange={(e) => handleSubmit(e)}
                     />
 
@@ -136,7 +137,7 @@ const ReviewRegister = () => {
 
          </div>
 
-              <button className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={register}>Register</button>
+              <button className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={!loginValue ? alert("로그인을 해주세요", history.push("/reviews/review_list")) :register}>Register</button>
 
               <Link to ="/reviews/review_list">
                <button className="btn btn-color btn-md btn-default remove-margin" style={{marginLeft:"10px"}}>Cancel</button></Link>

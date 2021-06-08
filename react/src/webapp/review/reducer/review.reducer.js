@@ -3,7 +3,6 @@ import {ReviewService} from 'webapp/review/index'
 
 export const getReviewList = createAsyncThunk("reviews/list",
 async(pageResult)=>{
-    console.log("pageRequest" + JSON.stringify(pageResult))
     const response = await ReviewService.list(pageResult)
     return response.data
 })
@@ -12,11 +11,7 @@ export const getReviewRegister = createAsyncThunk("reviews/register",
 
 async(input)=>{
 
-    console.log("=========================", input)
-
     const response = await ReviewService.register(input)
-
-    console.log("=================", response)
 
     return response
  })
@@ -30,8 +25,6 @@ async(reviewId)=>{
  export const getReviewModify = createAsyncThunk('reviews/modify/reviewId',
     async(review)=>{
 
-        console.log("===========================")
-        console.log(review)
         const response = await ReviewService.modify(review)
         return response.data
     }

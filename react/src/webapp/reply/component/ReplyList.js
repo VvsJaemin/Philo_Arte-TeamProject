@@ -164,8 +164,8 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
       
       await dispatch(getReplyModify(formData))
 
-      changeFlag() // 수정한 후 바꾸게 하는 것
-      handleClose() //  모달을 종료 호출
+      changeFlag() 
+      handleClose() 
     }
 
     const handleChangeFile=(e)=>{
@@ -174,11 +174,6 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
       setFiles(fileObj.files)
     }
 
-    const replyFileDelete=(e)=>{
-      e.stopPropagation()
-      e.preventDefault()
-      dispatch(delReplyFileList(files))
-    }
     
     //댓글 수정 모달 창 jsx
     const replyBody = (
@@ -223,9 +218,6 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
                     <input type="file" name="file" id="input-file" style={{display:"none"}} multiple={true} onChange={(e) =>handleChangeFile(e)}/>
                 <Link className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={fileModify}>Modify</Link>
                 </div>
-                {/* <button className="btn btn-success btn-md btn-default remove-margin pull-right"
-         data-uuid={files.uuid} onClick={(e)=>replyFileDelete(e)}>
-        Upload Cancel</button> */}
                 </div>
                   </div>
     );
