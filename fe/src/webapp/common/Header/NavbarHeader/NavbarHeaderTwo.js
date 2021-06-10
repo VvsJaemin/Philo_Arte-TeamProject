@@ -1,6 +1,6 @@
 import React from "react";
-import logoWhite from "../../../assets/images/logo-white-full.png";
-import logoBlack from "../../../assets/images/logo-black.png";
+import logoWhite from "webapp/images/logo-white-full.png";
+import logoBlack from "webapp/images/logo-black.png";
 
 const NavbarHeaderTwo = () => (
   <div className="navbar-header">

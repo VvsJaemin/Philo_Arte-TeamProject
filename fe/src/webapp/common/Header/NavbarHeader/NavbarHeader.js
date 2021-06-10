@@ -13,10 +13,6 @@ const NavbarHeader = () => (
       <i className="tr-icon ion-android-menu"></i>
     </button>
     <div className="logo">
-      <a href={process.env.PUBLIC_URL}>
-        <img className="logo logo-display" src={logoWhite} alt="" />
-        <img className="logo logo-scrolled" src={logoBlack} alt="" />
-      </a>
     </div>
   </div>
 );

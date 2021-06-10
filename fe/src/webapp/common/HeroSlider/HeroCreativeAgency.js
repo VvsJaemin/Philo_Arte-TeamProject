@@ -1,10 +1,10 @@
 import React from "react";
-import imgTransparent from "../../assets/images/transparent.png";
-import imgTriangleS from "../../assets/images/object/OBJ_triangle_s.png";
-import imgPen from "../../assets/images/object/OBJ_pen.png";
-import imgIpad from "../../assets/images/object/OBJ_ipad.png";
-import imgPhone from "../../assets/images/object/OBJ_phone.png";
-import imgTriangle from "../../assets/images/object/OBJ_triangle.png";
+import imgTransparent from "webapp/images/transparent.png";
+import imgTriangleS from "webapp/images/object/OBJ_triangle_s.png";
+import imgPen from "webapp/images/object/OBJ_pen.png";
+import imgIpad from "webapp/images/object/OBJ_ipad.png";
+import imgPhone from "webapp/images/object/OBJ_phone.png";
+import imgTriangle from "webapp/images/object/OBJ_triangle.png";
 
 const HeroCreativeAgency = () => (
   <section className="remove-padding transition-none" id="home">

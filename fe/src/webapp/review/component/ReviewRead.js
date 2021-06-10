@@ -33,17 +33,16 @@ const ReviewRead = () => {
     
     const history = useHistory()
     const deletes = async(reviewId)=>{
-
         const loginValue = JSON.parse(localStorage.getItem('artist'))
-
+        const reviewDelete =  window.confirm("정말 삭제하시겠습니까?")
         if(loginValue){
-            window.confirm("정말 삭제하시겠습니까?")
-            alert("삭제가 완료되었습니다.")
-            await dispatch(getReviewDelete(reviewId))
-            history.push("/reviews/review_list")
+            if(reviewDelete){
+                alert("삭제가 완료되었습니다.")
+                await dispatch(getReviewDelete(reviewId))
+                history.push("/reviews/review_list")
+            }
         }else{
            alert("로그인해주세요")
-           
         }
     }
 

@@ -16,7 +16,7 @@ const TeamOne = ({ tagline, title, backfont, data, bg }) => (
           </div>
         </div>
       </div>
-      <div className="row mt-50">
+      <div className="row mt-50" style={{float:"center"}}>
         {data.map((member) => (
           <TeamOneMember
             key={member.id}

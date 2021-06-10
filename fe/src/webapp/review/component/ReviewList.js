@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { getReviewList} from 'webapp/review/reducer/review.reducer';
 import {ReviewPageList, ReviewSearch} from '..';
+import dataNavbar from "webapp/common/data/Navbar/main-navbar-data.json";
+import HeaderOne from 'webapp/common/Header/HeaderOne';
 
 
 const ReviewList = () => {
+    
     const pageResult= useSelector(state=>state.reviews.pageResult)
 
     const page = pageResult.page
@@ -33,6 +36,7 @@ const ReviewList = () => {
 
     return (
         <>
+        <HeaderOne data={dataNavbar} />
 <section className="white-bg">
 
     <div className="col-md-12">
@@ -42,6 +46,9 @@ const ReviewList = () => {
     </div> <hr className="center_line default-bg"/>
 
         <div className="container" style={{marginTop:"75px"}}>
+        <div className="post-tags pull-left">
+                < Link to = "/">Home</ Link>
+            </div>
             <div className="post-tags pull-right">
                 < Link to = "/reviews/review_register">Register</ Link>
             </div> <br></br><ReviewSearch></ReviewSearch>

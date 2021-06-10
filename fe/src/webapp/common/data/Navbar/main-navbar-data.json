@@ -2,103 +2,46 @@
   {
     "id": 1,
     "title": "Philo-Arte",
-    "path": "#home",
-    "subMenu": [
-      {
-        "id": 1,
-        "title": "Main Demo",
-        "path": "home-main"
-      },
-      {
-        "id": 2,
-        "title": "Home Creative Agency",
-        "path": "home-creative-agency"
-      },
-      {
-        "id": 3,
-        "title": "Home Digital",
-        "path": "home-digital"
-      },
-      {
-        "id": 4,
-        "title": "Home Minimal Agency",
-        "path": "home-minimal-agency"
-      },
-      {
-        "id": 5,
-        "title": "Home Business",
-        "path": "home-business"
-      },
-      {
-        "id": 6,
-        "title": "Home Studio",
-        "path": "home-studio"
-      },
-      {
-        "id": 7,
-        "title": "Home Startup",
-        "path": "home-startup"
-      },
-      {
-        "id": 8,
-        "title": "Home Marketing",
-        "path": "home-marketing"
-      },
-      {
-        "id": 9,
-        "title": "Home Parallax",
-        "path": "home-parallax"
-      },
-      {
-        "id": 10,
-        "title": "Home Image Background",
-        "path": "home-image-bg"
-      },
-      {
-        "id": 11,
-        "title": "Home Video Background",
-        "path": "home-video-bg"
-      },
-      {
-        "id": 12,
-        "title": "Home Kenburn",
-        "path": "home-kenburn"
-      }
-    ]
+    "path": "/"
+     
   },
   {
     "id": 2,
-    "title": "reply",
-    "path": "/replies/reply_list"
+    "title": "Art",
+    "path": "/art"
   },
   {
     "id": 3,
     "title": "Resume",
-    "path": "/resumes/resume_list"
+    "path": "/resume/home"
+    
   },
   {
     "id": 4,
-    "title": "Item",
-    "path": "/items/item_list"
+    "title": "Funding",
+    "path": "/funding/home"
   },
+
   {
     "id": 5,
-    "title": "작품 등록하기",
-    "path": "/works/work_list"
+    "title": "Review",
+    "path": "/reviews/review_list"
+    
   },
   {
     "id": 6,
-    "title": "Review",
-    "path": "/reviews/review_list"
+    "title": "Log In",
+    "path": "/artist/artist_signin"
   },
   {
     "id": 7,
-    "title": "로그인",
-    "path": "#contact"
+    "title": "Sign Up",
+    "path": "/artist/artist_signup"
   },
   {
     "id": 8,
-    "title": "파일 업로드",
-    "path": "/boards/main"
+    "title": "User List",
+    "path": "/artist/artist_list"
   }
+
 ]

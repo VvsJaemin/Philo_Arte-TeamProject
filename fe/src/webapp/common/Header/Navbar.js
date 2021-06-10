@@ -5,20 +5,21 @@ import useWindowSize from "../helpers/UseWindowSize";
 const Navbar = ({ data }) => {
   const width = useWindowSize().width;
   const [open, setOpen] = useState(false);
-
+  const loginValue = JSON.parse(localStorage.getItem("artist"))
   const handleMenu = () => {
-    if (width < 993) {
+    if (width < 980) {
       setOpen(!open);
     }
   };
 
   return (
     <div className="collapse navbar-collapse" id="navbar-menu">
-      <ul className="nav navbar-nav navbar-center">
+      <ul className="nav navbar-nav" style={{marginRight:"195px"}}>
         {data ? (
           data.map((item) =>
             item.subMenu ? (
-              <li
+              <li 
+                
                 key={item.id}
                 className={"dropdown " + (open ? "on" : "")}
                 onClick={handleMenu}
@@ -26,9 +27,9 @@ const Navbar = ({ data }) => {
                 <a href={item.path} className="dropdown-toggle">
                   {item.title}
                 </a>
-                <ul
+                <ul 
                   className={"dropdown-menu " + (open ? "animated fadeIn" : "animated")}
-                  style={{ display: open && "block" }}
+                  style={{ display: open && "block"}}
                 >
                   {item.subMenu.map((item) => (
                     <li key={item.id}>
@@ -38,7 +39,7 @@ const Navbar = ({ data }) => {
                 </ul>
               </li>
             ) : (
-              <li key={item.id}>
+              <li key={item.id} >
                 <a href={item.path} className="page-scroll">
                   {item.title}
                 </a>

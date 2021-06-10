@@ -1,10 +1,23 @@
+server:
+  port: 8080
 spring:
   datasource:
-    url: jdbc:mariadb://112.169.196.99/arte
-    driver-class-name: org.mariadb.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # url: jdbc:mysql://wlsdnr4675.cwjff3qij1v0.ap-northeast-2.rds.amazonaws.com/wlsdnr4675?useSSLd=false&characterEncoding=UTF-8&serverTimezone=UTC
+    # username: wlsdnr4675
+    # password: wlsdnr4675
+    url: jdbc:mysql://112.169.196.99:3306/arte?useSSLd=false&characterEncoding=UTF-8&serverTimezone=UTC
+
     username: arte
     password: Arte1234
+    servlet:
+      multipart:
+        enabled: true
+        location: C:\update
+        max-request-size: 30MB
+        max-file-size: 30MB
   jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: false
     generate-ddl: true
     show-sql: true
@@ -14,27 +27,13 @@ spring:
       hibernate:
         format_sql: true
 
-  servlet:
-    multipart:
-      enabled: true
-      location: C:\update
-philo:
-  arte:
-    upload:
-      path: C:\update
-
-shop:
-  legossol:
-      upload:
-        path: C:\update\funding
-
-
 security:
   jwt:
     secret: secret-value
+shop:
+  upload:
+    path: C:\update
 
 UserController:
   signup: Creates user and returns its JWT token
   signin: Authenticates user and returns its JWT token
-
-#  @ApiOperation value값 호출 할수 있게 스웨거 매칭

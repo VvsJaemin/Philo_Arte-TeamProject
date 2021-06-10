@@ -108,7 +108,7 @@ const ReviewRegister = () => {
                  <textarea
                  style={{color:"black", marginBottom:"30px",  border:"1px solid #9e9e9eb5"}}
                   name="title"
-                  placeholder="Your title *"
+                  placeholder="제목을 입력해주세요 *"
                   value={input.title}
                   onChange={(e) => handleSubmit(e)}>
                   </textarea>
@@ -124,7 +124,7 @@ const ReviewRegister = () => {
                   name="content"
                   id="content"
                   rows="10"
-                  placeholder="Your contents *"
+                  placeholder="내용을 입력해주세요 *"
                   value={input.content}
                   onChange={(e) => handleSubmit(e)}
                 ></textarea>
