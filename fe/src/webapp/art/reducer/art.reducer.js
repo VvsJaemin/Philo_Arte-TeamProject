@@ -1,95 +1,72 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-
 import { ArtService } from 'webapp/art'
-
 export const getArtList = createAsyncThunk("ART_LIST",
   async (page) => {
     console.log("getArtList", page)
     const response = await ArtService.artList(page)
-
     return response.data
   }
 )
-
 export const getArtRegister = createAsyncThunk("ART_REGISTER",
   async (args) => {
     console.log(args)
     const response = await ArtService.artRegister(args)
-
     return response.data
   }
 )
-
 export const getArtUpload = createAsyncThunk("ART_UPLOAD",
   async (args) => {
     console.log('UPLOAD : ' + JSON.stringify(args))
     const response = await ArtService.artUpload(args)
-
     return response.data
   }
 )
-
 export const getArtRead = createAsyncThunk("ART_READ",
   async (args) => {
     const response = await ArtService.artRead(args)
-
     return response.data
   }
 )
-
 export const getArtModify = createAsyncThunk("ART_MODIFY",
   async (args) => {
     console.log(args)
     const response = await ArtService.artModify(args)
-
     return response.data
   }
 )
-
 export const getArtDelete = createAsyncThunk("ART_DELETE",
   async (args) => {
     console.log("delete", args)
     const response = await ArtService.artDelete(args)
-
     return response.data
   }
 )
-
 export const getArtSearch = createAsyncThunk("ART_SEARCH",
   async (args) => {
     const response = await ArtService.artSearch(args)
-
     return response.data
   }
 )
-
 export const getArtCount = createAsyncThunk("ART_COUNT",
   async (args) => {
     console.log("aaaaaaa", args)
     const response = await ArtService.artCount(args)
-    
     return response.data
   }
 )
-
 export const getArtPosts = createAsyncThunk("ART_POSTS",
   async (args) => {
     const response = await ArtService.artPosts(args)
-    
     return response.data
   }
 )
-
 export const getCategoryList = createAsyncThunk("CATEGORY_LIST",
   async () => {
   const response = await ArtService.categoryList()
-
   return response.data
   }
 )
-
 const isRejectedAction = action => (action.type.endsWith('rejected'))
-
 const artSlice = createSlice({
   name: 'arts',
   initialState: {
@@ -118,7 +95,6 @@ const artSlice = createSlice({
     },
     changeFileList: (state, { payload }) => {
       const idx = state.fileList?.findIndex(file => file.uuid === payload.uuid)
-
       state.fileList[idx] = payload
     },
     deleteFileList: (state, { payload }) => {
@@ -145,10 +121,8 @@ const artSlice = createSlice({
         // console.log(`바바바: ` + JSON.stringify(state.current))
       })
       .addCase(getArtModify.fulfilled, (state, { payload }) => {
-        
       })
       .addCase(getArtDelete.fulfilled, (state, { payload }) => {
-
       })
       .addCase(getArtSearch.fulfilled, (state, { payload }) => {
         state.pageResult = payload
@@ -166,7 +140,6 @@ const artSlice = createSlice({
       .addDefaultCase((state, payload) => { })
   }
 })
-
 const { actions, reducer } = artSlice
 export const { changeSearch, addFileList, changeFileList, deleteFileList } = actions
 export default reducer

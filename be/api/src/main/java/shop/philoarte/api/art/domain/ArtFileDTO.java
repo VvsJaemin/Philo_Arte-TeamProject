@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ArtFileDTO {
 
-    // ArtFile
     private Long fileId;
 
     private String uuid;
@@ -24,7 +23,6 @@ public class ArtFileDTO {
 
     private Boolean repImg;
 
-    // Art
     private ArtDTO art;
 
 }

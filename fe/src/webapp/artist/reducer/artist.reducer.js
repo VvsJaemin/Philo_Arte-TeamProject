@@ -81,7 +81,6 @@ const artistSlice = createSlice({
         keyword: '',
         params: {},
         pageFileDto: [],
-
     },
     reducers: {
         getLocalArtist: (state, action) => {
@@ -127,7 +126,6 @@ const artistSlice = createSlice({
             console.log('payload ::::::::::: ', payload);
             state.artistsState = payload;
             window.localStorage.setItem('artist', JSON.stringify(payload));
-
             console.log('JSON.stringify(payload) ::::::: ', JSON.stringify(payload));
         },
         [mypagePage.fulfilled]: (state, { meta, payload }) => {

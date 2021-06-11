@@ -1,10 +1,8 @@
-import React, {useCallback, useImperativeHandle, useState} from 'react';
+import React, { useImperativeHandle, useState} from 'react';
 import {Button, Checkbox, Typography} from "@material-ui/core";
-import axios from "axios";
-import {fileUpload,addFileList} from 'webapp/funding/reducer/funding.reducer'
+import {addFileList} from 'webapp/funding/reducer/funding.reducer'
 import { FundingService } from 'webapp/funding';
 import { useDispatch, useSelector } from 'react-redux';
-import fundingService from 'webapp/funding/service/funding.service';
 const FileRegister = ({cref, getUploadedFiles, fileParam=[]}) => {
     const dispatch = useDispatch()
     const fileList = useSelector(state => state.fundings.fileList)

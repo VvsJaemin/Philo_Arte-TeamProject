@@ -35,14 +35,13 @@ public class ArtistFileController {
 
     @RequestMapping("/imgList/pages")
     public ResponseEntity<PageResultDto<ArtistDto, Object[]>> list(PageRequestDto page) {
-        log.info("imgList page................." + page);
 
         return new ResponseEntity(service.getPageFileList(page), HttpStatus.OK);
     }
 
     @PostMapping("/uploadAjax")
     public ResponseEntity<List<ArtistFileDto>> uploadFile(List<MultipartFile> files) {
-        log.info("uploadAjax 시작");
+
         for (MultipartFile file : files) {
 
             // 이미지 파일만 업로드 가능

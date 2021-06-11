@@ -49,17 +49,13 @@ public class ArtFileController {
 
         try {
             String srcFileName = URLDecoder.decode(fileName, "UTF-8");
-            log.info("fileName: " + srcFileName);
 
             File file = new File(uploadPath + File.separator + srcFileName);
-            log.info("file: " + file);
 
             HttpHeaders httpHeaders = new HttpHeaders();
 
             // MIME 타입 처리
             httpHeaders.add("Content-Type", Files.probeContentType(file.toPath()));
-
-            log.info("httpHeaders: " + httpHeaders);
 
             // 파일 데이터 처리
             return new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), httpHeaders, HttpStatus.OK);
@@ -80,8 +76,6 @@ public class ArtFileController {
 
     @DeleteMapping("/delete")
     public ResponseEntity<Void> deleteFiles(@RequestBody String uuid) {
-        log.info(uuid);
-//        return new ResponseEntity<>(artFileService.deleteFiles(artFileDTO), HttpStatus.OK);
         return null;
     }
 

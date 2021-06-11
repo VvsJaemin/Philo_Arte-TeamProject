@@ -2,10 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFundingList, searchSomething } from 'webapp/funding/reducer/funding.reducer';
-import HeaderSocial from 'webapp/common/Header/HeaderSocial';
-import dataNavbar from 'webapp/common/data/Navbar/main-navbar-data.json';
 import FooterOne from 'webapp/common/Footer/FooterOne';
-import {HeroMarketing} from 'webapp/funding';
+import {HeroMarketing} from 'webapp/funding/index';
 import FundingListForm from './FundingListForm';
 import { Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
@@ -51,13 +49,12 @@ const FundingList = () => {
         const keywordStr = keywordRef.current.value;
 
         const keyword = { keyword: keywordStr };
-        console.log(keyword);
         await dispatch(getFundingList(page));
         dispatch(searchSomething(page, keyword));
     };
 
     const FundingPageList = () => {
-        const { pageList, page, start, end, prev, next } = useSelector((state) => state.fundings.pageResult);
+        const { pageList, start, end, prev, next } = useSelector((state) => state.fundings.pageResult);
 
         const dispatch = useDispatch();
 

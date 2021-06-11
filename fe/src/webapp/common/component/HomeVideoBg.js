@@ -1,26 +1,41 @@
 import React, { useEffect, useState } from 'react';
 
 
-import dataCounters from 'webapp/common/data/Counters/counters-data.json';
+import dataCounters from 'webapp/common/data/Counters/counters-data.json'; 
+
 import dataServices from 'webapp/common/data/Services/services-minimal-data.json';
+
 import dataTestimonials from 'webapp/common/data/Testimonials/testimonials-data.json';
+
 import dataTeam from 'webapp/common/data/Team/team-data.json';
 
 
 // Images
 import homeHockney from 'webapp/images/home/homeHockney.jpg';
+
 import imgWhatWeDo from 'webapp/images/EYE.jpg';
+
+
 // Components
 
 import HeaderOneMain from 'webapp/common/component/Navbar/HeaderOneMain';
+
 import HeroHomeVideo from 'webapp/common/HeroSlider/HeroHomeVideo';
+
 import WhatWeOfferEleven from '../WhatWeOffer/WhatWeOfferEleven';
+
 import WhatWeDoOne from '../WhatWeDo/WhatWeDoOne';
+
 import TestimonialsOne from '../Testimonials/TestimonialsOne';
+
 import TeamOne from '../Team/TeamOne';
+
 import FooterOne from '../Footer/FooterOne';
+
 import CountersOne from '../Counters/CountersOne';
+
 import Loader from '../Loader/Loader';
+
 import { getLocalArtist } from 'webapp/artist/reducer/artist.reducer';
 
 const HomeVideoBg = () => {

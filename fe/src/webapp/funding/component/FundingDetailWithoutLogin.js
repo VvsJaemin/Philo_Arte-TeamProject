@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFundingDetail, currentFunding, deleteFunding } from 'webapp/funding/reducer/funding.reducer';
 import { Link, useParams } from 'react-router-dom';
 import HeaderSocial from 'webapp/common/Header/HeaderSocial';
-import HomeMarketingSlider from 'webapp/funding/component/showing/HeroMarketing';
+import HomeMarketingSlider from 'webapp/funding/component/presentation/HeroMarketing';
 import dataNavbar from 'webapp/common/data/Navbar/main-navbar-data.json';
 import FooterOne from 'webapp/common/Footer/FooterOne';
 import { Grid, makeStyles } from '@material-ui/core';
@@ -267,8 +267,6 @@ const FundingDetailWithoutLogin = () => {
                                 Shadow={3}
                                 className={classes.media}
                                 image={param.fundingFiles?.map((img) => `http://localhost:8080/funding_file/display?fileName=${img.uuid}_${img.fname}`)[0]}
-
-                                // title={title}
                             />
 
                             <CardContent className={classes.content}>

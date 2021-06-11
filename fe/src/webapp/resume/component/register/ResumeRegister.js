@@ -9,8 +9,6 @@ const ResumeRegister = () => {
 
     const categories = useSelector((state) => state.resumes.category);
     const fileList = useSelector((state) => state.resumes.current.resumeFiles);
-    const loginValue = JSON.parse(localStorage.getItem('artist'))
-
 
     useEffect(() => {
         dispatch(listCategory());
@@ -20,8 +18,7 @@ const ResumeRegister = () => {
         title: '',
         detail: '',
         selfIntroduce: '',
-        artistId: loginValue?.artistId,
-        name: loginValue?.name,
+        artistId: 200,
         categoryId: null,
     });
 
@@ -66,7 +63,7 @@ const ResumeRegister = () => {
                 <textarea type="text" style={{ color: 'black', height: '400px' }} name="detail" value={resume.detail} placeholder="resumeDetail" onChange={(e) => resumeChange(e)} />
                 <h5 className="aside-title">아티스트 이름</h5>
                 <form className="search-form" method="post">
-                    <h4 className="aside-title">{resume.name}</h4>
+                    <h4 className="aside-title">{resume.artistId}</h4>
                 </form>
                 <label className="font-20px">자기소개글을 써주세요</label>
                 <textarea type="text" name="selfIntroduce" style={{ color: 'black', height: '200px' }} value={resume.selfIntroduce} placeholder="resumeDetail" onChange={(e) => resumeChange(e)} />
@@ -85,6 +82,7 @@ const ResumeRegister = () => {
                         REGISTER
                     </p>
                     <Link to="/resume/home">
+                        {' '}
                         <p className="btn btn-md btn-dark-outline btn-square mt-10">BACK</p>
                     </Link>
                 </div>

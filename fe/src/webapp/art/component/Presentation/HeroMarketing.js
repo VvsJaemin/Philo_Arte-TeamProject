@@ -170,7 +170,7 @@ const HeroMarketing = () => (
               Dedicated. Inspired. Passionate.
             </div>
 
-            {/* <div
+            <div
               className="tp-caption rev-btn  tp-resizeme"
               id="slide-2800-layer-4"
               data-x="['right','right','center','center']"
@@ -282,7 +282,7 @@ const HeroMarketing = () => (
               }}
             >
               CONTACT
-            </div> */}
+            </div>
           </li>
           <li
             data-index="rs-2801"

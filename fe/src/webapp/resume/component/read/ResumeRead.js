@@ -12,7 +12,6 @@ import { ArtPost, ReadSidebar } from 'webapp/resume/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { deleteResume, readResume } from 'webapp/resume/reducer/resume.reducer';
-
 const ResumeRead = ({ open, handleClose }) => {
     const useStyles = makeStyles((theme) => ({
         appBar: {
@@ -40,7 +39,6 @@ const ResumeRead = ({ open, handleClose }) => {
             wordBreak: 'break-all',
         },
     }));
-
     const settings = {
         dots: false,
         infinite: true,
@@ -55,18 +53,14 @@ const ResumeRead = ({ open, handleClose }) => {
     const Transition = React.forwardRef(function Transition(props, ref) {
         return <Slide direction="up" ref={ref} {...props} />;
     });
-
     const dispatch = useDispatch();
     const items = useSelector((state) => state.resumes.current);
     const files = items.resumeFiles;
     const [resumeItem, setResumeItem] = useState({});
-    
     const loginValue = JSON.parse(localStorage.getItem('artist'))
-
     useEffect(() => {
         setResumeItem(items);
     }, [items]);
-
     const fileList = files.map((file, i) => {
         return (
             <>
@@ -75,7 +69,6 @@ const ResumeRead = ({ open, handleClose }) => {
                     <h3>{file.fileTitle}</h3>
                     <p>{file.fileDetail}</p>
                 </div>
-
                 <div className="post-metas">
                     <div className="post-metas-center">
                         <p className="post-date">{file.fileWorkedDate} </p>
@@ -91,7 +84,6 @@ const ResumeRead = ({ open, handleClose }) => {
         dispatch(deleteResume(resumeItem));
         window.location.reload();
     };
-
     return (
         <>
             <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition} className={useStyles().dialogSize}>
@@ -113,7 +105,6 @@ const ResumeRead = ({ open, handleClose }) => {
                         </button>
                         </>
                         }
-                        
                     </Toolbar>
                 </AppBar>
                 <div className="container" style={{ marginTop: '40px' }}>
@@ -122,7 +113,6 @@ const ResumeRead = ({ open, handleClose }) => {
                             <div className="col-md-12 col-sm-12 col-xs-12 mb-20 xs-mb-50">
                                 <div className="post">
                                     {files.length > 0 ? <Slider {...settings}>{fileList}</Slider> : <img alt="이미지가 없습니다." />}
-
                                     <div className="post-info all-padding-20">
                                         <h3>{resumeItem.title}</h3>
                                     </div>
@@ -142,5 +132,4 @@ const ResumeRead = ({ open, handleClose }) => {
         </>
     );
 };
-
 export default ResumeRead;

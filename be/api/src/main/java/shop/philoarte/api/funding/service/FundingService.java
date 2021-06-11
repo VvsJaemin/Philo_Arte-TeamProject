@@ -47,7 +47,6 @@ public interface FundingService {
         return fundingFile;
     }
 
-    // List<FundingDto> fileBoxByFunding(Long id);
     List<FundingFileDto> registerFile(MultipartFile[] uploadFiles);
 
     String deleteFile(Long fundingFileId);

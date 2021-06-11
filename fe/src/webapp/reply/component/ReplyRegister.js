@@ -8,10 +8,10 @@ import { getReplyRegister } from '../reducer/reply.reducer'
 
 const ReplyRegister=()=>{
     const reviewObj = useSelector(currentReview)
-    const loginValue = JSON.parse(localStorage.getItem('artist'))
+
     const [input, setInput] = useState({
         text : '',
-        replyer : !loginValue? '' : loginValue.name,
+        replyer : '',
         uuid: "",
         path: "",
         imgName : "",
@@ -97,7 +97,7 @@ return (
                       type="text"
                       name="replyer"
                       placeholder="이름을 입력해주세요 *"
-                      value={loginValue?.name}
+                      value={input?.replyer}
                       onChange={(e) => handleSubmit(e)}
                     />
           </div>

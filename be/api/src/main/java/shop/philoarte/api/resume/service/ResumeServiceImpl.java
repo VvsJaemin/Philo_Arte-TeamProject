@@ -38,7 +38,6 @@ public class ResumeServiceImpl extends AbstractService<ResumeDto> implements Res
 
         Resume resume = Resume.of(resumeDto);
         resume.saveAll(resumeDto);
-        log.info(resume.getDetail());
         List<ResumeFileDto> files = resumeDto.getResumeFiles();
         if (!files.isEmpty()) {
             files.forEach(fileDto -> {
@@ -54,17 +53,14 @@ public class ResumeServiceImpl extends AbstractService<ResumeDto> implements Res
 
     @Override
     public String editResume(ResumeDto resumeDto) {
-        log.info("EDIT Resume parameter: " + resumeDto);
         Resume resume = Resume.of(resumeDto);
         resume.saveAll(resumeDto);
         fileRepo.deleteByResumeId(resume.getResumeId());
-        log.info("Edit ModelMapped resume: " + resume);
         repo.save(resume);
         List<ResumeFileDto> files = resumeDto.getResumeFiles();
         if (!files.isEmpty()) {
             files.forEach(fileDto -> {
                 ResumeFile rf = dtoToEntityResumeFile(fileDto);
-                log.info("MODIFY ResumeFile: " + rf);
                 rf.saveDetails(fileDto);
                 rf.confirmResume(resume);
                 fileRepo.save(rf);

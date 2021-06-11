@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 // DATA Files
 import dataServices from "webapp/resume/data/services-studio-data.json";
 import dataSkills from "webapp/resume/data/skills-data.json";
-import dataCounters from "webapp/common/data/Counters/counters-data.json";
+import dataCounters from "webapp/resume/data/counters-data.json";
 import dataTeam from "webapp/common/data/Team/team-data.json";
-
-import FooterOne from "webapp/common/Footer/FooterOne";
-import { ResumeList, Paging, SearchBar, AboutFive,CounterRowOne, PresentationTwo, TeamOne, WhatWeOfferSix} from "webapp/resume/index"
+import FooterOne from  "webapp/common/Footer/FooterOne";
+import TeamOne from "webapp/common/Team/TeamOne"
+import { ResumeList, Paging, SearchBar, AboutFive,CounterRowOne, PresentationTwo, WhatWeOfferSix} from "webapp/resume/index"
 import { useDispatch, useSelector } from "react-redux";
 import { listResume, searchResume } from "webapp/resume/reducer/resume.reducer";
 import HeaderOneMain from "webapp/common/component/Navbar/HeaderOneMain";
@@ -21,13 +21,22 @@ const ResumeApp = () => {
   const pageResult = useSelector(state => state.resumes.pageResult)
   const page = pageResult.page
   const param = {type: searchType, keyword: searchKeyword, page: page}
+  
+  
   const dispatch = useDispatch();
   
   useEffect((e)=>{
     (!searchType && !searchKeyword) ? dispatch(listResume(page)): dispatch(searchResume(param))
-  },[])
+    dispatch(getLocalArtist());
+  },[])  
 
+  const [loginInfo, setLoginInfo] = useState({});
 
+  const checkLogin = () => {
+    const loginValue = JSON.parse(localStorage.getItem(loginInfo));
+    setLoginInfo(loginValue);
+};
+   console.log(checkLogin)
 
   return(<>
     <HeaderOneMain/>
@@ -51,16 +60,22 @@ const ResumeApp = () => {
       <Paging/>
         <AboutFive
       data={dataSkills}
-      title="Resume Overview"
+      title="Agency Overview"
       text='<p class="mt-30">
-    Philo-Arte의 레쥬메 서비스는 여러분의 새로운 도전의 시작과 만남을 위하여 누구나 이력서를 볼 수 있습니다. 
-    간단한 이력서를 작성해 보세요 여러 기업들과 펀더 들이 당신을 기다립니다. 
+    Every site we create is designed and optimised to look and function
+    just as well on mobile phones and tablets as it does on a desktop,
+    creating a seamless experience across any device.
+  </p>
+  <p>
+    We use the latest development standards and web technologies to keep
+    things cutting edge, ensuring your new website is built on a stable
+    and future-proof foundation.
   </p>'>
     <CounterRowOne data={dataCounters} classes="mt-50" />
     </AboutFive>
     <TeamOne
       tagline="MEET HARD WORKER"
-      title='Philo-Arte의 인플루언서들을 <span class="text-bottom-line-sm">만나보세요 </span>'
+      title='열심히 일한 당신 만을 위한 <span class="text-bottom-line-sm"> 보상</span>'
       data={dataTeam}
     >
       Web teams are made up of a diverse group of people who all contribute

@@ -29,11 +29,10 @@ const Footer = ({ bg }) => {
                     </Link>
                   </div>
                   <p>
-                    Anno template provides fully flexible templates, allowing to
-                    customize every page.
+                    Philo Arte에서 여러분들의 작품을 맘껏 보여주세요
                   </p>
                   <p className="mt-20 mb-0">
-                    <a href="tel:+44 1234-567-8">+44 1234-567-8</a>
+                    <a href="tel:+44 1234-567-8">+82 02-1234-5678</a>
                   </p>
                   <p className="mt-0">
                     <a
@@ -41,7 +40,7 @@ const Footer = ({ bg }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Potsdamer Platz 9797
+                      서울특별시 강남구 강남대로
                     </a>
                   </p>
                 </div>
@@ -50,7 +49,7 @@ const Footer = ({ bg }) => {
                 <div className="widget widget-text widget-links">
                   <h5 className="widget-title">Join The Newsletter</h5>
                   <p>
-                    Lorem ipsum dolor sit amet, ut ius audiam denique tractatos.
+                    아래 이메일을 입력 후 Philo Arte의 최신 소식을 뉴스레터로 받아보세요
                   </p>
                   <form
                     name="subscribe"
@@ -89,19 +88,19 @@ const Footer = ({ bg }) => {
                   <h5 className="widget-title">Quick Links</h5>
                   <ul>
                     <li>
-                      <a href="!#">Engaging, purposeful, and creative.</a>
+                      <a href="!#">Sign Up</a>
                     </li>
                     <li>
-                      <a href="!#">Extroadinary life events.</a>
+                      <a href="!#">Art</a>
                     </li>
                     <li>
-                      <a href="!#">Design your perfect event.</a>
+                      <a href="!#">Resume</a>
                     </li>
                     <li>
-                      <a href="!#">Connect your worlds.</a>
+                      <a href="!#">Funding</a>
                     </li>
                     <li>
-                      <a href="!#">Improving workplace productivity.</a>
+                      <a href="!#">Review</a>
                     </li>
                   </ul>
                 </div>
@@ -127,7 +126,7 @@ const Footer = ({ bg }) => {
             <div className="row">
               <div className="col-md-12">
                 <div className="copy-right text-center">
-                  © 2019 Anno Agency. All rights reserved
+                  © 2021 Philo Arte. All rights reserved
                 </div>
               </div>
             </div>

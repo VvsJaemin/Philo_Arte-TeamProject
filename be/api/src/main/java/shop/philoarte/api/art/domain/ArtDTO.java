@@ -15,7 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 public class ArtDTO {
 
-    // Art
     private Long artId;
 
     private String title;
@@ -26,16 +25,12 @@ public class ArtDTO {
 
     private LocalDateTime regDate;
 
-    // Artist
     private ArtistDto artist;
 
-    // Category
     private CategoryDto category;
 
-    // Resume
     private ResumeDto resume;
 
-    // ArtFile
     private ArtFileDTO file;
 
     private List<ArtFileDTO> files;

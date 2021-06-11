@@ -60,8 +60,6 @@ public class FundingServiceImpl implements FundingService {
     public String save(FundingDto requestDto) {
         Funding funding = Funding.of(requestDto);
         funding.saveRequest(requestDto);
-//        Funding toEntityRequest = pagedtoToEntity(requestDto);
-        log.warn("warn"+funding);
 
         List<FundingFileDto> fundingFiles = requestDto.getFundingFiles();
         if (!fundingFiles.isEmpty()) {
@@ -87,12 +85,6 @@ public class FundingServiceImpl implements FundingService {
 
         return pageentityToDto(funding);
     }
-    // @Override
-    // public FundingDto getFundingById(long id) {
-    // List<Funding> funding = repository.getOneFunding(id);
-    // List<FundingDto> dto = FundingDto.tlist(funding);
-    // return (FundingDto) dto;
-    // }
 
     @Value("${shop.upload.path}")
     private String uploadPath;

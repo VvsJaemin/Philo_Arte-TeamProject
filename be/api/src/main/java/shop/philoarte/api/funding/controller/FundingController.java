@@ -41,9 +41,6 @@ public class FundingController {
     @PostMapping(value = "/register")
     public ResponseEntity<String> save(@RequestBody FundingDto fundingDto) {
 
-        log.info(fundingDto);
-
-
         return ResponseEntity.ok("등록을 성공했습니다." + service.save(fundingDto));
     }
 

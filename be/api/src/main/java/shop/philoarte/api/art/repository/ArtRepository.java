@@ -13,17 +13,6 @@ import java.util.List;
 
 @Repository
 public interface ArtRepository extends JpaRepository<Art, Long>, SearchArtRepository {
-/*
-    @Query("SELECT a, t FROM Art a LEFT JOIN a.artist t WHERE a.artId = :artId")
-    Object getArtWithArtist(@Param("artId") Long artId);
-
-    @Query("SELECT a, f FROM Art a LEFT JOIN ArtFile f ON f.art = a WHERE a.artId = :artId")
-    List<Object[]> getArtWithFile(@Param("artId") Long artId);
-
-    @Query(value = "SELECT a, a.artist, count(f) FROM Art a LEFT JOIN ArtFile f ON f.art = a GROUP BY a", countQuery = "SELECT count(a) FROM Art a")
-    Page<Object[]> getArtWithFileCount(Pageable pageable);
- */
-
 
 
     @Query("SELECT a, a.artist, a.category, a.resume, f FROM Art a LEFT JOIN ArtFile f ON f.art = a WHERE a.artId = :artId")

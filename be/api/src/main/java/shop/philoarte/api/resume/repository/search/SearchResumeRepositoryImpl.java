@@ -84,7 +84,6 @@ public class SearchResumeRepositoryImpl extends QuerydslRepositorySupport implem
 
         Sort sort = pageable.getSort();
 
-        // tuple.orderBy(resume.resumeId.desc());
 
         sort.stream().forEach(order -> {
             Order direction = order.isAscending() ? Order.ASC : Order.DESC;

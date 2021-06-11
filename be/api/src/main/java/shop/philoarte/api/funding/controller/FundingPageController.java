@@ -55,10 +55,5 @@ public class FundingPageController {
         return ResponseEntity.ok(service.getByartistName(requestDto, artistName));
     }
 
-    // @GetMapping("/listpage/searchsum")
-    // public ResponseEntity<Page<FundingDto>>
-    // searchTCInPage(@RequestParam("keyword") String keyword, Pageable pageable){
-    // return ResponseEntity.ok(service.searchTitleAndContent(pageable, keyword));
-    // }
 
 }

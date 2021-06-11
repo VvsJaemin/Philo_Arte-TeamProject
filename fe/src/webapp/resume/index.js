@@ -19,8 +19,6 @@ export { default as CounterRowOne } from 'webapp/resume/component/presentation/C
 export { default as PresentationTwo } from 'webapp/resume/component/presentation/PresentationTwo';
 export { default as Skillbar } from 'webapp/resume/component/presentation/Skillbar';
 export { default as SkillbarSection } from 'webapp/resume/component/presentation/SkillbarSection';
-export { default as TeamOne } from 'webapp/resume/component/presentation/TeamOne';
-export { default as TeamOneMember } from 'webapp/resume/component/presentation/TeamOneMember';
 export { default as WhatWeOfferSix } from 'webapp/resume/component/presentation/WhatWeOfferSix';
 
 //read

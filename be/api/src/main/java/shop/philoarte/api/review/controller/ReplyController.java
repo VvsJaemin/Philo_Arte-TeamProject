@@ -37,7 +37,6 @@ public class ReplyController {
     @PostMapping("/register")
     @ApiOperation(value = "리뷰 댓글 등록", notes = "리뷰 댓글을 등록 합니다.")
     public ResponseEntity<String> replySave(ReplyDto replyDto) {
-        log.info(replyDto);
 
         for (MultipartFile file : replyDto.getReplyFiles()) {
             String uuid = UUID.randomUUID().toString();
@@ -74,7 +73,7 @@ public class ReplyController {
     @PutMapping("/modify/{rno}")
     @ApiOperation(value = "하나의 리뷰 댓글 수정", notes = "하나의 리뷰 댓글을 수정 합니다.")
     public ResponseEntity<String> replyModify(ReplyDto replyDto) {
-        log.info(replyDto);
+
         for (MultipartFile file : replyDto.getReplyFiles()) {
             String uuid = UUID.randomUUID().toString();
             String fileName = file.getOriginalFilename();

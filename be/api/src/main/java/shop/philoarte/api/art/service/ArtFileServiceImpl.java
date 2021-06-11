@@ -46,7 +46,7 @@ public class ArtFileServiceImpl implements ArtFileService {
             String uuid = UUID.randomUUID().toString();
 
             // 저장할 파일 이름 중간에 "_"를 이용해서 구분하여 파일 경로 포함한 저장 파일명
-            String savedFileName = uploadPath + File.separator + uuid + "_" + fileName;
+            String savedFileName = uploadPath + File.separator +"_"+ uuid + fileName;
             Path savePath = Paths.get(savedFileName);
 
             try {
@@ -55,12 +55,12 @@ public class ArtFileServiceImpl implements ArtFileService {
 
                 Thumbnails.of(new File(savedFileName))
                         .size(800, 800)
-                        .toFile(uploadPath + File.separator + "s_" + uuid + "_" + fileName);
+                        .toFile(uploadPath + File.separator + "s_" + uuid + fileName);
 
                 Thumbnails.of(new File(savedFileName))
                         .scale(1)
                         .watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(uploadPath + File.separator + "watermark.png")), 0.5f)
-                        .toFile(uploadPath + File.separator + "w_" + uuid + "_" + fileName);
+                        .toFile(uploadPath + File.separator + "w_" + uuid +  fileName);
 
                 ArtFileDTO artFileDTO = ArtFileDTO.builder()
                         .uuid(uuid)
@@ -84,26 +84,7 @@ public class ArtFileServiceImpl implements ArtFileService {
 
     @Override
     public Long deleteFiles(ArtFileDTO artFileDTO) {
-//        File file = new File(
-//                uploadPath
-//                        + File.separator
-//                        + artFileRepository.findByUuid(artFileDTO.getUuid()).getSaveFileName()
-//        );
-//
-//        File thumbnail = new File(
-//                uploadPath
-//                        + File.separator
-//                        + "s_" + artFileRepository.findById(fileId).get().getSaveFileName()
-//        );
-//
-//        if (file.exists()) {
-//            file.delete();
-//            thumbnail.delete();
-//        }
-//
-//        artFileRepository.deleteByFileId(fileId);
-//
-//        return (artFileRepository.findById(fileId) == null) ? 1L : 0L;
+
         return null;
     }
 }

@@ -1,6 +1,9 @@
 export { default as ArtApp } from 'webapp/art/container/ArtApp'
+
 export { default as HeroMarketing } from 'webapp/art/component/Presentation/HeroMarketing'
 export { default as PresentationTwo } from 'webapp/art/component/Presentation/PresentationTwo'
+
+export { default as ArtPage } from 'webapp/art/component/List/ArtPage'
 export { default as ArtList } from 'webapp/art/component/List/ArtList'
 export { default as ArtItem } from 'webapp/art/component/List/ArtItem'
 export { default as PageTitle } from 'webapp/art/component/List/PageTitle'
@@ -17,7 +20,6 @@ export { default as ArtFile } from 'webapp/art/component/Register/ArtFile'
 export { default as ArtDetail } from 'webapp/art/component/Detail/ArtDetail'
 export { default as ArtContent } from 'webapp/art/component/Detail/ArtContent'
 export { default as ArtSidebar } from 'webapp/art/component/Detail/ArtSidebar'
-export { default as RecentPosts } from 'webapp/art/component/Detail/RecentPosts'
 
 export { default as ArtModify } from 'webapp/art/component/Modify/ArtModify'
 export { default as ModifyUpload } from 'webapp/art/component/Modify/ModifyUpload'
