@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {Link, useHistory} from 'react-router-dom';
 import { getReviewModify, currentReview, delFileList } from '../reducer/review.reducer';
-
 const ReviewModify = () => {
-
+    const loginValue = JSON.parse(localStorage.getItem('artist'))
     const [title,setTitle] = useState('')
     const [content,setContent] = useState('')
     const [files, setFiles] = useState([])
@@ -121,7 +120,7 @@ const ReviewModify = () => {
         </div>
 
         <div className="row-form row">
-        <button className="btn btn-success btn-md btn-default remove-margin pull-right" style={{}}
+        <button className="btn btn-success btn-md btn-default remove-margin pull-right"
          data-uuid={reviewFile.uuid} onClick={(e)=>reviewFileDelete(e)}>
         Upload Cancel</button>
             <div className="col-form col-md-7">
@@ -132,7 +131,7 @@ const ReviewModify = () => {
         
         <div style={{marginTop:"50px"}}>
             
-        <button className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={fileModify} >Modify</button>
+        <button className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={!loginValue ? alert("로그인을 해주세요", history.push(`/reviews/review_read/${reviewObj.reviewId}`)) : fileModify} >Modify</button>
         < Link to = {`/reviews/review_read/${reviewObj.reviewId}`} > 
         <button className="btn btn-color btn-md btn-default remove-margin" >Cancel</button> </Link>
         </div>
@@ -151,5 +150,6 @@ const ReviewModify = () => {
             </div>
     )
 }
+
 
 export default ReviewModify

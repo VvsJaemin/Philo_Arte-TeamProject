@@ -41,7 +41,7 @@ public class ReviewServiceImpl implements ReviewService {
 
         repository.save(review);
 
-        if(reviewFileList != null && reviewFileList.size() > 0){
+        if (reviewFileList != null && reviewFileList.size() > 0) {
             reviewFileList.forEach(reviewFile -> {
                 reviewFileRepository.save(reviewFile);
             });
@@ -74,6 +74,7 @@ public class ReviewServiceImpl implements ReviewService {
     public void modify(ReviewDto reviewDto) {
         Map<String, Object> entityMap = dtoToEntity(reviewDto);
         Review review = repository.getOne(reviewDto.getReviewId());
+
         review.changeTitle(reviewDto.getTitle());
         review.changeContent(reviewDto.getContent());
 
@@ -84,7 +85,7 @@ public class ReviewServiceImpl implements ReviewService {
             reviewFileRepository.reviewFileDelete(review.getReviewId());
 
 
-        if(entityMap.get("fileList") != null && ((List<ReviewFile>)entityMap.get("fileList")).size() > 0){
+        if (entityMap.get("fileList") != null && ((List<ReviewFile>) entityMap.get("fileList")).size() > 0) {
 
             List<ReviewFile> reviewFileList = (List<ReviewFile>) entityMap.get("fileList");
             reviewFileList.forEach(reviewFile -> {

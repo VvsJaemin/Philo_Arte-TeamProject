@@ -5,8 +5,6 @@ const SERVER = 'http://localhost:8080';
 
 const register=(fd)=>{
 
-    console.log(fd)
-
     return axios.post(`${SERVER}/reviews/register`, fd,{
         headers:{
             'Content-Type': 'multipart/form-data'
@@ -18,7 +16,6 @@ const register=(fd)=>{
 }
 
 const list=(pageResult)=>{
-    console.log('service hireList pageRequest: ' + JSON.stringify(pageResult));
 
     const str = "page=" + (!pageResult.page?1:pageResult.page) +"&type="+ (pageResult.type) +"&keyword=" + (pageResult.keyword)
     
