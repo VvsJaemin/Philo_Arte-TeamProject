@@ -43,6 +43,7 @@ public class FundingFileController {
     @PostMapping("/upload_file")
     public ResponseEntity<List<FundingFileDto>> uploadFile(MultipartFile[] uploadFiles) {
         return ResponseEntity.ok(service.registerFile(uploadFiles));
+        // .stream().filter(f->f.getContentType().startsWith("image")).collect(Collectors.toList())));
 
     }
 

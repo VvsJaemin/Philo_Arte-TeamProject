@@ -1,9 +1,10 @@
-import { Link } from '@material-ui/core';
 import React, { useEffect } from 'react';
+import Slider from 'react-slick';
 import Icofont from 'react-icofont';
 import { useDispatch, useSelector } from 'react-redux';
-import { getArtPosts } from 'webapp/art/reducer/art.reducer';
 import 'webapp/resume/css/ResumeCss.css';
+import { getArtPosts } from 'webapp/art/reducer/art.reducer';
+import { Link } from 'react-router-dom';
 const ArtPost = ({ data }) => {
     const settings = {
         dots: false,
@@ -17,6 +18,7 @@ const ArtPost = ({ data }) => {
         className: 'blog-grid-slider slick',
     };
     const dispatch = useDispatch()
+   
     const items = useSelector((state) => state.resumes.current);
     const artList = useSelector(state => state.arts.pageResult)
     useEffect(()=>{
@@ -47,9 +49,11 @@ const ArtPost = ({ data }) => {
                             </div>
                         ))}
                     </div>
+
                 </div>
             </section>
         </>
     );
 };
+
 export default ArtPost;

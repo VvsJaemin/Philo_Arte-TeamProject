@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import axios from 'axios';
 
 const userInfo =  typeof window !== `undefined`  ? JSON.parse(localStorage.getItem('USER')) : null;
@@ -51,5 +52,39 @@ const deletes = (rno) => {
     })
 
 };
+=======
+import axios from 'axios'
+const SERVER = 'http://localhost:8080';
+const register=(fd)=>{
+   return axios.post(`${SERVER}/replies/register`, fd, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+    })
+    .then(response=>{
+        return response.data
+    })
 
-export default { register, list, modify, deletes };
+}
+
+const list=(reviewId)=>{
+    return axios.get(`${SERVER}/replies/list/${reviewId}`)
+}
+
+const modify=(reply)=>{
+    return axios.put(`${SERVER}/replies/modify/`+reply.rno, reply,{
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+    .then(response=>{
+        return response.data
+    })
+}
+
+const deletes=(rno)=>{
+    return axios.delete(`${SERVER}/replies/remove/${rno}`, {data:{...rno}})
+}
+>>>>>>> parent of c9ce68b (210611 Philo Arte proxy-middleware 설정)
+
+export default{register, list, modify, deletes}

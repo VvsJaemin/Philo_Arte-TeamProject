@@ -109,6 +109,7 @@ public class ReviewServiceImpl implements ReviewService {
     public PageResultDto<ReviewDto, Object[]> getList(PageRequestDto pageRequestDto) {
         log.info(pageRequestDto);
 
+//        Pageable pageable = pageRequestDto.getPage(Sort.by("reviewId").descending());
         Function<Object[], ReviewDto> fn = (arr -> entityToDto(
                 (Review) arr[0],
                 (Artist) arr[1],

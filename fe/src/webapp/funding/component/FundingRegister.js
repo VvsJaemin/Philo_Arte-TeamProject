@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import HomeMarketingSlider from 'webapp/funding/component/presentation/HeroMarketing';
+import HeaderSocial from 'webapp/common/Header/HeaderSocial';
+import dataNavbar from 'webapp/common/data/Navbar/main-navbar-data.json';
+import HomeMarketingSlider from 'webapp/funding/component/showing/HeroMarketing';
 import FooterOne from 'webapp/common/Footer/FooterOne';
 import { saveFunding } from '../reducer/funding.reducer';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +15,7 @@ const FundingRegister = () => {
         dispatch(getLocalArtist());
     }, []);
     const param = useSelector(state => state.artists.artistsState)
+    console.log(param.artistId,"================artistId")  
 
     const childRef = useRef();
     let uploadedFiles = null;

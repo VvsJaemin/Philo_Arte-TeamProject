@@ -1,8 +1,10 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFundingDetail, currentFunding, deleteFunding } from 'webapp/funding/reducer/funding.reducer';
 import { Link, useParams } from 'react-router-dom';
-import HomeMarketingSlider from 'webapp/funding/component/presentation/HeroMarketing';
+import HeaderSocial from 'webapp/common/Header/HeaderSocial';
+import HomeMarketingSlider from 'webapp/funding/component/showing/HeroMarketing';
+import dataNavbar from 'webapp/common/data/Navbar/main-navbar-data.json';
 import FooterOne from 'webapp/common/Footer/FooterOne';
 import { Grid, makeStyles } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
@@ -15,6 +17,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import LaunchIcon from '@material-ui/icons/Launch';
 import Button from '@material-ui/core/Button';
 import HeaderOneMain from 'webapp/common/component/Navbar/HeaderOneMain';
+import { getLocalArtist } from 'webapp/artist/reducer/artist.reducer';
 
 const FundingDetail = () => {
     const dispatch = useDispatch();
@@ -232,6 +235,17 @@ const FundingDetail = () => {
 
     const classes = useStyles();
 
+    // useEffect(() => {
+    //     getLocalArtist();
+    // }, []);
+    // const [loginInfo, setLoginInfo] = useState({});
+
+    // const checkLogin = () => {
+    //     const loginValue = JSON.parse(localStorage.getItem(loginInfo));
+
+    //     setLoginInfo(loginValue);
+    // };
+    // useEffect(checkLogin, []);
     return (
         <>
         <HeaderOneMain />
@@ -268,6 +282,8 @@ const FundingDetail = () => {
                                 Shadow={3}
                                 className={classes.media}
                                 image={param.fundingFiles?.map((img) => `http://localhost:8080/funding_file/display?fileName=${img.uuid}_${img.fname}`)[0]}
+
+                                // title={title}
                             />
 
                             <CardContent className={classes.content}>

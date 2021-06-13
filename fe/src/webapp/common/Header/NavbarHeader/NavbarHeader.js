@@ -1,4 +1,6 @@
 import React from "react";
+import logoWhite from "webapp/images/logo-white.png";
+import logoBlack from "webapp/images/logo-black.png";
 
 const NavbarHeader = () => (
   <div className="navbar-header">

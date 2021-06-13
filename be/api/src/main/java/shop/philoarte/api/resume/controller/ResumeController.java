@@ -40,6 +40,7 @@ public class ResumeController {
     @PostMapping("/register")
     @ApiOperation(value = "${ResumeController.register}")
     public ResponseEntity<String> save(@RequestBody ResumeDto resume) {
+        System.out.println("---------resume: " + resume.toString());
         return ResponseEntity.ok(service.resumeSaveWithFile(resume));
     }
 

@@ -1,5 +1,4 @@
 import React from "react";
-// 확인
 import HandleSearchOverlay from "../helpers/HandleSearchOverlay";
 import HandleSideMenu from "../helpers/HandleSideMenu";
 import HandleFixedNavbar from "../helpers/HandleFixedNavbar";
@@ -17,7 +16,7 @@ const HeaderOne = ({ type, data, border }) => {
   return (
     <nav
       className={
-        "navbar navbar-default navbar-fixed white bootsnav on no-full menu-center " +
+        "navbar navbar-default navbar-fixed black bootsnav on no-full menu-center " +
         (border ? "" : "no-border") + (fixed ? "" : " navbar-transparent")
       }
     >

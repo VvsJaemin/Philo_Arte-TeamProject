@@ -15,7 +15,6 @@ import { HomeVideoBg } from 'webapp/common/index';
 
 
 const App = () => {
-    
     return (
         <Router basename="/">
             <ScrollIntoView>

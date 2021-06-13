@@ -27,13 +27,14 @@ import java.util.UUID;
 
 @Log4j2
 @RestController
-@RequestMapping(value = "/reviews", method = {RequestMethod.GET, RequestMethod.POST})
+@RequestMapping(value = "/reviews", method = { RequestMethod.GET, RequestMethod.POST })
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 @Api(tags = "reviews")
 public class ReviewController {
 
     private final ReviewServiceImpl service;
+    private final ReviewFileServiceImpl reviewFileService;
 
     @Value("${shop.upload.path}")
     private String uploadPath;
@@ -50,7 +51,7 @@ public class ReviewController {
 
             String uuid = UUID.randomUUID().toString();
 
-            String saveName = uploadPath + File.separator + "_" + uuid + f.getOriginalFilename();
+            String saveName = uploadPath + File.separator + uuid + "_" + f.getOriginalFilename();
             String thumbnailSaveName = uploadPath + File.separator + "s_" + uuid + f.getOriginalFilename();
             log.info(saveName);
             log.info(thumbnailSaveName);
@@ -58,7 +59,8 @@ public class ReviewController {
             try {
                 FileCopyUtils.copy(f.getInputStream(),
                         new FileOutputStream(saveName, Boolean.parseBoolean(thumbnailSaveName)));
-
+                // FileCopyUtils.copy(f.getInputStream(), new
+                // FileOutputStream(thumbnailSaveName));
                 Thumbnails.of(new File(saveName)).size(600, 600).outputFormat("jpg").toFile(thumbnailSaveName);
 
                 ReviewFileDto fileDto = ReviewFileDto.builder().uuid(uuid).imgName(f.getOriginalFilename())
@@ -72,6 +74,7 @@ public class ReviewController {
 
         });
 
+        log.info("리뷰가 등록 되었습니다." + reviewDto);
 
         Map<String, Long> resultMap = new HashMap<>();
         resultMap.put("result", (service.save(reviewDto)));
@@ -97,7 +100,9 @@ public class ReviewController {
     @PutMapping("/modify/{reviewId}")
     @ApiOperation(value = "하나의 리뷰 수정", notes = "하나의 리뷰를 수정 합니다.")
     public ResponseEntity<Map<String, String>> reviewModify(ReviewDto reviewDto) {
-
+        log.info("++++++++++++++++++");
+        log.info(reviewDto);
+        log.info("++++++++++++++++++");
 
         ArrayList<MultipartFile> files = reviewDto.getFiles();
 
@@ -106,7 +111,7 @@ public class ReviewController {
 
             String uuid = UUID.randomUUID().toString();
 
-            String saveName = uploadPath + File.separator + "_" + uuid + f.getOriginalFilename();
+            String saveName = uploadPath + File.separator + uuid + "_" + f.getOriginalFilename();
 
             String thumbnailSaveName = uploadPath + File.separator + "s_" + uuid + f.getOriginalFilename();
 

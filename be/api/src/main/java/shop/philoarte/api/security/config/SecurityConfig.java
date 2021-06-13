@@ -19,5 +19,13 @@ public class SecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFil
         http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
     }
 
-
+    // @Override
+    // public void configure(AuthenticationManagerBuilder auth) throws Exception {
+    //// SecurityFilter filter = new SecurityFilter(provider);
+    //// http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+    // auth.userDetailsService((org.springframework.security.core.userdetails.UserDetailsService)
+    // UserDetailsService);
+    // auth.eraseCredentiasl(false);
+    //
+    // }
 }

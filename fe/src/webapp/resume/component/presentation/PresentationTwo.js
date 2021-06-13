@@ -1,7 +1,8 @@
 import React from 'react';
 import parse from 'html-react-parser';
-import img from 'webapp/resume/image/portfolio_first.jpeg';
+import img from 'webapp/images/resume/portfolio_first.jpeg';
 import { Link } from 'react-router-dom';
+
 const PresentationTwo = ({ title, text, textBtn, textBtn2, backfont}) => {
     const loginValue = JSON.parse(localStorage.getItem('artist'))
     return (
@@ -14,6 +15,7 @@ const PresentationTwo = ({ title, text, textBtn, textBtn2, backfont}) => {
                     </h1>
                     <p className="mt-30">{text && parse(text)}</p>
                     <p className="mt-30">
+                        
                         {!loginValue ?
                         <Link to="/artist/artist_signin">
                             <button className="btn btn-lg btn-color btn-square" style={{ marginLeft: '20px' }}>
@@ -29,4 +31,5 @@ const PresentationTwo = ({ title, text, textBtn, textBtn2, backfont}) => {
         </div>
     </section>
 )};
+
 export default PresentationTwo;

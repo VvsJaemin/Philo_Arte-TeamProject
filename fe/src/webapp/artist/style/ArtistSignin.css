@@ -5,8 +5,8 @@
   border: 3px solid #f1f1f1;
 }
 
-.artistinput[type="text"],
-.artistinput[type="password"] {
+.artistInput[type="text"],
+.artistInput[type="password"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;

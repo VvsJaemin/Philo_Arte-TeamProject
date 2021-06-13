@@ -12,6 +12,7 @@ export const saveFunding = createAsyncThunk(
     "funding/register",
     async (newFunding) =>{
         const response = await FundingService.fundingRegister(newFunding)
+        console.log("saveFunding action  ===" ,newFunding)
         return response.data
     }
 )
@@ -25,13 +26,18 @@ export const searchSomething = createAsyncThunk(
 export const getFundingDetail = createAsyncThunk(
     "funding/Detail",
     async(fundingId)=>{
-        const response = await FundingService.showDetail(fundingId) 
+        const response = await FundingService.showDetail(fundingId)
+        console.log("export const 의 fundingNo :"+ fundingId)
+        console.log("export const 의 response", response)   
         return response.data 
+        // return {...state, selected: state.boards.find(post => post.id === action.postId)}
     }
 )
 export const updateFunding = createAsyncThunk(
     'funding/update',
         async (obj)=>{
+            console.log("funding id" , obj.fundingId)
+            console.log("[UPDATE reducer]data :::::",obj.data)
             const response = await FundingService.fundingUpdate(obj.fundingId,obj.data)
             return response.data
     }
@@ -88,9 +94,11 @@ const fundingSlice = createSlice({
             state.pageResult = payload
         })
         .addCase(getFundingDetail.fulfilled,(state,{payload})=>{
+            console.log("extra ==============="+ JSON.stringify(payload))
             state.current = payload
         })
         .addCase(updateFunding.fulfilled,(state,{payload})=>{
+            // state.param.map(data => data.fundingId ===payload ? state.param : data)
             state.fundingId = payload
         })
         .addCase(saveFunding.fulfilled,(state,{payload})=>{
@@ -117,3 +125,6 @@ export const nomalDto = state => state.fundings.current
 
 export const {addFileList}=actions
 export default reducer 
+
+// const funding = state.find(funding => funding.fundingNo == payload)
+//             return funding ? payload : funding.fundingNo;

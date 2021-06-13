@@ -38,6 +38,10 @@ public class ReplyServiceImpl implements ReplyService {
     public void modify(ReplyDto replyDto) {
         Reply reply = dtoToEntity(replyDto);
         repository.save(reply);
+//        repository.deleteById(replyDto.getRno());
+////        repository.findById(replyDto.getRno());
+//        repository.save(reply);
+//        repository.findById(replyDto.getRno());
     }
 
 

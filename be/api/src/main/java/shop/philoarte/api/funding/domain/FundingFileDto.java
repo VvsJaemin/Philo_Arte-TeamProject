@@ -22,7 +22,14 @@ public class FundingFileDto {
     private String uuid;
 
     private String fname;
-
+    
+    // public static List<FundingFileDto> filetoDto(List<FundingFile> fundingFile){
+        
+    //     return  fundingFile.stream()
+    //     .map(p->ModelMapperUtils.getModelMapper()
+    //     .map(p, FundingFileDto.class))
+    //     .collect(Collectors.toList());
+    // }
     public static FundingFileDto of(FundingFile fundingFile) {
         FundingFileDto fundingFileDto = ModelMapperUtils.getModelMapper().map(fundingFile, FundingFileDto.class);
         return fundingFileDto;
