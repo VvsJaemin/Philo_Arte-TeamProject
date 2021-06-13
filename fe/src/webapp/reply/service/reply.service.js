@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import axios from 'axios';
 
 const userInfo =  typeof window !== `undefined`  ? JSON.parse(localStorage.getItem('USER')) : null;
@@ -52,7 +52,7 @@ const deletes = (rno) => {
     })
 
 };
-=======
+
 import axios from 'axios'
 const SERVER = 'http://localhost:8080';
 const register=(fd)=>{
@@ -85,6 +85,6 @@ const modify=(reply)=>{
 const deletes=(rno)=>{
     return axios.delete(`${SERVER}/replies/remove/${rno}`, {data:{...rno}})
 }
->>>>>>> parent of c9ce68b (210611 Philo Arte proxy-middleware 설정)
+
 
 export default{register, list, modify, deletes}
