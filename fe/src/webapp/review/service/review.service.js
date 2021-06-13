@@ -1,46 +1,70 @@
 import axios from 'axios'
 import { useRef } from 'react';
 
-const SERVER = 'http://localhost:8080';
+const userInfo = typeof window !== `undefined` ? JSON.parse(localStorage.getItem('artist')) : null;
 
 const register=(fd)=>{
 
-    return axios.post(`${SERVER}/reviews/register`, fd,{
+    return axios({
+        url: `/reviews/register`,
+        method:'post',
+        data: fd,
         headers:{
+            'Authorization': `Bearer ${userInfo.token}`,
             'Content-Type': 'multipart/form-data'
         }
-    })
-    .then(response=>{
-        return response.data
     })
 }
 
 const list=(pageResult)=>{
 
     const str = "page=" + (!pageResult.page?1:pageResult.page) +"&type="+ (pageResult.type) +"&keyword=" + (pageResult.keyword)
+
+    return axios({
+        url : `/reviews/list/pages?`+str,
+        method : 'get',
+        headers:{
+            'Authorization' : 'JWT fefefg...'
+        }
+    })
     
-    return axios.get(`${SERVER}/reviews/list/pages?` + str)
 }
 
 const read=(reviewId)=>{
-    return axios.get(`${SERVER}/reviews/read/${reviewId}`)
+    return axios({
+        url : `/reviews/read/${reviewId}`,
+        method:'get',
+        headers:{
+            'Authorization' : 'JWT fefefg...'
+        }
+    })
 }
 
 const modify=(review)=>{
 
-    return axios.put(`${SERVER}/reviews/modify/`+review.reviewId, review,{
+    return axios({
+        url : `/reviews/modify/`+review.reviewId,
+        method : "put",
+        data : review,
         headers:{
+            'Authorization': `Bearer ${userInfo.token}`,
             'Content-Type': 'multipart/form-data'
         }
     })
-    .then(response=>{
-        return response.data
-})
+
 }
 
 const deletes=(reviewId)=>{
-    console.log("Delete Review")
-    return axios.delete(`${SERVER}/reviews/remove/${reviewId}`, {data:{...reviewId}})
+
+    return axios({
+        url : `/reviews/remove/${reviewId}`,
+        method : 'delete',
+        data : {...review},
+        headers :{
+            'Authorization' : 'JWT fefefg...'
+        }
+    })
+
 }
 
 export default{register, list, read, modify, deletes}

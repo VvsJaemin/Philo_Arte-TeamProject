@@ -1,32 +1,21 @@
-server:
-  port: 8080
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    # url: jdbc:mysql://wlsdnr4675.cwjff3qij1v0.ap-northeast-2.rds.amazonaws.com/wlsdnr4675?useSSLd=false&characterEncoding=UTF-8&serverTimezone=UTC
-    # username: wlsdnr4675
-    # password: wlsdnr4675
-    url: jdbc:mysql://112.169.196.99:3306/arte?useSSLd=false&characterEncoding=UTF-8&serverTimezone=UTC
-
-    username: arte
-    password: Arte1234
+    url: jdbc:mariadb://parkjaemin.czqpiiaxuzcd.ap-northeast-2.rds.amazonaws.com:3306/ParkJaemin
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: ParkJaemin
+    password: woals1212!
+  jpa:
+    open-in-view: false
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
     servlet:
       multipart:
         enabled: true
         location: C:\update
         max-request-size: 30MB
         max-file-size: 30MB
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    open-in-view: false
-    generate-ddl: true
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        format_sql: true
-
 security:
   jwt:
     secret: secret-value

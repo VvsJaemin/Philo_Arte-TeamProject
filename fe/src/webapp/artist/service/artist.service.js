@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+const userInfo = typeof window !== `undefined` ? JSON.parse(localStorage.getItem('Artist')) :null;
 
 const list = (page) => {
     console.log('page :: ', page);
@@ -12,17 +13,15 @@ const imgList = (imgList) => {
     const str = 'page=' + (!imgList.page ? 1 : imgList.page) + '&type=' + (imgList.type ? imgList.type : '') + '&keyword=' + (imgList.keyword ? imgList.keyword : '') + '&pageFileDto=' + (imgList.pageFileDto ? imgList.pageFileDto : '');
     return axios.get(`/api/artist_files/imgList/pages` + str);
 };
-// , {
-//     page: imgList.page,
-//     type: imgList.type,
-//     pageFileDto: imgList.pageFileDto,
-// }
 
 const signin = (signin) => {
-    return axios.post(`/api/artists/signin`, {
-        username: signin.username,
-        password: signin.password,
-    });
+    return axios({
+        url : `api/artists/signin`,
+        method : 'post',
+        data : signin,
+        headers:{  Authorization: localStorage.getItem('TOKEN') }
+    })
+
 };
 
 const signup = (param) => {
