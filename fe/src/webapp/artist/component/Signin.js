@@ -12,11 +12,11 @@ const Signin = () => {
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const goSignin =  (e) => {
+    const goSignin = (e) => {
         e.preventDefault();
         e.stopPropagation();
         dispatch(signinPage(signin));
-        history.push("/")
+        history.push('/');
     };
 
     const handleChange = (e) => {

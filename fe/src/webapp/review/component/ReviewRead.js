@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Icofont from 'react-icofont';
-<<<<<<< HEAD
 import { Link, useHistory, useParams } from 'react-router-dom';
-=======
-import {Link, useHistory, useParams} from 'react-router-dom';
->>>>>>> parent of c9ce68b (210611 Philo Arte proxy-middleware 설정)
 import { ReplyList } from 'webapp/reply';
-import { getReviewRead, getReviewDelete, getReviewList} from '../reducer/review.reducer';
+import { getReviewRead, getReviewDelete, getReviewList } from '../reducer/review.reducer';
 
 const ReviewRead = () => {
 

@@ -59,7 +59,7 @@ const deletes=(reviewId)=>{
     return axios({
         url : `/reviews/remove/${reviewId}`,
         method : 'delete',
-        data : {...review},
+        data : {...reviewId},
         headers :{
             'Authorization' : 'JWT fefefg...'
         }

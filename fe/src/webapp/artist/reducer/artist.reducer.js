@@ -81,21 +81,16 @@ const artistSlice = createSlice({
         keyword: '',
         params: {},
         pageFileDto: [],
-
     },
     reducers: {
         getLocalArtist: (state, action) => {
-            console.log('getLocalAritist...................');
-
+     
             if (state.artistsState.username !== '') {
                 return;
             }
 
             const artist = JSON.parse(window.localStorage.getItem('artist'));
             state.artistsState = artist;
-            console.log('============Local===========');
-            console.log(state.artistsState);
-            console.log('=======================');
         },
 
         changeSearch: (state, action) => {
@@ -106,44 +101,28 @@ const artistSlice = createSlice({
         getArtistImgList: (state, action) => {
             const artistsImge = JSON.stringify(window.localStorage.getItem('artistsImge'));
             state.artistsState.dtoList = artistsImge;
-            console.log('============Local Image===========');
-            console.log(state.artistsState.dtoList);
-
-            console.log('=======================');
         },
     },
     extraReducers: {
         [fetchPage.fulfilled]: (state, { meta, payload }) => {
-            console.log('payload fetchPage :::::::', payload);
             state.pageResult = payload;
         },
         [fetchFilePage.fulfilled]: (state, { meta, payload }) => {
-            console.log('payload fetchPage :::::::', payload);
             state.pageFileDto = payload;
-            console.log('state.pageFileDto ::::::: ', state.pageFileDto);
             window.localStorage.setItem('artistsImge', JSON.stringify(payload));
         },
         [signinPage.fulfilled]: (state, { meta, payload }) => {
-            console.log('payload ::::::::::: ', payload);
             state.artistsState = payload;
             window.localStorage.setItem('artist', JSON.stringify(payload));
-
-            console.log('JSON.stringify(payload) ::::::: ', JSON.stringify(payload));
         },
         [mypagePage.fulfilled]: (state, { meta, payload }) => {
             state.artistsState = payload;
-            console.log('reducer payload ::::::::: ', payload);
         },
         [signupPage.fulfilled]: (state, action) => {
             state.artistsState = action.payload;
-            console.log('state 은? :: ', state);
-            console.log('reducer action ::::::::: ', action);
-            console.log('reducer action.payload ::::::::: ', action.payload);
-            console.log('reducer payload ::::::::: ', signupPage);
         },
         [deleteSelect.fulfilled]: (state, { meta, payload }) => {
             state.artistsState = payload;
-            console.log('reducer payload ::::::::: ' + payload);
         },
     },
 });
