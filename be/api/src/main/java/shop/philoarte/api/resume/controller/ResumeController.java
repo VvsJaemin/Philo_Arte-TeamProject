@@ -107,7 +107,6 @@ public class ResumeController {
 
     @GetMapping("/count/{artistId}")
     public ResponseEntity<List<Object[]>> count(@PathVariable("artistId") Long artistId) {
-        // TODO Auto-generated method stub
         return ResponseEntity.ok(service.countByArtistId(artistId));
     }
 
