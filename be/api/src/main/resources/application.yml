@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:mariadb://localhost:3306/test
+    url: jdbc:mariadb://parkjaemin.czqpiiaxuzcd.ap-northeast-2.rds.amazonaws.com:3306/ParkJaemin
     driver-class-name: org.mariadb.jdbc.Driver
-    username: root
-    password: root
+    username: ParkJaemin
+    password: woals1212!
   jpa:
     open-in-view: false
     generate-ddl: true
