@@ -35,14 +35,12 @@ public class ArtistFileController {
 
     @RequestMapping("/imgList/pages")
     public ResponseEntity<PageResultDto<ArtistDto, Object[]>> list(PageRequestDto page) {
-        log.info("imgList page................." + page);
 
         return new ResponseEntity(service.getPageFileList(page), HttpStatus.OK);
     }
 
     @PostMapping("/uploadAjax")
     public ResponseEntity<List<ArtistFileDto>> uploadFile(List<MultipartFile> files) {
-        log.info("uploadAjax 시작");
         for (MultipartFile file : files) {
 
             // 이미지 파일만 업로드 가능
@@ -56,14 +54,11 @@ public class ArtistFileController {
     @GetMapping("/display")
     public ResponseEntity<byte[]> getFile(String imgName) {
         ResponseEntity<byte[]> result = null;
-        log.info("display 시작");
 
         try {
             String srcFileName = URLDecoder.decode(imgName, "UTF-8");
-            log.info("imgName : ", srcFileName);
 
             File file = new File(uploadPath + File.separator + srcFileName);
-            log.info("file : ", file);
 
             HttpHeaders header = new HttpHeaders();
 
@@ -73,10 +68,8 @@ public class ArtistFileController {
             result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
 
         } catch (Exception e) {
-            log.error(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        log.info("display 끝");
         return result;
     }
 

@@ -36,7 +36,7 @@
     "slick-carousel": "^1.8.1",
     "swiper": "^5.4.1"
   },
-  "proxy": "http://localhost:8080",
+  "proxy": "http://3.34.51.231/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
