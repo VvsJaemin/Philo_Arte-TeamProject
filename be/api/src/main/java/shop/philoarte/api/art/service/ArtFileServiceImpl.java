@@ -40,8 +40,6 @@ public class ArtFileServiceImpl implements ArtFileService {
             String originalFileName = file.getOriginalFilename();
             String fileName = originalFileName.substring(originalFileName.lastIndexOf("\\") + 1);
 
-            log.info("fileName: " + fileName);
-
             // UUID
             String uuid = UUID.randomUUID().toString();
 
@@ -84,26 +82,6 @@ public class ArtFileServiceImpl implements ArtFileService {
 
     @Override
     public Long deleteFiles(ArtFileDTO artFileDTO) {
-//        File file = new File(
-//                uploadPath
-//                        + File.separator
-//                        + artFileRepository.findByUuid(artFileDTO.getUuid()).getSaveFileName()
-//        );
-//
-//        File thumbnail = new File(
-//                uploadPath
-//                        + File.separator
-//                        + "s_" + artFileRepository.findById(fileId).get().getSaveFileName()
-//        );
-//
-//        if (file.exists()) {
-//            file.delete();
-//            thumbnail.delete();
-//        }
-//
-//        artFileRepository.deleteByFileId(fileId);
-//
-//        return (artFileRepository.findById(fileId) == null) ? 1L : 0L;
         return null;
     }
 }

@@ -40,21 +40,18 @@ public class ResumeController {
     @PostMapping("/register")
     @ApiOperation(value = "${ResumeController.register}")
     public ResponseEntity<String> save(@RequestBody ResumeDto resume) {
-        System.out.println("---------resume: " + resume.toString());
         return ResponseEntity.ok(service.resumeSaveWithFile(resume));
     }
 
     @PutMapping("/edit")
     @ApiOperation(value = "${ResumeController.edit}")
     public ResponseEntity<String> editResume(@RequestBody ResumeDto resume) {
-        System.out.println("ReusemeId: " + resume.getResumeId());
         return ResponseEntity.ok(service.editResume(resume));
     }
 
     @DeleteMapping("/delete")
     @ApiOperation(value = "${ResumeController.delete}")
     public ResponseEntity<String> delete(@RequestBody ResumeDto resume) {
-        System.out.println("---------resumeDeleteController: " + resume.toString());
         fileService.removeFiles(resume.getResumeId());
         return ResponseEntity.ok(service.delete(resume));
     }
@@ -81,7 +78,6 @@ public class ResumeController {
     @GetMapping("/list_by_userid/{artistId}")
     public ResponseEntity<PageResultDto<ResumeDto, Resume>> getUserPKDataPage(@PathVariable("artistId") Long artistId,
             int page) {
-        System.out.println("fdsfdsfds: " + artistId);
         return ResponseEntity.ok(service.getUserPKDataPage(artistId, page));
     }
 
@@ -101,7 +97,6 @@ public class ResumeController {
 
     @GetMapping(value = { "/search" })
     public ResponseEntity<PageResultDto<ResumeDto, Object[]>> conditionSearch(String type, String keyword, int page) {
-        System.out.println("keyword" + keyword);
         return ResponseEntity.ok(service.conditionSearch(type, keyword, page));
     }
 

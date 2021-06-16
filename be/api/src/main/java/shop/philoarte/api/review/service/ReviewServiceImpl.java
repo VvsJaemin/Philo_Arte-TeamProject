@@ -34,7 +34,6 @@ public class ReviewServiceImpl implements ReviewService {
     @Transactional
     @Override
     public Long save(ReviewDto reviewDto) {
-        log.info(reviewDto);
         Map<String, Object> entityMap = dtoToEntity(reviewDto);
         Review review = (Review) entityMap.get("review");
         List<ReviewFile> reviewFileList = (List<ReviewFile>) entityMap.get("fileList");

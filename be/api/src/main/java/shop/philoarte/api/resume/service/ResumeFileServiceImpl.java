@@ -39,7 +39,6 @@ public class ResumeFileServiceImpl implements ResumeFileService {
         for (MultipartFile uploadFile : uploadFiles) {
             String originalName = uploadFile.getOriginalFilename();
             String fileName = originalName.substring(originalName.lastIndexOf("\\") + 1);
-            log.info("fileName: " + fileName);
             String uuid = UUID.randomUUID().toString();
             String saveName = uploadPath + File.separator + uuid + "_" + fileName;
             Path savePath = Paths.get(saveName);

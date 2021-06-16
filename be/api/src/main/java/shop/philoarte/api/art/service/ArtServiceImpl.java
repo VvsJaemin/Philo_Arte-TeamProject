@@ -45,7 +45,6 @@ public class ArtServiceImpl implements ArtService {
             artFileDtos.forEach(artFileDTO -> {
                 ArtFile artFile = dtoToEntityFiles(artFileDTO);
                 artFile.setArt(art);
-                log.info("ArtFile: " + artFile);
                 artFileRepository.save(artFile);
             });
         }
@@ -65,8 +64,6 @@ public class ArtServiceImpl implements ArtService {
 
         Page<Object[]> result = artRepository.getArts(pageRequestDTO.getPageable(Sort.by("artId").descending()));
 
-        System.out.println("result: " + result);
-
         return new PageResultDTO<>(result, fn);
 
     }
@@ -78,18 +75,11 @@ public class ArtServiceImpl implements ArtService {
         Function<Object[], ArtDTO> fn = (entity ->
                 entityToDtoForList((Art) entity[0], (Artist) entity[1], (Category) entity[2], (Resume) entity[3], (ArtFile) entity[4]));
 
-        // Page<Object[]> result = artRepository.getArts(pageRequestDTO.getPageable(Sort.by("artId").descending()));
-
-        log.info("---------------------------");
-        log.info(pageRequestDTO.toString());
-
         Page<Object[]> result = artRepository.searchPage(
                 pageRequestDTO.getType(),
                 pageRequestDTO.getKeyword(),
                 pageRequestDTO.getPageable(Sort.by("artId").descending())
         );
-
-        System.out.println("result: " + result);
 
         return new PageResultDTO<>(result, fn);
 
@@ -130,8 +120,6 @@ public class ArtServiceImpl implements ArtService {
 
         Art art = artRepository.getOne(artDTO.getArtId());
 
-        System.out.println(art);
-
         art.changeTitle(artDTO.getTitle());
         art.changeDescription(artDTO.getDescription());
 
@@ -150,8 +138,6 @@ public class ArtServiceImpl implements ArtService {
                 }
 
                 artFile.setArt(art);
-
-                log.info("ArtFile: " + artFile);
 
                 artFileRepository.save(artFile);
             });
@@ -183,14 +169,10 @@ public class ArtServiceImpl implements ArtService {
     @Override
     public PageResultDTO<ArtDTO, Object[]> getArtsByArtistId(PageRequestDTO pageRequestDTO, Long artistId) {
 
-        log.info(pageRequestDTO);
-
         Function<Object[], ArtDTO> fn = (entity ->
                 entityToDtoForList((Art) entity[0], (Artist) entity[1], (Category) entity[2], (Resume) entity[3], (ArtFile) entity[4]));
 
         Page<Object[]> result = artRepository.getArtsByArtistId(pageRequestDTO.getPageable(Sort.by("artId").descending()), artistId);
-
-        System.out.println("result: " + result);
 
         return new PageResultDTO<>(result, fn);
 

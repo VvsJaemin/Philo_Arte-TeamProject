@@ -69,8 +69,6 @@ async(reviewId)=>{
                 console.log("................" + file.uuid, payload.uuid)
                 return file.uuid === payload.uuid 
             })
-            console.log("payload", payload)
-            console.log("findFile: ", idx)
 
             state.params.reviewFileDtoList.splice(idx,1)
         }
@@ -79,7 +77,6 @@ async(reviewId)=>{
      },
      extraReducers : (builder)=>{
          builder.addCase(getReviewList.fulfilled,(state, {meta,payload})=>{
-             console.log(payload)
              state.pageResult =payload
          })
          .addCase(getReviewRegister.fulfilled, (state, {payload})=>{
@@ -88,11 +85,9 @@ async(reviewId)=>{
          })
          .addCase(getReviewRead.fulfilled, (state, {payload})=>{
            state.params = payload
-           console.log(payload)
          })
          .addCase(getReviewModify.fulfilled,(state, {payload})=>{
             state.reviewId = payload
-            console.log(payload)
          })
          .addCase(getReviewDelete.fulfilled,(state, {payload})=>{
             state.params = payload

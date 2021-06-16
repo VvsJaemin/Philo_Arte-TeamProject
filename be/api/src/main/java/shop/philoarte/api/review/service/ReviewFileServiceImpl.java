@@ -42,7 +42,6 @@ public class ReviewFileServiceImpl implements ReviewFileService {
             StringBuilder sb = new StringBuilder();
             sb.append(uploadPath).append(File.separator).append(uuid).append("_").append(ofheader).append(ext);
             String saveName = sb.toString();
-            log.info("Review File Upload Name : " + saveName);
             Path savePath = Paths.get(saveName);
             try {
                 uploadFile.transferTo(savePath);

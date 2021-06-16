@@ -4,7 +4,6 @@ import { ArtService } from 'webapp/art'
 
 export const getArtList = createAsyncThunk("ART_LIST",
   async (page) => {
-    console.log("getArtList", page)
     const response = await ArtService.artList(page)
 
     return response.data
@@ -13,7 +12,6 @@ export const getArtList = createAsyncThunk("ART_LIST",
 
 export const getArtRegister = createAsyncThunk("ART_REGISTER",
   async (args) => {
-    console.log(args)
     const response = await ArtService.artRegister(args)
 
     return response.data
@@ -22,7 +20,6 @@ export const getArtRegister = createAsyncThunk("ART_REGISTER",
 
 export const getArtUpload = createAsyncThunk("ART_UPLOAD",
   async (args) => {
-    console.log('UPLOAD : ' + JSON.stringify(args))
     const response = await ArtService.artUpload(args)
 
     return response.data
@@ -39,7 +36,6 @@ export const getArtRead = createAsyncThunk("ART_READ",
 
 export const getArtModify = createAsyncThunk("ART_MODIFY",
   async (args) => {
-    console.log(args)
     const response = await ArtService.artModify(args)
 
     return response.data
@@ -48,7 +44,6 @@ export const getArtModify = createAsyncThunk("ART_MODIFY",
 
 export const getArtDelete = createAsyncThunk("ART_DELETE",
   async (args) => {
-    console.log("delete", args)
     const response = await ArtService.artDelete(args)
 
     return response.data
@@ -65,7 +60,6 @@ export const getArtSearch = createAsyncThunk("ART_SEARCH",
 
 export const getArtCount = createAsyncThunk("ART_COUNT",
   async (args) => {
-    console.log("aaaaaaa", args)
     const response = await ArtService.artCount(args)
     
     return response.data
@@ -122,7 +116,6 @@ const artSlice = createSlice({
       state.fileList[idx] = payload
     },
     deleteFileList: (state, { payload }) => {
-      console.log(payload)
       state.fileList = state.fileList.filter(file => file.uuid !== payload.uuid)
     }
   },
@@ -130,7 +123,6 @@ const artSlice = createSlice({
     builder
       .addCase(getArtList.fulfilled, (state, { payload }) => {
         state.pageResult = payload
-        console.log(state.pageResult)
       })
       .addCase(getArtRegister.fulfilled, (state, { payload }) => {
         alert(`${payload}번 게시물 등록 완료 !`)

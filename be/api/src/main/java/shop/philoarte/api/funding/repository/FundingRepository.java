@@ -23,9 +23,6 @@ public interface FundingRepository extends JpaRepository<Funding,Long>{
     @Query("SELECT f FROM Funding f ORDER BY f.fundingId asc")
     List<Funding> getAllFundings();
 
-//    @EntityGraph(attributePaths = {"artist", "artist.roles"}, type = EntityGraph.EntityGraphType.FETCH)
-//    @Query("INSERT INTO Funding(fundingId, title, content, goalPrice, viewCnt, hashtag")
-//    String register();
 
     @EntityGraph(attributePaths = {"artist", "artist.roles"}, type = EntityGraph.EntityGraphType.FETCH)
     @Query("SELECT f FROM Funding f WHERE f.fundingId = :fundingId")
@@ -46,7 +43,6 @@ public interface FundingRepository extends JpaRepository<Funding,Long>{
     ArrayList<Funding> colFiles(@Param("fundingId") Long id);
 
     @EntityGraph(attributePaths = {"artist", "artist.roles"}, type = EntityGraph.EntityGraphType.FETCH)
-    // @Query("SELECT f.fundingId, f.title, f.content, f.goalPrice, f.viewCnt, f.hashtag,f.fundingFiles FROM Funding f WHERE f.fundingId = :fundingId")
     Optional<Funding> findById(@Param("fundingId") Long fundingId);
 
     

@@ -17,8 +17,6 @@ const ReviewPageList=()=>{
 
         const param = {type:searchType, keyword: searchKeyword, page:page}
 
-        console.log(param)
-
         dispatch(getReviewList(param))
     }
 

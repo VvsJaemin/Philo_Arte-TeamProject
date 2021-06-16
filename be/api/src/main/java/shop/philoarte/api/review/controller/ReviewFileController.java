@@ -30,7 +30,6 @@ public class ReviewFileController {
     @PostMapping("/upload_file")
     public ResponseEntity<List<ReviewFileDto>> uploadFile(List<MultipartFile> files) {
         for (MultipartFile file : files) {
-            System.out.println("file" + file);
             if (!file.getContentType().startsWith("image")) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
             }
@@ -46,9 +45,7 @@ public class ReviewFileController {
         ResponseEntity<byte[]> result = null;
         try {
             String srcFileName = URLDecoder.decode(imgName, "UTF-8");
-            log.info("imgName :" + srcFileName);
             File file = new File(uploadPath + File.separator + srcFileName);
-            log.info("file : " + file);
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Type", Files.probeContentType(file.toPath()));
             result = ResponseEntity.ok().headers(headers).body(FileCopyUtils.copyToByteArray(file));

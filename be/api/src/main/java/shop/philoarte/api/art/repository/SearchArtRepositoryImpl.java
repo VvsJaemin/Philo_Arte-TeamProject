@@ -33,8 +33,6 @@ public class SearchArtRepositoryImpl extends QuerydslRepositorySupport implement
     @Override
     public Art search() {
 
-        log.info("searchPage..........");
-
         QArt art = QArt.art;
         QArtist artist = QArtist.artist;
         QCategory category = QCategory.category;
@@ -51,11 +49,6 @@ public class SearchArtRepositoryImpl extends QuerydslRepositorySupport implement
 
         tuple.groupBy(art);
 
-        log.info("---------------------------");
-        log.info(tuple); // JPQL
-        log.info("---------------------------");
-
-//        List<Art> result = jpqlQuery.fetch();
         List<Tuple> result = tuple.fetch();
 
         log.info(result); // 실행되는 SQL
@@ -81,11 +74,6 @@ public class SearchArtRepositoryImpl extends QuerydslRepositorySupport implement
         jpqlQuery.leftJoin(resume).on(art.resume.eq(resume));
         jpqlQuery.leftJoin(artFile).on(artFile.art.eq(art));
 
-        // SELECT a, at, c, r, f FROM Art a
-        // LEFT JOIN a.artist at
-        // LEFT JOIN a.category c
-        // LEFT JOIN a.resume r
-        // LEFT JOIN ArtFile f ON f.art = a
         JPQLQuery<Tuple> tuple = jpqlQuery.select(art, artist, category, resume, artFile);
 
         BooleanBuilder booleanBuilder = new BooleanBuilder();
@@ -141,11 +129,6 @@ public class SearchArtRepositoryImpl extends QuerydslRepositorySupport implement
         });
 
         tuple.groupBy(art);
-
-        // page 처리
-        log.info("---------- Page ----------");
-        log.info(pageable.getOffset());
-        log.info(pageable.getPageSize());
 
         tuple.offset(pageable.getOffset()); // 현재 페이지
         tuple.limit(pageable.getPageSize()); // 페이지 크기

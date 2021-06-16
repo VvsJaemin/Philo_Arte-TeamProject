@@ -51,11 +51,8 @@ public class ArtistFileServiceImpl implements ArtistFilerService {
     public ArrayList<ArtistFileDto> saveFile(List<MultipartFile> uploadFiles) {
         ArrayList<ArtistFileDto> ArtistFileResultList = new ArrayList<>();
 
-        log.info("File ServiceImpl saveFile 시작");
         for (MultipartFile uploadFile : uploadFiles) {
-            log.info("uploadFile : " + uploadFile);
             String ofName = uploadFile.getOriginalFilename();
-            log.info("ofName : " + ofName);
             int index = ofName.lastIndexOf(".");
             String ofHeader = ofName.substring(0, index);
             String ext = ofName.substring(index);
@@ -64,12 +61,9 @@ public class ArtistFileServiceImpl implements ArtistFilerService {
             stringBuilder.append(uploadPath).append(File.separator).append(uuid).append("_").append(ofHeader)
                     .append(ext);
             String saveName = stringBuilder.toString();
-            log.info("Artist File upload Name : " + saveName);
             Path savePath = Paths.get(saveName);
-            log.info("savePath : " + savePath);
 
             try {
-                log.info("ArtistFileServiceImpl Try");
                 uploadFile.transferTo(savePath);
                 String thumbnailSaveName = uploadPath + File.separator + "s_" + uuid + ofName;
                 Thumbnails.of(new File(saveName)).size(100, 100).outputFormat("jpg").toFile(thumbnailSaveName);
@@ -82,7 +76,6 @@ public class ArtistFileServiceImpl implements ArtistFilerService {
                 ArtistFileDto artistFileDto = ArtistFileDto.builder().uuid(uuid).imgName(ofName).build();
 
                 ArtistFileResultList.add(artistFileDto);
-                log.info(ArtistFileResultList);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -138,34 +131,14 @@ public class ArtistFileServiceImpl implements ArtistFilerService {
     @Override
     public PageResultDto<ArtistDto, Artist> getPageFileList(PageRequestDto requestDto) { // PageRequestFileDto로하면 안됨?
                                                                                          // 왜지?
-        log.info("File ServiceImpl getPageFileList 시작");
-
-        log.info("requestDto :::: " + requestDto);
         Pageable pageable = requestDto.getPageable(Sort.by("artistId").descending());
-        log.info("pageable ::: " + pageable);
 
         requestDto.setPageFileDto(aritstFileRepository.findAll());
-        log.info("드디어 들어가나요?");
-        log.info("requestDto :::::::: " + requestDto);
-
-        // ArtistFileDto artistFileDto =
 
         BooleanBuilder booleanBuilder = getSearch(requestDto); // 검색 조건 처리
-        log.info("booleanBuilder ::: " + booleanBuilder);
         Page<Artist> result = artistRepository.findAll(booleanBuilder, pageable); // Querydsl 사용
-        log.info("result ::: " + result);
         Function<Artist, ArtistDto> fn = (entity -> entityDto(entity));
-        log.info("fn :::: " + fn);
 
-        // Optional<ArtistDto> artistDto =
-        // aritstFileRepository.findById(artistFileIdSetting);
-        // Optional<ArtistFile> fileListResult =
-        // aritstFileRepository.findById(artistFileIdSetting);
-        // fileListResult.get().getArtistFileId();
-        // String uuid = fileListResult.get().getUuid();
-        // String imgName = fileListResult.get().getImgName();
-
-        log.info("return result :::::: " + result);
         return new PageResultDto<>(result, fn);
     }
 

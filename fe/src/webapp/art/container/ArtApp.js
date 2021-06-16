@@ -18,10 +18,6 @@ const ArtPage = () => {
 
   const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   dispatch(getArtList(pageResult.page))
-  // }, [pageResult.page])
-
   useEffect(() => {
     (!type && !keyword) ?
       dispatch(getArtList(page))

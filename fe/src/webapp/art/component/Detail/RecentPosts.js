@@ -41,31 +41,6 @@ const RecentPosts = ({ artistId }) => {
             </div>
         </div>
       )
-        // ) : (
-        //   <div
-        //     className="col-md-6 col-sm-6 col-xs-12"
-        //     key={post.artId}
-        //   >
-        //     <div className="post">
-        //       <div className="post-img">
-        //         <img src={`http://localhost:8080/art_files/display?fileName=${"s_" + post.file.uuid + "_" + post.file.originalFileName}`} alt="이미지가 없습니다" />
-        //         <div className="post-metas">
-        //           <div className="post-metas-center">
-        //             <p className="post-date">{post.published}</p>
-        //           </div>
-        //         </div>
-        //       </div>
-        //       <div className="post-info all-padding-20">
-        //         <h3>
-        //           <a href={process.env.PUBLIC_URL + " blog "}>
-        //             {post.title}
-        //           </a>
-        //         </h3>
-        //         <p>{post.text}</p>
-        //       </div>
-        //     </div>
-        //   </div>
-        // )
       )}
     </div>
   )

@@ -58,12 +58,8 @@ public class ResumeFileController {
         try {
             String srcFileName = URLDecoder.decode(fileName, "UTF-8");
 
-            log.info("fileName: " + srcFileName);
-
             File file = new File(uploadPath + File.separator + srcFileName);
 
-            log.info("file: " + file);
-            log.info("file: " + file.toPath());
             result = ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(FileCopyUtils.copyToByteArray(file));
             System.out.println("result: " + result);
         } catch (Exception e) {

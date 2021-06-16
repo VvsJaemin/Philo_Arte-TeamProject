@@ -1,16 +1,12 @@
 import axios from 'axios'
 
 const artList = (page) => {
-  console.log("list", page)
   return axios.get(`http://localhost:8080/arts/list?page=${page}`)
 }
 const artSearch = (param) => {
 
-  console.log("page", param)
-
   const str = "page=" + (!param.page ? 1 : param.page) + "&type=" + (param.type) + "&keyword=" + (param.keyword)
 
-  console.log(str)
   return axios.get(`http://localhost:8080/arts/search?` + str)
 }
 const artRegister = (payload) => axios.post(`http://localhost:8080/arts/register`, payload)
