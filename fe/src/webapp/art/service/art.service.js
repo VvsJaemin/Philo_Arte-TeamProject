@@ -1,35 +1,140 @@
 import axios from 'axios'
 
+const userInfo = typeof window !== `undefined` ? JSON.parse(localStorage.getItem('artist')) : null;
+
 const artList = (page) => {
-  return axios.get(`http://localhost:8080/arts/list?page=${page}`)
+    console.log("list", page)
+
+    return axios({
+        url: `/arts/list?page=${page}`,
+        method: 'get',
+        headers: {
+            Authorization: 'JWT fefefg...'
+        }
+    })
 }
+
 const artSearch = (param) => {
+    console.log("page", param)
 
-  const str = "page=" + (!param.page ? 1 : param.page) + "&type=" + (param.type) + "&keyword=" + (param.keyword)
+    const str = "page=" + (!param.page ? 1 : param.page) + "&type=" + (param.type) + "&keyword=" + (param.keyword)
+    console.log(str)
 
-  return axios.get(`http://localhost:8080/arts/search?` + str)
+    return axios({
+        url: `/arts/search?` + str,
+        method: 'get',
+        headers: {
+            Authorization: 'JWT fefefg...'
+        }
+    })
 }
-const artRegister = (payload) => axios.post(`http://localhost:8080/arts/register`, payload)
-const artUpload = (formData) => axios.post(`http://localhost:8080/art_files/upload`, formData,
-  {
-    headers: {
-      "Content-Type": "multipart/form-data"
-    }
-  }
-)
-const artFileDelete = (payload) => axios.delete(`http://localhost:8080/art_files/delete`, payload)
-const artRead = (payload) => axios.get(`http://localhost:8080/arts/read/${payload}`)
-const artModify= (payload) => axios.put(`http://localhost:8080/arts/modify`, payload)
+
+const artRegister = (payload) => {
+    return axios({
+        url: `/arts/register`,
+        method: 'post',
+        data: payload,
+        headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+        }
+    })
+}
+
+const artUpload = (formData) => {
+    return axios({
+        url: `/art_files/upload`,
+        method: 'post',
+        data: formData,
+        headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+            "Content-Type": "multipart/form-data"
+        }
+    })
+}
+
+const artFileDelete = (payload) => {
+    return axios({
+        url: `/art_files/delete`,
+        method: 'delete',
+        data: payload,
+        headers: {
+            Authorization: 'JWT fefefg...'
+        }
+    })
+}
+
+const artRead = (payload) => {
+    return axios({
+        url: `/arts/read/${payload}`,
+        method: 'get',
+        headers: {
+            Authorization: 'JWT fefefg...'
+        }
+    })
+}
+
+const artModify = (payload) => {
+    return axios({
+        url: `/arts/modify`,
+        method: 'put',
+        data: payload,
+        headers: {
+            Authorization: `Bearer ${userInfo.token}`
+        }
+    })
+}
+
 const artDelete = (payload) => {
-  return axios({
-    url: `http://localhost:8080/arts/delete`,
-    method: 'delete',
-    data: payload
-  })
+    return axios({
+        url: `/arts/delete`,
+        method: 'delete',
+        data: payload,
+        headers: {
+            Autorization: 'JWT fefefg...'
+        }
+    })
 }
-const artCount = (payload) => axios.get(`http://localhost:8080/arts/count/${payload}`)
-const artPosts = (payload) => axios.get(`http://localhost:8080/arts/list/${payload}`)
 
-const categoryList = () => axios.get(`http://localhost:8080/category/findall`)
+const artCount = (payload) => {
+    return axios({
+        url: `/arts/count/${payload}`,
+        method: 'get',
+        headers: {
+            Autorization: 'JWT fefefg...'
+        }
+    })
+}
 
-export default { artList, artRegister, artUpload, artFileDelete, artRead, artModify, artDelete, artSearch, artCount, artPosts, categoryList }
+const artPosts = (payload) => {
+    return axios({
+        url: `/arts/list/${payload}`,
+        method: 'get',
+        headers: {
+            Autorization: 'JWT fefefg...'
+        }
+    })
+}
+
+const categoryList = () => {
+    return axios({
+        url: `/category/findall`,
+        method: 'get',
+        headers: {
+            Authorization: 'JWT fefefg...'
+        }
+    })
+}
+
+export default {
+    artList,
+    artRegister,
+    artUpload,
+    artFileDelete,
+    artRead,
+    artModify,
+    artDelete,
+    artSearch,
+    artCount,
+    artPosts,
+    categoryList
+}

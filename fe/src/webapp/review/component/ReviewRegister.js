@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import '../css/Review.css';
 const ReviewRegister = () => {
     const loginValue = JSON.parse(localStorage.getItem('artist'))
+    
       const reviews = useSelector(state =>{
           return state.reviews.pageResult.dtoList;
       })

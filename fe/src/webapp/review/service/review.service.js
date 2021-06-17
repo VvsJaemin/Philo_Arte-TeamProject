@@ -10,7 +10,7 @@ const register=(fd)=>{
         method:'post',
         data: fd,
         headers:{
-            'Authorization': `Bearer ${userInfo.token}`,
+            Authorization: `Bearer ${userInfo.token}`,
             'Content-Type': 'multipart/form-data'
         }
     })
@@ -24,7 +24,7 @@ const list=(pageResult)=>{
         url : `/reviews/list/pages?`+str,
         method : 'get',
         headers:{
-            'Authorization' : 'JWT fefefg...'
+            Authorization : 'JWT fefefg...'
         }
     })
     
@@ -35,7 +35,7 @@ const read=(reviewId)=>{
         url : `/reviews/read/${reviewId}`,
         method:'get',
         headers:{
-            'Authorization' : 'JWT fefefg...'
+            Authorization : 'JWT fefefg...'
         }
     })
 }
@@ -47,7 +47,7 @@ const modify=(review)=>{
         method : "put",
         data : review,
         headers:{
-            'Authorization': `Bearer ${userInfo.token}`,
+            Authorization: `Bearer ${userInfo.token}`,
             'Content-Type': 'multipart/form-data'
         }
     })
@@ -61,7 +61,7 @@ const deletes=(reviewId)=>{
         method : 'delete',
         data : {...reviewId},
         headers :{
-            'Authorization' : 'JWT fefefg...'
+            Authorization : 'JWT fefefg...'
         }
     })
 

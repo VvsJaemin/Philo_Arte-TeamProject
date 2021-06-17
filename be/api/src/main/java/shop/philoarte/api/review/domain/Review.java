@@ -6,6 +6,7 @@ import shop.philoarte.api.common.domain.BaseEntity;
 import shop.philoarte.api.common.domain.BaseEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -22,8 +23,10 @@ public class Review extends BaseEntity {
     @Column(name = "review_id")
     private Long reviewId;
 
+    @NotNull(message = "제목을 입력해주세요")
     private String title;
 
+    @NotNull(message = "내용을 입력해주세요")
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)

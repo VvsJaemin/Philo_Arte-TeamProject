@@ -9,7 +9,7 @@ const register = (fd) => {
         method : 'post',
         data : fd,
         headers:{
-            'Authorization' : `Bearer ${userInfo.token}`,
+            Authorization : `Bearer ${userInfo.token}`,
             'Content-Type': 'multipart/form-data'
         }
     })
@@ -21,7 +21,7 @@ const list = (reviewId) => {
         url : `/replies/list/${reviewId}`,
         method : 'get',
         headers:{
-            'Authorization': 'JWT fefege..'
+            Authorization: 'JWT fefege..'
         }
     })
 };
@@ -32,8 +32,8 @@ const modify = (reply) => {
         method : 'put',
         data : reply,
         headers :{
+             Authorization : `Bearer ${userInfo.token}`,
             'Content-Type': 'multipart/form-data',
-            'Authorization' : `Bearer ${userInfo.token}`
         }
     })
 };
@@ -44,7 +44,7 @@ const deletes = (rno) => {
         method: 'delete',
         data : {...rno},
         headers:{
-            'Authorization': 'JWT fefege..'
+            Authorization: 'JWT fefege..'
         }
     })
 };

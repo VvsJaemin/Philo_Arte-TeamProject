@@ -110,7 +110,6 @@ public class ArtistServiceImpl extends AbstractService<Artist> implements Artist
                 entityDto.setUuid(uuid);
                 entityDto.setImgName(imgName);
             } else {
-
                 entityDto.setUuid("fd05e3c1-0eb2-4062-88be-8be96f833ab9");
                 entityDto.setImgName("aaa.jpg");
 

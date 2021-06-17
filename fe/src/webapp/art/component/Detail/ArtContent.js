@@ -34,7 +34,7 @@ const ArtContent = ({ post }) => {
                           <div className="item" key={i}>
                             <img
                               className="img-responsive"
-                              src={`http://localhost:8080/art_files/display?fileName=${image.savedFileName}`}
+                              src={`/art_files/display?fileName=${image.savedFileName}`}
                               alt=""
                             />
                           </div>

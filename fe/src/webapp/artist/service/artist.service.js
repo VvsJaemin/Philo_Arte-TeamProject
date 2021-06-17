@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-const SERVER = 'http://localhost:8080';
 
 const list = (page) => {
     console.log('page :: ', page);
@@ -16,7 +15,7 @@ const imgList = (imgList) => {
 
 const signin = (signin) => {
     return axios({
-        url: `${SERVER}/artists/signin`,
+        url: `/artists/signin`,
         method: 'post',
         data: {
             username: signin.username,
@@ -29,7 +28,7 @@ const signin = (signin) => {
 
 const signup = (param) => {
     return axios({
-        url: `${SERVER}/artists/signup`,
+        url: `/artists/signup`,
         method: 'post',
         data: param,
         headers: {
@@ -41,7 +40,7 @@ const signup = (param) => {
 
 const mypage = (artist) => {
     return axios({
-        url: `${SERVER}/artists/mypage`,
+        url: `/artists/mypage`,
         method: 'put',
         data: artist,
         headers: {
@@ -52,16 +51,5 @@ const mypage = (artist) => {
 
 };
 
-const deleteSelect = (deleteSelect) => {
-    return axios.put(`/artists/delete`, deleteSelect);
-};
 
-const totalSearchBar = (totalSearchBar) => {
-    return axios.put(`/page/totalSearchBar`, totalSearchBar);
-};
-
-const imgDel = (imgDel) => {
-    return axios.put(`/page/imgDel`, imgDel);
-};
-
-export default {list, signin, signup, mypage, totalSearchBar, deleteSelect, imgDel, imgList};
+export default {list, signin, signup, mypage};

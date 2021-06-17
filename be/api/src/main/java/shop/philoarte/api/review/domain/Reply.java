@@ -5,6 +5,7 @@ import shop.philoarte.api.common.domain.BaseEntity;
 import shop.philoarte.api.common.domain.BaseEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "replys")
@@ -19,6 +20,8 @@ public class Reply extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rno")
     private Long rno;
+
+    @NotNull(message = "댓글을 입력해주세요")
     @Column(name = "text")
     private String text;
     @Column(name = "replyer")
