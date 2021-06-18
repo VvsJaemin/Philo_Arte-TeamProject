@@ -6,11 +6,9 @@ import { getReplyList } from '../reducer/reply.reducer'
 
 const ReplyPageList=()=>{
 
-    const {pageList, page, start, end, prev, next} = useSelector(state=>state.replies.pageResult)
+    const {pageList,  start, end, prev, next} = useSelector(state=>state.replies.pageResult)
 
     const dispatch = useDispatch()
-
-    console.log(pageList)
 
     const movePage = (page)=>{
         dispatch(getReplyList(page))

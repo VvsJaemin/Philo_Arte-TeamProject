@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getLocalArtist, mypagePage, signupPage, currentArtist, currentArtist2 } from 'webapp/artist/reducer/artist.reducer';
+import { getLocalArtist, mypagePage } from 'webapp/artist/reducer/artist.reducer';
 import { ArtistDelete, Logout } from 'webapp/artist/index';
 
 const MyPage = () => {
@@ -9,46 +9,26 @@ const MyPage = () => {
     const dispatch = useDispatch();
 
     const artistsState = useSelector((state) => state.artists.artistsState);
-    const artistsFileDtoList = useSelector((state) => state.artists.artistsState.artistFileDtoList);
-    const artistsFiles = useSelector((state) => state.artists.artistsState.files);
     const artistsFilesimgName = useSelector((state) => state.artists.artistsState.imgName);
     const artistsFilesUuid = useSelector((state) => state.artists.artistsState.uuid);
-    console.log('artistsFileDtoList :::: ', artistsFileDtoList);
-    console.log('artistsFiles :::: ', artistsFiles);
-    console.log('artistsFilesimgName :::: ', artistsFilesimgName);
-    console.log('artistsFilesUuid :::: ', artistsFilesUuid);
-
-    // const uploadImgName = () => {
-    //     const result = { resultImg: `http://localhost:8080/artist_files/display?imgName=4624db26-c931-42e7-a119-b65f87dd5d52s_main2.jpg` };
-    // };
-
-    console.log('======================================');
-    // console.log('mypage.uuid ::: ', mypage.uuid);
-    console.log('artistsState.uuid ::: ', artistsState.uuid);
-    console.log('======================================');
 
     const [imgBase64, setImgBase64] = useState('');
     const [files, setFiles] = useState(null);
-    console.log('files ::::::: ', files);
 
     const handleUploadFile = (e) => {
         let reader = new FileReader();
 
         reader.onloadend = () => {
-            // 읽기가 완료되면 코드 실행
             const base64 = reader.result;
             if (base64) {
-                setImgBase64(base64.toString()); // 파일 base64 상태 업데이트
+                setImgBase64(base64.toString()); 
             }
         };
         if (e.target.files[0]) {
-            reader.readAsDataURL(e.target.files[0]); // 파일을 읽어 버퍼에 저장
-            setFiles(e.target.files[0]); // 파일 상태 업데이트
+            reader.readAsDataURL(e.target.files[0]); 
+            setFiles(e.target.files[0]); 
         }
     };
-
-    const artistFiles = artistsState.artistFileDtoList;
-    console.log('artistFiles ::::::::: ', artistFiles);
 
     const [mypage, setMypage] = useState({
         artistId: artistsState.artistId,
@@ -67,14 +47,9 @@ const MyPage = () => {
         uuid: artistsState.uuid,
         imgName: artistsState.imgName,
     });
-    console.log('mypage ::::::::::: ', mypage);
-    console.log('artistsState.uuide ::::::::::: ', artistsState.uuid);
-    console.log('mypage.uuid ::::::::::: ', mypage.uuid);
-    console.log('artistsState.imgName ::::::::::: ', artistsState.imgName);
-    console.log('mypage.imgName ::::::::::: ', mypage.imgName);
+
 
     useEffect(() => {
-        console.log('getLocalArtist :::: ', getLocalArtist);
         dispatch(getLocalArtist());
     }, []);
 
@@ -100,11 +75,9 @@ const MyPage = () => {
             uuid: artistsState.uuid,
             imgName: artistsState.artistsState,
         };
-        console.log('obj ::::::::: ', obj);
 
         const formData = new FormData();
         for (let i = 0; i < files.length; i++) {
-            console.log('for files :::::::::', files);
             formData.append('files[' + i + ']', files[i]);
         }
         formData.append('username', artistsState.username);
@@ -118,14 +91,11 @@ const MyPage = () => {
         formData.append('department', mypage.department);
         formData.append('uuid', artistsState.uuid);
         formData.append('imgName', artistsState.imgName);
-        console.log('formData : ', formData);
 
         if (mypageResult) {
             alert('수정 완료');
             await dispatch(mypagePage(obj));
         }
-
-        // history.push('/');
     };
 
     const goHome = (e) => {
@@ -152,8 +122,6 @@ const MyPage = () => {
         setFiles(fileObj.files);
     };
 
-    const removeImgBtn = (e) => {};
-
     return (
         <>
             <form>
@@ -166,15 +134,11 @@ const MyPage = () => {
                             <b>대표이미지</b>
                         </label>
                         <td>
-                            {/* <div className="display-flex" style={{ marginBottom: '50px' }}></div> */}
                             <div>
                                 <img src={'http://localhost:8080/artist_files/display?imgName=' + `${artistsFilesUuid}` + 's_' + `${artistsFilesimgName}`} />
                                 <br />
                                 <br />
                                 <br />
-
-                                {/* <button>upload</button>
-                                <button onClick={(e) => removeImgBtn(e)}>remove</button> */}
                             </div>
                         </td>
 

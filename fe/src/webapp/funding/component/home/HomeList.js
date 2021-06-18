@@ -37,7 +37,6 @@ const HomeList = ({ title, tagline, backfont,data, dash, dashColor, id }) => {
       </div>
       <div className="container-fluid remove-padding">
           <div className="col-md-12">
-                  {/* {filterButton} */}
             <div id="portfolio-gallery" className="cbp">
                   {totalList}
             </div>

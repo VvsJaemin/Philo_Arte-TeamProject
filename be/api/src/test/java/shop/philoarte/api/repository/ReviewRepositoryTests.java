@@ -34,7 +34,7 @@ public class ReviewRepositoryTests {
     public void insertReview() {
         IntStream.rangeClosed(1, 30).forEach(i -> {
             Artist artist = Artist.builder()
-                    .artistId(1L + i)
+                    .artistId(1L)
                     .build();
 
             Review review = Review.builder()

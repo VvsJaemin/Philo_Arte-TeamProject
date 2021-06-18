@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { changeSearch, searchResume } from 'webapp/resume/reducer/resume.reducer';
 import Icofont from 'react-icofont';
 import 'webapp/resume/css/SearchCss.css';
 
 const SearchBar = () => {
-    const searchList = useSelector((state) => state.resumes.pageResult);
     const dispatch = useDispatch();
     const [search, setSearch] = useState({
         type: '',

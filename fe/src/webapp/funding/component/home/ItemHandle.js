@@ -13,8 +13,6 @@ const ItemHandle = ({ title, hashtag, fundingId ,image}) => {
         dispatch(getFundingDetail(fundingId))
 }
 
-    
-
 
     return(
       <div className="col-md-3 mfp-iframe-holder " >

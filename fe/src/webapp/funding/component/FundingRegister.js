@@ -15,7 +15,6 @@ const FundingRegister = () => {
         dispatch(getLocalArtist());
     }, []);
     const param = useSelector(state => state.artists.artistsState)
-    console.log(param.artistId,"================artistId")  
 
     const childRef = useRef();
     let uploadedFiles = null;

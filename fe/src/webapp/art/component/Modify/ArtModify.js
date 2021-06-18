@@ -17,9 +17,9 @@ const ArtModify = ({tagline, title, backfont, dash, textBtn, classes}) => {
 
     const {id} = useParams()
 
-    const art = useSelector(state => state.arts.current) // 작품 정보
-    const fileList = useSelector(state => state.arts.fileList) // 파일 리스트
-    const categories = useSelector(state => state.arts.category) // 카테고리 목록
+    const art = useSelector(state => state.arts.current) 
+    const fileList = useSelector(state => state.arts.fileList) 
+    const categories = useSelector(state => state.arts.category) 
 
     useEffect(() => {
         dispatch(getArtRead(id))

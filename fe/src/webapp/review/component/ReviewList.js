@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
+import HeaderOneMain from 'webapp/common/component/Navbar/HeaderOneMain';
 import {getReviewList} from 'webapp/review/reducer/review.reducer';
 import {ReviewPageList, ReviewSearch} from '..';
 
@@ -17,21 +18,14 @@ const ReviewList = () => {
         return state.reviews.pageResult.dtoList;
     })
 
-
-    // const msg = useSelector(state => {
-    //     return state.reviews.msg
-    // })
-
-
     useEffect((e) => {
         dispatch(getReviewList(page))
     }, [])
 
 
     return (
-        <>
+        <>  
             <section className="white-bg">
-
                 <div className="col-md-12">
                     <div className="section-title text-center">
                         <h1>Philo_Arte 아티스트를 응원해주세요 </h1>

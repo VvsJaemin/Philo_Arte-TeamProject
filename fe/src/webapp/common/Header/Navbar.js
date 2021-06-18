@@ -5,7 +5,7 @@ import useWindowSize from "../helpers/UseWindowSize";
 const Navbar = ({ data }) => {
   const width = useWindowSize().width;
   const [open, setOpen] = useState(false);
-  const loginValue = JSON.parse(localStorage.getItem("artist"))
+
   const handleMenu = () => {
     if (width < 980) {
       setOpen(!open);
@@ -19,7 +19,6 @@ const Navbar = ({ data }) => {
           data.map((item) =>
             item.subMenu ? (
               <li 
-                
                 key={item.id}
                 className={"dropdown " + (open ? "on" : "")}
                 onClick={handleMenu}

@@ -38,7 +38,7 @@ const FundingHome = () => {
       setLoginInfo(loginValue);
   };
   const fundings = useSelector(state => state.Fundings)
-console.log("login info는::::::::::::::::::::::::::::::",loginInfo)
+
   return(
   <>
     <HeaderOneMain />

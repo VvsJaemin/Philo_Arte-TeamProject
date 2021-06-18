@@ -63,5 +63,4 @@ const replySlice = createSlice({
 
 const { actions, reducer } = replySlice;
 export const currentReply = (state) => state.replies.reply;
-export const {} = actions;
 export default reducer;

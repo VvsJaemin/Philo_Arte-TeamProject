@@ -135,8 +135,6 @@ const ReplyList=({reviewId, changeFlag, flag})=>{
 
         renew.text = e.target.value 
         
-        console.log("renew", renew)
-
         setModalTitle(renew)
     }
 

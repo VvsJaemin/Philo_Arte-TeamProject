@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import Icofont from 'react-icofont';
 import {Link, useHistory, useParams} from 'react-router-dom';
 import {ReplyList} from 'webapp/reply';
-import {getReviewRead, getReviewDelete, getReviewList} from '../reducer/review.reducer';
+import {getReviewRead, getReviewDelete} from '../reducer/review.reducer';
 
 const ReviewRead = () => {
 

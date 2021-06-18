@@ -16,7 +16,7 @@ const HeaderOne = ({ type, data, border }) => {
   return (
     <nav
       className={
-        "navbar navbar-default navbar-fixed black bootsnav on no-full menu-center " +
+        "navbar navbar-default navbar-fixed white bootsnav on no-full menu-center no-border " +
         (border ? "" : "no-border") + (fixed ? "" : " navbar-transparent")
       }
     >

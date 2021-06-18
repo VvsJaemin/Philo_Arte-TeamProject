@@ -15,11 +15,7 @@ const artList = (page) => {
 }
 
 const artSearch = (param) => {
-    console.log("page", param)
-
     const str = "page=" + (!param.page ? 1 : param.page) + "&type=" + (param.type) + "&keyword=" + (param.keyword)
-    console.log(str)
-
     return axios({
         url: `/arts/search?` + str,
         method: 'get',
