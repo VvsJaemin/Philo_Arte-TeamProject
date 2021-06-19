@@ -5,7 +5,7 @@ const userInfo = typeof window !== `undefined` ? JSON.parse(localStorage.getItem
 
 const resumeList = (page) => {
     return axios({
-        url: `/resume/list_page?page=` + page,
+        url: `http://13.209.194.227:8080/resume/list_page?page=` + page,
         method:'get',
         headers:{
             Authorization: 'JWT fefege..'
@@ -14,7 +14,7 @@ const resumeList = (page) => {
 };
 const resumeRegister = (data) => {
     return axios({
-        url: `/resume/register`,
+        url: `http://13.209.194.227:8080/resume/register`,
         method: 'post',
         data : data,
         headers:{
@@ -24,7 +24,7 @@ const resumeRegister = (data) => {
 };
 const resumeModify = (data) => {
     return axios({
-        url: `/resume/edit`,
+        url: `http://13.209.194.227:8080/resume/edit`,
         method: 'put',
         data: data,
         headers:{
@@ -34,7 +34,7 @@ const resumeModify = (data) => {
 };
 const resumeRead = (resumeId) => {
     return axios({
-        url : `/resume/read/` + resumeId,
+        url : `http://13.209.194.227:8080/resume/read/` + resumeId,
         method: 'get',
         headers:{
             Authorization: 'JWT fefege...'
@@ -44,7 +44,7 @@ const resumeRead = (resumeId) => {
 
 const resumeDelete = (resume) =>{
     return axios({
-        url: `/resume/delete`,
+        url: `http://13.209.194.227:8080/resume/delete`,
         method: 'delete',
         data: {...resume},
         headers:{
@@ -55,7 +55,7 @@ const resumeDelete = (resume) =>{
 const resumeSearch = (param) => {
     const str = "page=" + (!param.page ? 1 : param.page) +"&type="+ (encodeURIComponent(param.type)) +"&keyword=" + (param.keyword)
     return axios({
-        url: `/resume/search?` + str,
+        url: `http://13.209.194.227:8080/resume/search?` + str,
         method: 'get',
         headers: {
             Authorization: 'JWT fefege...'
@@ -65,7 +65,7 @@ const resumeSearch = (param) => {
 
 const countResume = (artistId) =>{
     return axios({
-        url: `/resume/count/${artistId}`,
+        url: `http://13.209.194.227:8080/resume/count/${artistId}`,
         method: 'get',
         headers:{
             Authorization: 'JWT fefege...'
@@ -75,7 +75,7 @@ const countResume = (artistId) =>{
 
 const categoryList = () =>{
     return axios({
-        url: `/category/findall`,
+        url: `http://13.209.194.227:8080/category/findall`,
         method: 'get',
         headers:{
             Authorization: 'JWT fefege...'
@@ -85,7 +85,7 @@ const categoryList = () =>{
 
 const uploadFile = (formData) =>{
     return axios({
-        url: `/resume_file/upload_file`,
+        url: `http://13.209.194.227:8080/resume_file/upload_file`,
         method: 'post',
         data: formData,
         headers:{

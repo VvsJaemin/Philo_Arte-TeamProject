@@ -3,10 +3,8 @@ import axios from 'axios'
 const userInfo = typeof window !== `undefined` ? JSON.parse(localStorage.getItem('artist')) : null;
 
 const artList = (page) => {
-    console.log("list", page)
-
     return axios({
-        url: `/arts/list?page=${page}`,
+        url: `http://13.209.194.227:8080/arts/list?page=${page}`,
         method: 'get',
         headers: {
             Authorization: 'JWT fefefg...'
@@ -17,7 +15,7 @@ const artList = (page) => {
 const artSearch = (param) => {
     const str = "page=" + (!param.page ? 1 : param.page) + "&type=" + (param.type) + "&keyword=" + (param.keyword)
     return axios({
-        url: `/arts/search?` + str,
+        url: `http://13.209.194.227:8080/arts/search?` + str,
         method: 'get',
         headers: {
             Authorization: 'JWT fefefg...'
@@ -27,7 +25,7 @@ const artSearch = (param) => {
 
 const artRegister = (payload) => {
     return axios({
-        url: `/arts/register`,
+        url: `http://13.209.194.227:8080/arts/register`,
         method: 'post',
         data: payload,
         headers: {
@@ -38,7 +36,7 @@ const artRegister = (payload) => {
 
 const artUpload = (formData) => {
     return axios({
-        url: `/art_files/upload`,
+        url: `http://13.209.194.227:8080/art_files/upload`,
         method: 'post',
         data: formData,
         headers: {
@@ -50,7 +48,7 @@ const artUpload = (formData) => {
 
 const artFileDelete = (payload) => {
     return axios({
-        url: `/art_files/delete`,
+        url: `http://13.209.194.227:8080/art_files/delete`,
         method: 'delete',
         data: payload,
         headers: {
@@ -61,7 +59,7 @@ const artFileDelete = (payload) => {
 
 const artRead = (payload) => {
     return axios({
-        url: `/arts/read/${payload}`,
+        url: `http://13.209.194.227:8080/arts/read/${payload}`,
         method: 'get',
         headers: {
             Authorization: 'JWT fefefg...'
@@ -71,7 +69,7 @@ const artRead = (payload) => {
 
 const artModify = (payload) => {
     return axios({
-        url: `/arts/modify`,
+        url: `http://13.209.194.227:8080/arts/modify`,
         method: 'put',
         data: payload,
         headers: {
@@ -82,7 +80,7 @@ const artModify = (payload) => {
 
 const artDelete = (payload) => {
     return axios({
-        url: `/arts/delete`,
+        url: `http://13.209.194.227:8080/arts/delete`,
         method: 'delete',
         data: payload,
         headers: {
@@ -93,7 +91,7 @@ const artDelete = (payload) => {
 
 const artCount = (payload) => {
     return axios({
-        url: `/arts/count/${payload}`,
+        url: `http://13.209.194.227:8080/arts/count/${payload}`,
         method: 'get',
         headers: {
             Autorization: 'JWT fefefg...'
@@ -103,7 +101,7 @@ const artCount = (payload) => {
 
 const artPosts = (payload) => {
     return axios({
-        url: `/arts/list/${payload}`,
+        url: `http://13.209.194.227:8080/arts/list/${payload}`,
         method: 'get',
         headers: {
             Autorization: 'JWT fefefg...'
@@ -113,7 +111,7 @@ const artPosts = (payload) => {
 
 const categoryList = () => {
     return axios({
-        url: `/category/findall`,
+        url: `http://13.209.194.227:8080/category/findall`,
         method: 'get',
         headers: {
             Authorization: 'JWT fefefg...'

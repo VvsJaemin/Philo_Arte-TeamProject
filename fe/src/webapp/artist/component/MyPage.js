@@ -40,8 +40,6 @@ const MyPage = () => {
         address: '',
         school: '',
         department: '',
-        uuid: artistsState.uuid,
-        imgName: artistsState.imgName,
         files: artistsState.files,
         token: artistsState.token,
         uuid: artistsState.uuid,
@@ -62,7 +60,6 @@ const MyPage = () => {
             imgName: artistsState.imgName,
             files: artistsState.files,
             token: artistsState.token,
-            files: artistsState.files,
             artistId: artistsState.artistId,
             username: artistsState.usename,
             password: mypage.password,
@@ -72,8 +69,6 @@ const MyPage = () => {
             address: mypage.address,
             school: mypage.school,
             department: mypage.department,
-            uuid: artistsState.uuid,
-            imgName: artistsState.artistsState,
         };
 
         const formData = new FormData();

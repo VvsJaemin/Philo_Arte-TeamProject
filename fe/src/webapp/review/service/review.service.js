@@ -6,7 +6,7 @@ const userInfo = typeof window !== `undefined` ? JSON.parse(localStorage.getItem
 const register=(fd)=>{
 
     return axios({
-        url: `/reviews/register`,
+        url: `http://13.209.194.227:8080/reviews/register`,
         method:'post',
         data: fd,
         headers:{
@@ -21,7 +21,7 @@ const list=(pageResult)=>{
     const str = "page=" + (!pageResult.page?1:pageResult.page) +"&type="+ (pageResult.type) +"&keyword=" + (pageResult.keyword)
 
     return axios({
-        url : `/reviews/list/pages?`+str,
+        url : `http://13.209.194.227:8080/reviews/list/pages?`+str,
         method : 'get',
         headers:{
             Authorization : 'JWT fefefg...'
@@ -32,7 +32,7 @@ const list=(pageResult)=>{
 
 const read=(reviewId)=>{
     return axios({
-        url : `/reviews/read/${reviewId}`,
+        url : `http://13.209.194.227:8080/reviews/read/${reviewId}`,
         method:'get',
         headers:{
             Authorization : 'JWT fefefg...'
@@ -43,7 +43,7 @@ const read=(reviewId)=>{
 const modify=(review)=>{
 
     return axios({
-        url : `/reviews/modify/`+review.reviewId,
+        url : `http://13.209.194.227:8080/reviews/modify/`+review.reviewId,
         method : "put",
         data : review,
         headers:{
@@ -57,7 +57,7 @@ const modify=(review)=>{
 const deletes=(reviewId)=>{
 
     return axios({
-        url : `/reviews/remove/${reviewId}`,
+        url : `http://13.209.194.227:8080/reviews/remove/${reviewId}`,
         method : 'delete',
         data : {...reviewId},
         headers :{

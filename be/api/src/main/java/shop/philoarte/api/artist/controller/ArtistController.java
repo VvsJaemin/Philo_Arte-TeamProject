@@ -82,6 +82,8 @@ public class ArtistController {
             @ApiResponse(code = 422, message = "Invalid Artist-Username / Password supplied") })
     public ResponseEntity<ArtistDto> signin(@ApiParam("Signin Artist") @RequestBody ArtistDto artistDto)
             throws IOException {
+
+        log.info(artistDto);
         return ResponseEntity.ok(service.signin(artistDto));
     }
 

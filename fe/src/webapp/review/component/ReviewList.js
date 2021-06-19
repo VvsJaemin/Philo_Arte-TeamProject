@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import HeaderOneMain from 'webapp/common/component/Navbar/HeaderOneMain';
+import Footer from 'webapp/common/Footer/FooterOne';
 import {getReviewList} from 'webapp/review/reducer/review.reducer';
 import {ReviewPageList, ReviewSearch} from '..';
 
@@ -83,7 +84,7 @@ const ReviewList = () => {
                     </div>
                     <ReviewPageList></ReviewPageList>
                 </div>
-            </section>
+            </section> <Footer></Footer>
         </>
 
     )

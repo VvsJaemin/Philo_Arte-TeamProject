@@ -5,7 +5,7 @@ const userInfo = typeof window !== `undefined` ? JSON.parse(localStorage.getItem
 
 const getList=(page) =>{
     return axios({
-        url:"/funding/list?page=" +page,
+        url:"http://13.209.194.227:8080/funding/list?page=" +page,
         method: 'get',
         headers:{
             Authorization: 'JWT fefege...'
@@ -14,7 +14,7 @@ const getList=(page) =>{
 }
 const fundingRegister = (data) =>{
     return axios({
-        url: "/funding/register",
+        url: "http://13.209.194.227:8080/funding/register",
         method: "post",
         data: data,
         headers:{
@@ -25,7 +25,7 @@ const fundingRegister = (data) =>{
 
 const showDetail =(fundingId)=>{
     return axios({
-        url: `/funding/${fundingId}`,
+        url: `http://13.209.194.227:8080/funding/${fundingId}`,
         method: 'get',
         headers:{
             Authorization: 'JWT fefege...'
@@ -35,7 +35,7 @@ const showDetail =(fundingId)=>{
 
 const fundingUpdate = (fundingId,data) =>{
     return axios({
-        url: `/funding/edit/${fundingId}`,
+        url: `http://13.209.194.227:8080/funding/edit/${fundingId}`,
         method: 'put',
         data: data,
         headers:{
@@ -49,7 +49,7 @@ const deleteFunding = (funding) =>{
     const del = window.confirm("글 삭제를 진행 하시겠습니까?")
     if(del){
         axios({
-            url: `/funding/${funding}`,
+            url: `http://13.209.194.227:8080/funding/${funding}`,
             method:'DELETE',
             headers:{
                 Authorization: 'JWT fefege...'
@@ -62,7 +62,7 @@ const deleteFunding = (funding) =>{
 }
 const fileUpload = (formData) => {
     return axios({
-        url: `/funding_file/upload_file`,
+        url: `http://13.209.194.227:8080/funding_file/upload_file`,
         method: 'post',
         data: formData,
         headers:{ "Content-Type": "multipart/form-data",
@@ -72,7 +72,7 @@ const fileUpload = (formData) => {
 
 const deleteFile = (id) =>{
     return axios({
-        url: `/funding_file/delete_file/${id}`,
+        url: `http://13.209.194.227:8080/funding_file/delete_file/${id}`,
         method: 'delete',
         headers:{
             Authorization: 'JWT fefege...'
@@ -82,7 +82,7 @@ const deleteFile = (id) =>{
 
 const searchSomething = (page,keyword)=>{
     return axios({
-        url: "/funding/list/search",
+        url: "http://13.209.194.227:8080/funding/list/search",
         method: page,keyword,
         headers:{
             Authorization: 'JWT fefege...'

@@ -15,7 +15,7 @@ const imgList = (imgList) => {
 
 const signin = (signin) => {
     return axios({
-        url: `/artists/signin`,
+        url: `http://13.209.194.227:8080/artists/signin`,
         method: 'post',
         data: {
             username: signin.username,
@@ -28,7 +28,7 @@ const signin = (signin) => {
 
 const signup = (param) => {
     return axios({
-        url: `/artists/signup`,
+        url: `http://13.209.194.227:8080/artists/signup`,
         method: 'post',
         data: param,
         headers: {
@@ -40,7 +40,7 @@ const signup = (param) => {
 
 const mypage = (artist) => {
     return axios({
-        url: `/artists/mypage`,
+        url: `http://13.209.194.227:8080/artists/mypage`,
         method: 'put',
         data: artist,
         headers: {

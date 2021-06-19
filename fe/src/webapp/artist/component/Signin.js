@@ -61,19 +61,11 @@ const Signin = () => {
                 <button type="button" className="cancelbtn" onClick={cancelButton}>
                     Cancel
                 </button>
-                <span className="psw">
-                    Forgot <a href="#">password?</a>
-                </span>
             </div>
 
             <div className="container SupporterSignup">
                 <label>
-                    <Link to="/artist/artist-signup">
-                        <button className="buttonSelect1">서포터 회원가입</button>
-                    </Link>
-                </label>
-                <label>
-                    <Link to="/artist/artist-signup">
+                    <Link to="/artist/artist_signup">
                         <button className="buttonSelect2">아티스트 회원가입</button>
                     </Link>
                 </label>
