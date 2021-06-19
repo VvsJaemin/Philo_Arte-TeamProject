@@ -72,7 +72,7 @@ const Signup = () => {
 
     const cancelButton = (e) => {
         e.preventDefault();
-        window.location = 'http://localhost:3000/artist/artist-signin';
+        window.location = '/';
     };
 
 
