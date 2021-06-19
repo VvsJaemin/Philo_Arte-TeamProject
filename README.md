@@ -16,6 +16,8 @@
 6. 담당 기능
  - 아티스트(예술 학부 학생)들의 작품 업로드 및 공유를 통해 서로 의견을 나누고 응원하는 리뷰 및 댓글 기능 구현
 
+7. AWS CloudFront : http://d1yofdba8kq0oi.cloudfront.net/
+
 **[전체 시연 영상]**
 
 
