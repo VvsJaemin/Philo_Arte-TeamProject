@@ -64,12 +64,9 @@ const Signup = () => {
         formData.append('school', signup.school);
         formData.append('department', signup.department);
 
-        // const param = { formData: formData, username: username, password: password, name: name, email: email, phoneNumber: phoneNumber, address: address, school: school, department: department };
 
-        // await dispatch(signupPage(signup));
         await dispatch(signupPage(formData));
-        console.log('dispatch formData : ', formData);
-        // console.log('dispatch signup : ', signup);
+        alert(JSON.stringify(signup.username) + "님 회원가입을 환영합니다.")
         history.push('/artists/artists_signin');
     };
 
@@ -83,8 +80,7 @@ const Signup = () => {
         <>
             <form action="/action_page.php" className="ArtistSignupHead">
                 <div className="container">
-                    <h1>회원가입(Sign Up)</h1>
-                    <p>Please fill in this form to create an account.</p>
+                    <h1 className="text-center">Philo_Arte 회원가입(Sign Up)</h1>
                     <hr />
                     <input type="file" name="file" id="reviewFileDtoList" className="md-textarea" rows="7" multiple={true} onChange={(e) => clickUpdate(e)}></input>
                     <label htmlFor="username">
@@ -127,20 +123,13 @@ const Signup = () => {
                     </label>
                     <input type="text" placeholder="Enter Department" name="department" value={department} onChange={handleChange} />
 
-                    <p>
-                        By creating an account you agree to our{'PHILO-ARTE'}
-                        <a href="#" className="ArtistSignupTermsPrivacy">
-                            Terms & Privacy
-                        </a>
-                    </p>
-
                     <div class="clearfix">
-                        <button type="button" className="cancelbtn" onClick={(e) => cancelButton(e)}>
+                        <button type="button" className="btn btn-color btn-md btn-default remove-margin pull-left" onClick={(e) => cancelButton(e)}>
                             Cancel
                         </button>
                         <button
                             type="submit"
-                            className="signupbtn"
+                            className="btn btn-success btn-md btn-default remove-margin pull-right"
                             onClick={(e) => {
                                 handleSubmit(e);
                                 // register(e);

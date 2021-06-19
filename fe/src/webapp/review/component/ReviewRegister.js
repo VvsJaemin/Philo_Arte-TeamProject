@@ -140,7 +140,6 @@ const ReviewRegister = () => {
            </div>
   
                 <button className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={!loginValue ? alert("로그인을 해주세요", history.push("/artist/artist_signin")) :register}>Register</button>
-  
                 <Link to ="/reviews/review_list">
                  <button className="btn btn-color btn-md btn-default remove-margin" style={{marginLeft:"10px"}}>Cancel</button></Link>
   
