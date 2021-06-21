@@ -9,7 +9,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
+import shop.philoarte.api.art.domain.Art;
 import shop.philoarte.api.artist.domain.Artist;
+import shop.philoarte.api.category.domain.Category;
+import shop.philoarte.api.resume.domain.Resume;
+import shop.philoarte.api.resume.domain.ResumeFile;
+import shop.philoarte.api.resume.repository.ResumeFileRepository;
+import shop.philoarte.api.resume.repository.ResumeRepository;
 import shop.philoarte.api.review.domain.Review;
 import shop.philoarte.api.review.domain.ReviewFile;
 import shop.philoarte.api.review.repository.ReviewFileRepository;
@@ -29,6 +35,11 @@ public class ReviewRepositoryTests {
 
     @Autowired
     private ReviewFileRepository reviewFileRepository;
+
+    @Autowired
+    private ResumeRepository resumeRepository;
+    private ResumeFileRepository resumeFileRepository;
+
 
     @Test
     public void insertReview() {

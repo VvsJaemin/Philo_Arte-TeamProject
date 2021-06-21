@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import shop.philoarte.api.artist.repository.ArtistRepository;
+import shop.philoarte.api.resume.repository.ResumeRepository;
 import shop.philoarte.api.review.domain.Reply;
 import shop.philoarte.api.review.domain.Review;
 import shop.philoarte.api.review.repository.ReplyRepository;
@@ -18,9 +19,10 @@ public class ReplyRepositoryTests {
 
     @Autowired
     private ReplyRepository replyRepository;
-
     @Autowired
     private ArtistRepository artistRepository;
+
+
 
     @Test
     public void insertReply(){

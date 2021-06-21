@@ -5,9 +5,10 @@ import shop.philoarte.api.common.domain.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
-//@EntityListeners(value = {AuditingEntityListener.class})
 @Entity
 @Table(name = "artists")
 @Getter
@@ -25,8 +26,7 @@ public class Artist extends BaseEntity {
     @Column(name = "username", unique = true, nullable = false)
     private String username;
 
-    // , columnDefinition="Number(10) default '12345678'"
-    // @Size(min = 8, message = "Minimum Password Length: 8 characters")
+
     @Column(name = "password")
     private String password;
 
