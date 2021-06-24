@@ -21,7 +21,6 @@ public class Reply extends BaseEntity {
     @Column(name = "rno")
     private Long rno;
 
-    @NotNull(message = "댓글을 입력해주세요")
     @Column(name = "text")
     private String text;
     @Column(name = "replyer")

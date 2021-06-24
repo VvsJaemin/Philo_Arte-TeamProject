@@ -58,12 +58,12 @@ const Signin = () => {
                     <input type="password" style={{color: "black"}} placeholder="Enter Password" name="password"
                            value={signin.password || ''} onChange={handleChange}/>
 
-                    <button type="submit" className="btn btn-success btn-md btn-default remove-margin"
+                    <button type="submit" className="btn btn-success btn-md btn-default remove-margin pull-right"
                             onClick={(e) => goSignin(e)}>
                         Login
                     </button>
 
-                    <button type="button" className="btn btn-color btn-md btn-default remove-margin pull-right"
+                    <button type="button" className="btn btn-color btn-md btn-default remove-margin"
                             onClick={cancelButton}>
                         Cancel
                     </button>

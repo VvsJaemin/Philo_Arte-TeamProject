@@ -18,6 +18,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -48,7 +49,7 @@ public class ArtistController {
     @ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
             @ApiResponse(code = 403, message = "Access Denied"),
             @ApiResponse(code = 422, message = "Artist - Username is alredy in use") })
-    public ResponseEntity<Map<String, String>> signup(ArtistDto artistDto) throws IOException {
+    public ResponseEntity<Map<String, String>> signup(@Valid ArtistDto artistDto) throws IOException {
 
         ArrayList<MultipartFile> files = artistDto.getFiles();
         files.forEach(file -> {

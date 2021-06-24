@@ -18,6 +18,7 @@ import shop.philoarte.api.review.domain.dto.ReviewFileDto;
 import shop.philoarte.api.review.service.ReviewFileServiceImpl;
 import shop.philoarte.api.review.service.ReviewServiceImpl;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
