@@ -15,10 +15,10 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review, Long>, SearchReviewRepository {
 
-    @Transactional
-    @Modifying
-    @Query("Update Review a set a.title = :title, a.content = :content where a.reviewId = :reviewId ")
-    int reviewUpdate(@Param("reviewId") Long reviewId, @Param("title") String title, @Param("content") String content);
+//    @Transactional
+//    @Modifying
+//    @Query("Update Review a set a.title = :title, a.content = :content where a.reviewId = :reviewId ")
+//    int reviewUpdate(@Param("reviewId") Long reviewId, @Param("title") String title, @Param("content") String content);
 
     @Transactional
     @Modifying
