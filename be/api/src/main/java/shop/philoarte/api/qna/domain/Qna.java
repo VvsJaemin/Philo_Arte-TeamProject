@@ -1,5 +1,6 @@
 package shop.philoarte.api.qna.domain;
 
+
 import lombok.*;
 import shop.philoarte.api.artist.domain.Artist;
 import shop.philoarte.api.common.domain.BaseEntity;
@@ -29,4 +30,5 @@ public class Qna extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "artist_id")
     private Artist artist;
+
 }

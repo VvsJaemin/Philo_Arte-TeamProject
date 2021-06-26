@@ -1,14 +1,10 @@
 package shop.philoarte.api.qna.domain.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.*;
 
-import javax.persistence.Entity;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;

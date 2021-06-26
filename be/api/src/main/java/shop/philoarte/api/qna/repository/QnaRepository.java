@@ -1,6 +1,6 @@
 package shop.philoarte.api.qna.repository;
 
-import com.amazonaws.services.dynamodbv2.document.Page;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -8,10 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import shop.philoarte.api.qna.domain.Qna;
+import shop.philoarte.api.qna.repository.search.SearchQnaRepository;
+import shop.philoarte.api.qna.repository.search.SearchQnaRepositoryImpl;
 
 import java.util.List;
 
-public interface QnaRepository extends JpaRepository<Qna, Long> {
+public interface QnaRepository extends JpaRepository<Qna, Long>, SearchQnaRepository {
 
     @Transactional
     @Modifying
