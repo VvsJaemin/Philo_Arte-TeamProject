@@ -27,7 +27,7 @@ public interface QnaRepository extends JpaRepository<Qna, Long>, SearchQnaReposi
             " FROM Qna a LEFT JOIN a.artist w" +
             " LEFT OUTER JOIN QnaReply qr ON qr.qna = qr " +
             " where a.qnaId = :qnaId group by qr ")
-    List<Object[]> getQnaWithReply(@Param("qnaId") Long QnaId);
+    List<Object[]> getQnaWithReply(@Param("qnaId") Long qnaId);
 
     @Query("SELECT a, w, count(qr) " +
             " FROM Qna a LEFT JOIN a.artist w " +

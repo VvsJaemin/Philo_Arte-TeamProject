@@ -49,6 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable(); // csrf 기능 비활성화
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests()
+                .antMatchers("/qnas/**/**").permitAll()
                 .antMatchers("/page/**/**").permitAll().antMatchers("/h2-console/**/**").permitAll()
                 .antMatchers("/artists/**/**").permitAll().antMatchers("/artist_files/**/**").permitAll()
                 .antMatchers("/reviews/**/**").permitAll().antMatchers("/replies/**/**").permitAll()

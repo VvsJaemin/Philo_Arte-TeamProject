@@ -31,4 +31,12 @@ public class Qna extends BaseEntity {
     @JoinColumn(name = "artist_id")
     private Artist artist;
 
+    public void changeTitle(String title){
+        this.title = title;
+    }
+
+    public void changeContent(String content){
+        this.content = content;
+    }
+
 }

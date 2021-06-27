@@ -50,7 +50,7 @@ public class QnaRepositoryTests {
         Qna qna = result.get();
 
         System.out.println(qna);
-        System.out.println((qna.getQnaId()));
+        System.out.println(qna.getQnaId());
     }
 
     @Test
@@ -104,5 +104,6 @@ public class QnaRepositoryTests {
             System.out.println(Arrays.toString(arr));
         }
     }
+
 
 }

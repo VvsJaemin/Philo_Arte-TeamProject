@@ -76,7 +76,7 @@ public class ReviewController {
     }
 
     @GetMapping("/list/pages")
-    @ApiOperation(value = "리뷰 게시글 목록", notes = "리뷰 게시글을 목록을 보여줍니다.")
+    @ApiOperation(value = "리뷰 게시글 목록", notes = "리뷰 게시글의 목록을 보여줍니다.")
     public ResponseEntity<PageResultDto<ReviewDto, Object[]>> reviewList(PageRequestDto pageRequestDto) {
         return ResponseEntity.ok(service.getList(pageRequestDto));
     }

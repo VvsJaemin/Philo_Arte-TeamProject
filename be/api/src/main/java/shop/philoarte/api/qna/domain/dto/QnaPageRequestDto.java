@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @ToString
 @Component
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 public class QnaPageRequestDto {

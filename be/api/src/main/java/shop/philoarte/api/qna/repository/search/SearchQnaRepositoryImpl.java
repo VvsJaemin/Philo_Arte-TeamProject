@@ -108,7 +108,7 @@ public class SearchQnaRepositoryImpl extends QuerydslRepositorySupport implement
         tuple.groupBy(qna);
 
         List<Tuple> result = tuple.fetch();
-
+        log.info(result);
         return null;
     }
 }

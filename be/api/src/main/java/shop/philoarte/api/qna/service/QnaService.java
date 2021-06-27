@@ -3,6 +3,8 @@ package shop.philoarte.api.qna.service;
 import shop.philoarte.api.artist.domain.Artist;
 import shop.philoarte.api.qna.domain.Qna;
 import shop.philoarte.api.qna.domain.dto.QnaDto;
+import shop.philoarte.api.qna.domain.dto.QnaPageRequestDto;
+import shop.philoarte.api.qna.domain.dto.QnaPageResultDto;
 import shop.philoarte.api.review.domain.dto.PageRequestDto;
 import shop.philoarte.api.review.domain.dto.PageResultDto;
 import shop.philoarte.api.review.domain.dto.ReviewDto;
@@ -18,7 +20,8 @@ public interface QnaService {
     void modify(QnaDto qnaDto);
 
     void removeWithQnaReplies(Long qnaId);
-    PageResultDto<QnaDto, Object[]> getList(PageRequestDto PageRequestDto);
+
+    QnaPageResultDto<QnaDto, Object[]> getList(QnaPageRequestDto qnaPageRequestDto);
 
     default Map<String, Object> dtoToEntity(QnaDto qnaDto){
         Map<String, Object> entityMap = new HashMap<>();
@@ -45,6 +48,7 @@ public interface QnaService {
                 .writerName(artists == null ? "" : artists.getName())
                 .replyCount(replyCount.intValue())
                 .build();
+        qnaDto.setReplyCount(replyCount.intValue());
         return qnaDto;
     }
 }
