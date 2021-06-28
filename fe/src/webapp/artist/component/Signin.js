@@ -42,7 +42,7 @@ const Signin = () => {
 
                 <div className="container">
                     <label className="pull-right">
-                        <Link to="/artist/artist_signup">
+                        <Link to="/artist/artist-signup">
                             <button className="btn btn-info btn-md btn-default "> 회원가입</button>
                         </Link>
                     </label>

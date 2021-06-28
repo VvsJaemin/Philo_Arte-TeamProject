@@ -16,16 +16,15 @@ const getArtistServerFilePage = async (filePage) => {
 };
 
 const getArtistSigninPage = async (signin) => {
-    console.log('getArtistSigninPage :: ' + signin);
+
     const response = await ArtistService.signin(signin);
     return response.data;
 };
 
 const getArtistSignupPage = async (param) => {
-    console.log('getArtistSignupPage :: ' + param);
+
     const response = await ArtistService.signup(param);
-    console.log('response :::: ', response);
-    console.log('response.data :::: ', response.data);
+
     return response.data;
 };
 

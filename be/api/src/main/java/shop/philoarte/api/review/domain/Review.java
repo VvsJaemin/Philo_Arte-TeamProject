@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "reviews")
-@ToString(exclude = {"artist, art"})
+@ToString(exclude = {"artist"})
 public class Review extends BaseEntity {
 
     @Id

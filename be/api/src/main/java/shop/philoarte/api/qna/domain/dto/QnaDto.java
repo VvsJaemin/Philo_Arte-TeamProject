@@ -20,7 +20,9 @@ public class QnaDto {
 
     private Long writerId;
     private String writerName;
+
     private int replyCount;
+
     private LocalDateTime regDate;
     private LocalDateTime modDate;
 

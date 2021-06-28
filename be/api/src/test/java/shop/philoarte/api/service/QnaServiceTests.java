@@ -21,9 +21,9 @@ public class QnaServiceTests {
 
     @Test
     public void testGetList(){
-        QnaPageRequestDto pageRequestDto = new QnaPageRequestDto();
+        QnaPageRequestDto qnaPageRequestDto = new QnaPageRequestDto(1, 10, "t", "1");
 
-        QnaPageResultDto<QnaDto, Object[]> result = qnaService.getList(pageRequestDto);
+        QnaPageResultDto<QnaDto, Object[]> result = qnaService.getList(qnaPageRequestDto);
 
         System.out.println(result.getDtoList());
 
@@ -57,8 +57,8 @@ public class QnaServiceTests {
         qnaService.save(qnaDto);
     }
 
-    @Test
     @Transactional
+    @Test
     @Commit
     public void testModify(){
         QnaDto qnaDto = QnaDto.builder()
@@ -73,7 +73,7 @@ public class QnaServiceTests {
     @Test
     public void testSearch(){
         QnaPageRequestDto qnaPageRequestDto = QnaPageRequestDto.builder()
-                .page(0)
+                .page(1)
                 .size(10)
                 .type("c")
                 .keyword("content")

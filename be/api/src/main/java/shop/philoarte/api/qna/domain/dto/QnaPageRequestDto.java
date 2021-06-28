@@ -19,13 +19,13 @@ public class QnaPageRequestDto {
     private String type;
     private String keyword;
 
-    public QnaPageRequestDto(){
-        this.page =1;
-        this.size =9;
+    public QnaPageRequestDto() {
+        this.page = 1;
+        this.size = 10;
     }
 
-    public Pageable getPageable(Sort sort){
-        return PageRequest.of(-1, size, sort);
+    public Pageable getPageable(Sort sort) {
+        return PageRequest.of(1, size, sort);
     }
 
 }

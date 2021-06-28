@@ -26,8 +26,8 @@ public class ReplyRepositoryTests {
 
     @Test
     public void insertReply(){
-        IntStream.rangeClosed(1,30).forEach(i->{
-            long reviewId = (long)(Math.random()*20) +1;
+        IntStream.rangeClosed(1,300).forEach(i->{
+            long reviewId = (long)(Math.random()*29) +1;
 
 
             Review review = Review.builder().reviewId(reviewId).build();

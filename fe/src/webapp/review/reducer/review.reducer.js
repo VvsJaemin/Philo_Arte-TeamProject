@@ -100,6 +100,6 @@ async(reviewId)=>{
 
 const{actions, reducer} =reviewSlice
 
-export const currentReview = state => state.reviews.params  // 현재 review state
+export const currentReview = state => state.reviews.params
 export const {changeSearch, delFileList}= actions
 export default reducer

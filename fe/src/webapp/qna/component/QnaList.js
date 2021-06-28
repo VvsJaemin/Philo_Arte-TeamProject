@@ -1,35 +1,33 @@
 import React, {useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
-import HeaderOneMain from 'webapp/common/component/Navbar/HeaderOneMain';
-import Footer from 'webapp/common/Footer/FooterOne';
-import {getReviewList} from 'webapp/review/reducer/review.reducer';
-import {ReviewPageList, ReviewSearch} from '..';
+import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router-dom";
+import Footer from "webapp/common/Footer/FooterOne";
+import {getQnaList} from "webapp/qna/reducer/qna.reducer";
+import QnaSearch from "./QnaSearch";
+import QnaPageList from "webapp/qna/component/QnaPageList";
 
 
-const ReviewList = () => {
-    const pageResult = useSelector(state => state.reviews.pageResult)
+const QnaList = () => {
+    const pageResult = useSelector(state => state.qnas.pageResult)
 
     const page = pageResult.page
 
     const dispatch = useDispatch()
 
-    const reviews = useSelector(state => {
-
-        return state.reviews.pageResult.dtoList;
+    const qnas = useSelector(state => {
+        return state.qnas.pageResult.dtoList;
     })
 
     useEffect((e) => {
-        dispatch(getReviewList(page))
+        dispatch(getQnaList(page))
     }, [])
 
-
     return (
-        <>  
+        <>
             <section className="white-bg">
                 <div className="col-md-12">
                     <div className="section-title text-center">
-                        <h1>Philo_Arte 아티스트를 응원해주세요 </h1>
+                        <h1>Philo_Arte에 궁금한 사항을 문의하세요 </h1>
                     </div>
                 </div>
                 <hr className="center_line default-bg"/>
@@ -39,18 +37,16 @@ const ReviewList = () => {
                         < Link to="/">Home</ Link>
                     </div>
                     <div className="post-tags pull-right">
-                        < Link to="/reviews/review-register">Register</ Link>
+                        < Link to="/qnas/qna-register">Register</ Link>
                     </div>
-                    <br></br><ReviewSearch></ReviewSearch>
+                    <br></br><QnaSearch></QnaSearch>
                 </div>
-
 
                 <div className="row">
                     <div className="row-md-12">
                         <div className="container display-flex" style={{flexWrap: "wrap", justifyContent: "center"}}>
-                            {reviews.map((review, reviewId) => {
+                            {qnas.map((qna, qnaId) => {
                                 return (
-
                                     <div className="mt-10">
                                         <div className="row-md-10 pricing-table row-sm-5">
                                             <div className="pricing-box" style={{
@@ -64,15 +60,14 @@ const ReviewList = () => {
                                                     textOverflow: "ellipsis",
                                                     overflow: "hidden",
                                                     whiteSpace: "nowrap"
-                                                }}>{review.title}</h3>
-                                                <h5 className="dark-color mb-0">By&nbsp;{review.writerName}</h5>
+                                                }}>{qna.title}</h3>
+                                                <h5 className="dark-color mb-0">By&nbsp;{qna.writerName}</h5>
                                                 <h5 className="dark-color"
-                                                    style={{marginTop: "50px"}}>{review.regDate}</h5>
+                                                    style={{marginTop: "50px"}}>{qna.regDate}</h5>
                                             </div>
                                             <br></br>
-
                                             <div className="pricing-box-bottom text-center">
-                                                <Link to={`/reviews/review-read/${review.reviewId}`}
+                                                <Link to={`/reviews/review-read/${qna.qnaId}`}
                                                       className="btn btn-lg btn-square btn-color">더 보기</Link>
                                             </div>
                                         </div>
@@ -82,11 +77,13 @@ const ReviewList = () => {
 
                         </div>
                     </div>
-                    <ReviewPageList></ReviewPageList>
+                    <QnaPageList></QnaPageList>
                 </div>
-            </section> <Footer></Footer>
+            </section>
+            <Footer></Footer>
         </>
-
     )
+
 }
-export default ReviewList
+
+export default QnaList

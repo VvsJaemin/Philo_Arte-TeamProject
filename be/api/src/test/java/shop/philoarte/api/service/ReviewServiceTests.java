@@ -64,7 +64,7 @@ public class ReviewServiceTests {
     @Commit
     public void testModify() {
         ReviewDto reviewDto = ReviewDto.builder()
-                .reviewId(52L)
+                .reviewId(10L)
                 .title("변경")
                 .content("내용 변경")
                 .build();

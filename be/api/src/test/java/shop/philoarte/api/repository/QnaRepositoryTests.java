@@ -28,7 +28,7 @@ public class QnaRepositoryTests {
     public void insertQna(){
         IntStream.rangeClosed(1,30).forEach(i->{
             Artist artist = Artist.builder()
-                    .artistId(1L)
+                    .artistId(1L+i)
                     .build();
 
             Qna qna = Qna.builder()

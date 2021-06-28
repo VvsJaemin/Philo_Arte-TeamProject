@@ -67,7 +67,7 @@ const Signup = () => {
 
         await dispatch(signupPage(formData));
         alert(JSON.stringify(signup.username) + "님 회원가입을 환영합니다.")
-        history.push('/artists/artists_signin');
+        history.push('/artists/artists-signin');
     };
 
     const cancelButton = (e) => {

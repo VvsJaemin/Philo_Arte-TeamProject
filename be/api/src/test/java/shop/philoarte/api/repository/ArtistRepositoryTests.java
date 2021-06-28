@@ -16,7 +16,7 @@ public class ArtistRepositoryTests {
 
     @Test
     public void insertsArtists(){
-        IntStream.rangeClosed(1,50).forEach(i->{
+        IntStream.rangeClosed(1,100).forEach(i->{
             Artist artist = Artist.builder()
                     .username("user"+i+"id")
                     .password("1234")

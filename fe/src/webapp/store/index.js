@@ -6,9 +6,9 @@ import resumes from 'webapp/resume/reducer/resume.reducer';
 import arts from 'webapp/art/reducer/art.reducer';
 import fundings from 'webapp/funding/reducer/funding.reducer';
 import replies from 'webapp/reply/reducer/reply.reducer';
+import qnas from 'webapp/qna/reducer/qna.reducer'
 
-
-const rootReducer = combineReducers({ artists, reviews, resumes, arts, fundings, replies });
+const rootReducer = combineReducers({ artists, reviews, resumes, arts, fundings, replies, qnas });
 
 //const persistedReducer = persistReducer(persistConfig, rootReducer);
 

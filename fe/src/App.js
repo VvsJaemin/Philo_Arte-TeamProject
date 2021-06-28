@@ -11,6 +11,7 @@ import { Review, ReviewModify, ReviewRead, ReviewRegister } from 'webapp/review/
 import { Reply, ReplyModify, ReplyRegister } from 'webapp/reply';
 
 import { HomeVideoBg } from 'webapp/common/index';
+import {QnaList, QnaRegister} from "webapp/qna/index";
 
 
 
@@ -23,12 +24,12 @@ const App = () => {
                         <Route exact path={`/`} component={HomeVideoBg} />
 
                          {/*Artist*/}
-                        <Route exact path="/artist/artist_signin" component={Signin} />
-                        <Route exact path="/artist/artist_signup" component={Signup} />
-                        <Route exact path="/artist/artist_list" component={ArtistList} />
-                        <Route exact path="/artist/artist_read/:id" component={ArtistRead} />
-                        <Route exact path="/artist/artist_update/:id" component={ArtistUpdate} />
-                        <Route exact path="/artist/artist_page_list" component={AristPageContainer} />
+                        <Route exact path="/artist/artist-signin" component={Signin} />
+                        <Route exact path="/artist/artist-signup" component={Signup} />
+                        <Route exact path="/artist/artist-list" component={ArtistList} />
+                        <Route exact path="/artist/artist-read/:id" component={ArtistRead} />
+                        <Route exact path="/artist/artist-update/:id" component={ArtistUpdate} />
+                        <Route exact path="/artist/artist-page_list" component={AristPageContainer} />
 
 
                         {/*Resume*/}
@@ -50,21 +51,24 @@ const App = () => {
                         <Route exact path="/funding/home" component={FundingHome} />
 
                         {/*Review*/}
-                        <Route exact path='/reviews/review_list' component={Review}/>
-                        <Route exact path='/reviews/review_modify/:reviewId' component={ReviewModify}/>
-                        <Route exact path='/reviews/review_read/:reviewId' component={ReviewRead}/>
-                        <Route exact path='/reviews/review_register' component={ReviewRegister}/>
+                        <Route exact path='/reviews/review-list' component={Review}/>
+                        <Route exact path='/reviews/review-modify/:reviewId' component={ReviewModify}/>
+                        <Route exact path='/reviews/review-read/:reviewId' component={ReviewRead}/>
+                        <Route exact path='/reviews/review-register' component={ReviewRegister}/>
 
                         {/*Reply*/}
-                        <Route exact path='/replies/reply_list' component={Reply}/>
-                        <Route exact path='/replies/reply_modify/:replyId' component={ReplyModify}/>
-                        <Route exact path='/replies/reply_register' component={ReplyRegister}/>
+                        <Route exact path='/replies/reply-list' component={Reply}/>
+                        <Route exact path='/replies/reply-modify/:replyId' component={ReplyModify}/>
+                        <Route exact path='/replies/reply-register' component={ReplyRegister}/>
 
+                        {/*Qna*/}
+                        <Route exact path='/qna/qna-list' component={QnaList}/>
+                        <Route exact path='/qna/qna-register' component={QnaRegister}/>
 
                         <Switch>
                             <privateRoute exact path="/" component={HomeVideoBg} />
-                            <Route exact path="/artist/artist_logout" component={Logout} />
-                            <Route exact path="/artist/artist_mypage" component={MyPage} />
+                            <Route exact path="/artist/artist-logout" component={Logout} />
+                            <Route exact path="/artist/artist-mypage" component={MyPage} />
                             <Redirect path="*" to="/" />
                         </Switch>
                     </Switch>

@@ -88,10 +88,10 @@ const Footer = ({ bg }) => {
                   <h5 className="widget-title">Quick Links</h5>
                   <ul>
                     <li>
-                      <Link to={"/artist/artist_signup"}>Sign Up</Link>
+                      <Link to={"/artist/artist-signup"}>Sign Up</Link>
                     </li>
                     <li>
-                      <Link to={"/artist/artist_signin"}>Sign In</Link>
+                      <Link to={"/artist/artist-signin"}>Sign In</Link>
                     </li>
                     <li>
                       <Link to={"/art"}>Art</Link>
@@ -103,7 +103,10 @@ const Footer = ({ bg }) => {
                       <Link to={"/funding/list"}>Funding</Link>
                     </li>
                     <li>
-                      <Link to={"'/reviews/review_list"}>Review </Link>
+                      <Link to={"/reviews/review-list"}>Review </Link>
+                    </li>
+                    <li>
+                      <Link to={"/qnas/qna-list"}>Q&A </Link>
                     </li>
                   </ul>
                 </div>

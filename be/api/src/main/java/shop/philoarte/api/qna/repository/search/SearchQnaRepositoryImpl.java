@@ -25,12 +25,15 @@ import java.util.stream.Collectors;
 
 @Log4j2
 public class SearchQnaRepositoryImpl extends QuerydslRepositorySupport implements SearchQnaRepository {
+
     public SearchQnaRepositoryImpl() {
         super(Qna.class);
     }
 
     @Override
     public Page<Object[]> searchPage(String type, String keyword, Pageable pageable) {
+
+        log.info("searchPage...........");
 
         QQna qna = QQna.qna;
 
@@ -62,8 +65,10 @@ public class SearchQnaRepositoryImpl extends QuerydslRepositorySupport implement
                 switch (t) {
                     case "t":
                         conditionBuilder.or(qna.title.contains(keyword));
+                        break;
                     case "w":
                         conditionBuilder.or(artist.name.contains(keyword));
+                        break;
                     case "c":
                         conditionBuilder.or(qna.content.contains(keyword));
                         break;
@@ -74,6 +79,7 @@ public class SearchQnaRepositoryImpl extends QuerydslRepositorySupport implement
         }
         tuple.where(booleanBuilder);
 
+        //order by
         Sort sort = pageable.getSort();
 
         sort.stream().forEach(order -> {
@@ -86,9 +92,19 @@ public class SearchQnaRepositoryImpl extends QuerydslRepositorySupport implement
 
         tuple.groupBy(qna);
 
+        //page 처리
+        log.info(pageable.getOffset());
+        log.info(pageable.getPageSize());
+
+        tuple.offset(pageable.getOffset());
+        tuple.limit(pageable.getPageSize());
+
         List<Tuple> result = tuple.fetch();
 
+        log.info(result);
+
         long count = tuple.fetchCount();
+        log.info("COUNT : " + count);
 
 
         return new PageImpl<Object[]>(result.stream().map(t -> t.toArray()).collect(Collectors.toList()), pageable, count);
@@ -96,6 +112,8 @@ public class SearchQnaRepositoryImpl extends QuerydslRepositorySupport implement
 
     @Override
     public Qna search() {
+        log.info("search1...........");
+
         QQna qna = QQna.qna;
         QQnaReply qnaReply = QQnaReply.qnaReply;
         QArtist artist = QArtist.artist;

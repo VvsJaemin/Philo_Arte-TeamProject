@@ -23,8 +23,8 @@ public interface QnaService {
 
     QnaPageResultDto<QnaDto, Object[]> getList(QnaPageRequestDto qnaPageRequestDto);
 
-    default Map<String, Object> dtoToEntity(QnaDto qnaDto){
-        Map<String, Object> entityMap = new HashMap<>();
+    default Qna dtoToEntity(QnaDto qnaDto){
+
         Artist artists = Artist.builder().artistId(qnaDto.getWriterId()).build();
         Qna qna = Qna.builder()
                 .qnaId(qnaDto.getQnaId())
@@ -32,9 +32,8 @@ public interface QnaService {
                 .content(qnaDto.getContent())
                 .artist(artists)
                 .build();
-        entityMap.put("qna", qna);
 
-        return entityMap;
+        return qna;
     }
 
     default QnaDto entityToDto(Qna qna, Artist artists, Long replyCount) {

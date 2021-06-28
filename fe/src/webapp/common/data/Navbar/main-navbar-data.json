@@ -25,23 +25,23 @@
   {
     "id": 5,
     "title": "Review",
-    "path": "/reviews/review_list"
+    "path": "/reviews/review-list"
     
   },
   {
     "id": 6,
     "title": "Log In",
-    "path": "/artist/artist_signin"
+    "path": "/artist/artist-signin"
   },
   {
     "id": 7,
     "title": "Sign Up",
-    "path": "/artist/artist_signup"
+    "path": "/artist/artist-signup"
   },
   {
     "id": 8,
-    "title": "",
-    "path": ""
+    "title": "Q&A",
+    "path": "/qna/qna-list"
   }
 
 ]

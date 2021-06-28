@@ -20,7 +20,7 @@ public class QnaReplyRepositoryTests {
     @Test
     public void insertQnaReply(){
         IntStream.rangeClosed(1, 30).forEach(i->{
-            long qnaId = (long)(Math.random()*1) + 1;
+            long qnaId = (long)(Math.random()*30) + 1;
 
             Qna qna = Qna.builder().qnaId(qnaId).build();
 

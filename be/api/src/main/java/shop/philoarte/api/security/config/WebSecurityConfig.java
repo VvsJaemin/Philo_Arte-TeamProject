@@ -66,7 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/*/**") // 모든 곳에서 접속
+        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/*/**")
                 .antMatchers("/", "/h2-console/**");
     }
 }

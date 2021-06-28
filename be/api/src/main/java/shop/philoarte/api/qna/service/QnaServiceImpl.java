@@ -3,6 +3,7 @@ package shop.philoarte.api.qna.service;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.QPageRequest;
@@ -23,7 +24,7 @@ import shop.philoarte.api.review.repository.ReplyRepository;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class QnaServiceImpl implements QnaService {
@@ -34,8 +35,7 @@ public class QnaServiceImpl implements QnaService {
     @Override
     public Long save(QnaDto qnaDto) {
 
-        Map<String, Object> entityMap = dtoToEntity(qnaDto);
-        Qna qna = (Qna) entityMap.get("qna");
+        Qna qna = dtoToEntity(qnaDto);
         repository.save(qna);
         return qna.getQnaId();
     }
@@ -55,8 +55,8 @@ public class QnaServiceImpl implements QnaService {
 
         Qna qna = repository.getOne(qnaDto.getQnaId());
 
-        qna.changeTitle(qna.getTitle());
-        qna.changeContent(qna.getContent());
+        qna.changeTitle(qnaDto.getTitle());
+        qna.changeContent(qnaDto.getContent());
 
 
         repository.save(qna);
@@ -73,6 +73,8 @@ public class QnaServiceImpl implements QnaService {
 
     @Override
     public QnaPageResultDto<QnaDto, Object[]> getList(QnaPageRequestDto qnaPageRequestDto) {
+
+        log.info(qnaPageRequestDto);
         Function<Object[], QnaDto> fn = (arr -> entityToDto(
                 (Qna) arr[0],
                 (Artist) arr[1],
