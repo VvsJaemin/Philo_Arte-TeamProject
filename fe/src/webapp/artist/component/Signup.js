@@ -37,7 +37,7 @@ const Signup = () => {
         e.preventDefault();
         e.stopPropagation();
         const fileObject = e.target;
-        console.dir(fileObject.files); // .dir : js 객체의 속성 출력
+        console.dir(fileObject.files);
         setFiles(fileObject.files);
     };
 
@@ -45,13 +45,9 @@ const Signup = () => {
         e.preventDefault();
         e.stopPropagation();
 
-
-        // formData : file을 업로드
         const formData = new FormData();
-        console.log('formData) ::: ', formData);
 
         for (let i = 0; i < files.length; i++) {
-            console.log('for files :::::::::', files);
             formData.append('files[' + i + ']', files[i]);
         }
 

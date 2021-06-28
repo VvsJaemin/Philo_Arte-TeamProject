@@ -37,7 +37,7 @@ const QnaList = () => {
                         < Link to="/">Home</ Link>
                     </div>
                     <div className="post-tags pull-right">
-                        < Link to="/qnas/qna-register">Register</ Link>
+                        < Link to="/qna/qna-register">Register</ Link>
                     </div>
                     <br></br><QnaSearch></QnaSearch>
                 </div>

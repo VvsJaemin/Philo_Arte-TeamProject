@@ -39,7 +39,7 @@ const ReviewRead = () => {
             if (reviewDelete) {
                 alert("삭제가 완료되었습니다.")
                 await dispatch(getReviewDelete(reviewId))
-                history.push("/reviews/review_list")
+                history.push("/reviews/review-list")
             }
         } else {
             alert("로그인해주세요")
@@ -76,7 +76,7 @@ const ReviewRead = () => {
 
                     <div className="post" style={{marginBottom: "100px"}}>
                         <div className="post-tags pull-right">
-                            <Link to={`/reviews/review_modify/${params.reviewId}`}>
+                            <Link to={`/reviews/review-modify/${params.reviewId}`}>
                                 <div>Modify</div>
                             </Link>
                         </div>
@@ -84,7 +84,7 @@ const ReviewRead = () => {
                         <div className="post-tags pull-left">
                             <Link to="/reviews/review_list"> Review List</Link>
 
-                            <Link to={`/reviews/review_read/${reviewObj.reviewId}`}>
+                            <Link to={`/reviews/review-read/${reviewObj.reviewId}`}>
                                 <div onClick={() => deletes(params.reviewId)}>Review Remove</div>
                             </Link>
                         </div>

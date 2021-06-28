@@ -61,7 +61,7 @@ const MyPage = () => {
             files: artistsState.files,
             token: artistsState.token,
             artistId: artistsState.artistId,
-            username: artistsState.usename,
+            username: artistsState.username,
             password: mypage.password,
             name: artistsState.name,
             phoneNumber: mypage.phoneNumber,

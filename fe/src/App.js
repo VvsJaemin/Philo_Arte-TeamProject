@@ -11,7 +11,7 @@ import { Review, ReviewModify, ReviewRead, ReviewRegister } from 'webapp/review/
 import { Reply, ReplyModify, ReplyRegister } from 'webapp/reply';
 
 import { HomeVideoBg } from 'webapp/common/index';
-import {QnaList, QnaRegister} from "webapp/qna/index";
+import {QnaList, QnaRead, QnaRegister} from "webapp/qna/index";
 
 
 
@@ -26,8 +26,6 @@ const App = () => {
                          {/*Artist*/}
                         <Route exact path="/artist/artist-signin" component={Signin} />
                         <Route exact path="/artist/artist-signup" component={Signup} />
-                        <Route exact path="/artist/artist-list" component={ArtistList} />
-                        <Route exact path="/artist/artist-read/:id" component={ArtistRead} />
                         <Route exact path="/artist/artist-update/:id" component={ArtistUpdate} />
                         <Route exact path="/artist/artist-page_list" component={AristPageContainer} />
 
@@ -64,6 +62,7 @@ const App = () => {
                         {/*Qna*/}
                         <Route exact path='/qna/qna-list' component={QnaList}/>
                         <Route exact path='/qna/qna-register' component={QnaRegister}/>
+                        <Route exact path='/qna/qna-read/:qnaId' component={QnaRead}/>
 
                         <Switch>
                             <privateRoute exact path="/" component={HomeVideoBg} />

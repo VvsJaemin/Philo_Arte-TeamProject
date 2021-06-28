@@ -51,7 +51,7 @@ const ReviewModify = () => {
             await dispatch(getReviewModify(formData))
             alert("리뷰 수정 완료!")
             setFiles(null)
-            history.push(`/reviews/review_read/${reviewObj.reviewId}`)
+            history.push(`/reviews/review-read/${reviewObj.reviewId}`)
         }
       
     }
@@ -131,8 +131,8 @@ const ReviewModify = () => {
         
         <div style={{marginTop:"50px"}}>
             
-        <button className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={!loginValue ? alert("로그인을 해주세요", history.push(`/reviews/review_read/${reviewObj.reviewId}`)) : fileModify} >Modify</button>
-        < Link to = {`/reviews/review_read/${reviewObj.reviewId}`} > 
+        <button className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={!loginValue ? alert("로그인을 해주세요", history.push(`/reviews/review-read/${reviewObj.reviewId}`)) : fileModify} >Modify</button>
+        < Link to = {`/reviews/review-read/${reviewObj.reviewId}`} >
         <button className="btn btn-color btn-md btn-default remove-margin" >Cancel</button> </Link>
         </div>
         

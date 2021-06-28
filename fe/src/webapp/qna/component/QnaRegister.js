@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {getReviewRegister} from "../../review/reducer/review.reducer";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
+import {getQnaRegister} from "../reducer/qna.reducer";
 
 const QnaRegister = () => {
     const loginValue = JSON.parse(localStorage.getItem('artist'))
@@ -13,25 +14,32 @@ const QnaRegister = () => {
     const [input, setInput] = useState({
         title: '',
         content: '',
-        writerId: qnas.writerId,
-        writerName: qnas.writerName
+        writerId: loginValue?.artistId,
+        writerName: loginValue?.name
     })
 
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        e.stopPropagation()
         console.log(e.target.name, e.target.value)
 
         setInput({
             ...input,
             [e.target.name]: e.target.value
         })
-
-        await dispatch(getReviewRegister(input))
-        alert(JSON.stringify(loginValue?.name) + "님의 Q&A가 등록되었습니다.")
-
     }
+
+    const handleClick=(e)=>{
+        e.stopPropagation()
+        e.preventDefault()
+        const data ={...input}
+        console.log(data)
+        dispatch(getQnaRegister(data))
+    }
+
 
     return (
         <section className="white-bg">
@@ -103,7 +111,7 @@ const QnaRegister = () => {
                 </div>
 
                 <button className="btn btn-success btn-md btn-default remove-margin pull-right"
-                        onClick={!loginValue ? alert("로그인을 해주세요", history.push("/artist/artist_signin")) : register}>Register
+                        onClick={(e)=>!loginValue ? alert("로그인을 해주세요", history.push("/artist/artist-signin")) : handleClick(e)}>Register
                 </button>
                 <Link to="/qnas/qna-list">
                     <button className="btn btn-color btn-md btn-default remove-margin"
