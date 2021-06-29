@@ -30,7 +30,7 @@ const QnaRead =()=>{
             if (qnaRemove) {
                 alert("삭제가 완료되었습니다.")
                 await dispatch(getQnaRemove(qnaId))
-                history.push("/qnas/review-list")
+                history.push("/qnas/qna-list")
             }
         } else {
             alert("로그인해주세요")

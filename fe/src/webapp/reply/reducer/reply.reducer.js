@@ -42,7 +42,7 @@ const replySlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(getReplyList.fulfilled, (state, { meta, payload }) => {
+            .addCase(getReplyList.fulfilled, (state, { payload }) => {
                 state.reply = payload;
             })
             .addCase(getReplyRegister.fulfilled, (state, { payload }) => {

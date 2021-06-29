@@ -46,7 +46,7 @@ const ReplyRegister=()=>{
       formData.append("replyer", input.replyer)
       formData.append("reviewId", input.reviewId)
       await dispatch(getReplyRegister(formData))
-      history.replace(`/reviews/review_read/${input.reviewId}`)
+      history.replace(`/reviews/review-read/${input.reviewId}`)
     
     }
 
@@ -121,7 +121,7 @@ return (
                 </div>
                     <div>
                     <button className="btn btn-success btn-md btn-default remove-margin pull-right" onClick={register}>Register</button>
-                    <Link to ={`/reviews/review_read/${reviewObj.reviewId}`}>
+                    <Link to ={`/reviews/review-read/${reviewObj.reviewId}`}>
                                  <button className="btn btn-color btn-md btn-default"
                                  >Cancel</button>
                             </Link>

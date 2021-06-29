@@ -37,7 +37,7 @@ const QnaList = () => {
                         < Link to="/">Home</ Link>
                     </div>
                     <div className="post-tags pull-right">
-                        < Link to="/qna/qna-register">Register</ Link>
+                        < Link to="/qnas/qna-register">Register</ Link>
                     </div>
                     <br></br><QnaSearch></QnaSearch>
                 </div>
@@ -67,7 +67,7 @@ const QnaList = () => {
                                             </div>
                                             <br></br>
                                             <div className="pricing-box-bottom text-center">
-                                                <Link to={`/reviews/review-read/${qna.qnaId}`}
+                                                <Link to={`/qnas/qna-read/${qna.qnaId}`}
                                                       className="btn btn-lg btn-square btn-color">더 보기</Link>
                                             </div>
                                         </div>

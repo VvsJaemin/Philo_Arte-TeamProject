@@ -29,13 +29,13 @@ public class QnaReplyController {
         return ResponseEntity.ok("success");
     }
 
-    @GetMapping("/list/{qnaId}")
+    @GetMapping("/list/{reNo}")
     @ApiOperation(value = "Q&A 댓글 목록", notes = "Q&A 댓글 목록을 보여줍니다.")
-    public ResponseEntity<List<QnaReplyDto>> qnaReplyList(@PathVariable("qnaId") Long qnaId) {
+    public ResponseEntity<List<QnaReplyDto>> qnaReplyList(@PathVariable("reNo") Long reNo) {
 
-        log.info("qnaId : " + qnaId);
+        log.info("qnaId : " + reNo);
 
-        return ResponseEntity.ok(qnaReplyService.getList(qnaId));
+        return ResponseEntity.ok(qnaReplyService.getList(reNo));
     }
 
     @PutMapping("/modify/{reNo}")

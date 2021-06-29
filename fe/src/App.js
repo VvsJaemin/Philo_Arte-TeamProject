@@ -12,6 +12,8 @@ import { Reply, ReplyModify, ReplyRegister } from 'webapp/reply';
 
 import { HomeVideoBg } from 'webapp/common/index';
 import {QnaList, QnaRead, QnaRegister} from "webapp/qna/index";
+import QnaModify from "./webapp/qna/component/QnaModify";
+import {QnaReplyList, QnaReplyModify, QnaReplyRegister} from "webapp/qnaReply/index";
 
 
 
@@ -60,9 +62,15 @@ const App = () => {
                         <Route exact path='/replies/reply-register' component={ReplyRegister}/>
 
                         {/*Qna*/}
-                        <Route exact path='/qna/qna-list' component={QnaList}/>
-                        <Route exact path='/qna/qna-register' component={QnaRegister}/>
-                        <Route exact path='/qna/qna-read/:qnaId' component={QnaRead}/>
+                        <Route exact path='/qnas/qna-list' component={QnaList}/>
+                        <Route exact path='/qnas/qna-register' component={QnaRegister}/>
+                        <Route exact path='/qnas/qna-read/:qnaId' component={QnaRead}/>
+                        <Route exact path='/qnas/qna-modify/:qnaId' component={QnaModify}/>
+
+                        {/*QnaReply*/}
+                        <Route exact path ='/qreplies/qreply-list' component={QnaReplyList}/>
+                        <Route exact path ='/qreplies/qreply-register' component={QnaReplyRegister}/>
+                        <Route exact path ='/qreplies/qreply-modify/:reNo' component={QnaReplyModify}/>
 
                         <Switch>
                             <privateRoute exact path="/" component={HomeVideoBg} />

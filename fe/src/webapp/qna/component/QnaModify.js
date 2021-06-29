@@ -91,9 +91,9 @@ const QnaModify = () => {
                 <div style={{marginTop: "50px"}}>
 
                     <button className="btn btn-success btn-md btn-default remove-margin pull-right"
-                            onClick={(e) => !loginValue ? alert("로그인을 해주세요", history.push(`/qna/qna-read/${qnaObj.reviewId}`)) : qnaModify(e)}>Modify
+                            onClick={(e) => !loginValue ? alert("로그인을 해주세요", history.push(`/qnas/qna-read/${qnaObj.reviewId}`)) : qnaModify(e)}>Modify
                     </button>
-                    < Link to={`/qna/qna-read/${qnaObj.qnaId}`}>
+                    < Link to={`/qnas/qna-read/${qnaObj.qnaId}`}>
                         <button className="btn btn-color btn-md btn-default remove-margin">Cancel</button>
                     </Link>
                 </div>
