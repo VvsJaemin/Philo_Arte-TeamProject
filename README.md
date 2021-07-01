@@ -1,6 +1,6 @@
 # Philo_Arte 전체 및 담당 기능 시연 영상
 
-##### * AWS CloudFront : http://d28s8ict5f8kcg.cloudfront.net/
+##### * AWS CloudFront : http://d13iglbqqo2xoy.cloudfront.net
 
 1. 프로젝트 명 : Philo_Arte
 
