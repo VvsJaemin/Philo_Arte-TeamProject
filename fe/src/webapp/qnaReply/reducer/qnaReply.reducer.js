@@ -7,7 +7,7 @@ export const getQnaReplyList = createAsyncThunk('qreplies/list/reNo', async (reN
 })
 
 export const getQnaReplyRegister = createAsyncThunk("qreplies/register", async (input) => {
-    const res = await QnaReplyService.register(qr);
+    const res = await QnaReplyService.register(input);
     return res.data;
 
 })
@@ -36,7 +36,7 @@ const qnaReplySlice = createSlice({
         builder.addCase(getQnaReplyList.fulfilled, (state, {payload}) => {
             state.reply = payload;
         })
-            .addCase(getReplyRegister.fulfilled, (state, {payload}) => {
+            .addCase(getQnaReplyRegister.fulfilled, (state, {payload}) => {
                 const msg = '' + payload + '번 등록'
                 return {...state, msg}
             })

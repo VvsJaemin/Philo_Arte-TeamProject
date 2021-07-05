@@ -124,7 +124,7 @@ public class ReviewController {
         return new ResponseEntity(resultMap, HttpStatus.OK);
     }
 
-    @DeleteMapping("remove/{reviewId}")
+    @DeleteMapping("/remove/{reviewId}")
     @ApiOperation(value = "하나의 리뷰 삭제", notes = "하나의 리뷰를 삭제 합니다.")
     public ResponseEntity<String> reviewRemove(@PathVariable("reviewId") Long reviewId) {
 

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {currentQna, getQnaRead} from "../../qna/reducer/qna.reducer";
 import {Link, useParams} from "react-router-dom";
 import {getQnaReplyList, getQnaReplyRemove} from "../reducer/qnaReply.reducer";
@@ -9,6 +9,7 @@ import {ReplyModify} from "../../reply";
 const QnaReplyList = ({qnaId, changeFlag, flag}) => {
 
     const params = useParams()
+    const dispatch = useDispatch()
 
     const qnaReplies = useSelector(state => {
         return state.qreplies.qnaReply
@@ -36,8 +37,8 @@ const QnaReplyList = ({qnaId, changeFlag, flag}) => {
 
     return (<>
 
-        {qreplies.length > 0 ?
-            qreplies.map((reply, rno) => {
+        {qnaReplies.length > 0 ?
+            qnaReplies.map((reply, rno) => {
                 return (
                     <ul className=" container comment-box">
                         <li className="post-comment" key={reply.rno}>
